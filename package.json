@@ -1,0 +1,24 @@
+{
+  "name": "notion-cloudflare",
+  "version": "1.0.0",
+  "description": "Site of Nourman Hajar",
+  "author": "Nourman Hajar <nourmanhajar@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "dev": "NODE_ENV=development npm run build",
+    "transpile": "tsc --project ./test"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.3.0",
+    "miniflare": "^1.4.1",
+    "prettier": "^2.5.0",
+    "ts-loader": "~8.2.0",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  }
+}
