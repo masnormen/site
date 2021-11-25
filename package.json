@@ -5,16 +5,13 @@
   "author": "Nourman Hajar <nourmanhajar@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "dev": "NODE_ENV=development npm run build",
-    "transpile": "tsc --project ./test"
+    "build": "webpack"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.2.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "eslint": "^8.3.0",
-    "miniflare": "^1.4.1",
     "prettier": "^2.5.0",
     "ts-loader": "~8.2.0",
     "typescript": "^4.5.2",

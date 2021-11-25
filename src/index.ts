@@ -1,5 +1,3 @@
-/* eslint-disable max-classes-per-file */
-
 import { MY_DOMAIN, SLUG_TO_PAGE, slugs } from "./config";
 import { BodyRewriter, generateSitemap, handleOptions, HeadRewriter, MetaRewriter } from "./helpers";
 
@@ -73,8 +71,6 @@ async function fetchAndApply(request: Request) {
   return appendJavascript(response, SLUG_TO_PAGE);
 }
 
-addEventListener("fetch", (event) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+addEventListener("fetch", (event: FetchEvent) => {
   event.respondWith(fetchAndApply(event.request));
 });

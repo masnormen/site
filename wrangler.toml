@@ -1,8 +1,9 @@
-name = "notion" # The name of your Worker script
-type = "webpack" # Specifies how wrangler build will build your project
-webpack_config = "webpack.config.js" # The path to a custom webpack configuration file for your worker
-routes = ["nourman.id/*"] # A list of routes you’d like to use your worker on
-workers_dev = true # If your worker will be deployed to your workers.devOpen
-account_id = "" # Set up in Github action
-zone_id = "" # Set up in Github action
+name = "notion"
+type = "webpack"
+webpack_config = "webpack.config.js"
+route = "nourman.id/*"
+zone_id = ""
+usage_model = ""
+compatibility_flags = []
+workers_dev = true
 compatibility_date = "2021-11-25"
