@@ -5,7 +5,7 @@ export const SUPER_SITE = "nourman-hajar.super.site";
 export const CUSTOM_SITE = "nourman.id";
 
 /* TODO: Update after every commit that changes CSS */
-export const CUSTOM_CSS = "https://cdn.statically.io/gh/masnormen/site/aecf83b977d5085c34d3cf70e0fdb6bf7a095e63/styles/style.min.css";
+export const CUSTOM_CSS = "https://cdn.statically.io/gh/masnormen/site/334e7d89ce081cb87c5e581ade2d6cde7ebf5a04/styles/style.min.css";
 
 /* Function for rewriting HTML */
 const rewriteHtml = async (res: Response) =>{
