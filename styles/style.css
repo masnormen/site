@@ -95,7 +95,8 @@
 .notion-header__icon-wrapper {
   right: 0 !important;
   left: 0 !important;
-  margin: auto !important;
+  margin-right: auto!important;
+  margin-left: auto!important;
 }
 
 .notion-header__content .notion-header__title-wrapper {
