@@ -1,4 +1,4 @@
-import { SUPER_SITE, CUSTOM_SITE } from ".";
+import { SUPER_SITE, CUSTOM_SITE, CUSTOM_CSS } from ".";
 
 export class MetaRewriter {
   element(element: Element) {
@@ -18,7 +18,7 @@ export class StyleRewriter {
   element(element: Element) {
     /* Hide Super.so branding */
     element.append(
-      `<style>.super-badge { display: none !important; visibility: hidden !important; pointer-events: none !important; }</style>`,
+      `<link rel="stylesheet" href="${CUSTOM_CSS}"/><style>.super-badge { display: none !important; visibility: hidden !important; pointer-events: none !important; }</style>`,
       { html: true }
     );
   }
@@ -29,7 +29,6 @@ export class SuperConfigRewriter {
 
   text(text: Text) {
     this.buffer += text.text;
-
     if (text.lastInTextNode) {
       text.replace(
         this.buffer
@@ -50,7 +49,6 @@ export class SitemapRewriter {
 
   text(text: Text) {
     this.buffer += text.text;
-
     if (text.lastInTextNode) {
       /* Replace Super domain with custom domain */
       text.replace(this.buffer.replaceAll(SUPER_SITE, CUSTOM_SITE));

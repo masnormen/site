@@ -3,3 +3,4 @@
 /worker
 .env
 .env.*
+.DS_Store
