@@ -1,52 +1,20 @@
-import { MY_DOMAIN, CUSTOM_SCRIPT, GOOGLE_FONT, PAGE_DESCRIPTION, PAGE_TITLE, slugs } from "./config";
-
-export const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, HEAD, POST, PUT, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
-};
-
-export function handleOptions(request: Request) {
-  if (
-    request.headers.get("Origin") !== null &&
-    request.headers.get("Access-Control-Request-Method") !== null &&
-    request.headers.get("Access-Control-Request-Headers") !== null
-  ) {
-    // Handle CORS pre-flight request.
-    return new Response(null, {
-      headers: corsHeaders,
-    });
-  }
-  // Handle standard OPTIONS request.
-  return new Response(null, {
-    headers: {
-      Allow: "GET, HEAD, POST, PUT, OPTIONS",
-    },
-  });
-}
-
-export async function generateSitemap(url: string, request: Request) {
-  console.log("URLLLL:", url);
-  const sitemap = await fetch(url, {
-    body: request.body,
-    headers: request.headers,
-    method: request.method,
-  });
-
-  const response = await sitemap.text;
-  return response.replace("nourman-hajar.super.site", MY_DOMAIN);
-}
-
+import { SITE_DOMAIN } from ".";
 export class MetaRewriter {
   element(element: Element) {
+    /* Replace Super domain with custom domain */
     if (element.getAttribute("property") === "og:url") {
-      element.setAttribute("content", MY_DOMAIN);
+      element.setAttribute("content", SITE_DOMAIN);
+    }
+    /* Make site indexable by search engines */
+    if (element.getAttribute("name") === "robots" || element.getAttribute("name") === "googlebot") {
+      element.setAttribute("content", "index,follow");
     }
   }
 }
 
-export class HeadRewriter {
+export class StyleRewriter {
   element(element: Element) {
+    /* Hide Super.so branding */
     element.append(
       `<style>.super-badge { display: none !important; visibility: hidden !important; pointer-events: none !important; }</style>`,
       {
@@ -56,37 +24,38 @@ export class HeadRewriter {
   }
 }
 
-export class DataRewriter {
+export class SuperConfigRewriter {
   buffer = "";
+
   text(text: Text) {
     this.buffer += text.text;
 
     if (text.lastInTextNode) {
-      // We're done with this text node -- search and replace and reset.
-      text.replace(this.buffer.replaceAll("nourman-hajar.super.site", MY_DOMAIN));
+      text.replace(
+        this.buffer
+          /* Replace Super domain with custom domain */
+          .replaceAll("nourman-hajar.super.site", SITE_DOMAIN)
+          /* Make site indexable by search engines */
+          .replaceAll(`"noIndex":true`, `"noIndex":false`)
+      );
       this.buffer = "";
     } else {
-      // This wasn't the last text chunk, and we don't know if this chunk
-      // will participate in a match. We must remove it so the client
-      // doesn't see it.
       text.remove();
     }
   }
 }
 
-export class XMLRewriter {
+export class SitemapRewriter {
   buffer = "";
+
   text(text: Text) {
     this.buffer += text.text;
 
     if (text.lastInTextNode) {
-      // We're done with this text node -- search and replace and reset.
-      text.replace(this.buffer.replaceAll("nourman-hajar.super.site", MY_DOMAIN));
+      /* Replace Super domain with custom domain */
+      text.replace(this.buffer.replaceAll("nourman-hajar.super.site", SITE_DOMAIN));
       this.buffer = "";
     } else {
-      // This wasn't the last text chunk, and we don't know if this chunk
-      // will participate in a match. We must remove it so the client
-      // doesn't see it.
       text.remove();
     }
   }
