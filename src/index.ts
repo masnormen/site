@@ -3,7 +3,7 @@ import { MetaRewriter, SitemapRewriter, StyleRewriter, SuperConfigRewriter } fro
 /* Variables */
 export const SUPER_SITE = "nourman-hajar.super.site";
 export const CUSTOM_SITE = "nourman.id";
-export const CUSTOM_CSS = "https://rawcdn.githack.com/masnormen/notion-cloudflare/main/styles/style.css";
+export const CUSTOM_CSS = "https://cdn.jsdelivr.net/gh/masnormen/site/styles/style.css";
 
 /* Function for rewriting HTML */
 const rewriteHtml = async (res: Response) =>{
