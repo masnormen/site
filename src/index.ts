@@ -3,7 +3,9 @@ import { MetaRewriter, SitemapRewriter, StyleRewriter, SuperConfigRewriter } fro
 /* Variables */
 export const SUPER_SITE = "nourman-hajar.super.site";
 export const CUSTOM_SITE = "nourman.id";
-export const CUSTOM_CSS = "https://cdn.jsdelivr.net/gh/masnormen/site/styles/style.css";
+
+/* TODO: Update after every commit that changes CSS */
+export const CUSTOM_CSS = "https://cdn.statically.io/gh/masnormen/site/aecf83b977d5085c34d3cf70e0fdb6bf7a095e63/styles/style.min.css";
 
 /* Function for rewriting HTML */
 const rewriteHtml = async (res: Response) =>{
