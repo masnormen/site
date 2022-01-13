@@ -1,9 +1,11 @@
-import { SITE_DOMAIN } from ".";
+import { SUPER_SITE, CUSTOM_SITE } from ".";
+
 export class MetaRewriter {
   element(element: Element) {
     /* Replace Super domain with custom domain */
     if (element.getAttribute("property") === "og:url") {
-      element.setAttribute("content", SITE_DOMAIN);
+      const content = element.getAttribute("content") || "";
+      element.setAttribute("content", content.replaceAll(SUPER_SITE, CUSTOM_SITE));
     }
     /* Make site indexable by search engines */
     if (element.getAttribute("name") === "robots" || element.getAttribute("name") === "googlebot") {
@@ -17,9 +19,7 @@ export class StyleRewriter {
     /* Hide Super.so branding */
     element.append(
       `<style>.super-badge { display: none !important; visibility: hidden !important; pointer-events: none !important; }</style>`,
-      {
-        html: true,
-      }
+      { html: true }
     );
   }
 }
@@ -34,7 +34,7 @@ export class SuperConfigRewriter {
       text.replace(
         this.buffer
           /* Replace Super domain with custom domain */
-          .replaceAll("nourman-hajar.super.site", SITE_DOMAIN)
+          .replaceAll(SUPER_SITE, CUSTOM_SITE)
           /* Make site indexable by search engines */
           .replaceAll(`"noIndex":true`, `"noIndex":false`)
       );
@@ -53,7 +53,7 @@ export class SitemapRewriter {
 
     if (text.lastInTextNode) {
       /* Replace Super domain with custom domain */
-      text.replace(this.buffer.replaceAll("nourman-hajar.super.site", SITE_DOMAIN));
+      text.replace(this.buffer.replaceAll(SUPER_SITE, CUSTOM_SITE));
       this.buffer = "";
     } else {
       text.remove();

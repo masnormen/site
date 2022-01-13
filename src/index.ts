@@ -1,54 +1,59 @@
-import { MetaRewriter, SitemapRewriter, StyleRewriter, SuperConfigRewriter } from "./helpers";
+import { MetaRewriter, SitemapRewriter, StyleRewriter, SuperConfigRewriter } from "./rewriters";
 
-export const SITE_DOMAIN = "nourman.id";
+/* Variables */
+export const SUPER_SITE = "nourman-hajar.super.site";
+export const CUSTOM_SITE = "nourman.id";
 
-async function rewriteHTML(res: Response) {
+/* Function for rewriting HTML */
+const rewriteHtml = async (res: Response) =>{
   return new HTMLRewriter()
     .on("head", new StyleRewriter())
     .on("meta", new MetaRewriter())
     .on("script#__NEXT_DATA__", new SuperConfigRewriter())
     .transform(res);
-}
+};
 
-async function fetchAndApply(request: Request) {
+/* Transform request */
+const transformRequest = async (request: Request) => {
   const url = new URL(request.url);
 
-  /* Robots.txt */
+  /* robots.txt */
   if (url.pathname === "/robots.txt") {
-    return new Response(`User-agent: *\nDisallow: /api\nDisallow: /_next\nSitemap: https://${SITE_DOMAIN}/sitemap.xml`);
+    return new Response(`User-agent: *\nDisallow: /api\nDisallow: /_next\nSitemap: https://${CUSTOM_SITE}/sitemap.xml`);
   }
 
-  url.hostname = "nourman-hajar.super.site";
+  /* Proxying request to Super site */
+  url.hostname = SUPER_SITE;
   url.protocol = "https:";
   url.port = "";
-
-  /* Sitemap */
-  if (url.pathname === "/sitemap.xml") {
-    let response = await fetch(url.toString(), {
-      body: request.body,
-      headers: request.headers,
-      method: request.method,
-    });
-    response = new Response(response.body, response);
-    return new HTMLRewriter().on("*", new SitemapRewriter()).transform(response);
-  }
 
   let response = await fetch(url.toString(), {
     body: request.body,
     headers: request.headers,
     method: request.method,
   });
+  
   response = new Response(response.body, response);
+  const contentType = response.headers.get("content-type") || "";
 
-  /* JS files */
+  /* sitemap.xml */
+  if (url.pathname === "/sitemap.xml") {
+    return new HTMLRewriter().on("*", new SitemapRewriter()).transform(response);
+  }
+
+  /* .js files */
   if (url.pathname.endsWith(".js")) {
     return response;
   }
 
-  /* Anything else */
-  return rewriteHTML(response);
-}
+  /* .html files */
+  if (contentType.startsWith("text/html")) {
+    return rewriteHtml(response);
+  }
+
+  return response;
+};
 
 addEventListener("fetch", (event: FetchEvent) => {
-  event.respondWith(fetchAndApply(event.request));
+  event.respondWith(transformRequest(event.request));
 });
