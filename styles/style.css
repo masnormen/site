@@ -1,13 +1,17 @@
+.notion-quote {
+  font-size: 1em !important;
+}
+
 .notion-collection-card.gallery {
   transition: all 0.2s ease-in-out !important;
-  border-radius: 16px !important;
+  border-radius: 18px !important;
   overflow: hidden !important;
   box-shadow: none !important;
   min-height: 240px;
 }
 
 .notion-collection-card.gallery:before {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 70%) !important;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 80%) !important;
   pointer-events: none !important;
   position: absolute !important;
   content: "" !important;
@@ -44,6 +48,7 @@
   z-index: 2 !important;
   bottom: 0 !important;
   left: 0 !important;
+  text-shadow: 0 0 4px #333333;
 }
 
 .notion-collection-card.gallery .notion-property__title .notion-semantic-string {
@@ -56,27 +61,43 @@
 }
 
 .notion-collection-card.gallery .notion-collection-card__content {
-  backdrop-filter: blur(8px) !important;
-  background: rgba(0, 0, 0, 0.12) !important;
+  backdrop-filter: blur(4px) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   justify-content: center !important;
   position: absolute !important;
-  padding: 2px 8px !important;
+  padding: 4px 8px !important;
   font-size: 14px !important;
   display: flex !important;
   color: #fff !important;
   z-index: 2 !important;
   top: 24px !important;
   right: 24px;
-  gap: 8px;
+  gap: 6px;
   border-radius: 10px;
+  /*     font-weight: bold; */
+  text-shadow: 0 1px 10px #333;
+  flex-direction: row-reverse;
 }
 
 .notion-semantic-string .date {
   color: inherit !important;
+  border-radius: 3px;
+  padding: 2px 6px !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.notion-semantic-string .date:before {
+  content: "📅 ";
+}
+
+.notion-collection-card__content .notion-property__select {
+  gap: 4px;
 }
 
 .notion-collection-card__content .notion-property__select .notion-pill {
   max-width: 100% !important;
+  margin: 0;
+  padding: 2px 6px !important;
 }
 
 .notion-property__title .notion-property__title__icon-wrapper {
@@ -95,8 +116,8 @@
 .notion-header__icon-wrapper {
   right: 0 !important;
   left: 0 !important;
-  margin-right: auto!important;
-  margin-left: auto!important;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 .notion-header__content .notion-header__title-wrapper {
