@@ -1,3 +1,9 @@
+.super-badge {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 .notion-quote {
   font-size: 1em !important;
 }

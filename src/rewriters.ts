@@ -16,9 +16,9 @@ export class MetaRewriter {
 
 export class StyleRewriter {
   element(element: Element) {
-    /* Hide Super.so branding */
+    /* Add custom CSS and Umami script */
     element.append(
-      `<link rel="stylesheet" href="${CUSTOM_CSS}"/><style>.super-badge { display: none !important; visibility: hidden !important; pointer-events: none !important; }</style>`,
+      `<link rel="stylesheet" href="${CUSTOM_CSS}"/>\n<script async defer data-website-id="c7b9d008-c286-4153-98f6-b600f7a09cd7" src="https://nourman-analytics.vercel.app/umami.js"></script>`,
       { html: true }
     );
   }
