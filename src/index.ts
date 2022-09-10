@@ -4,11 +4,10 @@ import { MetaRewriter, SitemapRewriter, StyleRewriter, SuperConfigRewriter } fro
 export const SUPER_SITE = "nourman-hajar.super.site";
 export const CUSTOM_SITE = "nourman.id";
 
-/* TODO: Update after every commit that changes CSS */
-export const CUSTOM_CSS = "https://cdn.statically.io/gh/masnormen/site/d213d2127050eacad09358b723461c9fcaf67d8d/styles/style.min.css";
+export const CUSTOM_CSS = "https://zptaxaiqtjvlobgksikh.supabase.co/storage/v1/object/public/assets/style.css";
 
 /* Function for rewriting HTML */
-const rewriteHtml = async (res: Response) =>{
+const rewriteHtml = async (res: Response) => {
   return new HTMLRewriter()
     .on("head", new StyleRewriter())
     .on("meta", new MetaRewriter())
@@ -35,7 +34,7 @@ const transformRequest = async (request: Request) => {
     headers: request.headers,
     method: request.method,
   });
-  
+
   response = new Response(response.body, response);
   const contentType = response.headers.get("content-type") || "";
 
