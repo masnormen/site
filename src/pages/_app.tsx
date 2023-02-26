@@ -1,6 +1,6 @@
 import { type AppType } from "next/dist/shared/lib/utils";
 
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 
 import "../styles/globals.css";
 // import "../styles/notion.css";

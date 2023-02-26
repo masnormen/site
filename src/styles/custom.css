@@ -128,7 +128,7 @@ body {
 }
 
 .animate-fastspin {
-  animation: fastspin 5s linear infinite;
+  animation: fastspin 8s linear infinite;
 }
 
 @keyframes fastspin {
