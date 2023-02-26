@@ -15,20 +15,16 @@ body {
 
 /* SVG Filters */
 
-.filter-noisy-gooey {
-  filter: url(#noise) url(#goo);
-}
-
 .filter-gooey {
-  filter: url(#goo);
+  filter: url(#gooey);
 }
 
 .filter-noisy {
-  filter: url(#noise);
+  filter: url(#noisy);
 }
 
 .filter-noisier {
-  filter: url(#extremenoise);
+  filter: url(#noisier);
 }
 
 /* Animations */
@@ -128,5 +124,15 @@ body {
 @keyframes slowspin-rev {
   to {
     transform: rotate(-360deg);
+  }
+}
+
+.animate-fastspin {
+  animation: fastspin 5s linear infinite;
+}
+
+@keyframes fastspin {
+  to {
+    transform: rotate(360deg);
   }
 }

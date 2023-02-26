@@ -7,9 +7,21 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-jakarta)", ...fontFamily.sans],
-        "metana-mono": ["var(--font-metana-mono)", ...fontFamily.mono],
-        metana: ["var(--font-metana)", ...fontFamily.sans],
+        sans: [
+          "var(--font-jakarta)",
+          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
+          ...fontFamily.sans,
+        ],
+        mono: [
+          "var(--font-metana)",
+          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
+          ...fontFamily.mono,
+        ],
+        fancy: [
+          "var(--font-varent)",
+          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
+          ...fontFamily.sans,
+        ],
       },
       colors: {
         background: "#faeee7",
