@@ -3,7 +3,17 @@ import { type AppType } from "next/dist/shared/lib/utils";
 import localFont from "next/font/local";
 
 import "../styles/globals.css";
-// import "../styles/notion.css";
+
+// core styles shared by all of react-notion-x (required)
+// import "react-notion-x/src/styles.css";
+
+// used for code syntax highlighting (optional)
+// import "prismjs/themes/prism-tomorrow.css";
+
+// used for rendering equations (optional)
+import "katex/dist/katex.min.css";
+
+import "../styles/notion.css";
 import "../styles/custom.css";
 import Head from "next/head";
 import SVGFilters from "../components/SVGFilters";

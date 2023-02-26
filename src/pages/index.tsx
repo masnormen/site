@@ -5,6 +5,7 @@ import { CodeBracketIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import ArticleCard from "../components/ArticleCard";
 import Section from "../components/Section";
+import NavigationBar from "../components/NavigationBar";
 
 const Home = (): JSX.Element => {
   return (
@@ -54,10 +55,10 @@ const Home = (): JSX.Element => {
         {/* Site title */}
         <a
           href="/"
-          className="absolute top-1/2 left-1/2 z-30 flex -translate-x-1/2 -translate-y-[55%]  flex-col items-center justify-center text-center"
+          className="absolute top-1/2 left-1/2 z-30 flex -translate-x-1/2 -translate-y-[50%]  flex-col items-center justify-center text-center"
         >
           <div className="shadow-xs drop-shadow-md duration-300 hover:-rotate-6">
-            <h1 className="filter-gooey inline bg-background decoration-clone p-4 pb-3 text-center font-fancy text-[12vw] leading-[1.3] tracking-wide text-stroke sm:text-7xl">
+            <h1 className="filter-gooey inline bg-background decoration-clone p-4 pb-3 text-center font-fancy text-[12vw] tracking-wide text-stroke sm:text-7xl">
               Nourman
               <br />
               Hajar
@@ -90,50 +91,11 @@ const Home = (): JSX.Element => {
       </main>
 
       <div className="relative h-full w-full">
+        <div className="h-28" />
+
         {/* Navbar */}
 
-        <nav className="sticky -top-28 z-50 flex w-full flex-col items-center justify-center bg-notwhite bg-opacity-10 backdrop-blur-[7px]">
-          <div className="flex h-full w-full max-w-screen-lg flex-col items-stretch justify-between space-y-2 px-6 pt-32 pb-4 md:flex-row md:space-y-0 md:px-0">
-            <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-notwhite shadow-lg duration-500 hover:shadow-secondary">
-              <Link
-                href="/"
-                className="flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background"
-              >
-                nourman.com
-              </Link>
-            </div>
-
-            <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-secondary shadow-lg duration-500 hover:shadow-secondary md:absolute md:left-1/2 md:-translate-x-1/2">
-              <Link
-                href="/"
-                className="flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background"
-              >
-                About
-              </Link>
-              <Link
-                href="/"
-                className="flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background"
-              >
-                Blog
-              </Link>
-              <Link
-                href="/"
-                className="flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background"
-              >
-                Works
-              </Link>
-            </div>
-
-            <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-tertiary shadow-lg duration-500 hover:shadow-secondary">
-              <Link
-                href="https://github.com/masnormen"
-                className="flex items-center justify-center rounded-2xl stroke-stroke py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:stroke-background hover:text-background"
-              >
-                GitHub <CodeBracketIcon className="ml-2 h-[1em] stroke-1" />
-              </Link>
-            </div>
-          </div>
-        </nav>
+        <NavigationBar />
 
         {/* Second Segment - Blog Posts */}
 
@@ -149,7 +111,7 @@ const Home = (): JSX.Element => {
                 <ArticleCard
                   key={idx}
                   index={idx}
-                  href="/"
+                  href="/post"
                   title="Rust: First Impressions through the Eyes of a JS/Python coder"
                   summary="As a web developer, using 3rd party resources is extremely common. We use 3rd party JavaScripts all the time, either via npm, bundled into our code, or via <script> tag (e.g.: Google Analytics, etc). Embedding 3rd party images/media is also pretty common. Even linking to a 3rd party sites can have security implications! Let's go over some of the more common attack vectors when using 3rd party resources, what problems they may cause, and how to mitigate them"
                   date="13/01/2022"
@@ -172,7 +134,7 @@ const Home = (): JSX.Element => {
                 <ArticleCard
                   key={idx}
                   index={idx}
-                  href="/"
+                  href="/post"
                   title="SIPERAT"
                   tags={["Rust", "TypeScript"]}
                   summary="Apps for managing correspondency and budget documents."
