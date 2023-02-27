@@ -7,24 +7,19 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        fancy: [
-          "var(--font-varent)",
-          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
-          ...fontFamily.sans,
-        ],
-        sans: [
-          "var(--font-jakarta)",
-          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
-          ...fontFamily.sans,
-        ],
+        fancy: ["var(--font-varent)", ...fontFamily.sans, "emoji"],
+        sans: [...fontFamily.sans, "emoji"],
         mono: [
-          ...fontFamily.mono,
-          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Monaco",
+          "Consolas",
+          "Liberation Mono",
+          "Courier New",
+          "monospace",
+          "emoji",
         ],
-        serif: [
-          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
-          ...fontFamily.serif,
-        ],
+        serif: [...fontFamily.serif, "emoji"],
       },
       colors: {
         background: "#faeee7",

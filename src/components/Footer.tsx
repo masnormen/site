@@ -19,12 +19,12 @@ function Footer({ className }: FooterProps) {
         <br />
         Hajar
       </span>
-      <svg viewBox="0 0 100 100" className="animate-fastspin aspect-square h-48 font-mono text-lg">
+      <svg viewBox="0 0 100 100" className="animate-fastspin aspect-square h-48 font-mono text-[0.97rem]">
         <defs>
           <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
         </defs>
         <text fill="currentColor">
-          <textPath xlinkHref="#circle">🛌 ☕️ 🚚 🚀 🧑‍💻 📦 👀 🪲</textPath>
+          <textPath xlinkHref="#circle">NOURMAN·COM·NOURMAN·COM·</textPath>
         </text>
       </svg>
     </footer>

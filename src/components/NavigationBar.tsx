@@ -15,7 +15,7 @@ function NavigationBar() {
         isSticky ? "bg-background" : "bg-notwhite"
       )}
     >
-      <div className="flex h-full w-full max-w-screen-lg flex-col items-stretch justify-between space-y-2 px-6 py-4 md:flex-row md:space-y-0 md:px-0">
+      <div className="flex h-full w-full max-w-screen-md flex-col items-stretch justify-between space-y-2 px-6 py-4 md:flex-row md:space-y-0 md:px-0">
         <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-notwhite shadow-lg duration-500 hover:shadow-secondary">
           <Link
             href="/"

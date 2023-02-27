@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import cn from "../lib/cn";
 
 interface ArticleCardProps {
@@ -31,7 +32,7 @@ function ArticleCard({ thumbnail, title, summary, index, date, tags = [], href, 
         {/* Post metadata */}
         <div
           className={cn(
-            "z-10 flex w-full flex-1 flex-col justify-end space-y-4 border-t border-stroke p-6 text-stroke duration-500 group-hover:border-highlight",
+            "z-10 flex w-full flex-1 flex-col justify-end space-y-4 border-t border-stroke p-5 text-stroke duration-500 group-hover:border-highlight",
             colorScheme[index % 3]
           )}
         >
@@ -39,10 +40,10 @@ function ArticleCard({ thumbnail, title, summary, index, date, tags = [], href, 
           <h2 className="font-semibold line-clamp-2 md:text-2xl">{title}</h2>
 
           {/* Summary */}
-          {summary && summary.length > 0 && <div className="text-sm line-clamp-2">{summary.substring(0, 200)}</div>}
+          {summary && summary.length > 0 && <div className="text-sm line-clamp-3">{summary.substring(0, 200)}</div>}
 
           {/* Tags & Date */}
-          <div className="!mt-6 flex flex-row items-center justify-between">
+          <div className="flex flex-row items-center h-8">
             {tags.length > 0 && (
               <div className="flex flex-wrap space-x-3 text-xs">
                 {tags.map((tag, idx) => (
@@ -55,7 +56,7 @@ function ArticleCard({ thumbnail, title, summary, index, date, tags = [], href, 
                 ))}
               </div>
             )}
-            {date && <div className="font-mono text-sm font-bold">{date}</div>}
+            {date && <div className="font-mono text-sm font-bold ml-auto">{date}</div>}
           </div>
         </div>
       </article>

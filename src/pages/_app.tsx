@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import "katex/dist/katex.min.css";
 import "../styles/notion.css";
 import "prism-themes/themes/prism-gruvbox-dark.min.css";
 import "../styles/custom.css";

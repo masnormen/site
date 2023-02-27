@@ -4894,11 +4894,32 @@ pre[class*="language-"] {
 }
 
 .notion {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .notion-text {
   text-align: justify;
+}
+
+.notion-link {
+  color: #ff8ba7;
+  -webkit-text-decoration-color: #ff8ba7;
+  text-decoration-color: #ff8ba7;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
+  box-shadow: inset 0 0em transparent, inset 0 -0.1em rgb(255, 198, 199, 1);
+  -webkit-transition: box-shadow 0.5s ease-in-out;
+  transition: box-shadow 0.5s ease-in-out;
+  width: auto;
+  border: none;
+}
+
+.notion-link:hover {
+  color: #ff8ba7;
+  /* text-decoration: none; */
+  box-shadow: inset 0 0em transparent, inset 0 -1.1em rgb(255, 198, 199, 0.5);
 }
 
 .notion-collection-page-properties {
