@@ -56,8 +56,8 @@ function Hero({ postTitle }: HeroProps) {
       {/* Title text */}
 
       {postTitle ? (
-        <div className="shadow-xs z-30 max-w-screen-lg bg-background bg-opacity-50 py-4 text-center duration-300">
-          <h1 className="inline decoration-clone text-center font-fancy text-4xl tracking-wide text-stroke sm:text-6xl sm:!leading-[1.3]">
+        <div className="shadow-xs z-30 max-w-screen-lg bg-background bg-opacity-70 py-4 text-center duration-300">
+          <h1 className="inline decoration-clone text-center font-fancy text-4xl tracking-wide text-stroke drop-shadow-sm sm:text-6xl sm:!leading-[1.3] md:p-4">
             {postTitle}
           </h1>
         </div>

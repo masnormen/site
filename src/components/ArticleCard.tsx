@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
 import cn from "../lib/cn";
@@ -22,28 +23,30 @@ function ArticleCard({ thumbnail, title, summary, index, date, tags = [], href, 
         {...rest}
       >
         {/* Thumbnail image */}
-        <div
-          className="aspect-video w-full rounded-t-xl bg-cover bg-center duration-500 group-hover:scale-110"
+        <img
+          src={thumbnail}
+          alt={title}
+          className="aspect-video w-full rounded-t-xl object-cover duration-500 group-hover:scale-110"
           style={{
-            backgroundImage: `url(${thumbnail})`,
+            transform: "translateZ(0)",
           }}
         />
 
         {/* Post metadata */}
         <div
           className={cn(
-            "z-10 flex w-full flex-1 flex-col justify-end space-y-4 border-t border-stroke p-5 text-stroke duration-500 group-hover:border-highlight",
+            "z-10 flex w-full flex-1 flex-col justify-end space-y-3 border-t border-stroke p-5 text-stroke duration-500 group-hover:border-highlight",
             colorScheme[index % 3]
           )}
         >
           {/* Title */}
-          <h2 className="font-semibold line-clamp-2 md:text-2xl">{title}</h2>
+          <h2 className="font-semibold line-clamp-2 md:text-lg">{title}</h2>
 
           {/* Summary */}
           {summary && summary.length > 0 && <div className="text-sm line-clamp-3">{summary.substring(0, 200)}</div>}
 
           {/* Tags & Date */}
-          <div className="flex flex-row items-center h-8">
+          <div className="flex h-8 flex-row items-center">
             {tags.length > 0 && (
               <div className="flex flex-wrap space-x-3 text-xs">
                 {tags.map((tag, idx) => (
@@ -56,7 +59,7 @@ function ArticleCard({ thumbnail, title, summary, index, date, tags = [], href, 
                 ))}
               </div>
             )}
-            {date && <div className="font-mono text-sm font-bold ml-auto">{date}</div>}
+            {date && <div className="ml-auto font-mono text-sm font-bold">{date}</div>}
           </div>
         </div>
       </article>

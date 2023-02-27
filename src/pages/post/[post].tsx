@@ -98,7 +98,7 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
           <div className="flex w-full flex-col space-y-4 px-4">
             <div className="flex w-full flex-row items-start justify-between space-x-2 text-center opacity-60">
               <div>
-                Published on {data.date} by <b>Nourman Hajar</b>
+                📆 Posted on <span className="font-semibold">{data.date}</span>
               </div>
               {data.tags.length > 0 && (
                 <div className="flex flex-wrap items-center space-x-3">
@@ -122,9 +122,10 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
           </div>
 
           {/* Table of Contents */}
-          <div className="pointer-events-none top-0 block h-full w-full justify-end px-4 xl:absolute xl:!mt-0 xl:flex xl:px-0">
-            <div className="pointer-events-auto sticky xl:max-h-[calc(75vh)] xl:overflow-y-auto top-28 z-40 flex h-fit w-full flex-col space-y-1 rounded-lg border border-stroke bg-background p-6 text-sm text-stroke duration-500 hover:border-highlight xl:w-[calc(((100vw-864px)/2)-16px)] xl:translate-x-[calc(100%+1rem)]">
-              <span className="text-lg font-semibold">Table of Contents</span>
+          <div className="pointer-events-none top-0 block h-full w-full justify-start px-4 xl:absolute xl:!mt-0 xl:flex xl:px-0">
+            <div className="pointer-events-auto sticky top-28 z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-stroke bg-background p-6 text-sm text-stroke duration-500 hover:border-highlight xl:max-h-[calc(75vh)] xl:w-[calc(((100vw-864px)/2)-16px)] xl:max-w-sm xl:-translate-x-[calc(100%+1rem)] xl:overflow-y-auto">
+              <span className="hidden text-lg font-semibold leading-tight xl:block">{data.title}</span>
+              <span className="block text-lg font-semibold leading-tight xl:hidden">Table of Contents</span>
               <div className="block space-y-1 leading-7">
                 {data.toc.map((toc, idx) => (
                   <Fragment key={idx}>
@@ -132,13 +133,13 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
                       key={idx}
                       className={cn(
                         "inline text-highlight",
-                        toc.indentLevel === 1 && "ml-2",
-                        toc.indentLevel === 2 && "ml-4"
+                        toc.indentLevel === 1 && "ml-3",
+                        toc.indentLevel === 2 && "ml-7"
                       )}
                     >
                       {toc.indentLevel === 0 && "▲ "}
                       {toc.indentLevel === 1 && "→ "}
-                      {toc.indentLevel === 2 && "- "}
+                      {toc.indentLevel === 2 && "• "}
                       <a href={`#${toc.id}`} className="link ml-1">
                         {toc.text}
                       </a>

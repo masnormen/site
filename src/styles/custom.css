@@ -129,28 +129,6 @@ body {
     transform: rotate(420deg) scale(97%);
   }
 }
-/* 
-.animate-slowspin-45 {
-  animation: slowspin-45 10s linear infinite;
-}
-
-@keyframes slowspin-45 {
-  0% {
-    transform: rotate(45deg) scale(100%);
-  }
-  25% {
-    transform: rotate(135deg) scale(90%);
-  }
-  50% {
-    transform: rotate(215deg) scale(100%);
-  }
-  75% {
-    transform: rotate(315deg) scale(90%);
-  }
-  100% {
-    transform: rotate(405deg) scale(100%);
-  }
-} */
 
 .animate-slowspin-rev {
   animation: slowspin-rev 15s linear infinite;
@@ -170,4 +148,73 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Notion overrides */
+
+:root {
+  --notion-font: inherit;
+  --notion-max-width: 100%;
+
+  --fg-color: rgba(89, 74, 78);
+  --fg-color-0: rgba(89, 74, 78, 0.09);
+  --fg-color-1: rgba(89, 74, 78, 0.16);
+  --fg-color-2: rgba(89, 74, 78, 0.4);
+  --fg-color-3: rgba(89, 74, 78, 0.6);
+  --fg-color-4: #000;
+  --fg-color-5: rgba(89, 74, 78, 0.024);
+  --fg-color-6: rgba(89, 74, 78, 0.8);
+  --fg-color-icon: var(--fg-color);
+
+  --bg-color: #fefefe;
+  --bg-color-0: rgba(135, 131, 120, 0.15);
+  --bg-color-1: #fefefe;
+  --bg-color-2: rgba(135, 131, 120, 0.15);
+
+  --select-color-0: #ffc6c7;
+  --select-color-1: #ffc6c7;
+  --select-color-2: #d9eff8;
+
+  --background: #332f2b;
+}
+
+.notion {
+  font-size: 1.05rem;
+}
+
+/* .notion-text {
+  text-align: justify;
+} */
+
+.notion-link {
+  color: #ff8ba7;
+  -webkit-text-decoration-color: #ff8ba7;
+  text-decoration-color: #ff8ba7;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
+  box-shadow: inset 0 0em transparent, inset 0 0 rgb(255, 198, 199, 1);
+  -webkit-transition: box-shadow 0.5s ease-in-out;
+  transition: box-shadow 0.5s ease-in-out;
+  width: auto;
+  border: none;
+}
+
+.notion-link:hover {
+  color: #ff8ba7;
+  box-shadow: inset 0 0em transparent, inset 0 -1em rgb(255, 198, 199, 0.5);
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #332f2b !important;
+}
+
+.notion-inline-code {
+  font-family: ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo, "Liberation Mono", "Courier New", monospace, emoji;
+}
+
+.notion-collection-page-properties {
+  display: none !important;
 }
