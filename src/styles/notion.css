@@ -4870,7 +4870,35 @@ pre[class*="language-"] {
 /* Overrides */
 
 :root {
+  --notion-font: var(--font-sans);
   --notion-max-width: 100%;
+
+  --fg-color: rgba(89, 74, 78);
+  --fg-color-0: rgba(89, 74, 78, 0.09);
+  --fg-color-1: rgba(89, 74, 78, 0.16);
+  --fg-color-2: rgba(89, 74, 78, 0.4);
+  --fg-color-3: rgba(89, 74, 78, 0.6);
+  --fg-color-4: #000;
+  --fg-color-5: rgba(89, 74, 78, 0.024);
+  --fg-color-6: rgba(89, 74, 78, 0.8);
+  --fg-color-icon: var(--fg-color);
+
+  --bg-color: #fefefe;
+  --bg-color-0: rgba(135, 131, 120, 0.15);
+  --bg-color-1: #fefefe;
+  --bg-color-2: rgba(135, 131, 120, 0.15);
+
+  --select-color-0: #ffc6c7;
+  --select-color-1: #ffc6c7;
+  --select-color-2: #d9eff8;
+}
+
+.notion {
+  font-size: 1.1rem;
+}
+
+.notion-text {
+  text-align: justify;
 }
 
 .notion-collection-page-properties {

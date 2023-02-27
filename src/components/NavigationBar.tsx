@@ -1,9 +1,20 @@
 import { CodeBracketIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
+import { useSticky } from "react-use-sticky";
+
+import cn from "../lib/cn";
 
 function NavigationBar() {
+  const [navRef, isSticky] = useSticky<HTMLDivElement>();
+
   return (
-    <nav className="sticky top-0 z-50 flex w-full flex-col items-center justify-center bg-quaternary bg-opacity-30 backdrop-blur-[7px]">
+    <nav
+      ref={navRef}
+      className={cn(
+        "top-0 z-50 flex w-full flex-col items-center justify-center bg-opacity-30 backdrop-blur-[7px] duration-500 md:sticky",
+        isSticky ? "bg-background" : "bg-notwhite"
+      )}
+    >
       <div className="flex h-full w-full max-w-screen-lg flex-col items-stretch justify-between space-y-2 px-6 py-4 md:flex-row md:space-y-0 md:px-0">
         <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-notwhite shadow-lg duration-500 hover:shadow-secondary">
           <Link

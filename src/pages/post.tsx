@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
+import dayjs from "dayjs";
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import { CodeBracketIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { NotionAPI } from "notion-client";
+import type { PageBlock } from "notion-types";
+import { getPageProperty, getPageTableOfContents } from "notion-utils";
 import { NotionRenderer } from "react-notion-x";
 
-import dynamic from "next/dynamic";
-import { getPageProperty } from "notion-utils";
+import Footer from "../components/Footer";
+import Hero from "../components/Hero";
 import NavigationBar from "../components/NavigationBar";
 
 const Code = dynamic(() =>
@@ -37,20 +41,28 @@ const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m
 export const getStaticProps = async () => {
   const notion = new NotionAPI();
   const recordMap = await notion.getPage("4c843dea-4eb6-4baf-ba81-b5942cdfbb9b");
+  const block = recordMap.block["4c843dea-4eb6-4baf-ba81-b5942cdfbb9b"]?.value as PageBlock;
 
-  const title = getPageProperty("Tags", recordMap.block["4c843dea-4eb6-4baf-ba81-b5942cdfbb9b"]!.value, recordMap);
+  const postMetadata: PostMetadata = {
+    title: getPageProperty("Title", block, recordMap),
+    date: dayjs.unix((getPageProperty("Date", block, recordMap) as number) / 1000).format("DD/MM/YYYY"),
+    summary: "test",
+    tags: getPageProperty("Tags", block, recordMap),
+    toc: getPageTableOfContents(block, recordMap).map((entry) => ({ ...entry, id: entry.id.replaceAll(/-/g, "") })),
+  };
+
   return {
-    props: { recordMap, title },
+    props: { recordMap, postMetadata },
     revalidate: 10,
   };
 };
 
-const Home = (props: Awaited<ReturnType<typeof getStaticProps>>["props"]): JSX.Element => {
-  console.log(props.title);
+const Home = ({ recordMap, postMetadata }: Awaited<ReturnType<typeof getStaticProps>>["props"]): JSX.Element => {
+  console.log(recordMap);
   return (
     <>
       <Head>
-        <title>Nourman Hajar - Software Engineer</title>
+        <title>{postMetadata.title}</title>
         <meta name="description" content="Nourman Hajar" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -58,48 +70,14 @@ const Home = (props: Awaited<ReturnType<typeof getStaticProps>>["props"]): JSX.E
       <NavigationBar />
 
       {/* First Segment - Landing Screen */}
-
-      <main className="relative flex h-[50vh] w-full flex-col items-center justify-center overflow-hidden bg-background">
-        {/* Green Rectangle */}
-        <div className="animate-slowspin-30 filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[100vw] bg-tertiary md:h-4/6" />
-
-        {/* Pink Rectangle */}
-        <div className="animate-slowspin filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[100vw] bg-secondary md:h-4/6" />
-
-        {/* Yellowish Rectangle */}
-        <div className="animate-slowspin-60 filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[100vw] bg-quaternary md:h-4/6" />
-
-        {/* Circle */}
-        <div className="animate-slowspin-rev bg-pattern-wavy filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[100vw] items-center justify-center rounded-full bg-background shadow-sm md:h-[70%]">
-          <svg
-            viewBox="0 0 100 100"
-            className="aspect-square h-[80%] font-mono text-[0.38rem] font-bold uppercase text-stroke opacity-25"
-          >
-            <defs>
-              <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
-            </defs>
-            <text fill="currentColor">
-              <textPath xlinkHref="#circle">Lorem ipsum dolor sit amet consectetur adipiscing elit !</textPath>
-            </text>
-          </svg>
-        </div>
-
-        {/* Site title */}
-        <div className="absolute top-1/2 left-1/2 z-30 flex -translate-x-1/2 -translate-y-[50%]  flex-col items-center justify-center text-center">
-          <div className="shadow-xs drop-shadow-md">
-            <h1 className="filter-gooey inline bg-stroke decoration-clone px-4 py-4 text-center font-fancy text-[12vw] !leading-[1.3] text-notwhite sm:text-5xl">
-              3 Ways to Set Up Multiple Git Accounts in a Single Computer
-            </h1>
-          </div>
-        </div>
-      </main>
+      <Hero postTitle={postMetadata.title} />
 
       {/* Second Segment - Blog Posts */}
 
       <section className="relative flex w-full flex-col items-center justify-center bg-notwhite py-28 px-6 text-stroke md:px-0">
         <div className="z-10 flex h-full w-full max-w-screen-lg flex-col items-center justify-center space-y-16">
           <NotionRenderer
-            recordMap={props.recordMap}
+            recordMap={recordMap}
             showTableOfContents={true}
             darkMode={false}
             rootDomain={"https://localhost:3000"}
@@ -116,23 +94,7 @@ const Home = (props: Awaited<ReturnType<typeof getStaticProps>>["props"]): JSX.E
         </div>
       </section>
 
-      <footer className="relative flex w-full flex-col items-center justify-center bg-notwhite py-28 px-6 text-stroke md:px-0">
-        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-semibold leading-tight">
-          &copy;
-          <br />
-          Nourman
-          <br />
-          Hajar
-        </span>
-        <svg viewBox="0 0 100 100" className="animate-fastspin aspect-square h-48 font-mono text-lg">
-          <defs>
-            <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
-          </defs>
-          <text fill="currentColor">
-            <textPath xlinkHref="#circle">🛌 ☕️ 🚚 🚀 🧑‍💻 📦 👀 🪲</textPath>
-          </text>
-        </svg>
-      </footer>
+      <Footer className="bg-background" />
     </>
   );
 };

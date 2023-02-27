@@ -7,20 +7,23 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        fancy: [
+          "var(--font-varent)",
+          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
+          ...fontFamily.sans,
+        ],
         sans: [
           "var(--font-jakarta)",
           "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
           ...fontFamily.sans,
         ],
         mono: [
-          "var(--font-metana)",
-          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
           ...fontFamily.mono,
-        ],
-        fancy: [
-          "var(--font-varent)",
           "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
-          ...fontFamily.sans,
+        ],
+        serif: [
+          "Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Noto Color Emoji, Segoe UI Symbol, Android Emoji, EmojiSymbols",
+          ...fontFamily.serif,
         ],
       },
       colors: {
@@ -29,8 +32,8 @@ module.exports = {
         secondary: "#ffc6c7",
         tertiary: "#c3f0ca",
         quaternary: "#ffedd5",
-        stroke: "#594a4e",
-        notwhite: "#fefefe",
+        stroke: "#6a595e",
+        notwhite: "#fcfcfc",
       },
     },
   },

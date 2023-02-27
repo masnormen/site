@@ -20,5 +20,19 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  async headers() {
+    return [
+      {
+        // Apply these headers to all routes in your application.
+        source: "/:path*",
+        headers: [
+          {
+            key: "SameSite",
+            value: "Strict",
+          },
+        ],
+      },
+    ];
+  },
 };
 export default config;
