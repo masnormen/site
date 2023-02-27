@@ -122,8 +122,8 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
           </div>
 
           {/* Table of Contents */}
-          <div className="pointer-events-none top-0 block h-full w-full justify-start px-4 xl:absolute xl:!mt-0 xl:flex xl:px-0">
-            <div className="pointer-events-auto sticky top-28 z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-stroke bg-background p-6 text-sm text-stroke duration-500 hover:border-highlight xl:max-h-[calc(75vh)] xl:w-[calc(((100vw-864px)/2)-16px)] xl:max-w-sm xl:-translate-x-[calc(100%+1rem)] xl:overflow-y-auto">
+          <div className="pointer-events-none top-0 block h-full w-full justify-start px-4 duration-500 xl:absolute xl:!mt-0 xl:flex xl:px-0">
+            <div className="pointer-events-auto sticky top-[6.2rem] z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-stroke bg-background p-6 text-sm text-stroke duration-300 hover:border-highlight xl:max-h-[75vh] xl:w-[17vw] xl:max-w-sm xl:-translate-x-[calc(100%+1em)] xl:overflow-y-auto">
               <span className="hidden text-lg font-semibold leading-tight xl:block">{data.title}</span>
               <span className="block text-lg font-semibold leading-tight xl:hidden">Table of Contents</span>
               <div className="block space-y-1 leading-7">
@@ -132,9 +132,10 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
                     <span
                       key={idx}
                       className={cn(
-                        "inline text-highlight",
-                        toc.indentLevel === 1 && "ml-3",
-                        toc.indentLevel === 2 && "ml-7"
+                        "inline-block text-highlight",
+                        toc.indentLevel === 0 && "ml-5 indent-[-1.15rem]",
+                        toc.indentLevel === 1 && "ml-8 -indent-4",
+                        toc.indentLevel === 2 && "ml-10 indent-[-0.9rem]"
                       )}
                     >
                       {toc.indentLevel === 0 && "▲ "}

@@ -20,6 +20,17 @@ body {
   color: #fefefe;
 }
 
+:target ~ .notion-h-title {
+  animation: pulse-link 1s cubic-bezier(0.4, 0, 0.6, 1) 2;
+}
+
+@keyframes pulse-link {
+  50% {
+    opacity: 0.7;
+    background-color: #c3f0ca;
+  }
+}
+
 /* Backgrounds */
 
 .bg-pattern-wavy {
@@ -188,6 +199,7 @@ body {
 
 .notion-link {
   color: #ff8ba7;
+  opacity: 1;
   -webkit-text-decoration-color: #ff8ba7;
   text-decoration-color: #ff8ba7;
   text-decoration: underline;
