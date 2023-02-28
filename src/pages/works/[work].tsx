@@ -21,10 +21,10 @@ import { PostMetadata } from "@/types/notion";
 import { getPost, getPostsFromCollection } from "@/utils/notion";
 
 export const getStaticPaths = async () => {
-  const { data } = await getPostsFromCollection(env.POSTS_NOTION_ID);
+  const { data } = await getPostsFromCollection(env.WORKS_NOTION_ID);
   const paths = data.map((post) => ({
     params: {
-      post: post.slug,
+      work: post.slug,
     },
   }));
 
@@ -35,8 +35,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (ctx: GetStaticPropsContext) => {
-  const slug = ctx.params?.["post"] as string;
-  const { data: posts } = await getPostsFromCollection(env.POSTS_NOTION_ID);
+  const slug = ctx.params?.["work"] as string;
+  const { data: posts } = await getPostsFromCollection(env.WORKS_NOTION_ID);
 
   const pageId = posts.find((post) => post.slug === slug)?.id;
   if (!pageId) {
@@ -99,13 +99,14 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
       <section className="relative flex w-full flex-col items-center justify-center bg-notwhite py-28 px-6 text-stroke md:px-0">
         <div className="relative flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-8">
           {/* Cover image and metadata */}
-          <div className="flex w-full flex-col space-y-12">
+          <div className="flex w-full flex-col space-y-4">
             <div className="flex w-full flex-row items-start justify-between space-x-2 text-center">
               {data.date !== "" && (
                 <div>
                   📆 Posted on <span className="font-semibold">{data.date}</span>
                 </div>
               )}
+
               {data.tags.length > 0 && (
                 <div className="flex flex-wrap items-center space-x-3">
                   Tags:&nbsp;&nbsp;

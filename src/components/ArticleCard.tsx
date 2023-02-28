@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
-import cn from "../lib/cn";
+import cn from "@/lib/cn";
 
 interface ArticleCardProps {
   thumbnail: string;

@@ -2,7 +2,7 @@ import { CodeBracketIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { useSticky } from "react-use-sticky";
 
-import cn from "../lib/cn";
+import cn from "@/lib/cn";
 
 function NavigationBar() {
   const [navRef, isSticky] = useSticky<HTMLDivElement>();

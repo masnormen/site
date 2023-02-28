@@ -8,6 +8,7 @@ const useInViewport = <T extends HTMLElement = HTMLElement>(ref: RefObject<T>) =
     if (ref.current) {
       observer.observe(ref.current);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return isInViewport;
 };

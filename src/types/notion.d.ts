@@ -14,7 +14,8 @@ export interface PostMetadata {
   id: string;
   title: string;
   slug: string;
-  cover: string;
+  thumbnail: string;
+  hasCover: boolean;
   summary: string;
   date: string;
   tags: string[];

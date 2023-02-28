@@ -3,16 +3,17 @@
 
 import Head from "next/head";
 
-import ArticleCard from "../components/ArticleCard";
-import Footer from "../components/Footer";
-import Hero from "../components/Hero";
-import NavigationBar from "../components/NavigationBar";
-import Section from "../components/Section";
-import { getPostsFromCollection } from "../utils/notion";
+import ArticleCard from "@/components/ArticleCard";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import NavigationBar from "@/components/NavigationBar";
+import Section from "@/components/Section";
+import { env } from "@/env.mjs";
+import { getPostsFromCollection } from "@/utils/notion";
 
 export const getStaticProps = async () => {
-  const { data: posts } = await getPostsFromCollection("4194be47-cc47-4c42-88e8-61b6da07ca33");
-  const { data: works } = await getPostsFromCollection("61eaecd3-8618-4f10-a372-afb3bc73f686");
+  const { data: posts } = await getPostsFromCollection(env.POSTS_NOTION_ID);
+  const { data: works } = await getPostsFromCollection(env.WORKS_NOTION_ID);
 
   return {
     props: { posts, works },
@@ -57,7 +58,7 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
                 summary={item.summary}
                 date={item.date}
                 tags={item.tags}
-                thumbnail={item.cover}
+                thumbnail={item.thumbnail}
               />
             ))}
           </div>
@@ -73,12 +74,12 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
               <ArticleCard
                 key={idx}
                 index={idx}
-                href={`/${item.slug}`}
+                href={`/works/${item.slug}`}
                 title={item.title}
                 summary={item.summary}
                 date={item.date}
                 tags={item.tags}
-                thumbnail={item.cover}
+                thumbnail={item.thumbnail}
               />
             ))}
           </div>
