@@ -26,7 +26,7 @@ function ArticleCard({ thumbnail, title, summary, index, date, tags = [], href, 
         <img
           src={thumbnail}
           alt={title}
-          className="aspect-video w-full rounded-t-xl object-cover duration-500 group-hover:scale-110"
+          className="aspect-video w-full rounded-t-xl object-cover duration-500 group-hover:!scale-110"
           style={{
             transform: "translateZ(0)",
           }}

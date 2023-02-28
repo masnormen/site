@@ -1,24 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
-import dayjs from "dayjs";
+
 import { GetStaticPropsContext } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { NotionAPI } from "notion-client";
-import type { ExtendedRecordMap, PageBlock } from "notion-types";
-import { getPageProperty, getPageTableOfContents } from "notion-utils";
-import { Fragment } from "react";
+import type { ExtendedRecordMap } from "notion-types";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
 
-import Footer from "../../components/Footer";
-import Hero from "../../components/Hero";
-import NavigationBar from "../../components/NavigationBar";
-import cn from "../../lib/cn";
-import { PostMetadata } from "../../types/notion";
-import { getPost, getPostMetadata, getPostsFromCollection } from "../../utils/notion";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import NavigationBar from "@/components/NavigationBar";
+import useInViewport from "@/hooks/useInViewport";
+import cn from "@/lib/cn";
+import { PostMetadata } from "@/types/notion";
+import { getPost, getPostsFromCollection } from "@/utils/notion";
 
 export const getStaticPaths = async () => {
   const { data: posts } = await getPostsFromCollection("4194be47-cc47-4c42-88e8-61b6da07ca33");
@@ -76,7 +75,18 @@ const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m
   ssr: false,
 });
 
+const Comments = dynamic(() => import("@giscus/react"), { ssr: false });
+
 const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: ExtendedRecordMap }): JSX.Element => {
+  const commentRef = useRef<HTMLDivElement>(null);
+  const isInViewport = useInViewport(commentRef);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!hasScrolled) setHasScrolled(isInViewport);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInViewport]);
+
   return (
     <>
       <Head>
@@ -95,7 +105,7 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
       <section className="relative flex w-full flex-col items-center justify-center bg-notwhite py-28 px-6 text-stroke md:px-0">
         <div className="relative flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-8">
           {/* Cover image and metadata */}
-          <div className="flex w-full flex-col space-y-4 px-4">
+          <div className="flex w-full flex-col space-y-4">
             <div className="flex w-full flex-row items-start justify-between space-x-2 text-center opacity-60">
               <div>
                 📆 Posted on <span className="font-semibold">{data.date}</span>
@@ -122,8 +132,8 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
           </div>
 
           {/* Table of Contents */}
-          <div className="pointer-events-none top-0 block h-full w-full justify-start px-4 duration-500 xl:absolute xl:!mt-0 xl:flex xl:px-0">
-            <div className="pointer-events-auto sticky top-[6.2rem] z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-stroke bg-background p-6 text-sm text-stroke duration-300 hover:border-highlight xl:max-h-[75vh] xl:w-[17vw] xl:max-w-sm xl:-translate-x-[calc(100%+1em)] xl:overflow-y-auto">
+          <div className="pointer-events-none top-0 block h-full w-full justify-end px-4 duration-500 xl:absolute xl:!mt-0 xl:flex xl:px-0">
+            <div className="pointer-events-auto sticky top-[6.2rem] z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-stroke bg-background p-6 text-sm text-stroke duration-300 hover:border-highlight xl:max-h-[75vh] xl:w-[17vw] xl:max-w-sm xl:translate-x-[calc(100%+2rem)] xl:overflow-y-auto">
               <span className="hidden text-lg font-semibold leading-tight xl:block">{data.title}</span>
               <span className="block text-lg font-semibold leading-tight xl:hidden">Table of Contents</span>
               <div className="block space-y-1 leading-7">
@@ -168,6 +178,28 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
               Pdf,
             }}
           />
+        </div>
+
+        {/* Comments */}
+
+        <div ref={commentRef} className="relative mt-24 flex h-full w-full max-w-screen-md">
+          {hasScrolled && (
+            <Comments
+              id="comments"
+              repo="masnormen/site"
+              repoId="R_kgDOGb4nwQ"
+              category="Comments"
+              categoryId="DIC_kwDOGb4nwc4CUigF"
+              mapping="pathname"
+              strict="0"
+              reactionsEnabled="1"
+              emitMetadata="1"
+              inputPosition="top"
+              theme="light"
+              lang="en"
+              loading="lazy"
+            />
+          )}
         </div>
       </section>
 

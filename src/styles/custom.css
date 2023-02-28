@@ -193,6 +193,10 @@ body {
   font-size: 1.05rem;
 }
 
+.notion-page {
+  padding: 0;
+}
+
 /* .notion-text {
   text-align: justify;
 } */
