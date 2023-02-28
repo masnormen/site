@@ -225,6 +225,7 @@ body {
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   background: #332f2b !important;
+  padding: 1.5em;
 }
 
 .notion-inline-code {

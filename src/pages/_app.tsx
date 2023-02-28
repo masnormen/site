@@ -25,8 +25,8 @@ const spaceMono = Space_Mono({
 
 const plusJakarta = localFont({
   src: [
-    { path: "../styles/fonts/PlusJakartaSans-VariableFont_wght.ttf", style: "normal" },
-    { path: "../styles/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf", style: "italic" },
+    { path: "../styles/fonts/PlusJakartaSans-Regular.ttf", style: "normal" },
+    { path: "../styles/fonts/PlusJakartaSans-Italic.ttf", style: "italic" },
   ],
   variable: "--font-jakarta",
   weight: "200 900",

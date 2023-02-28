@@ -1,15 +1,31 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { type RefObject, useEffect, useState } from "react";
 
-const useInViewport = <T extends HTMLElement = HTMLElement>(ref: RefObject<T>) => {
+const useInViewport = <T extends HTMLElement = HTMLElement>(ref: RefObject<T>, rootMargin?: string) => {
   const [isInViewport, setInViewport] = useState(false);
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => setInViewport(entry!.isIntersecting));
-    if (ref.current) {
-      observer.observe(ref.current);
+    const current = ref.current;
+
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        const entry = e as IntersectionObserverEntry;
+        setInViewport(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        rootMargin,
+      }
+    );
+    if (current) {
+      observer.observe(current);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => {
+      if (current) {
+        observer.unobserve(current);
+      }
+    };
+  }, [ref, rootMargin]);
   return isInViewport;
 };
 
