@@ -11,7 +11,7 @@ function Section({ title, children, description = "", className = "" }: SectionP
   return (
     <section
       className={cn(
-        "relative flex w-full flex-col items-center justify-center bg-notwhite py-28 px-6 text-stroke md:px-0",
+        "relative flex w-full flex-col items-center justify-center bg-blank py-28 px-6 text-stroke md:px-0",
         className
       )}
     >

@@ -21,24 +21,46 @@ import { PostMetadata } from "@/types/notion";
 import { getPost, getPostsFromCollection } from "@/utils/notion";
 
 export const getStaticPaths = async () => {
-  const { data } = await getPostsFromCollection(env.POSTS_NOTION_ID);
-  const paths = data.map((post) => ({
+  const [{ data: posts }, { data: works }] = await Promise.all([
+    getPostsFromCollection(env.POSTS_NOTION_ID),
+    getPostsFromCollection(env.WORKS_NOTION_ID),
+  ]);
+  const postPaths = posts.map((item) => ({
     params: {
-      post: post.slug,
+      type: "post",
+      slug: item.slug,
+    },
+  }));
+  const workPaths = works.map((item) => ({
+    params: {
+      type: "works",
+      slug: item.slug,
     },
   }));
 
   return {
-    paths,
-    fallback: true,
+    paths: [...postPaths, ...workPaths],
+    fallback: false,
   };
 };
 
-export const getStaticProps = async (ctx: GetStaticPropsContext) => {
-  const slug = ctx.params?.["post"] as string;
-  const { data: posts } = await getPostsFromCollection(env.POSTS_NOTION_ID);
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const { type, slug } = params!;
 
-  const pageId = posts.find((post) => post.slug === slug)?.id;
+  let containerId = "";
+  if (type === "post") {
+    containerId = env.POSTS_NOTION_ID;
+  } else if (type === "works") {
+    containerId = env.WORKS_NOTION_ID;
+  } else {
+    return {
+      notFound: true,
+    };
+  }
+
+  const { data: pages } = await getPostsFromCollection(containerId);
+
+  const pageId = pages.find((page) => page.slug === slug)?.id;
   if (!pageId) {
     return {
       notFound: true,
@@ -49,7 +71,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 
   return {
     props: { data, recordMap },
-    revalidate: 10,
+    revalidate: 60,
   };
 };
 
@@ -96,11 +118,11 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
 
       {/* Second Segment - Blog Posts */}
 
-      <section className="relative flex w-full flex-col items-center justify-center bg-notwhite py-28 px-6 text-stroke md:px-0">
+      <section className="relative flex w-full flex-col items-center justify-center bg-blank py-28 px-6 text-stroke md:px-0">
         <div className="relative flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-8">
           {/* Cover image and metadata */}
           <div className="flex w-full flex-col space-y-12">
-            <div className="flex w-full flex-row items-start justify-between space-x-2 text-center">
+            <div className="flex w-full flex-col items-center justify-between space-x-2 space-y-4 text-center md:flex-row md:space-y-0">
               {data.date !== "" && (
                 <div>
                   📆 Posted on <span className="font-semibold">{data.date}</span>
@@ -109,9 +131,9 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
               {data.tags.length > 0 && (
                 <div className="flex flex-wrap items-center space-x-3">
                   Tags:&nbsp;&nbsp;
-                  {data.tags.map((tag, idx) => (
+                  {data.tags.map((tag) => (
                     <span
-                      key={idx}
+                      key={tag}
                       className="h-fit w-fit rounded-2xl border border-stroke bg-tertiary px-2 pb-1.5 pt-2 font-mono text-xs font-bold uppercase leading-none text-stroke"
                     >
                       {tag}
@@ -124,15 +146,14 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
           </div>
 
           {/* Table of Contents */}
-          <div className="pointer-events-none top-0 block h-full w-full justify-end px-4 duration-500 xl:absolute xl:!mt-0 xl:flex xl:px-0">
+          <div className="pointer-events-none top-0 block h-full w-full justify-end duration-500 xl:absolute xl:!mt-0 xl:flex xl:px-0">
             <div className="pointer-events-auto sticky top-[6.2rem] z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-stroke bg-background p-6 text-sm text-stroke duration-300 hover:border-highlight xl:max-h-[75vh] xl:w-[calc(((100vw-768px)/2)-4rem)] xl:max-w-sm xl:translate-x-[calc(100%+2rem)] xl:overflow-y-auto">
               <span className="hidden text-lg font-semibold leading-tight xl:block">{data.title}</span>
               <span className="block text-lg font-semibold leading-tight xl:hidden">Table of Contents</span>
               <div className="block space-y-1 leading-7">
-                {data.toc.map((toc, idx) => (
-                  <Fragment key={idx}>
+                {data.toc.map((toc) => (
+                  <Fragment key={toc.id}>
                     <span
-                      key={idx}
                       className={cn(
                         "inline-block text-highlight",
                         toc.indentLevel === 0 && "ml-5 indent-[-1.15rem]",

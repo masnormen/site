@@ -33,20 +33,18 @@ const plusJakarta = localFont({
   display: "swap",
 });
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const App: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
       </Head>
-      <main
-        className={`${plusJakarta.variable} ${varentGrotesk.variable} ${spaceMono.variable} h-full w-full font-sans`}
-      >
+      <div className={`${plusJakarta.variable} ${varentGrotesk.variable} ${spaceMono.variable} font-sans`}>
         <Component {...pageProps} />
-      </main>
+      </div>
       <SVGFilters />
     </>
   );
 };
 
-export default MyApp;
+export default App;

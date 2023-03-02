@@ -12,12 +12,14 @@ import { env } from "@/env.mjs";
 import { getPostsFromCollection } from "@/utils/notion";
 
 export const getStaticProps = async () => {
-  const { data: posts } = await getPostsFromCollection(env.POSTS_NOTION_ID);
-  const { data: works } = await getPostsFromCollection(env.WORKS_NOTION_ID);
+  const [{ data: posts }, { data: works }] = await Promise.all([
+    getPostsFromCollection(env.POSTS_NOTION_ID),
+    getPostsFromCollection(env.WORKS_NOTION_ID),
+  ]);
 
   return {
     props: { posts, works },
-    revalidate: 10,
+    revalidate: 60,
   };
 };
 
@@ -46,13 +48,13 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
         <Section
           title="Thoughts ✍️"
           description="My articles and stories (sometimes in Indonesian 🇮🇩)"
-          className="bg-notwhite"
+          className="bg-blank"
         >
           <div className="grid w-full grid-flow-row grid-cols-1 gap-10 md:grid-cols-2">
-            {posts.map((item, idx) => (
+            {posts.map((item) => (
               <ArticleCard
-                key={idx}
-                index={idx}
+                key={item.slug}
+                className="bg-quaternary"
                 href={`/post/${item.slug}`}
                 title={item.title}
                 summary={item.summary}
@@ -70,10 +72,10 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
           className="bg-background"
         >
           <div className="grid w-full grid-flow-row grid-cols-1 gap-10 md:grid-cols-2">
-            {works.map((item, idx) => (
+            {works.map((item) => (
               <ArticleCard
-                key={idx}
-                index={idx}
+                key={item.slug}
+                className="bg-blank"
                 href={`/works/${item.slug}`}
                 title={item.title}
                 summary={item.summary}

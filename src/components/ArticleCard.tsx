@@ -10,12 +10,10 @@ interface ArticleCardProps {
   date?: string;
   tags?: string[];
   href: string;
-  index: number;
+  className?: string;
 }
 
-const colorScheme = ["bg-background", "bg-secondary", "bg-quaternary"] as const;
-
-function ArticleCard({ thumbnail, title, summary, index, date, tags = [], href, ...rest }: ArticleCardProps) {
+function ArticleCard({ thumbnail, title, summary, date, className, tags = [], href, ...rest }: ArticleCardProps) {
   return (
     <Link href={href}>
       <article
@@ -36,7 +34,7 @@ function ArticleCard({ thumbnail, title, summary, index, date, tags = [], href, 
         <div
           className={cn(
             "z-10 flex w-full flex-1 flex-col justify-end space-y-3 border-t border-stroke p-5 text-stroke duration-500 group-hover:border-highlight",
-            colorScheme[index % 3]
+            className
           )}
         >
           {/* Title */}
@@ -49,9 +47,9 @@ function ArticleCard({ thumbnail, title, summary, index, date, tags = [], href, 
           <div className="flex h-8 flex-row items-center">
             {tags.length > 0 && (
               <div className="flex flex-wrap space-x-3 text-xs">
-                {tags.map((tag, idx) => (
+                {tags.map((tag) => (
                   <span
-                    key={idx}
+                    key={tag}
                     className="h-fit w-fit rounded-2xl border border-stroke bg-tertiary px-2 pb-1.5 pt-2 font-mono font-bold uppercase leading-none  text-stroke"
                   >
                     {tag}

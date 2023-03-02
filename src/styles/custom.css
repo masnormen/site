@@ -42,8 +42,8 @@ body {
 .link {
   color: #ff8ba7;
   -webkit-text-decoration-color: #ff8ba7;
+  text-decoration: underline #ff8ba7;
   text-decoration-color: #ff8ba7;
-  text-decoration: underline;
   text-underline-offset: 0.15em;
   -webkit-text-decoration-skip: ink;
   text-decoration-skip-ink: auto;
@@ -205,8 +205,8 @@ body {
   color: #ff8ba7;
   opacity: 1;
   -webkit-text-decoration-color: #ff8ba7;
-  text-decoration-color: #ff8ba7;
   text-decoration: underline;
+  text-decoration-color: #ff8ba7;
   text-underline-offset: 0.15em;
   -webkit-text-decoration-skip: ink;
   text-decoration-skip-ink: auto;
