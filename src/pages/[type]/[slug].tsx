@@ -27,7 +27,7 @@ export const getStaticPaths = async () => {
   ]);
   const postPaths = posts.map((item) => ({
     params: {
-      type: "post",
+      type: "blog",
       slug: item.slug,
     },
   }));
@@ -48,7 +48,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const { type, slug } = params!;
 
   let containerId = "";
-  if (type === "post") {
+  if (type === "blog") {
     containerId = env.POSTS_NOTION_ID;
   } else if (type === "works") {
     containerId = env.WORKS_NOTION_ID;

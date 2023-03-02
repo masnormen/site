@@ -1,19 +1,20 @@
 import cn from "@/lib/cn";
 
-interface SectionProps {
+interface SectionProps extends Omit<React.HTMLAttributes<HTMLElement>, "title"> {
   title: React.ReactNode;
   description?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
 }
 
-function Section({ title, children, description = "", className = "" }: SectionProps) {
+function Section({ title, children, description = "", className = "", ...rest }: SectionProps) {
   return (
     <section
       className={cn(
         "relative flex w-full flex-col items-center justify-center bg-blank py-28 px-6 text-stroke md:px-0",
         className
       )}
+      {...rest}
     >
       <div className="z-10 flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-16">
         <div className="flex w-full flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">

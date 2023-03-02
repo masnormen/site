@@ -1,10 +1,35 @@
-import { CodeBracketIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSticky } from "react-use-sticky";
 
 import useWindowSize from "@/hooks/useWindowSize";
 import cn from "@/lib/cn";
+
+import GitHubIcon from "./Icons/GitHubIcon";
+import LinkedInIcon from "./Icons/LinkedInIcon";
+
+interface NavigationItemProps {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+  isNewTab?: boolean;
+}
+
+function NavigationItem({ href, className, children, isNewTab }: NavigationItemProps) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
+        className
+      )}
+      target={isNewTab ? "_blank" : "_self"}
+      rel="noopener noreferrer"
+    >
+      {children}
+    </Link>
+  );
+}
 
 function NavigationBar() {
   const [navRef, isSticky] = useSticky<HTMLDivElement>();
@@ -21,7 +46,7 @@ function NavigationBar() {
     <nav
       ref={navRef}
       className={cn(
-        "top-0 z-50 flex w-full flex-col items-center justify-center bg-opacity-30 backdrop-blur-[7px] duration-500 md:sticky",
+        "top-0 z-50 flex w-full flex-col items-center justify-center bg-opacity-30 backdrop-blur-[3px] duration-500 md:sticky",
         isSticky ? "bg-background" : "bg-blank"
       )}
     >
@@ -32,44 +57,23 @@ function NavigationBar() {
         Menu {isMenuShown ? "⬆️" : "⬇️"}
       </div>
       {isMenuShown && (
-        <div className="flex h-full w-full max-w-screen-md flex-col items-stretch justify-between space-y-2 px-6 py-4 md:flex-row md:space-y-0 md:px-0">
+        <div className="flex h-full max-w-screen-md flex-col items-stretch justify-between space-y-2 px-6 py-4 md:w-full md:flex-row md:space-y-0 md:px-0">
           <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-blank shadow-lg duration-500 hover:shadow-secondary">
-            <Link
-              href="/"
-              className="flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background"
-            >
-              nourman.com
-            </Link>
+            <NavigationItem href="/">nourman.com</NavigationItem>
           </div>
 
           <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-secondary shadow-lg duration-500 hover:shadow-secondary md:absolute md:left-1/2 md:-translate-x-1/2">
-            <Link
-              href="/"
-              className="flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background"
-            >
-              About
-            </Link>
-            <Link
-              href="/"
-              className="flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/"
-              className="flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background"
-            >
-              Works
-            </Link>
+            <NavigationItem href="/#blog">Blog</NavigationItem>
+            <NavigationItem href="/#works">Works</NavigationItem>
           </div>
 
           <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-tertiary shadow-lg duration-500 hover:shadow-secondary">
-            <Link
-              href="https://github.com/masnormen"
-              className="flex items-center justify-center rounded-2xl stroke-stroke py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:stroke-background hover:text-background"
-            >
-              GitHub <CodeBracketIcon className="ml-2 h-[1em] stroke-1" />
-            </Link>
+            <NavigationItem isNewTab className="text-blue-600" href="https://linkedin.com/in/nourmanhajar">
+              <LinkedInIcon className="h-5" />
+            </NavigationItem>
+            <NavigationItem isNewTab className="text-black" href="https://github.com/masnormen">
+              <GitHubIcon className="h-5" />
+            </NavigationItem>
           </div>
         </div>
       )}

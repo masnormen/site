@@ -46,6 +46,7 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
         {/* Second Segment - Blog Posts */}
 
         <Section
+          id="blog"
           title="Thoughts ✍️"
           description="My articles and stories (sometimes in Indonesian 🇮🇩)"
           className="bg-blank"
@@ -55,7 +56,7 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
               <ArticleCard
                 key={item.slug}
                 className="bg-quaternary"
-                href={`/post/${item.slug}`}
+                href={`/blog/${item.slug}`}
                 title={item.title}
                 summary={item.summary}
                 date={item.date}
@@ -67,6 +68,7 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
         </Section>
 
         <Section
+          id="works"
           title="Projects 🛠️"
           description="Things and fun projects I&lsquo;ve worked on 🧑‍💻"
           className="bg-background"
