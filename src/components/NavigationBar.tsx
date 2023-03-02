@@ -46,7 +46,7 @@ function NavigationBar() {
     <nav
       ref={navRef}
       className={cn(
-        "top-0 z-50 flex w-full flex-col items-center justify-center bg-opacity-30 backdrop-blur-[3px] duration-500 md:sticky",
+        "top-0 z-50 flex w-full flex-col items-center justify-center bg-opacity-30 backdrop-blur-[4px] duration-500 md:sticky",
         isSticky ? "bg-background" : "bg-blank"
       )}
     >
