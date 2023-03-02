@@ -50,12 +50,13 @@ function NavigationBar() {
         isSticky ? "bg-background" : "bg-blank"
       )}
     >
-      <div
+      <button
+        type="button"
         onClick={() => setMenuShown(!isMenuShown)}
-        className="my-4 flex flex-row justify-center rounded-2xl border border-stroke bg-blank py-3 px-4 text-sm font-semibold uppercase text-stroke shadow-lg duration-500 hover:bg-stroke hover:text-background hover:shadow-secondary md:hidden"
+        className="my-4 flex cursor-pointer flex-row justify-center rounded-2xl border border-stroke bg-blank py-3 px-4 text-sm font-semibold uppercase text-stroke shadow-lg duration-500 hover:bg-stroke hover:text-background hover:shadow-secondary md:hidden"
       >
         Menu {isMenuShown ? "⬆️" : "⬇️"}
-      </div>
+      </button>
       {isMenuShown && (
         <div className="flex h-full max-w-screen-md flex-col items-stretch justify-between space-y-2 px-6 py-4 md:w-full md:flex-row md:space-y-0 md:px-0">
           <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-blank shadow-lg duration-500 hover:shadow-secondary">

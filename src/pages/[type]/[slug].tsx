@@ -95,7 +95,7 @@ const Comments = dynamic(() => import("@giscus/react"), { ssr: false });
 
 const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: ExtendedRecordMap }): JSX.Element => {
   const commentRef = useRef<HTMLDivElement>(null);
-  const isInViewport = useInViewport(commentRef, "768px");
+  const isInViewport = useInViewport(commentRef, "1000px");
   const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
