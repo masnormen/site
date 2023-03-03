@@ -28,7 +28,7 @@ function ArticleCard({ thumbnail, title, summary, date, className, tags = [], hr
             width={400}
             height={225}
             alt={title}
-            className="aspect-video w-full rounded-t-xl object-cover duration-500 group-hover:!scale-110"
+            className="aspect-video w-full rounded-t-xl object-cover duration-500 md:group-hover:!scale-110"
             style={{
               transform: "translateZ(0)",
             }}
@@ -37,7 +37,7 @@ function ArticleCard({ thumbnail, title, summary, date, className, tags = [], hr
           <img
             src={thumbnail}
             alt={title}
-            className="aspect-video w-full rounded-t-xl object-cover duration-500 group-hover:!scale-110"
+            className="aspect-video w-full rounded-t-xl object-cover duration-500 md:group-hover:!scale-110"
             style={{
               transform: "translateZ(0)",
             }}

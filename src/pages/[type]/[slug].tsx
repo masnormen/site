@@ -142,7 +142,7 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
                 </div>
               )}
             </div>
-            {data.hasCover && <img className="h-auto w-full rounded-lg" alt={data.title} src={data.thumbnail} />}
+            {data.hasCover && <img className="aspect-video object-cover w-full rounded-lg" alt={data.title} src={data.thumbnail} />}
           </div>
 
           {/* Table of Contents */}
