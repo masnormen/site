@@ -45,7 +45,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
-  const { type, slug } = params!;
+  const type = params?.type as "works" | "blog";
+  const slug = params?.slug as string;
 
   let containerId = "";
   if (type === "blog") {
@@ -70,7 +71,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const { data, recordMap } = await getPost(pageId);
 
   return {
-    props: { data, recordMap },
+    props: { type, data, recordMap },
     revalidate: 60,
   };
 };
@@ -93,7 +94,15 @@ const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m
 
 const Comments = dynamic(() => import("@giscus/react"), { ssr: false });
 
-const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: ExtendedRecordMap }): JSX.Element => {
+const NotionItem = ({
+  type,
+  data,
+  recordMap,
+}: {
+  type: "works" | "blog";
+  data: PostMetadata;
+  recordMap: ExtendedRecordMap;
+}): JSX.Element => {
   const commentRef = useRef<HTMLDivElement>(null);
   const isInViewport = useInViewport(commentRef, "1000px");
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -114,7 +123,7 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
       <NavigationBar />
 
       {/* First Segment - Landing Screen */}
-      <Hero postTitle={data.title} />
+      <Hero title={data.title} href={`/${type}/${data.slug}`} />
 
       {/* Second Segment - Blog Posts */}
 
@@ -142,7 +151,9 @@ const NotionItem = ({ data, recordMap }: { data: PostMetadata; recordMap: Extend
                 </div>
               )}
             </div>
-            {data.hasCover && <img className="aspect-video object-cover w-full rounded-lg" alt={data.title} src={data.thumbnail} />}
+            {data.hasCover && (
+              <img className="aspect-video w-full rounded-lg object-cover" alt={data.title} src={data.thumbnail} />
+            )}
           </div>
 
           {/* Table of Contents */}
