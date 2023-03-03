@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import Link from "next/link";
 
 import cn from "@/lib/cn";
@@ -21,14 +22,27 @@ function ArticleCard({ thumbnail, title, summary, date, className, tags = [], hr
         {...rest}
       >
         {/* Thumbnail image */}
-        <img
-          src={thumbnail}
-          alt={title}
-          className="aspect-video w-full rounded-t-xl object-cover duration-500 group-hover:!scale-110"
-          style={{
-            transform: "translateZ(0)",
-          }}
-        />
+        {thumbnail.includes("www.notion.so") ? (
+          <Image
+            src={thumbnail}
+            width={400}
+            height={225}
+            alt={title}
+            className="aspect-video w-full rounded-t-xl object-cover duration-500 group-hover:!scale-110"
+            style={{
+              transform: "translateZ(0)",
+            }}
+          />
+        ) : (
+          <img
+            src={thumbnail}
+            alt={title}
+            className="aspect-video w-full rounded-t-xl object-cover duration-500 group-hover:!scale-110"
+            style={{
+              transform: "translateZ(0)",
+            }}
+          />
+        )}
 
         {/* Post metadata */}
         <div

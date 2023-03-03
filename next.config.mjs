@@ -9,6 +9,9 @@
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  images: {
+    domains: ["www.notion.so"],
+  },
   async headers() {
     return [
       {

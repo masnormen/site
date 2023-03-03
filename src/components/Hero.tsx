@@ -43,14 +43,18 @@ function Hero({ postTitle }: HeroProps) {
 
       {/* Image Portrait */}
       {!postTitle && (
-        <div className="absolute bottom-0 z-10 flex h-screen w-full items-end justify-center">
+        <picture className="absolute bottom-0 z-10 flex h-screen w-full items-end justify-center">
+          <source
+            className="filter-noisier ml-1 h-4/6 w-fit select-none object-contain drop-shadow-2xl md:ml-2"
+            srcSet="/portrait.webp"
+            type="image/webp"
+          />
           <img
-            className="filter-noisier pointer-events-none ml-1 h-4/6 w-fit select-none object-contain drop-shadow-2xl md:ml-2"
+            className="filter-noisier ml-1 h-4/6 w-fit select-none object-contain drop-shadow-2xl md:ml-2"
             alt="Portrait of Me"
-            role="presentation"
             src="/portrait.png"
           />
-        </div>
+        </picture>
       )}
 
       {/* Title text */}
