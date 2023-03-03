@@ -18,16 +18,16 @@ function Hero({ postTitle }: HeroProps) {
       )}
     >
       {/* Green Rectangle */}
-      <div className="animate-slowspin-30 filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[100vw] bg-tertiary md:h-4/6" />
+      <div className="animate-slowspin-30 filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[75vw] bg-tertiary md:h-4/6" />
 
       {/* Pink Rectangle */}
-      <div className="animate-slowspin filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[100vw] bg-secondary md:h-4/6" />
+      <div className="animate-slowspin filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[75vw] bg-secondary md:h-4/6" />
 
       {/* Yellowish Rectangle */}
-      <div className="animate-slowspin-60 filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[100vw] bg-quaternary md:h-4/6" />
+      <div className="animate-slowspin-60 filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[75vw] bg-quaternary md:h-4/6" />
 
       {/* Circle */}
-      <div className="animate-slowspin-rev bg-pattern-wavy filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[100vw] items-center justify-center rounded-full bg-background shadow-sm md:h-[70%]">
+      <div className="animate-slowspin-rev bg-pattern-wavy filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[75vw] items-center justify-center rounded-full bg-background shadow-sm md:h-[70%]">
         <svg
           viewBox="0 0 100 100"
           className="aspect-square h-[80%] font-mono text-[0.41rem] font-bold uppercase text-stroke opacity-25"
