@@ -43,7 +43,7 @@ function Hero({ postTitle }: HeroProps) {
 
       {/* Image Portrait */}
       {!postTitle && (
-        <picture className="absolute bottom-0 z-10 flex h-screen w-full items-end justify-center">
+        <picture className="pointer-events-none absolute bottom-0 z-10 flex h-screen w-full select-none items-end justify-center">
           <source
             className="filter-noisier ml-1 h-4/6 w-fit select-none object-contain drop-shadow-2xl md:ml-2"
             srcSet="/portrait.webp"

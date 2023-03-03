@@ -3,12 +3,14 @@ import "@/styles/notion.css";
 import "prism-themes/themes/prism-gruvbox-dark.min.css";
 import "@/styles/custom.css";
 
+import { motion } from "framer-motion";
 import { type AppType } from "next/dist/shared/lib/utils";
 import { Space_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import Head from "next/head";
 
 import SVGFilters from "@/components/SVGFilters";
+import { AppProps } from "next/app";
 
 const varentGrotesk = localFont({
   src: "../styles/fonts/VarentGrotesk-Bold.otf",
@@ -33,15 +35,28 @@ const plusJakarta = localFont({
   display: "swap",
 });
 
-const App: AppType = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
       </Head>
-      <div className={`${plusJakarta.variable} ${varentGrotesk.variable} ${spaceMono.variable} font-sans`}>
+      <motion.div
+        key={router.pathname}
+        initial="initial"
+        animate="animate"
+        variants={{
+          initial: {
+            opacity: 0,
+          },
+          animate: {
+            opacity: 1,
+          },
+        }}
+        className={`${plusJakarta.variable} ${varentGrotesk.variable} ${spaceMono.variable} font-sans`}
+      >
         <Component {...pageProps} />
-      </div>
+      </motion.div>
       <SVGFilters />
     </>
   );
