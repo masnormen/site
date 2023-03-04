@@ -1,1 +1,1 @@
-export const THEMES = { peachy: "🍑", tritanopia: "👁️", seasalt: "🌊"};
+export const THEMES = { peachy: "🍑", deuteranomaly: "👁️", seasalt: "🌊"};

@@ -89,7 +89,7 @@ function NavigationBar() {
           </div>
 
           <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-tertiary shadow-lg duration-500 hover:shadow-secondary">
-            <NavigationItem isNewTab className="text-blue-600" href="https://linkedin.com/in/nourmanhajar">
+            <NavigationItem isNewTab className="text-sky-700" href="https://linkedin.com/in/nourmanhajar">
               <LinkedInIcon className="h-5" />
             </NavigationItem>
             <NavigationItem isNewTab className="text-black" href="https://github.com/masnormen">

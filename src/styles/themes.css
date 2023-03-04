@@ -1,21 +1,21 @@
 [data-theme="peachy"] {
   --theme: peachy;
-  --theme-background: #faeee7;
-  --theme-secondary: #ffc6c7;
-  --theme-tertiary: #c3f0ca;
-  --theme-quaternary: #ffedd5;
+  --theme-background: #fff6f0;
+  --theme-secondary: #e9b9ba;
+  --theme-tertiary: #caf0c3;
+  --theme-quaternary: #fbf5ee;
   --theme-highlight: #ff8ba7;
-  --theme-stroke: #6a595e;
+  --theme-stroke: #4e3d4e;
   --theme-blank: #fcfcfc;
 }
 
-[data-theme="tritanopia"] {
-  --theme: tritanopia;
+[data-theme="deuteranomaly"] {
+  --theme: deuteranomaly;
   --theme-background: #f6f0ec;
-  --theme-secondary: #ffa8ba;
-  --theme-tertiary: #60ddd5;
+  --theme-secondary: #ffc4a8;
+  --theme-tertiary: #f7b84a;
   --theme-quaternary: #ffedd5;
-  --theme-highlight: #faae2b;
+  --theme-highlight: #60ddd5;
   --theme-stroke: #00332c;
   --theme-blank: #f2f7f5;
 }
