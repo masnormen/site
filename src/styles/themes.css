@@ -1,0 +1,32 @@
+[data-theme="peachy"] {
+  --theme: peachy;
+  --theme-background: #faeee7;
+  --theme-secondary: #ffc6c7;
+  --theme-tertiary: #c3f0ca;
+  --theme-quaternary: #ffedd5;
+  --theme-highlight: #ff8ba7;
+  --theme-stroke: #6a595e;
+  --theme-blank: #fcfcfc;
+}
+
+[data-theme="tritanopia"] {
+  --theme: tritanopia;
+  --theme-background: #f6f0ec;
+  --theme-secondary: #ffa8ba;
+  --theme-tertiary: #60ddd5;
+  --theme-quaternary: #ffedd5;
+  --theme-highlight: #faae2b;
+  --theme-stroke: #00332c;
+  --theme-blank: #f2f7f5;
+}
+
+[data-theme="seasalt"] {
+  --theme: seasalt;
+  --theme-background: #e4efee;
+  --theme-secondary: #a1c9c9;
+  --theme-tertiary: #bae8e8;
+  --theme-quaternary: #ffedd5;
+  --theme-highlight: #dca342;
+  --theme-stroke: #272343;
+  --theme-blank: #fffffe;
+}

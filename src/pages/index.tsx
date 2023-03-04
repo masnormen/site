@@ -37,7 +37,7 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
       <Hero />
 
       <div className="relative h-full w-full">
-        <div className="h-28" />
+        <div className="h-28 bg-blank" />
 
         {/* Navbar */}
 

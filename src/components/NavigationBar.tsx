@@ -1,24 +1,42 @@
+import { useAtom } from "jotai";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useSticky } from "react-use-sticky";
 
+import { themeAtom } from "@/atoms/theme";
+import { THEMES } from "@/constants/themes";
 import useWindowSize from "@/hooks/useWindowSize";
 import cn from "@/lib/cn";
 
 import GitHubIcon from "./Icons/GitHubIcon";
 import LinkedInIcon from "./Icons/LinkedInIcon";
 
-interface NavigationItemProps {
-  href: string;
+type NavigationItemProps = ({ href: string } | { onClick: () => void }) & {
   children: React.ReactNode;
   className?: string;
   isNewTab?: boolean;
-}
+};
 
-function NavigationItem({ href, className, children, isNewTab }: NavigationItemProps) {
+function NavigationItem(props: NavigationItemProps) {
+  const { className, children, isNewTab } = props;
+
+  if ("onClick" in props) {
+    return (
+      <button
+        type="button"
+        onClick={props.onClick}
+        className={cn(
+          "flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
+          className
+        )}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
     <Link
-      href={href}
+      href={props.href}
       className={cn(
         "flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
         className
@@ -32,9 +50,12 @@ function NavigationItem({ href, className, children, isNewTab }: NavigationItemP
 }
 
 function NavigationBar() {
-  const [navRef, isSticky] = useSticky<HTMLDivElement>();
   const [isMenuShown, setMenuShown] = useState(false);
   const { width } = useWindowSize();
+
+  const [theme, setTheme] = useAtom(themeAtom);
+
+  const themeNames = Object.keys(THEMES);
 
   useEffect(() => {
     if (width > 768) {
@@ -43,13 +64,7 @@ function NavigationBar() {
   }, [width]);
 
   return (
-    <nav
-      ref={navRef}
-      className={cn(
-        "top-0 z-50 flex w-full flex-col items-center justify-center bg-opacity-30 backdrop-blur-[4px] duration-500 md:sticky",
-        isSticky ? "bg-background" : "bg-blank"
-      )}
-    >
+    <nav className="top-0 z-50 flex w-full flex-col items-center justify-center bg-stone-200 bg-opacity-20 backdrop-blur-sm duration-500 md:sticky">
       <button
         type="button"
         onClick={() => setMenuShown(!isMenuShown)}
@@ -66,6 +81,11 @@ function NavigationBar() {
           <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-secondary shadow-lg duration-500 hover:shadow-secondary md:absolute md:left-1/2 md:-translate-x-1/2">
             <NavigationItem href="/#blog">Blog</NavigationItem>
             <NavigationItem href="/#works">Works</NavigationItem>
+            <NavigationItem
+              onClick={() => setTheme(themeNames[(themeNames.indexOf(theme) + 1) % themeNames.length] as string)}
+            >
+              Theme [{THEMES[theme as keyof typeof THEMES]}]
+            </NavigationItem>
           </div>
 
           <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-tertiary shadow-lg duration-500 hover:shadow-secondary">

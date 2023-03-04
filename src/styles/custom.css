@@ -16,8 +16,8 @@ body {
 }
 
 *::selection {
-  background-color: #ffc6c7;
-  color: #fefefe;
+  background-color: var(--theme-secondary);
+  color: var(--theme-stroke);
 }
 
 :target ~ .notion-h-title {
@@ -27,7 +27,7 @@ body {
 @keyframes pulse-link {
   50% {
     opacity: 0.7;
-    background-color: #c3f0ca;
+    background-color: var(--theme-tertiary);
   }
 }
 
@@ -40,23 +40,22 @@ body {
 /* Atomic components */
 
 .link {
-  color: #ff8ba7;
-  -webkit-text-decoration-color: #ff8ba7;
-  text-decoration: underline #ff8ba7;
-  text-decoration-color: #ff8ba7;
+  color: var(--theme-highlight);
+  -webkit-text-decoration-color: var(--theme-highlight);
+  text-decoration: underline var(--theme-highlight);
+  text-decoration-color: var(--theme-highlight);
   text-underline-offset: 0.15em;
   -webkit-text-decoration-skip: ink;
   text-decoration-skip-ink: auto;
-  box-shadow: inset 0 0em transparent, inset 0 -0.1em rgb(255, 198, 199, 1);
-  -webkit-transition: box-shadow 0.5s ease-in-out;
-  transition: box-shadow 0.5s ease-in-out;
+  box-shadow: inset 0 0em transparent, inset 0 0em var(--theme-secondary);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   width: auto;
 }
 
 .link:hover {
-  color: #ff8ba7;
-  /* text-decoration: none; */
-  box-shadow: inset 0 0em transparent, inset 0 -1.1em rgb(255, 198, 199, 0.5);
+  color: var(--theme-stroke);
+  box-shadow: inset 0 0em transparent, inset 0 -1.1em var(--theme-tertiary);
 }
 
 /* SVG Filters */
@@ -167,24 +166,24 @@ body {
   --notion-font: inherit;
   --notion-max-width: 100%;
 
-  --fg-color: rgba(89, 74, 78);
-  --fg-color-0: rgba(89, 74, 78, 0.09);
-  --fg-color-1: rgba(89, 74, 78, 0.16);
-  --fg-color-2: rgba(89, 74, 78, 0.4);
-  --fg-color-3: rgba(89, 74, 78, 0.6);
-  --fg-color-4: #000;
-  --fg-color-5: rgba(89, 74, 78, 0.024);
-  --fg-color-6: rgba(89, 74, 78, 0.8);
+  --fg-color: var(--theme-stroke);
+  --fg-color-0: var(--theme-stroke);
+  --fg-color-1: var(--theme-stroke);
+  --fg-color-2: var(--theme-stroke);
+  --fg-color-3: var(--theme-stroke);
+  --fg-color-4: var(--theme-stroke);
+  --fg-color-5: var(--theme-stroke);
+  --fg-color-6: var(--theme-stroke);
   --fg-color-icon: var(--fg-color);
 
-  --bg-color: #fefefe;
-  --bg-color-0: rgba(135, 131, 120, 0.15);
-  --bg-color-1: #fefefe;
-  --bg-color-2: rgba(135, 131, 120, 0.15);
+  --bg-color: var(--theme-blank);
+  --bg-color-0: var(--theme-blank);
+  --bg-color-1: var(--theme-blank);
+  --bg-color-2: var(--theme-blank);
 
-  --select-color-0: #ffc6c7;
-  --select-color-1: #ffc6c7;
-  --select-color-2: #d9eff8;
+  --select-color-0: var(--theme-secondary);
+  --select-color-1: var(--theme-secondary);
+  --select-color-2: var(--theme-blank);
 
   --background: #332f2b;
 }
@@ -202,24 +201,24 @@ body {
 } */
 
 .notion-link {
-  color: #ff8ba7;
+  color: var(--theme-highlight);
   opacity: 1;
-  -webkit-text-decoration-color: #ff8ba7;
+  -webkit-text-decoration-color: var(--theme-highlight);
   text-decoration: underline;
-  text-decoration-color: #ff8ba7;
+  text-decoration-color: var(--theme-highlight);
   text-underline-offset: 0.15em;
   -webkit-text-decoration-skip: ink;
   text-decoration-skip-ink: auto;
-  box-shadow: inset 0 0em transparent, inset 0 0 rgb(255, 198, 199, 1);
-  -webkit-transition: box-shadow 0.5s ease-in-out;
-  transition: box-shadow 0.5s ease-in-out;
+  box-shadow: inset 0 0em transparent, inset 0 0 var(--theme-secondary);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   width: auto;
   border: none;
 }
 
 .notion-link:hover {
-  color: #ff8ba7;
-  box-shadow: inset 0 0em transparent, inset 0 -1em rgb(255, 198, 199, 0.5);
+  color: var(--theme-stroke);
+  box-shadow: inset 0 0em transparent, inset 0 -1.1em var(--theme-tertiary);
 }
 
 :not(pre) > code[class*="language-"],

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
-const sansFonts = 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
+const sansFonts =
+  'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -17,13 +18,13 @@ module.exports = {
         serif: [...fontFamily.serif, "emoji"],
       },
       colors: {
-        background: "#faeee7",
-        secondary: "#ffc6c7",
-        tertiary: "#c3f0ca",
-        quaternary: "#ffedd5",
-        highlight: "#ff8ba7",
-        stroke: "#6a595e",
-        blank: "#fcfcfc",
+        background: "var(--theme-background)",
+        secondary: "var(--theme-secondary)",
+        tertiary: "var(--theme-tertiary)",
+        quaternary: "var(--theme-quaternary)",
+        highlight: "var(--theme-highlight)",
+        stroke: "var(--theme-stroke)",
+        blank: "var(--theme-blank)",
       },
     },
   },
