@@ -43,7 +43,7 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
           description: SEO_DATA.description,
           images: [
             {
-              url: "/api/site.png",
+              url: "https://nourman.com/api/site.png",
               width: 1200,
               height: 630,
               type: "image/png",

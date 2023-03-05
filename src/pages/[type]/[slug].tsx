@@ -113,21 +113,24 @@ const NotionItem = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInViewport]);
 
+  const seoDescription =
+    data.summary.length > 150 ? `${data.summary.replace(/^(.{150}[^\s]*).*/, "$1")}...` : data.summary;
+
   return (
     <>
       <NextSeo
         title={data.title}
         titleTemplate="%s • Nourman Hajar"
-        description={data.summary}
+        description={seoDescription}
         canonical={`https://nourman.com/${type}/${data.slug}`}
         openGraph={{
           url: `https://nourman.com/${type}/${data.slug}`,
           title: data.title,
-          description: data.summary,
+          description: seoDescription,
           images: [
             {
               url:
-                `/api/content.png?` +
+                `https://nourman.com/api/content.png?` +
                 `title=${encodeURIComponent(data.title)}` +
                 `&type=${encodeURIComponent(type)}` +
                 `&tags=${encodeURIComponent(data.tags.join(","))}`,
