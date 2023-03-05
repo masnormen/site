@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 
 import ArticleCard from "@/components/ArticleCard";
 import Footer from "@/components/Footer";
@@ -23,14 +24,37 @@ export const getStaticProps = async () => {
   };
 };
 
+const SEO_DATA = {
+  title: "Nourman Hajar • Software Engineer",
+  description: "The website of Nourman Hajar, Software Engineer based in Indonesia.",
+  url: "https://nourman.com/",
+};
+
 const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["props"]): JSX.Element => {
   return (
     <>
-      <Head>
-        <title>Nourman Hajar - Software Engineer</title>
-        <meta name="description" content="Nourman Hajar" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <NextSeo
+        title={SEO_DATA.title}
+        description={SEO_DATA.description}
+        canonical={SEO_DATA.url}
+        openGraph={{
+          url: SEO_DATA.url,
+          title: SEO_DATA.title,
+          description: SEO_DATA.description,
+          images: [
+            {
+              url: "/api/site.png",
+              width: 1200,
+              height: 630,
+              type: "image/png",
+            },
+          ],
+          siteName: SEO_DATA.title,
+        }}
+        twitter={{
+          cardType: "summary_large_image",
+        }}
+      />
 
       {/* First Segment - Landing Screen */}
 

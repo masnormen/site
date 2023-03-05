@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { NextSeo } from "next-seo";
 import type { ExtendedRecordMap } from "notion-types";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
@@ -114,11 +115,33 @@ const NotionItem = ({
 
   return (
     <>
-      <Head>
-        <title>{data.title}</title>
-        <meta name="description" content="Nourman Hajar" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <NextSeo
+        title={data.title}
+        titleTemplate="%s • Nourman Hajar"
+        description={data.summary}
+        canonical={`https://nourman.com/${type}/${data.slug}`}
+        openGraph={{
+          url: `https://nourman.com/${type}/${data.slug}`,
+          title: data.title,
+          description: data.summary,
+          images: [
+            {
+              url:
+                `/api/content.png?` +
+                `title=${encodeURIComponent(data.title)}` +
+                `&type=${encodeURIComponent(type)}` +
+                `&tags=${encodeURIComponent(data.tags.join(","))}`,
+              width: 1200,
+              height: 630,
+              type: "image/png",
+            },
+          ],
+          siteName: "Nourman Hajar",
+        }}
+        twitter={{
+          cardType: "summary_large_image",
+        }}
+      />
 
       <NavigationBar />
 

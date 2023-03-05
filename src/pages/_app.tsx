@@ -50,6 +50,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
       <>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+          <link rel="icon" href="https://fav.farm/⚡️" />
         </Head>
         <motion.div
           key={router.pathname}
