@@ -6,8 +6,6 @@ export const config = {
   runtime: "edge",
 };
 
-export const ogSchema = z.tuple([z.string(), z.string(), z.string().optional()]);
-
 const fontNormal = "Plus Jakarta Sans";
 const jakartaFont = fetch(new URL("../../../../public/fonts/static/PlusJakartaSans-Regular.ttf", import.meta.url)).then(
   (res) => res.arrayBuffer()
@@ -20,8 +18,8 @@ export default async function handler(req: NextRequest) {
   try {
     const slugs = req.nextUrl.searchParams.getAll("slug").map((slug) => decodeURI(slug));
 
-    const [type, rawRawTitle, rawTags] = ogSchema.parse(slugs);
-    const rawTitle = rawRawTitle.replaceAll("+", " ");
+    const [type, rawRawTitle, rawTags] = slugs;
+    const rawTitle = rawRawTitle!.replaceAll("+", " ");
     const title = rawTitle.length > 70 ? `${rawTitle.replace(/^(.{70}[^\s]*).*/, "$1")}...` : rawTitle;
     const tags = rawTags ? rawTags.split(",") : [];
 
