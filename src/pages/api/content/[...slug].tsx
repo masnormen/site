@@ -1,6 +1,5 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
-import * as z from "zod";
 
 export const config = {
   runtime: "edge",
@@ -18,8 +17,7 @@ export default async function handler(req: NextRequest) {
   try {
     const slugs = req.nextUrl.searchParams.getAll("slug").map((slug) => decodeURI(slug));
 
-    const [type, rawRawTitle, rawTags] = slugs;
-    const rawTitle = rawRawTitle!.replaceAll("+", " ");
+    const [type, rawTitle, rawTags] = slugs as [string, string, string];
     const title = rawTitle.length > 70 ? `${rawTitle.replace(/^(.{70}[^\s]*).*/, "$1")}...` : rawTitle;
     const tags = rawTags ? rawTags.split(",") : [];
 

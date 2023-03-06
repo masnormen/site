@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
 
-import Head from "next/head";
 import { NextSeo } from "next-seo";
 
 import ArticleCard from "@/components/ArticleCard";

@@ -10,7 +10,7 @@ import { AppProps } from "next/app";
 import { Space_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import Head from "next/head";
-import { memo, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 import { themeAtom } from "@/atoms/theme";
 import SVGFilters from "@/components/SVGFilters";

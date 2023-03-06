@@ -1,6 +1,4 @@
 import { ImageResponse } from "@vercel/og";
-import { NextRequest } from "next/server";
-import * as z from "zod";
 
 export const config = {
   runtime: "edge",
