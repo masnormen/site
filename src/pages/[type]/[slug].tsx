@@ -130,10 +130,10 @@ const NotionItem = ({
           images: [
             {
               url:
-                `https://nourman.com/api/content.png?` +
-                `title=${encodeURIComponent(data.title)}` +
-                `&type=${encodeURIComponent(type)}` +
-                `&tags=${encodeURIComponent(data.tags.join(","))}`,
+                `https://nourman.com/api/content` +
+                `/${encodeURIComponent(type)}` +
+                `/${encodeURIComponent(data.title)}` +
+                `/${encodeURIComponent(data.tags.join(","))}`,
               width: 1200,
               height: 630,
               type: "image/png",
