@@ -1,25 +1,32 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
+import * as z from "zod";
 
 export const config = {
   runtime: "edge",
 };
 
+export const ogSchema = z.object({
+  title: z.string(),
+  tags: z.array(z.string()),
+  type: z.string(),
+});
+
 const fontNormal = "Plus Jakarta Sans";
-const jakartaFont = fetch(new URL("../../../../public/fonts/static/PlusJakartaSans-Regular.ttf", import.meta.url)).then(
+const jakartaFont = fetch(new URL("../../../public/fonts/static/PlusJakartaSans-Regular.ttf", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
 const jakartaFontBold = fetch(
-  new URL("../../../../public/fonts/static/PlusJakartaSans-ExtraBold.ttf", import.meta.url)
+  new URL("../../../public/fonts/static/PlusJakartaSans-ExtraBold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {
   try {
-    const slugs = req.nextUrl.searchParams.getAll("slug").map((slug) => decodeURI(slug));
+    const url = new URL(req.url);
+    const { data } = Object.fromEntries(url.searchParams) as { data: string };
 
-    const [type, rawTitle, rawTags] = slugs as [string, string, string];
+    const { title: rawTitle, tags, type } = ogSchema.parse(JSON.parse(atob(data)));
     const title = rawTitle.length > 70 ? `${rawTitle.replace(/^(.{70}[^\s]*).*/, "$1")}...` : rawTitle;
-    const tags = rawTags ? rawTags.split(",") : [];
 
     return new ImageResponse(
       (

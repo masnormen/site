@@ -113,7 +113,15 @@ const NotionItem = ({
   }, [isInViewport]);
 
   const seoDescription =
-    data.summary.length > 150 ? `${data.summary.replace(/^(.{150}[^\s]*).*/, "$1")}...` : data.summary;
+    data.summary.length > 200 ? `${data.summary.replace(/^(.{200}[^\s]*).*/, "$1")}...` : data.summary;
+
+  const seoOpenGraphImage = btoa(
+    JSON.stringify({
+      title: data.title,
+      tags: data.tags,
+      type,
+    })
+  );
 
   return (
     <>
@@ -126,19 +134,16 @@ const NotionItem = ({
           url: `https://nourman.com/${type}/${data.slug}`,
           title: data.title,
           description: seoDescription,
+          siteName: "Nourman Hajar",
           images: [
             {
-              url:
-                `https://nourman.com/api/content` +
-                `/${encodeURIComponent(type)}` +
-                `/${encodeURIComponent(data.title)}` +
-                `/${encodeURIComponent(data.tags.join(","))}`,
+              url: `https://nourman.com/api/content.png?data=${seoOpenGraphImage}`,
               width: 1200,
               height: 630,
               type: "image/png",
+              alt: data.title,
             },
           ],
-          siteName: "Nourman Hajar",
         }}
         twitter={{
           cardType: "summary_large_image",
