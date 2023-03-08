@@ -52,7 +52,7 @@ function ArticleCard({ thumbnail, title, summary, date, className, tags = [], hr
           )}
         >
           {/* Title */}
-          <h2 className="font-semibold line-clamp-2 md:text-lg">{title}</h2>
+          <h2 className="font-bold line-clamp-2 md:text-lg">{title}</h2>
 
           {/* Summary */}
           {summary && summary.length > 0 && <div className="text-sm line-clamp-3">{summary.substring(0, 200)}</div>}

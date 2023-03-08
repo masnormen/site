@@ -64,7 +64,7 @@ function NavigationBar() {
   }, [width]);
 
   return (
-    <nav className="top-0 z-50 flex w-full flex-col items-center justify-center bg-stone-200 bg-opacity-20 backdrop-blur-sm duration-500 md:sticky">
+    <nav className="top-0 z-50 flex w-full flex-col items-center justify-center bg-gray-50 bg-opacity-20 backdrop-blur-sm duration-500 md:sticky">
       <button
         type="button"
         onClick={() => setMenuShown(!isMenuShown)}
