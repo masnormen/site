@@ -15,9 +15,9 @@
   --theme-secondary: #ffc4a8;
   --theme-tertiary: #f7b84a;
   --theme-quaternary: #ffedd5;
-  --theme-highlight: #60ddd5;
+  --theme-highlight: #24a8a0;
   --theme-stroke: #00332c;
-  --theme-blank: #f2f7f5;
+  --theme-blank: #F7F5F2;
 }
 
 [data-theme="seasalt"] {
