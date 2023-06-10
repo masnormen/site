@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.cjs",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
@@ -18,6 +19,7 @@
     "jotai": "^2.0.3",
     "next": "^13.2.3",
     "next-seo": "^5.15.0",
+    "next-sitemap": "^4.1.3",
     "notion-client": "^6.16.0",
     "notion-utils": "^6.16.0",
     "prism-themes": "^1.9.0",
