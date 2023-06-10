@@ -34,6 +34,7 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
     <>
       <NextSeo
         title={SEO_DATA.title}
+        titleTemplate="%s"
         description={SEO_DATA.description}
         canonical={SEO_DATA.url}
         openGraph={{

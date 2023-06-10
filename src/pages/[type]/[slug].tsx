@@ -127,7 +127,6 @@ const NotionItem = ({
     <>
       <NextSeo
         title={data.title}
-        titleTemplate="%s • Nourman Hajar"
         description={seoDescription}
         canonical={`https://nourman.com/${type}/${data.slug}`}
         openGraph={{
