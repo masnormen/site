@@ -28,12 +28,12 @@ const spaceMono = Space_Mono({
   display: "swap",
 });
 
-const plusJakarta = localFont({
+const mainFont = localFont({
   src: [
     { path: "../../public/fonts/Satoshi-Variable.ttf", style: "normal" },
     { path: "../../public/fonts/Satoshi-VariableItalic.ttf", style: "italic" },
   ],
-  variable: "--font-jakarta",
+  variable: "--font-main",
   weight: "200 900",
   display: "swap",
 });
@@ -64,7 +64,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
               opacity: 1,
             },
           }}
-          className={`${plusJakarta.variable} ${varentGrotesk.variable} ${spaceMono.variable} bg-blank font-sans`}
+          className={`${mainFont.variable} ${varentGrotesk.variable} ${spaceMono.variable} bg-blank font-sans antialiased`}
         >
           <Component {...pageProps} />
         </motion.div>
