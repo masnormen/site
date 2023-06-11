@@ -31,6 +31,23 @@ body {
   }
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: var(--theme-quaternary);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--theme-tertiary);
+  border-radius: 4px;
+  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.2) inset, 0px 0px 10px -4px rgba(0, 0, 0, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--theme-highlight);
+}
+
 /* Backgrounds */
 
 .bg-pattern-wavy {
@@ -179,7 +196,7 @@ body {
   --bg-color: var(--theme-blank);
   --bg-color-0: var(--theme-blank);
   --bg-color-1: var(--theme-blank);
-  --bg-color-2: var(--theme-blank);
+  --bg-color-2: var(--theme-quaternary);
 
   --select-color-0: var(--theme-secondary);
   --select-color-1: var(--theme-secondary);
@@ -228,7 +245,8 @@ pre[class*="language-"] {
 }
 
 .notion-inline-code {
-  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo, "Liberation Mono", "Courier New", monospace, emoji;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo, "Liberation Mono", "Courier New",
+    monospace, emoji;
 }
 
 .notion-collection-page-properties {

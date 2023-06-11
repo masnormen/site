@@ -18,7 +18,7 @@ function ArticleCard({ thumbnail, title, summary, date, className, tags = [], hr
   return (
     <Link href={href}>
       <article
-        className="group relative flex w-full flex-col overflow-hidden rounded-xl border border-stroke bg-stroke shadow-md duration-200 hover:border-highlight hover:shadow-2xl hover:shadow-secondary md:hover:scale-[1.02]"
+        className="group relative flex w-full flex-col overflow-hidden rounded-xl border border-stroke bg-stroke drop-shadow-[4px_4px_0px_var(--theme-tertiary)] transition-all duration-200 hover:border-highlight hover:shadow-secondary hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)] md:border md:hover:scale-[1.05]"
         {...rest}
       >
         {/* Thumbnail image */}
@@ -28,7 +28,7 @@ function ArticleCard({ thumbnail, title, summary, date, className, tags = [], hr
             width={400}
             height={225}
             alt={title}
-            className="pointer-events-none aspect-video w-full rounded-t-xl object-cover duration-500 md:group-hover:!scale-110"
+            className="pointer-events-none aspect-video w-full rounded-t-xl object-cover duration-500 md:group-hover:!scale-[1.05]"
             style={{
               transform: "translateZ(0)",
             }}
@@ -52,10 +52,10 @@ function ArticleCard({ thumbnail, title, summary, date, className, tags = [], hr
           )}
         >
           {/* Title */}
-          <h2 className="font-bold line-clamp-2 md:text-lg">{title}</h2>
+          <h2 className="line-clamp-2 font-mono font-bold tracking-[-0.08em] md:text-lg">{title}</h2>
 
           {/* Summary */}
-          {summary && summary.length > 0 && <div className="text-sm line-clamp-3">{summary.substring(0, 200)}</div>}
+          {summary && summary.length > 0 && <div className="line-clamp-3 text-sm">{summary.substring(0, 200)}</div>}
 
           {/* Tags & Date */}
           <div className="flex h-8 flex-row items-center">
@@ -64,7 +64,7 @@ function ArticleCard({ thumbnail, title, summary, date, className, tags = [], hr
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="h-fit w-fit rounded-2xl border border-stroke bg-tertiary px-2 pb-1.5 pt-2 font-mono font-bold uppercase leading-none  text-stroke"
+                    className="h-fit w-fit rounded-2xl border border-stroke bg-tertiary px-2 pb-1.5 pt-2 font-mono font-bold uppercase leading-none text-stroke duration-200 group-hover:bg-stroke group-hover:text-background"
                   >
                     {tag}
                   </span>

@@ -25,7 +25,7 @@ function NavigationItem(props: NavigationItemProps) {
         type="button"
         onClick={props.onClick}
         className={cn(
-          "flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
+          "flex rounded-xl px-4 py-3 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
           className
         )}
       >
@@ -38,7 +38,7 @@ function NavigationItem(props: NavigationItemProps) {
     <Link
       href={props.href}
       className={cn(
-        "flex rounded-2xl py-3 px-4 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
+        "flex rounded-xl px-4 py-3 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
         className
       )}
       target={isNewTab ? "_blank" : "_self"}
@@ -46,6 +46,20 @@ function NavigationItem(props: NavigationItemProps) {
     >
       {children}
     </Link>
+  );
+}
+
+function NavigationSection({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) {
+  return (
+    <div
+      className={cn(
+        "flex flex-row justify-center rounded-xl border border-stroke drop-shadow-[4px_4px_0px_var(--theme-tertiary)] transition-all duration-200 hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)] md:hover:scale-[1.05]",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -68,17 +82,17 @@ function NavigationBar() {
       <button
         type="button"
         onClick={() => setMenuShown(!isMenuShown)}
-        className="my-4 flex cursor-pointer flex-row justify-center rounded-2xl border border-stroke bg-blank py-3 px-4 text-sm font-semibold uppercase text-stroke shadow-lg duration-500 hover:bg-stroke hover:text-background hover:shadow-secondary md:hidden"
+        className="my-4 flex cursor-pointer flex-row justify-center rounded-2xl border border-stroke bg-blank px-4 py-3 text-sm font-semibold uppercase text-stroke shadow-lg duration-500 hover:bg-stroke hover:text-background hover:shadow-secondary md:hidden"
       >
         Menu {isMenuShown ? "⬆️" : "⬇️"}
       </button>
       {isMenuShown && (
         <div className="flex h-full max-w-screen-md flex-col items-stretch justify-between space-y-2 px-6 py-4 md:w-full md:flex-row md:space-y-0 md:px-0">
-          <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-blank shadow-lg duration-500 hover:shadow-secondary">
+          <NavigationSection className="bg-blank">
             <NavigationItem href="/">nourman.com</NavigationItem>
-          </div>
+          </NavigationSection>
 
-          <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-secondary shadow-lg duration-500 hover:shadow-secondary md:absolute md:left-1/2 md:-translate-x-1/2">
+          <NavigationSection className="bg-secondary md:absolute md:left-1/2 md:-translate-x-1/2">
             <NavigationItem href="/#blog">Blog</NavigationItem>
             <NavigationItem href="/#works">Works</NavigationItem>
             <NavigationItem
@@ -86,16 +100,16 @@ function NavigationBar() {
             >
               Theme [{THEMES[theme as keyof typeof THEMES]}]
             </NavigationItem>
-          </div>
+          </NavigationSection>
 
-          <div className="flex flex-row justify-center rounded-2xl border border-stroke bg-tertiary shadow-lg duration-500 hover:shadow-secondary">
+          <NavigationSection className="bg-tertiary">
             <NavigationItem isNewTab className="text-sky-700" href="https://linkedin.com/in/nourmanhajar">
               <LinkedInIcon className="h-5" />
             </NavigationItem>
             <NavigationItem isNewTab className="text-black" href="https://github.com/masnormen">
               <GitHubIcon className="h-5" />
             </NavigationItem>
-          </div>
+          </NavigationSection>
         </div>
       )}
     </nav>

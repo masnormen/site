@@ -51,7 +51,7 @@ export function getPostMetadata(recordMap: ExtendedRecordMap, pageId: string): P
     summary: getTextContent(summaryRaw),
     thumbnail: image,
     hasCover: (page.format as Record<string, string>).page_cover !== undefined,
-    date: timestamp ? dayjs.unix(timestamp / 1000).format("DD/MM/YYYY") : "",
+    date: timestamp ? dayjs.unix(timestamp / 1000).format("DD MMM YYYY") : "",
     tags: (getPageProperty("Tags", page, recordMap) as string[] | undefined)?.filter((tag) => tag.length > 0) ?? [],
     toc: getPageTableOfContents(page, recordMap).map((entry) => ({
       ...entry,

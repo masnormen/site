@@ -7,8 +7,8 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
-import type { ExtendedRecordMap } from "notion-types";
-import { Fragment, useEffect, useRef, useState } from "react";
+import type { CodeBlock, ExtendedRecordMap } from "notion-types";
+import { ComponentType, Fragment, useEffect, useRef, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
 
 import Footer from "@/components/layout/Footer";
@@ -40,7 +40,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: [...postPaths, ...workPaths],
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 };
 
@@ -156,7 +156,7 @@ const NotionItem = ({
 
       {/* Second Segment - Blog Posts */}
 
-      <section className="relative flex w-full flex-col items-center justify-center bg-blank py-28 px-6 text-stroke md:px-0">
+      <section className="relative flex w-full flex-col items-center justify-center bg-blank px-6 py-28 text-stroke md:px-0">
         <div className="relative flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-8">
           {/* Cover image and metadata */}
           <div className="flex w-full flex-col space-y-12">
@@ -183,9 +183,9 @@ const NotionItem = ({
           </div>
 
           {/* Table of Contents */}
-          <div className="pointer-events-none top-0 block h-full w-full justify-end duration-500 xl:absolute xl:!mt-0 xl:flex xl:px-0">
-            <div className="pointer-events-auto sticky top-[6.2rem] z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-highlight bg-background p-6 text-sm text-stroke duration-300 hover:border-highlight xl:max-h-[75vh] xl:w-[calc(((100vw-768px)/2)-4rem)] xl:max-w-sm xl:translate-x-[calc(100%+2rem)] xl:overflow-y-auto">
-              <span className="hidden text-lg font-headline leading-tight xl:block">{data.title}</span>
+          <div className="pointer-events-none top-0 block h-full w-full justify-start duration-500 xl:absolute xl:!mt-0 xl:flex xl:px-0">
+            <div className="pointer-events-auto sticky top-[6.2rem] z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-highlight bg-quaternary p-6 text-sm text-stroke drop-shadow-[4px_4px_0px_var(--theme-tertiary)] duration-300 hover:border-highlight hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)] xl:max-h-[75vh] xl:w-[calc(((100vw-768px)/2)-4rem)] xl:max-w-xs xl:-translate-x-[calc(100%+2rem)] xl:overflow-y-auto">
+              <span className="hidden font-headline text-lg leading-tight xl:block">{data.title}</span>
               <span className="block text-lg font-semibold leading-tight xl:hidden">Table of Contents</span>
               <div className="block space-y-1 leading-7">
                 {data.toc.map((toc) => (
@@ -193,15 +193,15 @@ const NotionItem = ({
                     <span
                       className={cn(
                         "inline-block text-highlight",
-                        toc.indentLevel === 0 && "ml-5 indent-[-1.28rem]",
-                        toc.indentLevel === 1 && "ml-8 -indent-4",
+                        toc.indentLevel === 0 && "ml-5 indent-[-1.28rem] font-semibold",
+                        toc.indentLevel === 1 && "ml-8 -indent-5",
                         toc.indentLevel === 2 && "ml-10 indent-[-0.9rem]"
                       )}
                     >
                       {toc.indentLevel === 0 && "▲ "}
                       {toc.indentLevel === 1 && "→ "}
                       {toc.indentLevel === 2 && "• "}
-                      <a href={`#${toc.id}`} className="link ml-1">
+                      <a href={`#${toc.id}`} className="link ml-1 text-[15px]">
                         {toc.text}
                       </a>
                     </span>
@@ -211,7 +211,6 @@ const NotionItem = ({
               </div>
             </div>
           </div>
-
 
           {data.hasCover && (
             <img className="aspect-video w-full rounded-lg object-cover" alt={data.title} src={data.thumbnail} />
@@ -225,7 +224,11 @@ const NotionItem = ({
             components={{
               nextImage: Image,
               nextLink: Link,
-              Code,
+              Code: (props: { block: CodeBlock; defaultLanguage?: string; className?: string }) => (
+                <div className="relative w-full">
+                  <Code {...props} />
+                </div>
+              ),
               Collection,
               Pdf,
             }}

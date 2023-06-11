@@ -18,7 +18,7 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "simple-import-sort", "import"],
-  "extends": ["eslint:recommended", "next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  "extends": ["eslint:recommended", "next/core-web-vitals", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   "rules": {
     "@typescript-eslint/consistent-type-imports": 0,
     "simple-import-sort/imports": "warn",

@@ -895,7 +895,7 @@ svg.notion-page-icon {
 }
 
 .notion-code {
-  position: relative;
+  position: static;
   width: 100%;
   padding: 1em;
   margin: 4px 0;
@@ -912,7 +912,7 @@ svg.notion-page-icon {
 
 .notion-code-copy {
   position: absolute;
-  top: 1em;
+  top: 1.5em;
   right: 1em;
   -webkit-user-select: none;
   -moz-user-select: none;
