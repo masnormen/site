@@ -228,7 +228,7 @@ pre[class*="language-"] {
 }
 
 .notion-inline-code {
-  font-family: ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo, "Liberation Mono", "Courier New", monospace, emoji;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo, "Liberation Mono", "Courier New", monospace, emoji;
 }
 
 .notion-collection-page-properties {

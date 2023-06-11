@@ -7,8 +7,8 @@ import { THEMES } from "@/constants/themes";
 import useWindowSize from "@/hooks/useWindowSize";
 import cn from "@/lib/cn";
 
-import GitHubIcon from "./Icons/GitHubIcon";
-import LinkedInIcon from "./Icons/LinkedInIcon";
+import GitHubIcon from "../Icons/GitHubIcon";
+import LinkedInIcon from "../Icons/LinkedInIcon";
 
 type NavigationItemProps = ({ href: string } | { onClick: () => void }) & {
   children: React.ReactNode;

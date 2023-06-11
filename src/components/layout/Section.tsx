@@ -18,7 +18,7 @@ function Section({ title, children, description = "", className = "", ...rest }:
     >
       <div className="z-10 flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-16">
         <div className="flex w-full flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-          <h1 className="text-center font-fancy text-4xl font-bold">{title}</h1>
+          <h1 className="text-center font-headline text-4xl font-bold">{title}</h1>
           <span className="text-center">{description}</span>
         </div>
         {children}

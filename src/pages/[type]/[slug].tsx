@@ -11,9 +11,9 @@ import type { ExtendedRecordMap } from "notion-types";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
 
-import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
-import NavigationBar from "@/components/NavigationBar";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/layout/Hero";
+import NavigationBar from "@/components/layout/NavigationBar";
 import { env } from "@/env.mjs";
 import useInViewport from "@/hooks/useInViewport";
 import cn from "@/lib/cn";
@@ -180,15 +180,12 @@ const NotionItem = ({
                 </div>
               )}
             </div>
-            {data.hasCover && (
-              <img className="aspect-video w-full rounded-lg object-cover" alt={data.title} src={data.thumbnail} />
-            )}
           </div>
 
           {/* Table of Contents */}
           <div className="pointer-events-none top-0 block h-full w-full justify-end duration-500 xl:absolute xl:!mt-0 xl:flex xl:px-0">
-            <div className="pointer-events-auto sticky top-[6.2rem] z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-stroke bg-background p-6 text-sm text-stroke duration-300 hover:border-highlight xl:max-h-[75vh] xl:w-[calc(((100vw-768px)/2)-4rem)] xl:max-w-sm xl:translate-x-[calc(100%+2rem)] xl:overflow-y-auto">
-              <span className="hidden text-lg font-semibold leading-tight xl:block">{data.title}</span>
+            <div className="pointer-events-auto sticky top-[6.2rem] z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-highlight bg-background p-6 text-sm text-stroke duration-300 hover:border-highlight xl:max-h-[75vh] xl:w-[calc(((100vw-768px)/2)-4rem)] xl:max-w-sm xl:translate-x-[calc(100%+2rem)] xl:overflow-y-auto">
+              <span className="hidden text-lg font-headline leading-tight xl:block">{data.title}</span>
               <span className="block text-lg font-semibold leading-tight xl:hidden">Table of Contents</span>
               <div className="block space-y-1 leading-7">
                 {data.toc.map((toc) => (
@@ -196,7 +193,7 @@ const NotionItem = ({
                     <span
                       className={cn(
                         "inline-block text-highlight",
-                        toc.indentLevel === 0 && "ml-5 indent-[-1.15rem]",
+                        toc.indentLevel === 0 && "ml-5 indent-[-1.28rem]",
                         toc.indentLevel === 1 && "ml-8 -indent-4",
                         toc.indentLevel === 2 && "ml-10 indent-[-0.9rem]"
                       )}
@@ -214,6 +211,11 @@ const NotionItem = ({
               </div>
             </div>
           </div>
+
+
+          {data.hasCover && (
+            <img className="aspect-video w-full rounded-lg object-cover" alt={data.title} src={data.thumbnail} />
+          )}
 
           {/* Post body */}
           <NotionRenderer

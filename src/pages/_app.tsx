@@ -7,7 +7,7 @@ import "@/styles/custom.css";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { AppProps } from "next/app";
-import { Space_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import Head from "next/head";
 import { useEffect, useMemo } from "react";
@@ -15,16 +15,9 @@ import { useEffect, useMemo } from "react";
 import { themeAtom } from "@/atoms/theme";
 import SVGFilters from "@/components/SVGFilters";
 
-const varentGrotesk = localFont({
-  src: "../../public/fonts/VarentGrotesk-Bold.otf",
-  variable: "--font-varent",
-  display: "swap",
-});
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  variable: "--font-space",
-  weight: ["400", "700"],
+const headlineFont = localFont({
+  src: "../../public/fonts/PPEditorialOld-Regular.otf",
+  variable: "--font-headline",
   display: "swap",
 });
 
@@ -35,6 +28,13 @@ const mainFont = localFont({
   ],
   variable: "--font-main",
   weight: "200 900",
+  display: "swap",
+});
+
+const monoFont = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -64,7 +64,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
               opacity: 1,
             },
           }}
-          className={`${mainFont.variable} ${varentGrotesk.variable} ${spaceMono.variable} bg-blank font-sans antialiased`}
+          className={`${mainFont.variable} ${headlineFont.variable} ${monoFont.variable} bg-blank font-sans subpixel-antialiased`}
         >
           <Component {...pageProps} />
         </motion.div>

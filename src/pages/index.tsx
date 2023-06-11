@@ -4,10 +4,10 @@
 import { NextSeo } from "next-seo";
 
 import ArticleCard from "@/components/ArticleCard";
-import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
-import NavigationBar from "@/components/NavigationBar";
-import Section from "@/components/Section";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/layout/Hero";
+import NavigationBar from "@/components/layout/NavigationBar";
+import Section from "@/components/layout/Section";
 import { env } from "@/env.mjs";
 import { getPostsFromCollection } from "@/utils/notion";
 

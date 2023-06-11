@@ -21,7 +21,7 @@ function Footer({ className }: FooterProps) {
       </span>
       <svg
         viewBox="0 0 100 100"
-        className="animate-fastspin aspect-square h-48 font-mono text-[0.97rem] text-highlight"
+        className="animate-fastspin aspect-square h-48 font-mono text-[1rem] text-highlight"
       >
         <defs>
           <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />

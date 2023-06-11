@@ -10,9 +10,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        fancy: ["var(--font-varent)", sansFonts, "emoji"],
+        headline: ["var(--font-headline)", sansFonts, "emoji"],
         sans: ["var(--font-main)", sansFonts, "emoji"],
         mono: [
+          "var(--font-mono)",
           'ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo, "Liberation Mono", "Courier New", monospace, emoji',
         ],
         serif: [...fontFamily.serif, "emoji"],

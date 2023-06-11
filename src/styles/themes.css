@@ -12,11 +12,11 @@
 [data-theme="deuteranomaly"] {
   --theme: deuteranomaly;
   --theme-background: #f6f0ec;
-  --theme-secondary: #ffc4a8;
-  --theme-tertiary: #f7b84a;
+  --theme-secondary: #ffd8c5;
+  --theme-tertiary: #face83;
   --theme-quaternary: #ffedd5;
   --theme-highlight: #24a8a0;
-  --theme-stroke: #00332c;
+  --theme-stroke: #003313;
   --theme-blank: #F7F5F2;
 }
 
