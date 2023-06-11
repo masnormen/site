@@ -2,7 +2,6 @@ lockfileVersion: 5.4
 
 specifiers:
   '@giscus/react': ^2.2.8
-  '@tailwindcss/line-clamp': ^0.4.4
   '@types/node': ^18.16.17
   '@types/prettier': ^2.7.3
   '@types/prismjs': ^1.26.0
@@ -60,7 +59,6 @@ dependencies:
   zod: 3.21.4
 
 devDependencies:
-  '@tailwindcss/line-clamp': 0.4.4_tailwindcss@3.3.2
   '@types/node': 18.16.17
   '@types/prettier': 2.7.3
   '@types/prismjs': 1.26.0
@@ -393,14 +391,6 @@ packages:
     dependencies:
       defer-to-connect: 2.0.1
     dev: false
-
-  /@tailwindcss/line-clamp/0.4.4_tailwindcss@3.3.2:
-    resolution: {integrity: sha512-5U6SY5z8N42VtrCrKlsTAA35gy2VSyYtHWCsg1H87NU1SXnEfekTVlrga9fzUDrrHcGi2Lb5KenUWb4lRQT5/g==}
-    peerDependencies:
-      tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
-    dependencies:
-      tailwindcss: 3.3.2
-    dev: true
 
   /@types/cacheable-request/6.0.3:
     resolution: {integrity: sha512-IQ3EbTzGxIigb1I3qPZc1rWJnH0BmSKv5QYTalEwweFvyBDLSAe24zP0le/hyi7ecGfZVlIVAg4BZqb8WBwKqw==}

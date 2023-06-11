@@ -11,7 +11,7 @@ module.exports = {
     extend: {
       fontFamily: {
         fancy: ["var(--font-varent)", sansFonts, "emoji"],
-        sans: ["var(--font-jakarta)", sansFonts, "emoji"],
+        sans: ["var(--font-main)", sansFonts, "emoji"],
         mono: [
           'ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo, "Liberation Mono", "Courier New", monospace, emoji',
         ],
@@ -28,5 +28,4 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
 };

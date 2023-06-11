@@ -30,7 +30,6 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4",
     "@types/node": "^18.16.17",
     "@types/prettier": "^2.7.3",
     "@types/prismjs": "^1.26.0",
