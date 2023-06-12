@@ -241,6 +241,7 @@ body {
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   background: #332f2b !important;
+  filter: drop-shadow(4px 4px 0px var(--theme-tertiary));
   padding: 1.5em;
 }
 
