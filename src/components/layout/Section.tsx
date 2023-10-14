@@ -12,7 +12,7 @@ function Section({ title, children, description = "", className = "", ...rest }:
     <section
       className={cn(
         "relative flex w-full flex-col items-center justify-center bg-blank px-6 py-28 text-stroke md:px-0",
-        className
+        className,
       )}
       {...rest}
     >

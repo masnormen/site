@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
 import type { CodeBlock, ExtendedRecordMap } from "notion-types";
-import { ComponentType, Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
 
 import Footer from "@/components/layout/Footer";
@@ -85,7 +85,7 @@ const Code = dynamic(() =>
       import("prismjs/components/prism-rust.js"),
     ]);
     return m.Code;
-  })
+  }),
 );
 const Collection = dynamic(() => import("react-notion-x/build/third-party/collection").then((m) => m.Collection));
 const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf), {
@@ -120,7 +120,7 @@ const NotionItem = ({
       title: data.title,
       tags: data.tags,
       type,
-    })
+    }),
   );
 
   return (
@@ -195,7 +195,7 @@ const NotionItem = ({
                         "inline-block text-highlight",
                         toc.indentLevel === 0 && "ml-5 indent-[-1.28rem] font-semibold",
                         toc.indentLevel === 1 && "ml-8 -indent-5",
-                        toc.indentLevel === 2 && "ml-10 indent-[-0.9rem]"
+                        toc.indentLevel === 2 && "ml-10 indent-[-0.9rem]",
                       )}
                     >
                       {toc.indentLevel === 0 && "▲ "}

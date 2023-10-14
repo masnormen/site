@@ -48,7 +48,7 @@ function ArticleCard({ thumbnail, title, summary, date, className, tags = [], hr
         <div
           className={cn(
             "z-10 flex w-full flex-1 flex-col justify-end space-y-3 border-t border-stroke p-5 text-stroke duration-500 group-hover:border-highlight",
-            className
+            className,
           )}
         >
           {/* Title */}

@@ -29,28 +29,31 @@ export function getPostMetadata(recordMap: ExtendedRecordMap, pageId: string): P
 
   // Get signed cover image URL
   const imageRawUrl =
-    (page.format as Record<string, string>).page_cover ?? getFirstImageOfPost(recordMap, page.id) ?? "";
+    (page.format as Record<string, string>)?.page_cover ?? getFirstImageOfPost(recordMap, page.id) ?? "";
+
   const imageId = page.content?.find((x) => recordMap?.block[x]?.value?.type === "image") ?? page.id;
-  const image = imageRawUrl.includes("secure.notion-static.com")
-    ? `https://www.notion.so/image/${encodeURIComponent(imageRawUrl)}?table=block&id=${imageId}&cache=v2&width=800&q=75`
-    : imageRawUrl;
+  const image =
+    imageRawUrl.includes("secure.notion-static.com") || imageRawUrl.includes("amazonaws.com")
+      ? `https://www.notion.so/image/${encodeURIComponent(
+          imageRawUrl,
+        )}?table=block&id=${imageId}&cache=v2&width=800&q=75`
+      : imageRawUrl;
 
   // Get summary based on first text block of the post
   const firstParagraph = recordMapValues.find(
-    ({ value: block }) => block.parent_id === page.id && block.type === "text"
+    ({ value: block }) => block.parent_id === page.id && block.type === "text",
   );
   const summaryRaw = firstParagraph?.value.properties.title as Decoration[];
 
   // Get post date in unix timestamp
   const timestamp = getPageProperty("Date", page, recordMap) as number | undefined;
-
   return {
     id: page.id,
     title: getPageProperty("Title", page, recordMap),
     slug: normalizeTitle(getPageProperty("Title", page, recordMap)),
     summary: getTextContent(summaryRaw),
     thumbnail: image,
-    hasCover: (page.format as Record<string, string>).page_cover !== undefined,
+    hasCover: (page.format as Record<string, string>)?.page_cover !== undefined,
     date: timestamp ? dayjs.unix(timestamp / 1000).format("DD MMM YYYY") : "",
     tags: (getPageProperty("Tags", page, recordMap) as string[] | undefined)?.filter((tag) => tag.length > 0) ?? [],
     toc: getPageTableOfContents(page, recordMap).map((entry) => ({

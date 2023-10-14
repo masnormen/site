@@ -26,7 +26,7 @@ function NavigationItem(props: NavigationItemProps) {
         onClick={props.onClick}
         className={cn(
           "flex rounded-xl px-4 py-3 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
-          className
+          className,
         )}
       >
         {children}
@@ -39,7 +39,7 @@ function NavigationItem(props: NavigationItemProps) {
       href={props.href}
       className={cn(
         "flex rounded-xl px-4 py-3 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
-        className
+        className,
       )}
       target={isNewTab ? "_blank" : "_self"}
       rel="noopener noreferrer"
@@ -54,7 +54,7 @@ function NavigationSection({ className, children, ...props }: React.HTMLAttribut
     <div
       className={cn(
         "flex flex-row justify-center rounded-xl border border-stroke drop-shadow-[4px_4px_0px_var(--theme-tertiary)] transition-all duration-200 hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)] md:hover:scale-[1.05]",
-        className
+        className,
       )}
       {...props}
     >

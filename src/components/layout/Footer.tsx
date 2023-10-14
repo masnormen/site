@@ -9,7 +9,7 @@ function Footer({ className }: FooterProps) {
     <footer
       className={cn(
         "relative flex w-full flex-col items-center justify-center px-6 py-28 text-stroke md:px-0",
-        className ?? "bg-blank"
+        className ?? "bg-blank",
       )}
     >
       <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-semibold leading-tight">

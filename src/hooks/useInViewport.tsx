@@ -15,7 +15,7 @@ const useInViewport = <T extends HTMLElement = HTMLElement>(ref: RefObject<T>, r
       },
       {
         rootMargin,
-      }
+      },
     );
     if (current) {
       observer.observe(current);

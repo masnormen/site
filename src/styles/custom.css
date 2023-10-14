@@ -253,3 +253,11 @@ pre[class*="language-"] {
 .notion-collection-page-properties {
   display: none !important;
 }
+
+.notion-code {
+  min-height: calc(80px);
+}
+
+.notion-code-copy {
+  display: none;
+}

@@ -17,14 +17,14 @@ function Hero({ title, href }: HeroProps) {
     <header
       className={cn(
         "relative flex w-full flex-col items-center justify-center overflow-hidden bg-background",
-        title ? "h-fit px-4 py-28" : "h-screen"
+        title ? "h-fit px-4 py-28" : "h-screen",
       )}
     >
       <div
         className={cn(
           "absolute flex h-full w-full items-center justify-center",
           title && title.length > 0 && "bg-background opacity-90 blur-sm",
-          !title && "drop-shadow-[5px_5px_1px_var(--theme-highlight)]"
+          !title && "drop-shadow-[5px_5px_1px_var(--theme-highlight)]",
         )}
       >
         {/* Green Rectangle */}

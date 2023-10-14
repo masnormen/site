@@ -14,10 +14,10 @@ export const ogSchema = z.object({
 
 const fontNormal = "Plus Jakarta Sans";
 const jakartaFont = fetch(new URL("../../../public/fonts/static/PlusJakartaSans-Regular.ttf", import.meta.url)).then(
-  (res) => res.arrayBuffer()
+  (res) => res.arrayBuffer(),
 );
 const jakartaFontBold = fetch(
-  new URL("../../../public/fonts/static/PlusJakartaSans-ExtraBold.ttf", import.meta.url)
+  new URL("../../../public/fonts/static/PlusJakartaSans-ExtraBold.ttf", import.meta.url),
 ).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {
@@ -99,7 +99,7 @@ export default async function handler(req: NextRequest) {
             style: "normal",
           },
         ],
-      }
+      },
     );
   } catch (error) {
     console.error(error);

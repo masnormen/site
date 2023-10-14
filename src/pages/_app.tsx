@@ -71,7 +71,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
         <SVGFilters />
       </>
     ),
-    [Component, pageProps, router.pathname]
+    [Component, pageProps, router.pathname],
   );
 
   return comp;
