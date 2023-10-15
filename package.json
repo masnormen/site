@@ -12,7 +12,6 @@
   "dependencies": {
     "@giscus/react": "^2.3.0",
     "@vercel/og": "^0.5.18",
-    "canvas": "^2.11.2",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
     "framer-motion": "^10.16.4",

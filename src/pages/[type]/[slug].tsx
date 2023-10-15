@@ -88,9 +88,9 @@ const Code = dynamic(() =>
   }),
 );
 const Collection = dynamic(() => import("react-notion-x/build/third-party/collection").then((m) => m.Collection));
-const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf), {
-  ssr: false,
-});
+// const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf), {
+//   ssr: false,
+// });
 
 const Comments = dynamic(() => import("@giscus/react"), { ssr: false });
 
@@ -230,7 +230,7 @@ const NotionItem = ({
                 </div>
               ),
               Collection,
-              Pdf,
+              // Pdf,
             }}
           />
         </div>
