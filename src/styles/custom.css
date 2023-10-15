@@ -261,3 +261,8 @@ pre[class*="language-"] {
 .notion-code-copy {
   display: none;
 }
+
+code[class*=language-],
+pre[class*=language-] {
+  tab-size: 2 !important;
+}
