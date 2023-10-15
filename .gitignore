@@ -24,7 +24,7 @@ next-env.d.ts
 .DS_Store
 *.pem
 
-public/sitemap.xml
+/public/sitemap.xml
 
 # debug
 npm-debug.log*
