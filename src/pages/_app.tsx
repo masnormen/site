@@ -7,7 +7,7 @@ import "@/styles/custom.css";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { AppProps } from "next/app";
-import { JetBrains_Mono } from "next/font/google";
+import { Cousine } from "next/font/google";
 import localFont from "next/font/local";
 import Head from "next/head";
 import { useEffect, useMemo } from "react";
@@ -31,7 +31,7 @@ const mainFont = localFont({
   display: "swap",
 });
 
-const monoFont = JetBrains_Mono({
+const monoFont = Cousine({
   subsets: ["latin"],
   variable: "--font-mono",
   weight: ["400", "700"],

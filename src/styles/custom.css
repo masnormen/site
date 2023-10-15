@@ -242,7 +242,8 @@ body {
 pre[class*="language-"] {
   background: #332f2b !important;
   filter: drop-shadow(4px 4px 0px var(--theme-tertiary));
-  padding: 1.5em;
+  padding: 1.6em;
+  filter: brightness(1.2);
 }
 
 .notion-inline-code {

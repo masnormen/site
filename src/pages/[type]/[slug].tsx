@@ -78,12 +78,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(async (m) => {
-    await Promise.all([
-      import("prismjs/components/prism-bash.js"),
-      import("prismjs/components/prism-js-templates.js"),
-      import("prismjs/components/prism-python.js"),
-      import("prismjs/components/prism-rust.js"),
-    ]);
+    await Promise.all([import("prismjs/components/prism-bash.js"), import("prismjs/components/prism-rust.js")]);
     return m.Code;
   }),
 );

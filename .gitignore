@@ -24,6 +24,8 @@ next-env.d.ts
 .DS_Store
 *.pem
 
+public/sitemap.xml
+
 # debug
 npm-debug.log*
 yarn-debug.log*
