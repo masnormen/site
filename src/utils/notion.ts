@@ -78,7 +78,11 @@ export async function getPostsFromCollection(collectionPostId: string): Promise<
 
   const data = recordMapBlocks
     .filter(({ value: page }) => page.parent_table === "collection")
-    .map(({ value: page }) => getPostMetadata(recordMap, page.id));
+    .map(({ value: page }) => getPostMetadata(recordMap, page.id))
+    .sort((a, b) => {
+      if (!a.date || !b.date) return 0;
+      return dayjs(a.date, "DD MMM YYYY").isAfter(dayjs(b.date, "DD MMM YYYY")) ? -1 : 1;
+    });
 
   return {
     data,
