@@ -12,6 +12,14 @@ const config = {
   images: {
     domains: ["www.notion.so"],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/go/:path*",
+        destination: "https://go.nourman.com/:path*",
+      },
+    ];
+  },
   async headers() {
     return [
       {
