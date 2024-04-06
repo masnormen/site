@@ -6,11 +6,12 @@ const GTM_ID = "G-HJ6G6274PT";
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+      </Head>
       <body>
         <Main />
         <NextScript />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <Script
           id="load-tag"
           async
