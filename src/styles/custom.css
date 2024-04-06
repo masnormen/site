@@ -177,6 +177,11 @@ body {
   }
 }
 
+.theme-transitioning * {
+  transition-duration: 500ms;
+  transition-property: color, background-color, border-color, box-shadow, filter, fill, stroke;
+}
+
 /* Notion overrides */
 
 :root {

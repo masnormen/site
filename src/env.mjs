@@ -9,6 +9,7 @@ const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
   POSTS_NOTION_ID: z.string(),
   WORKS_NOTION_ID: z.string(),
+  REVALIDATE_TOKEN: z.string().optional(),
 });
 
 /**
@@ -29,6 +30,7 @@ const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
   POSTS_NOTION_ID: process.env.POSTS_NOTION_ID,
   WORKS_NOTION_ID: process.env.WORKS_NOTION_ID,
+  REVALIDATE_TOKEN: process.env.REVALIDATE_TOKEN,
 };
 
 // Don't touch the part below

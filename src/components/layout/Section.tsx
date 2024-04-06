@@ -11,12 +11,12 @@ function Section({ title, children, description = "", className = "", ...rest }:
   return (
     <section
       className={cn(
-        "relative flex w-full flex-col items-center justify-center bg-blank px-6 py-28 text-stroke md:px-0",
+        "relative flex w-full flex-col items-center justify-center bg-blank px-4 py-12 text-stroke md:py-14",
         className,
       )}
       {...rest}
     >
-      <div className="z-10 flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-16">
+      <div className="z-10 flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-10">
         <div className="flex w-full flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
           <h1 className="text-center font-headline text-4xl font-bold">{title}</h1>
           <span className="text-center">{description}</span>

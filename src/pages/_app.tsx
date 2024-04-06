@@ -4,13 +4,12 @@ import "@/styles/notion.css";
 import "prism-themes/themes/prism-gruvbox-dark.min.css";
 import "@/styles/custom.css";
 
-import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { AppProps } from "next/app";
 import { Cousine } from "next/font/google";
 import localFont from "next/font/local";
 import Head from "next/head";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 import { themeAtom } from "@/atoms/theme";
 import SVGFilters from "@/components/SVGFilters";
@@ -38,43 +37,38 @@ const monoFont = Cousine({
   display: "swap",
 });
 
-const App = ({ Component, pageProps, router }: AppProps) => {
+const switchTheme = (theme: string) => {
+  if (!document.documentElement.classList.contains("theme-transitioning")) {
+    document.documentElement.classList.add("theme-transitioning");
+    setTimeout(() => {
+      document.documentElement.classList.remove("theme-transitioning");
+    }, 1000);
+  }
+  document.documentElement.dataset.theme = theme;
+};
+
+const App = ({ Component, pageProps }: AppProps) => {
   const [theme] = useAtom(themeAtom);
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
+    if (typeof document === "undefined") return;
+    switchTheme(theme);
   }, [theme]);
 
-  const comp = useMemo(
-    () => (
-      <>
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-          <link rel="icon" href="https://fav.farm/⚡️" />
-        </Head>
-        <motion.div
-          key={router.pathname}
-          initial="initial"
-          animate="animate"
-          variants={{
-            initial: {
-              opacity: 0,
-            },
-            animate: {
-              opacity: 1,
-            },
-          }}
-          className={`${mainFont.variable} ${headlineFont.variable} ${monoFont.variable} bg-blank font-sans subpixel-antialiased`}
-        >
-          <Component {...pageProps} />
-        </motion.div>
-        <SVGFilters />
-      </>
-    ),
-    [Component, pageProps, router.pathname],
+  return (
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link rel="icon" href="https://fav.farm/⚡️" />
+      </Head>
+      <div
+        className={`${mainFont.variable} ${headlineFont.variable} ${monoFont.variable} relative bg-blank font-sans subpixel-antialiased`}
+      >
+        <Component {...pageProps} />
+      </div>
+      <SVGFilters />
+    </>
   );
-
-  return comp;
 };
 
 export default App;

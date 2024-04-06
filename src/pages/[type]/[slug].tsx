@@ -2,11 +2,12 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
 
+import dayjs from "dayjs";
 import { GetStaticPropsContext } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { NextSeo } from "next-seo";
+import { ArticleJsonLd, NextSeo } from "next-seo";
 import type { CodeBlock, ExtendedRecordMap } from "notion-types";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
@@ -72,7 +73,6 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
 
   return {
     props: { type, data, recordMap },
-    revalidate: 60,
   };
 };
 
@@ -143,6 +143,22 @@ const NotionItem = ({
           cardType: "summary_large_image",
         }}
       />
+      <ArticleJsonLd
+        type="BlogPosting"
+        useAppDir={false}
+        url={`https://nourman.com/${type}/${data.slug}`}
+        title={data.title}
+        images={[`https://nourman.com/api/content.png?data=${seoOpenGraphImage}`]}
+        datePublished={dayjs(data.date, "DD MMM YYYY").set("hour", 15).set("minute", 0).toISOString()}
+        authorName={[
+          {
+            name: "Nourman Hajar",
+            url: "https://nourman.com",
+          },
+        ]}
+        publisherName="Nourman Hajar"
+        description={seoDescription}
+      />
 
       <NavigationBar />
 
@@ -151,7 +167,7 @@ const NotionItem = ({
 
       {/* Second Segment - Blog Posts */}
 
-      <section className="relative flex w-full flex-col items-center justify-center bg-blank px-6 py-28 text-stroke md:px-0">
+      <section className="relative flex w-full flex-col items-center justify-center bg-blank px-4 py-8 text-stroke md:px-0 md:py-14">
         <div className="relative flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-8">
           {/* Cover image and metadata */}
           <div className="flex w-full flex-col space-y-12">
@@ -232,7 +248,7 @@ const NotionItem = ({
 
         {/* Comments */}
 
-        <div ref={commentRef} className="relative mt-24 flex h-full w-full max-w-screen-md">
+        <div ref={commentRef} className="relative mt-14 flex h-full w-full max-w-screen-md">
           {isInViewport && (
             <Comments
               id="comments"
@@ -252,7 +268,7 @@ const NotionItem = ({
         </div>
       </section>
 
-      <Footer className="bg-background" />
+      <Footer />
     </>
   );
 };

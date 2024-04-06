@@ -19,7 +19,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { posts, works },
-    revalidate: 60,
   };
 };
 
@@ -56,65 +55,61 @@ const Home = ({ posts, works }: Awaited<ReturnType<typeof getStaticProps>>["prop
         }}
       />
 
+      {/* Navbar */}
+
+      <NavigationBar />
+
       {/* First Segment - Landing Screen */}
 
       <Hero />
 
-      <div className="relative h-full w-full">
-        <div className="h-28 bg-blank" />
+      {/* Second Segment - Blog Posts */}
 
-        {/* Navbar */}
+      <Section
+        id="blog"
+        title="Thoughts ✍️"
+        description="Writing about technology, programming, and life 📚"
+        className="bg-blank"
+      >
+        <div className="grid w-full grid-flow-row grid-cols-1 gap-8 sm:grid-cols-2">
+          {posts.map((item) => (
+            <ArticleCard
+              key={item.slug}
+              className="bg-quaternary"
+              href={`/blog/${item.slug}`}
+              title={item.title}
+              summary={item.summary}
+              date={item.date}
+              tags={item.tags}
+              thumbnail={item.thumbnail}
+            />
+          ))}
+        </div>
+      </Section>
 
-        <NavigationBar />
+      <Section
+        id="works"
+        title="Projects 🛠️"
+        description="Things and fun projects I&lsquo;ve worked on 🧑‍💻"
+        className="bg-background"
+      >
+        <div className="grid w-full grid-flow-row grid-cols-1 gap-8 sm:grid-cols-2">
+          {works.map((item) => (
+            <ArticleCard
+              key={item.slug}
+              className="bg-blank"
+              href={`/works/${item.slug}`}
+              title={item.title}
+              summary={item.summary}
+              date={item.date}
+              tags={item.tags}
+              thumbnail={item.thumbnail}
+            />
+          ))}
+        </div>
+      </Section>
 
-        {/* Second Segment - Blog Posts */}
-
-        <Section
-          id="blog"
-          title="Thoughts ✍️"
-          description="My articles and stories (sometimes in Indonesian 🇮🇩)"
-          className="bg-blank"
-        >
-          <div className="grid w-full grid-flow-row grid-cols-1 gap-10 md:grid-cols-2">
-            {posts.map((item) => (
-              <ArticleCard
-                key={item.slug}
-                className="bg-quaternary"
-                href={`/blog/${item.slug}`}
-                title={item.title}
-                summary={item.summary}
-                date={item.date}
-                tags={item.tags}
-                thumbnail={item.thumbnail}
-              />
-            ))}
-          </div>
-        </Section>
-
-        <Section
-          id="works"
-          title="Projects 🛠️"
-          description="Things and fun projects I&lsquo;ve worked on 🧑‍💻"
-          className="bg-background"
-        >
-          <div className="grid w-full grid-flow-row grid-cols-1 gap-10 md:grid-cols-2">
-            {works.map((item) => (
-              <ArticleCard
-                key={item.slug}
-                className="bg-blank"
-                href={`/works/${item.slug}`}
-                title={item.title}
-                summary={item.summary}
-                date={item.date}
-                tags={item.tags}
-                thumbnail={item.thumbnail}
-              />
-            ))}
-          </div>
-        </Section>
-
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 };
