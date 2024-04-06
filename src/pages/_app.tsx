@@ -4,6 +4,7 @@ import "@/styles/notion.css";
 import "prism-themes/themes/prism-gruvbox-dark.min.css";
 import "@/styles/custom.css";
 
+import { GoogleTagManager } from "@next/third-parties/google";
 import { useAtom } from "jotai";
 import { AppProps } from "next/app";
 import { Cousine } from "next/font/google";
@@ -13,6 +14,8 @@ import { useEffect } from "react";
 
 import { themeAtom } from "@/atoms/theme";
 import SVGFilters from "@/components/SVGFilters";
+
+const GTM_ID = "GTM-TDLD245N";
 
 const headlineFont = localFont({
   src: "../../public/fonts/PPEditorialOld-Regular.otf",
@@ -65,6 +68,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         className={`${mainFont.variable} ${headlineFont.variable} ${monoFont.variable} relative bg-blank font-sans subpixel-antialiased`}
       >
         <Component {...pageProps} />
+        <GoogleTagManager gtmId={GTM_ID} />
       </div>
       <SVGFilters />
     </>
