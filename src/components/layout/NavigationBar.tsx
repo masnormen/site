@@ -9,11 +9,12 @@ import cn from "@/lib/cn";
 import GitHubIcon from "../Icons/GitHubIcon";
 import LinkedInIcon from "../Icons/LinkedInIcon";
 
-type NavigationItemProps = { href?: string; onClick?: () => void } & JSX.IntrinsicElements["button"] & {
-    children: React.ReactNode;
-    className?: string;
-    isNewTab?: boolean;
-  };
+type NavigationItemProps = { href?: string; onClick?: () => void } & {
+  children: React.ReactNode;
+  className?: string;
+  isNewTab?: boolean;
+  "aria-label"?: string;
+};
 
 function NavigationItem({ className, children, isNewTab, onClick, href, ...props }: NavigationItemProps) {
   if (!href) {
@@ -34,6 +35,7 @@ function NavigationItem({ className, children, isNewTab, onClick, href, ...props
 
   return (
     <Link
+      {...props}
       href={href}
       className={cn(
         "flex rounded-xl px-4 py-3 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
@@ -41,6 +43,7 @@ function NavigationItem({ className, children, isNewTab, onClick, href, ...props
       )}
       target={isNewTab ? "_blank" : "_self"}
       rel="noopener noreferrer"
+      {...props}
     >
       {children}
     </Link>
