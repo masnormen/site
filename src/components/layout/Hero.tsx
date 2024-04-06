@@ -42,6 +42,7 @@ function Hero({ title, href }: HeroProps) {
         {/* Circle */}
         <div className="animate-slowspin-rev bg-pattern-wavy filter-noisy absolute z-0 flex aspect-square h-3/6 max-h-[75vw] items-center justify-center rounded-full bg-background shadow-sm md:h-[70%]">
           <svg
+            aria-hidden="true"
             viewBox="0 0 100 100"
             className="aspect-square h-[80%] cursor-default font-mono text-[0.42rem] font-bold uppercase text-stroke opacity-25"
           >

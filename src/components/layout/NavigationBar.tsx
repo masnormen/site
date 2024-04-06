@@ -9,24 +9,23 @@ import cn from "@/lib/cn";
 import GitHubIcon from "../Icons/GitHubIcon";
 import LinkedInIcon from "../Icons/LinkedInIcon";
 
-type NavigationItemProps = { href?: string; onClick?: () => void } & {
-  children: React.ReactNode;
-  className?: string;
-  isNewTab?: boolean;
-};
+type NavigationItemProps = { href?: string; onClick?: () => void } & JSX.IntrinsicElements["button"] & {
+    children: React.ReactNode;
+    className?: string;
+    isNewTab?: boolean;
+  };
 
-function NavigationItem(props: NavigationItemProps) {
-  const { className, children, isNewTab } = props;
-
-  if (!props.href) {
+function NavigationItem({ className, children, isNewTab, onClick, href, ...props }: NavigationItemProps) {
+  if (!href) {
     return (
       <button
         type="button"
-        onClick={props.onClick}
+        onClick={onClick}
         className={cn(
           "flex rounded-xl px-4 py-3 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
           className,
         )}
+        {...props}
       >
         {children}
       </button>
@@ -35,7 +34,7 @@ function NavigationItem(props: NavigationItemProps) {
 
   return (
     <Link
-      href={props.href}
+      href={href}
       className={cn(
         "flex rounded-xl px-4 py-3 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background",
         className,
@@ -107,10 +106,15 @@ function NavigationBar() {
           </NavigationSection>
 
           <NavigationSection onClick={() => setMenuShown(false)} className="bg-tertiary">
-            <NavigationItem isNewTab className="text-black" href="https://linkedin.com/in/nourmanhajar">
+            <NavigationItem
+              aria-label="LinkedIn"
+              isNewTab
+              className="text-black"
+              href="https://linkedin.com/in/nourmanhajar"
+            >
               <LinkedInIcon className="h-5" />
             </NavigationItem>
-            <NavigationItem isNewTab className="text-black" href="https://github.com/masnormen">
+            <NavigationItem aria-label="GitHub" isNewTab className="text-black" href="https://github.com/masnormen">
               <GitHubIcon className="h-5" />
             </NavigationItem>
           </NavigationSection>
