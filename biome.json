@@ -69,7 +69,11 @@
         "noUndeclaredVariables": "off",
         "noUnusedVariables": "error",
         "useExhaustiveDependencies": "off",
-        "useJsxKeyInIterable": "error"
+        "useJsxKeyInIterable": "error",
+        "noUnusedImports": {
+          "level": "error",
+          "fix": "unsafe"
+        }
       },
       "style": {
         "useBlockStatements": "off"
