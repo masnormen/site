@@ -1,0 +1,39 @@
+{
+  "name": "site-tanstack",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "lint": "biome ci ./app",
+    "lint:fix": "biome check --write ./app",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@sentry/react": "^8.48.0",
+    "@tanstack/react-router": "^1.95.3",
+    "@tanstack/start": "^1.95.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "vinxi": "^0.5.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.4",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.3",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "packageManager": "pnpm@9.15.3",
+  "overrides": {
+    "@vinxi/react-server-dom": {
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
+    }
+  }
+}
