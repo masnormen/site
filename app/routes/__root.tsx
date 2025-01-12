@@ -1,9 +1,17 @@
-import Footer from '@/components/layouts/footer';
+import { themeAtom } from '@/atoms/index';
+import { SVGFilters } from '@/components/filters/svg-filters';
+import appCss from '@/styles/app.css?url';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Outlet, ScrollRestoration, createRootRoute } from '@tanstack/react-router';
+import {
+  Outlet,
+  ScrollRestoration,
+  createRootRoute,
+} from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { Meta, Scripts } from '@tanstack/start';
-import type { ReactNode } from 'react';
+import { useAtomValue } from 'jotai';
+import { type ReactNode, Suspense, useEffect } from 'react';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -28,7 +36,8 @@ export const Route = createRootRoute({
       },
       {
         name: 'description',
-        content: 'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+        content:
+          'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
       },
       {
         name: 'twitter:card',
@@ -40,7 +49,8 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:description',
-        content: 'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+        content:
+          'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
       },
       {
         property: 'og:url',
@@ -67,22 +77,52 @@ export const Route = createRootRoute({
         content: 'Nourman Hajar • Software Engineer',
       },
     ],
-    links: [{ rel: 'icon', href: '/favicon.png' }],
+    links: [
+      {
+        rel: 'stylesheet',
+        href: appCss.split('?')[0],
+        suppressHydrationWarning: true,
+      },
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: '' },
+      { rel: 'icon', href: '/favicon.png' },
+    ],
+    scripts: import.meta.env.DEV
+      ? [
+          {
+            type: 'module',
+            children: `import RefreshRuntime from "/_build/@react-refresh"; RefreshRuntime.injectIntoGlobalHook(window); window.$RefreshReg$ = () => {}; window.$RefreshSig$ = () => (type) => type`,
+          },
+        ]
+      : [],
   }),
   component: RootComponent,
 });
 
-// Create a client
 const queryClient = new QueryClient();
 
 function RootComponent() {
+  const theme = useAtomValue(themeAtom);
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    if (!document.documentElement.classList.contains('theme-transitioning')) {
+      document.documentElement.classList.add('theme-transitioning');
+      setTimeout(() => {
+        document.documentElement.removeAttribute('class');
+      }, 1000);
+    }
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
   return (
     <RootDocument>
       <QueryClientProvider client={queryClient}>
         <Outlet />
+        <SVGFilters />
         <ReactQueryDevtools initialIsOpen={false} />
+        <TanStackRouterDevtools initialIsOpen={false} />
       </QueryClientProvider>
-      <Footer />
     </RootDocument>
   );
 }
@@ -91,11 +131,10 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html>
       <head>
-        {process.env.NODE_ENV === 'development' && <script src="https://unpkg.com/react-scan/dist/auto.global.js" />}
         <Meta />
       </head>
       <body>
-        {children}
+        <Suspense fallback={null}>{children}</Suspense>
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -27,5 +27,8 @@
     "paths": {
       "@/*": ["app/*"]
     }
+  },
+  "mdx": {
+    "checkMdx": true
   }
 }

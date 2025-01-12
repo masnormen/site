@@ -18,7 +18,7 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf",
-    "lineWidth": 120,
+    "lineWidth": 80,
     "attributePosition": "auto",
     "bracketSpacing": true,
     "ignore": [
@@ -75,8 +75,16 @@
           "fix": "unsafe"
         }
       },
+      "nursery": {
+        "noProcessEnv": "error"
+      },
       "style": {
-        "useBlockStatements": "off"
+        "useBlockStatements": "off",
+        "useImportType": "error",
+        "useSelfClosingElements": {
+          "level": "error",
+          "fix": "safe"
+        }
       },
       "suspicious": {
         "noAssignInExpressions": "error",
