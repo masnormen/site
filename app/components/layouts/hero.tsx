@@ -84,9 +84,9 @@ export function Hero() {
         }
       />
 
-      <div className="absolute top-[31%] left-1/2 -translate-x-1/2 -translate-y-3/4 xs:top-1/4 @3xl:top-[50%] @3xl:-translate-x-72 #@3xl:-translate-y-64 z-20 flex flex-col items-center justify-center text-center">
+      <div className="absolute top-[31%] left-1/2 -translate-x-1/2 -translate-y-3/4 xs:top-1/4 @3xl:top-[50%] @3xl:-translate-x-72 @3xl:-translate-y-64 z-20 flex flex-col items-center justify-center text-center">
         <div className="mt-2 rotate-[-2deg] drop-shadow-[4px_4px_0px_var(--theme-tertiary)] duration-300 @3xl:hover:rotate-[5deg] hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)]">
-          <h2 className="filter-gooey inline rounded-2xl bg-secondary decoration-clone px-3 pt-2 pb-3 text-center font-mono text-[min(5cqw,1.25rem)] text-highlight leading-[1.5] drop-shadow-none hover:drop-shadow-none">
+          <h2 className="filter-gooey inline rounded-2xl bg-secondary box-decoration-clone px-3 pt-2 pb-3 text-center font-mono text-[min(5cqw,1.25rem)] text-highlight leading-[1.5] drop-shadow-none hover:drop-shadow-none">
             software_
             <br />
             engineer();
@@ -98,7 +98,7 @@ export function Hero() {
         <div className="@3xl:hover:-rotate-6 mt-2 @3xl:rotate-6 rotate-6 drop-shadow-[4px_4px_0px_var(--theme-tertiary)] duration-300 hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)]">
           <h2 className="filter-gooey inline whitespace-nowrap rounded-2xl bg-blank px-4 py-2 text-center font-headline font-light text-[min(5cqw,1.25rem)] text-highlight">
             based in{' '}
-            <span className="rounded-lg bg-gray-200 px-1 py-0.5 font-medium font-mono text-base text-stroke">
+            <span className="rounded-lg bg-gray-200 px-1 py-0.5 font-medium font-mono text-[90%] text-stroke">
               IDN
             </span>{' '}
             🇮🇩
@@ -111,13 +111,13 @@ export function Hero() {
         ref={titleRef}
         className="static md:translate-x-[var(--mouse-x,0)]"
       >
-        <div className="static text-center shadow-xs drop-shadow-md duration-300">
+        <div className="static text-center shadow-2xs drop-shadow-md duration-300">
           <h1 className="relative isolate flex flex-col items-center text-center font-headline text-[min(14cqw,4.5rem)] text-secondary tracking-wide drop-shadow-[5px_5px_0px_var(--theme-tertiary)] transition-all hover:drop-shadow-[5px_5px_0px_var(--theme-highlight)]">
             <PlanetRing />
-            <span className="filter-gooey z-20 inline w-fit rounded-xl bg-stroke decoration-clone px-4 pt-2 pb-1 leading-[1] transition-all">
+            <span className="filter-gooey z-20 inline w-fit rounded-xl bg-stroke box-decoration-clone px-4 pt-2 pb-1 leading-[1.25] transition-all">
               Nourman
             </span>
-            <span className="filter-gooey -mt-5 z-0 inline w-fit bg-stroke px-5 pt-5 pb-2 leading-[1.2] transition-all">
+            <span className="filter-gooey -mt-5 z-0 inline w-fit bg-stroke px-5 pt-5 pb-2 leading-[1.25] transition-all">
               Hajar
             </span>
           </h1>
@@ -150,7 +150,7 @@ const PlanetRing = () => {
 
 const NoiseBg = () => {
   return (
-    <div className="filter-noisy !aspect-square absolute z-0 h-[200vmax] w-[200vmax] animate-spin-counterclockwise items-center justify-center bg-background" />
+    <div className="filter-noisy aspect-square! absolute z-0 h-[200vmax] w-[200vmax] animate-spin-counterclockwise items-center justify-center bg-background" />
   );
 };
 

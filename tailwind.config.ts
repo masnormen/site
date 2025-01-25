@@ -1,7 +1,5 @@
-import path from 'node:path';
 import type { Config } from 'tailwindcss';
-import { fontFamily } from 'tailwindcss/defaultTheme';
-import layerCssPlugin from './plugins/cssplugin';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 const sansFonts =
   'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji';
@@ -17,7 +15,7 @@ export default {
           'var(--font-mono)',
           'ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo, "Liberation Mono", "Courier New", monospace, emoji',
         ],
-        serif: [...fontFamily.serif, 'emoji'],
+        serif: [...defaultTheme.fontFamily.serif, 'emoji'],
       },
       colors: {
         background: 'var(--theme-background)',
@@ -36,5 +34,4 @@ export default {
       dvh: 'height: 100dvh',
     },
   },
-  plugins: [layerCssPlugin(path.resolve(__dirname, './app/styles/app.css')), require('@tailwindcss/container-queries')],
 } satisfies Config;

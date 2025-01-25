@@ -1,11 +1,14 @@
+import { Section } from '@/components/layouts/section';
 import { MDXSubstitution } from '@/components/posts/mdx-substitution';
+import { TableOfContents } from '@/components/posts/toc';
 import { useInViewport } from '@/hooks/use-in-viewport';
 import { getPostBySlug } from '@/services/posts';
-import { cn } from '@/utils/cn';
-import { createFileRoute, notFound } from '@tanstack/react-router';
-import { type MDXContentProps, getMDXExport } from 'mdx-bundler/client';
+import gfmCss from '@/styles/gfm.css?url';
+import shikiCss from '@/styles/shiki.css?url';
+import { Link, createFileRoute, notFound } from '@tanstack/react-router';
+import { type MDXContentProps, getMDXComponent } from 'mdx-bundler/client';
 import type React from 'react';
-import { Fragment, lazy, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, useEffect, useMemo, useRef, useState } from 'react';
 
 export const Route = createFileRoute('/blog/$slug')({
   component: Post,
@@ -14,6 +17,20 @@ export const Route = createFileRoute('/blog/$slug')({
     if (!post) throw notFound();
     return post;
   },
+  head: () => ({
+    links: [
+      {
+        rel: 'stylesheet',
+        href: gfmCss.split('?')[0],
+        suppressHydrationWarning: true,
+      },
+      {
+        rel: 'stylesheet',
+        href: shikiCss.split('?')[0],
+        suppressHydrationWarning: true,
+      },
+    ],
+  }),
 });
 
 const Comments = lazy(() => import('@giscus/react'));
@@ -21,13 +38,12 @@ const Comments = lazy(() => import('@giscus/react'));
 function Post() {
   const post = Route.useLoaderData();
 
-  const mdxExport = getMDXExport(post.code);
-  const PostContent: React.FC<MDXContentProps> = useMemo(
-    () => mdxExport.default,
-    [post.code],
+  const Thumbnail: React.FC<MDXContentProps> | null = useMemo(
+    () => (post.thumbnailCode ? getMDXComponent(post.thumbnailCode) : null),
+    [post.thumbnailCode],
   );
-  const Thumbnail: React.FC | undefined = useMemo(
-    () => mdxExport.Thumbnail,
+  const PostContent: React.FC<MDXContentProps> = useMemo(
+    () => getMDXComponent(post.code),
     [post.code],
   );
 
@@ -40,98 +56,85 @@ function Post() {
   }, [isInViewport]);
 
   return (
-    <main className="relative flex w-full flex-col items-center justify-center bg-blank px-4 py-8 text-stroke md:px-0 md:py-14">
-      <article className="relative flex h-full w-full max-w-screen-md flex-col items-center justify-center space-y-8">
-        {/* Cover image and metadata */}
-        <div className="flex w-full flex-col space-y-12">
-          <div className="flex w-full flex-col items-center justify-between space-x-2 space-y-4 text-center md:flex-row md:space-y-0">
-            {post.metadata.createdAt && (
-              <div>
-                📆 Posted on{' '}
-                <span className="font-semibold">
-                  {post.metadata.createdAt.toDateString()}
-                </span>
-              </div>
-            )}
-            {post.metadata.tags && post.metadata.tags.length > 0 && (
-              <div className="flex flex-wrap items-center space-x-3">
-                Tags:&nbsp;&nbsp;
-                {post.metadata.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="h-fit w-fit rounded-2xl border border-stroke bg-tertiary px-2 pb-1.5 pt-2 font-mono text-xs font-bold uppercase leading-none text-stroke"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
+    <>
+      <Section className="border-tertiary border-t-2 border-dashed bg-blank px-8 gap-8 md:gap-10">
+        <div className="w-full h-full flex flex-col mx-auto max-w-4xl gap-8">
+          <Link to="/" className="text-center inline">
+            <h1 className="inline flex-col text-center items-center rounded-3xl bg-quaternary decoration-clone px-6 py-0.5 font-headline text-[8vw] !leading-[1.4] tracking-wide text-stroke drop-shadow-[5px_5px_0px_var(--theme-tertiary)] transition-all hover:drop-shadow-[5px_5px_0px_var(--theme-highlight)] sm:text-5xl sm:!leading-[1.38]">
+              Module Federation for Frontend: Why and How to Start?
+            </h1>
+          </Link>
         </div>
+        <div className='text-center'>
+          Written by <span className="font-bold">Nourman Hajar</span>
+        </div>
+      </Section>
 
-        {/* Table of Contents */}
-        <div className="pointer-events-none top-0 block h-full w-full justify-start duration-500 xl:absolute xl:!mt-0 xl:flex xl:px-0">
-          <div className="pointer-events-auto sticky top-[6.2rem] z-40 flex h-fit w-full flex-col space-y-2 rounded-lg border border-highlight bg-quaternary p-6 text-sm text-stroke drop-shadow-[4px_4px_0px_var(--theme-tertiary)] duration-300 hover:border-highlight hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)] xl:max-h-[75vh] xl:w-[calc(((100vw-768px)/2)-4rem)] xl:max-w-xs xl:-translate-x-[calc(100%+2rem)] xl:overflow-y-auto">
-            <span className="hidden font-headline text-lg leading-tight xl:block">
-              {post.metadata.title}
-            </span>
-            <span className="block text-lg font-semibold leading-tight xl:hidden">
-              Table of Contents
-            </span>
-            <div className="block space-y-1 leading-7">
-              {post.toc.map((toc) => (
-                <Fragment key={toc.id}>
-                  <span
-                    className={cn(
-                      'inline-block text-highlight',
-                      toc.level === 1 && 'ml-5 indent-[-1.28rem] font-semibold',
-                      toc.level === 2 && 'ml-8 -indent-5',
-                      toc.level === 3 && 'ml-10 indent-[-0.9rem]',
-                    )}
-                  >
-                    {toc.level === 1 && '▲ '}
-                    {toc.level === 2 && '→ '}
-                    {toc.level === 3 && '• '}
-                    <a href={`#${toc.id}`} className="link ml-1 text-[15px]">
-                      {toc.text}
-                    </a>
+      <Section className="border-tertiary border-t-2 border-dashed bg-blank">
+        <article className="w-full h-full flex flex-col mx-auto max-w-4xl gap-8">
+          <div className="flex w-full flex-col space-y-12">
+            <div className="flex w-full flex-col items-center justify-between space-x-2 space-y-4 text-center md:flex-row md:space-y-0">
+              {post.metadata.createdAt && (
+                <div>
+                  📆 Posted on{' '}
+                  <span className="font-semibold">
+                    {post.metadata.createdAt.toDateString()}
                   </span>
-                  <br />
-                </Fragment>
-              ))}
+                </div>
+              )}
+              {post.metadata.tags && post.metadata.tags.length > 0 && (
+                <div className="flex flex-wrap items-center space-x-3">
+                  {post.metadata.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="h-fit w-fit rounded-2xl border border-stroke bg-tertiary px-2 pb-1.5 pt-2 font-mono text-xs font-bold uppercase leading-none text-stroke"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-        </div>
 
-        {/* Post body */}
-        <div className="relative mx-auto flex flex-col items-start w-full">
-          <PostContent components={MDXSubstitution} />
-        </div>
-      </article>
+          {typeof Thumbnail === 'function' && (
+            <div className="block relative aspect-3/2! w-full sm:rounded-xl">
+              <Thumbnail />
+            </div>
+          )}
 
-      {/* Comments */}
+          {/* Table of Contents */}
+          <TableOfContents post={post} />
 
-      <div
-        ref={commentRef}
-        className="relative mt-14 flex h-full w-full max-w-screen-md"
-      >
-        {isInViewport && (
-          <Comments
-            id="comments"
-            repo="masnormen/site"
-            repoId="R_kgDOGb4nwQ"
-            category="Comments"
-            categoryId="DIC_kwDOGb4nwc4CUigF"
-            mapping="pathname"
-            strict="0"
-            reactionsEnabled="1"
-            emitMetadata="0"
-            inputPosition="top"
-            theme="light"
-            lang="en"
-          />
-        )}
-      </div>
-    </main>
+          {/* Post body */}
+          <div className="markdown-body relative mx-auto flex flex-col items-start w-full">
+            <PostContent components={MDXSubstitution} />
+          </div>
+        </article>
+
+        {/* Comments */}
+        <aside
+          ref={commentRef}
+          className="mt-14 w-full h-full flex flex-col mx-auto max-w-4xl"
+        >
+          {isInViewport && (
+            <Comments
+              id="comments"
+              repo="masnormen/site"
+              repoId="R_kgDOGb4nwQ"
+              category="Comments"
+              categoryId="DIC_kwDOGb4nwc4CUigF"
+              mapping="pathname"
+              strict="0"
+              reactionsEnabled="1"
+              emitMetadata="0"
+              inputPosition="top"
+              theme="light"
+              lang="en"
+            />
+          )}
+        </aside>
+      </Section>
+    </>
   );
 }

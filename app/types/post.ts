@@ -1,8 +1,10 @@
 import { z } from 'zod';
 
 export type Post = {
+  slug: string;
   metadata: PostMetadata;
   toc: Heading[];
+  thumbnailCode: string | null;
   code: string;
 };
 

@@ -86,7 +86,7 @@ export function Navbar() {
   return (
     <>
       {/* <div className="invisible h-20" /> */}
-      <nav className="fixed top-0 z-50 flex w-full flex-col items-center justify-center bg-gray-50 bg-opacity-20 backdrop-blur-sm duration-500">
+      <nav className="fixed top-0 z-50 flex w-full flex-col items-center justify-center bg-gray-50 bg-opacity-20 backdrop-blur-xs duration-500">
         <button
           type="button"
           onClick={() => setMenuShown(!isMenuShown)}
@@ -99,7 +99,7 @@ export function Navbar() {
           onClick={() => setMenuShown(false)}
           className={cn(
             !isMenuShown ? 'hidden md:flex' : 'flex',
-            'h-[calc(100vh-78px)] w-full flex-col items-center justify-center gap-8 space-y-2 bg-black/20 px-6 py-4 transition md:h-fit md:w-full md:max-w-screen-md md:flex-row md:items-stretch md:justify-between md:gap-0 md:space-y-0 md:bg-transparent md:px-0',
+            'h-[calc(100vh-78px)] w-full flex-col items-center justify-center gap-8 space-y-2 bg-black/20 px-6 py-4 transition md:h-fit md:w-full md:max-w-(--breakpoint-md) md:flex-row md:items-stretch md:justify-between md:gap-0 md:space-y-0 md:bg-transparent md:px-0',
           )}
         >
           <NavigationSection

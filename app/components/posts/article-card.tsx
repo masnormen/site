@@ -1,8 +1,9 @@
 import { cn } from '@/utils/cn';
 import { Link } from '@tanstack/react-router';
+import { isValidElement } from 'react';
 
 export interface ArticleCardProps {
-  thumbnail: string | React.ReactNode;
+  thumbnail: string | React.ReactNode | null;
   title: string;
   date?: string;
   tags?: string[];
@@ -30,20 +31,28 @@ export function ArticleCard({
       )}
       {...rest}
     >
-      {typeof thumbnail === 'string' ? (
+      {typeof thumbnail === 'string' && (
         <img
           src={thumbnail}
           alt={title}
           className={cn(
-            'pointer-events-none aspect-[3/2] object-cover duration-500 sm:w-1/2',
+            'pointer-events-none aspect-3/2 object-cover duration-500 sm:w-55/100',
             dir === 'ltr' ? 'sm:rounded-l-xl' : 'sm:rounded-r-xl',
           )}
           style={{
             transform: 'translateZ(0)',
           }}
         />
-      ) : (
-        thumbnail
+      )}
+      {isValidElement(thumbnail) && (
+        <div
+          className={cn(
+            'block relative aspect-3/2! sm:w-55/100! w-full',
+            dir === 'ltr' ? 'sm:rounded-l-xl' : 'sm:rounded-r-xl',
+          )}
+        >
+          {thumbnail}
+        </div>
       )}
 
       {/* Post metadata */}

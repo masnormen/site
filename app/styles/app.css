@@ -1,6 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer utilities {
   @font-face {
@@ -139,7 +157,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   @media (min-width: 425px) {
@@ -256,19 +274,6 @@
     animation: spin-orbit var(--spin-speed, 30s) linear infinite;
   }
 
-  @keyframes wiggle {
-    0%,
-    100% {
-      transform: translateY(-5%) rotate(-5deg) translateX(-2%) translateY(0);
-    }
-    50% {
-      transform: translateY(5%) rotate(5deg) translateX(0) translateY(-5%);
-    }
-  }
-  .animate-wiggle {
-    animation: wiggle 10s bezier infinite;
-  }
-
   @keyframes bounce-stopmotion {
     0%,
     100% {
@@ -299,4 +304,33 @@
   .animate-bounce-stopmotion {
     animation: bounce-stopmotion 1s cubic-bezier(1, -1, 0, 2) infinite;
   }
+}
+
+@layer components {
+  @keyframes wiggle-in-place {
+    0%,
+    100% {
+      transform: rotate(3deg);
+    }
+    50% {
+      transform: rotate(-3deg);
+    }
+  }
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: translateY(-1%) rotate(-2deg) translateX(-1%);
+    }
+    50% {
+      transform: translateY(1%) rotate(2deg) translateX(0);
+    }
+  }
+}
+
+
+@utility animate-wiggle {
+  animation: wiggle 3s linear infinite;
+}
+@utility animate-wiggle-in-place {
+  animation: wiggle-in-place 3s linear infinite;
 }

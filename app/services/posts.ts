@@ -1,6 +1,6 @@
 import path from 'path';
 import type { Post } from '@/types/post';
-import { fetchPost } from '@/utils/posts';
+import { fetchPost } from '@/utils/posts.server';
 import { createServerFn } from '@tanstack/start';
 import fg from 'fast-glob';
 
@@ -23,6 +23,10 @@ export const getPostList = createServerFn({ method: 'GET' }).handler(
     );
     return postList
       .filter((post): post is Post => !!post)
-      .map(({ metadata, toc }) => ({ metadata, toc }));
+      .map(({ slug, metadata, thumbnailCode }) => ({
+        slug,
+        metadata,
+        thumbnailCode,
+      }));
   },
 );

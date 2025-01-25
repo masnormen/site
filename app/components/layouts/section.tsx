@@ -2,7 +2,7 @@ import { cn } from '@/utils/cn';
 
 interface SectionProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
-  title: React.ReactNode;
+  title?: React.ReactNode;
   description?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
@@ -23,14 +23,18 @@ export function Section({
       )}
       {...rest}
     >
-      <header className="flex w-full flex-col gap-2">
-        <div className="text-center font-bold font-mono text-xl leading-[1.3]">
-          {title}
-        </div>
-        <span className="text-center font-mono text-xs leading-[1.3]">
-          {description}
-        </span>
-      </header>
+      {!!title && (
+        <header className="flex w-full flex-col gap-2">
+          <div className="text-center font-bold font-mono text-xl leading-[1.3]">
+            {title}
+          </div>
+          {!!description && (
+            <span className="text-center font-mono text-xs leading-[1.3]">
+              {description}
+            </span>
+          )}
+        </header>
+      )}
       {children}
     </section>
   );
