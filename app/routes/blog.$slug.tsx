@@ -6,14 +6,19 @@ import { getPostBySlug } from '@/services/posts';
 import gfmCss from '@/styles/gfm.css?url';
 import shikiCss from '@/styles/shiki.css?url';
 import { Link, createFileRoute, notFound } from '@tanstack/react-router';
-import { type MDXContentProps, getMDXComponent } from 'mdx-bundler/client';
+import { createServerFn } from '@tanstack/start';
+import { type MDXContentProps, getMDXExport } from 'mdx-bundler/client';
 import type React from 'react';
 import { lazy, useEffect, useMemo, useRef, useState } from 'react';
+
+const getPostBySlugServerFn = createServerFn({ method: 'GET' })
+  .validator((slug: string) => slug)
+  .handler(({ data: slug }) => getPostBySlug(slug));
 
 export const Route = createFileRoute('/blog/$slug')({
   component: Post,
   loader: async ({ params }) => {
-    const post = await getPostBySlug({ data: params.slug });
+    const post = await getPostBySlugServerFn({ data: params.slug });
     if (!post) throw notFound();
     return post;
   },
@@ -38,12 +43,11 @@ const Comments = lazy(() => import('@giscus/react'));
 function Post() {
   const post = Route.useLoaderData();
 
-  const Thumbnail: React.FC<MDXContentProps> | null = useMemo(
-    () => (post.thumbnailCode ? getMDXComponent(post.thumbnailCode) : null),
-    [post.thumbnailCode],
-  );
-  const PostContent: React.FC<MDXContentProps> = useMemo(
-    () => getMDXComponent(post.code),
+  const [PostContent, Thumbnail]: [
+    React.FC<MDXContentProps>,
+    React.FC<MDXContentProps> | null,
+  ] = useMemo(
+    () => [getMDXExport(post.code).default, getMDXExport(post.code).Thumbnail],
     [post.code],
   );
 
@@ -65,7 +69,7 @@ function Post() {
             </h1>
           </Link>
         </div>
-        <div className='text-center'>
+        <div className="text-center">
           Written by <span className="font-bold">Nourman Hajar</span>
         </div>
       </Section>

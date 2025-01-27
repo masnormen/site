@@ -5,11 +5,16 @@ import { Hero } from '@/components/layouts/hero';
 import { Section } from '@/components/layouts/section';
 import { ArticleCard } from '@/components/posts/article-card';
 import { getPostList } from '@/services/posts';
-import { getMDXComponent } from 'mdx-bundler/client';
+import { createServerFn } from '@tanstack/start';
+import { getMDXExport } from 'mdx-bundler/client';
 import { useMemo } from 'react';
 
+const getPostListServerFn = createServerFn({ method: 'GET' }).handler(() =>
+  getPostList(),
+);
+
 export const Route = createFileRoute('/')({
-  loader: () => getPostList(),
+  loader: () => getPostListServerFn(),
   component: Home,
 });
 
@@ -17,10 +22,7 @@ function Home() {
   const posts = Route.useLoaderData();
 
   const mdxThumbnails = useMemo(
-    () =>
-      posts.map((post) =>
-        post.thumbnailCode ? getMDXComponent(post.thumbnailCode) : null,
-      ),
+    () => posts.map((post) => getMDXExport(post.code).Thumbnail ?? null),
     [posts],
   );
 

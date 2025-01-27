@@ -592,7 +592,7 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
   );
 };
 
-export default function Thumbnail() {
+export function Thumbnail() {
   const ref = useFollowMouse();
 
   return (

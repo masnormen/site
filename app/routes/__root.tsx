@@ -134,6 +134,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <Meta />
       </head>
       <body>
+        <div id="_top_" className="w-0 h-0 invisible" />
         <Suspense fallback={null}>{children}</Suspense>
         <ScrollRestoration />
         <Scripts />

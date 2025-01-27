@@ -5,6 +5,9 @@ export function createRouter() {
   return createTanStackRouter({
     routeTree,
     defaultPreload: 'intent',
+    defaultStaleTime: Infinity,
+    defaultHashScrollIntoView: true,
+    defaultSsr: true,
   });
 }
 
