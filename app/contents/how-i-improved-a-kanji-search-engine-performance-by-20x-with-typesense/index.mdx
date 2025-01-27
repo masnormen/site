@@ -1,0 +1,74 @@
+---
+title: "How I Improved a Kanji Search Engine Performance by >20x with Typesense"
+description: Using Typesense as an open-source search engine for your project
+createdAt: "2024-04-06"
+tags:
+  - backend
+  - search engine
+---
+export * from './thumbnail';
+
+In the beginning of 2024, I built [Ziyo](https://ziyo.nourman.com/) as a side project. It's an online Kanji dictionary and search engine. It is heavily inspired by [Jisho](http://jisho.org/) and an iOS application named *Shirabe Jisho*. With Ziyo, you can search across thousands of kanji and view its readings, meanings, variations, and example sentences. This makes Ziyo very useful for Japanese learner who wants to do a quick search about a kanji.
+
+> https://ziyo.nourman.com/
+
+# Why I created Ziyo
+
+I'm a Japanese learner myself. When I built Ziyo, I wanted Ziyo to support searching for kanji in a lot of ways. I want to be able to search by readings, meanings, etc. I also want to support searching using Korean and Chinese Mandarin reading to help people immerse into the "CJK" connection, as there are a lot of Chinese characters shared by and commonly used in China, Japan, and Korea.
+
+Ziyo can search kanji by:
+
+- Onyomi reading (Kana/Latin)
+- Kunyomi reading (Kana/Latin)
+- Chinese (Hanzi) Mandarin reading (represented with pinyin)
+- Korean (Hanja) reading (represented with Hangul/Latin)
+- Meanings (in English)
+
+So there are a lot of criteria here. This makes a pretty challenging task, as I need to search across different fields of data (by doing "selective search"). I also want to implement some kind of weighting to better present a relevant search result, by considering the match likeness and the kanji's popularity.
+
+The database used by Ziyo is just a simple SQLite file containing the information above. I tried to do it in a single SQL query and it actually works according to my needs. The result is pretty satisfying.
+
+<img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F40109b71-1ecb-4ef0-ad45-253fec920bda%2FSecure_File.png?table=block&id=c7b09c87-4041-4741-a4a0-219b6ca3adcd&cache=v2"/>
+*Searching for "dou"*
+
+In the example above, I search for the reading **dou (どう・ドウ)**. It nicely ranks the result according to kanji popularity and word match.
+
+The 1st result is a common kanji for "same" and is used a lot in compound words using the meaning "same". 2nd is "to move". 3rd is "road" or "street", and is also commonly used to depict Japanese martial arts/ways of life like Judo, Aikido, and even Shinto. And so on.
+
+You get the idea. As a learner, it's probably better to learn the common kanji first!
+
+# But man, is it slow...
+
+Using SQL alone is really hurting performance, as the query needed is quite large and inefficient. Although not too surprising, I didn't expect it to be this slow. Ziyo's backend is (was) a containerized Hono Node.js server in a DigitalOcean instance with just 1 GB RAM and suboptimal CPU.
+
+I tested it using a simple load test with `oha` using 15 concurrent connections (the most concurrent connections I can get for it to return 100% success rate)
+
+<div className="flex flex-col sm:flex-row">
+  <img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2Feb6188df-fc7f-4e50-a9b4-04d98997bd7f%2FUntitled.png?table=block&id=6c34fc8d-de1c-4a30-8360-7bca9e1a2ce0&cache=v2"/>
+  <img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F03323447-2b9b-4d3c-8dea-a678263e1109%2FUntitled.png?table=block&id=69905719-258c-4e0b-84b6-7a378b137775&cache=v2"/>
+</div>
+<img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F9bb3fcb9-0d3d-4adb-836c-c392e31fdb49%2FUntitled.png?table=block&id=b5ce397e-729b-43c9-9685-e9e18ceb1972&cache=v2"/>
+
+It can barely handle 3-4 RPS. We need something more powerful!
+
+# Typesense to the rescue
+
+I haven’t been tinkering around with backend stuff for some time, so I needed research! It seems that it’s quite common for backend teams nowadays to use additional search engine like Algolia, Elasticsearch, etc, instead of implementing their own search algorithms. So I decided to try it.
+
+> https://typesense.org/typesense-vs-algolia-vs-elasticsearch-vs-meilisearch/
+
+I came across this post comparing Algolia, Typesense, Elasticsearch, and Meilisearch. I found Typesense to be the most powerful of them all and the easiest to set up. With some configuration, I spun a container, converted the Ziyo database into `jsonl` ready to be imported by Typesense, and connected the backend code to Typesense. The result is really good.
+
+<div className="flex flex-col sm:flex-row">
+  <img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F0abd39b4-72c3-461a-8bbd-4111bdc1268e%2FUntitled.png?table=block&id=a2564b98-bf75-45dc-9a74-58102f612e93&cache=v2"/>
+  <img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2Fa8d9112a-519c-45aa-b553-9f0cdf3c5fac%2FUntitled.png?table=block&id=33d193f5-b1e6-4a84-8a8d-89195c60d7fe&cache=v2"/>
+</div>
+<img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F5dc9e2a4-926c-4043-b63f-8c72bc421eef%2FUntitled.png?table=block&id=f6b4c29c-e817-4528-87b0-8c81c8d82c4e&cache=v2"/>
+
+An improvement of more than 20x is achieved. It now can handle up to 89 RPS!
+
+I'm sure I can make it faster, as I think the bottleneck is in the server capacity and my poorly optimized backend code.
+
+Still, it is an amazing improvement. Even the search result rankings is very similar to my original code (because I used the same weights), but the performance difference is staggering.
+
+Hope this small learning can inspire someone in the future.

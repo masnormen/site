@@ -1,6 +1,7 @@
 import { themeAtom } from '@/atoms/index';
 import { SVGFilters } from '@/components/filters/svg-filters';
 import appCss from '@/styles/app.css?url';
+import { env } from '@/utils/env';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
@@ -11,7 +12,7 @@ import {
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { Meta, Scripts } from '@tanstack/start';
 import { useAtomValue } from 'jotai';
-import { type ReactNode, Suspense, useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -120,8 +121,12 @@ function RootComponent() {
       <QueryClientProvider client={queryClient}>
         <Outlet />
         <SVGFilters />
-        <ReactQueryDevtools initialIsOpen={false} />
-        <TanStackRouterDevtools initialIsOpen={false} />
+        {env.NODE_ENV === 'development' && (
+          <ReactQueryDevtools initialIsOpen={false} />
+        )}
+        {env.NODE_ENV === 'development' && (
+          <TanStackRouterDevtools initialIsOpen={false} />
+        )}
       </QueryClientProvider>
     </RootDocument>
   );
@@ -135,7 +140,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         <div id="_top_" className="w-0 h-0 invisible" />
-        <Suspense fallback={null}>{children}</Suspense>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

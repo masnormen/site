@@ -1,29 +1,9 @@
 import CartoonArrow from '@/components/assets/cartoon-arrow';
 import { cn } from '@/utils/cn';
 import { Link } from '@tanstack/react-router';
-import { type CSSProperties, useEffect, useRef } from 'react';
+import type { CSSProperties } from 'react';
 
 export function Hero() {
-  const titleRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const handleMouseMove = (event: MouseEvent) => {
-      if (titleRef.current) {
-        const x = event.pageX;
-        const xFromCenter = x - window.innerWidth / 2;
-        titleRef.current.style.setProperty(
-          '--mouse-x',
-          `${(xFromCenter ?? 0) * 0.02}px`,
-        );
-      }
-    };
-    document.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
   return (
     <header className="@container relative flex w-full h-full flex-col items-center justify-center overflow-hidden transition-transform xs:h-[78vh] bg-background px-4 supports-dvh:h-dvh xs:supports-dvh:h-[78vh] md:px-8">
       <NoiseBg />
@@ -106,11 +86,7 @@ export function Hero() {
         </div>
       </div>
 
-      <Link
-        to="/"
-        ref={titleRef}
-        className="static md:translate-x-[var(--mouse-x,0)]"
-      >
+      <Link to="/" className="static">
         <div className="static text-center shadow-2xs drop-shadow-md duration-300">
           <h1 className="relative isolate flex flex-col items-center text-center font-headline text-[min(14cqw,4.5rem)] text-secondary tracking-wide drop-shadow-[5px_5px_0px_var(--theme-tertiary)] transition-all hover:drop-shadow-[5px_5px_0px_var(--theme-highlight)]">
             <PlanetRing />

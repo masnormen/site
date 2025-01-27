@@ -65,7 +65,7 @@ function Post() {
         <div className="w-full h-full flex flex-col mx-auto max-w-4xl gap-8">
           <Link to="/" className="text-center inline">
             <h1 className="inline flex-col text-center items-center rounded-3xl bg-quaternary decoration-clone px-6 py-0.5 font-headline text-[8vw] !leading-[1.4] tracking-wide text-stroke drop-shadow-[5px_5px_0px_var(--theme-tertiary)] transition-all hover:drop-shadow-[5px_5px_0px_var(--theme-highlight)] sm:text-5xl sm:!leading-[1.38]">
-              Module Federation for Frontend: Why and How to Start?
+              {post.metadata.title}
             </h1>
           </Link>
         </div>
@@ -75,7 +75,7 @@ function Post() {
       </Section>
 
       <Section className="border-tertiary border-t-2 border-dashed bg-blank">
-        <article className="w-full h-full flex flex-col mx-auto max-w-4xl gap-8">
+        <article className="relative w-full h-full flex flex-col mx-auto max-w-4xl gap-8">
           <div className="flex w-full flex-col space-y-12">
             <div className="flex w-full flex-col items-center justify-between space-x-2 space-y-4 text-center md:flex-row md:space-y-0">
               {post.metadata.createdAt && (
@@ -102,7 +102,7 @@ function Post() {
           </div>
 
           {typeof Thumbnail === 'function' && (
-            <div className="block relative aspect-3/2! w-full sm:rounded-xl">
+            <div className="block relative aspect-3/2! w-full rounded-xl border-2 border-dashed border-tertiary cursor-default">
               <Thumbnail />
             </div>
           )}

@@ -17,7 +17,6 @@ export const PostMetadata = z.object({
   title: z.string(),
   description: z.string(),
   createdAt: z.coerce.date(),
-  editedAt: z.coerce.date(),
   tags: z.array(z.string()).optional(),
 });
 

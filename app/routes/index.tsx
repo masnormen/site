@@ -48,9 +48,10 @@ function Home() {
                 className="bg-blank"
                 href={`/blog/${post.slug}`}
                 title={post.metadata.title}
+                description={post.metadata.description}
                 date={post.metadata.createdAt.toDateString()}
                 tags={post.metadata.tags ?? []}
-                thumbnail={Thumbnail ? <Thumbnail /> : null}
+                Thumbnail={Thumbnail}
                 dir={idx % 2 === 0 ? 'ltr' : 'rtl'}
               />
             );

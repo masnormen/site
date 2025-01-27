@@ -1,10 +1,10 @@
 import { cn } from '@/utils/cn';
 import { Link } from '@tanstack/react-router';
-import { isValidElement } from 'react';
 
 export interface ArticleCardProps {
-  thumbnail: string | React.ReactNode | null;
+  Thumbnail: React.FC | null;
   title: string;
+  description?: string;
   date?: string;
   tags?: string[];
   href: string;
@@ -13,8 +13,9 @@ export interface ArticleCardProps {
 }
 
 export function ArticleCard({
-  thumbnail,
+  Thumbnail,
   title,
+  description,
   date,
   className,
   dir = 'ltr',
@@ -25,67 +26,71 @@ export function ArticleCard({
   return (
     <article
       className={cn(
-        'relative flex w-full flex-col overflow-hidden bg-stroke sm:border-2 sm:border-dashed sm:border-secondary sm:rounded-xl',
+        'group/card relative flex w-full flex-col overflow-hidden bg-stroke sm:border-2 sm:border-dashed sm:border-secondary sm:hover:border-highlight sm:rounded-xl duration-200',
         dir === 'ltr' ? 'sm:flex-row' : 'sm:flex-row-reverse',
         className,
       )}
       {...rest}
     >
-      {typeof thumbnail === 'string' && (
+      {/* {typeof Thumbnail === 'string' && (
         <img
-          src={thumbnail}
+          src={Thumbnail}
           alt={title}
           className={cn(
-            'pointer-events-none aspect-3/2 object-cover duration-500 sm:w-55/100',
+            'pointer-events-none aspect-3/2 object-cover duration-200 sm:w-55/100',
             dir === 'ltr' ? 'sm:rounded-l-xl' : 'sm:rounded-r-xl',
           )}
           style={{
             transform: 'translateZ(0)',
           }}
         />
-      )}
-      {isValidElement(thumbnail) && (
+      )} */}
+      {typeof Thumbnail === 'function' && (
         <div
           className={cn(
-            'block relative aspect-3/2! sm:w-55/100! w-full',
-            dir === 'ltr' ? 'sm:rounded-l-xl' : 'sm:rounded-r-xl',
+            'block relative aspect-3/2! sm:w-55/100! w-full border-2 sm:border-t-0 sm:border-b-0 border-secondary group-hover/card:border-highlight border-dashed rounded-xl duration-200',
+            dir === 'ltr'
+              ? 'sm:rounded-l-xl sm:border-l-0 sm:rounded-r-none'
+              : 'sm:rounded-r-xl sm:border-r-0 sm:rounded-l-none',
           )}
         >
-          {thumbnail}
+          <Thumbnail />
         </div>
       )}
 
-      {/* Post metadata */}
-      <div
+      <Link
+        to={href}
         className={cn(
-          'z-10 flex w-full flex-1 flex-col justify-end pt-5 sm:pt-0 sm:pb-6 text-stroke sm:px-6',
+          'group z-10 flex w-full flex-1 flex-col justify-end pt-5 sm:pb-8 text-stroke sm:px-6 bg-background hover:bg-quaternary transition-colors duration-200',
           className,
         )}
       >
-        {date && <div className="font-bold font-mono text-sm">{date}</div>}
+        {date && <div className="text-sm">{date}</div>}
 
-        {/* Title */}
-        <h2 className="mt-1 font-bold font-headline text-2xl tracking-wide sm:line-clamp-3 md:line-clamp-none">
-          <Link to={href}>{title}</Link>
+        <h2 className="mt-2 font-bold font-headline text-2xl tracking-wide sm:line-clamp-2 md:line-clamp-none group-hover:text-highlight transition-colors duration-200">
+          {title}
         </h2>
 
-        {/* Summary */}
-        {/* {summary && summary.length > 0 && <div className="line-clamp-3 text-sm">{summary.substring(0, 200)}</div>} */}
+        {description && description.trim().length > 0 && (
+          <div className="mt-4 line-clamp-3 text-sm">{description}</div>
+        )}
 
-        {/* Tags & Date */}
         {tags.length > 0 && (
-          <div className="mt-3 flex flex-wrap space-x-3">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="h-fit w-fit text-[10px] rounded-lg border border-dashed border-stroke bg-tertiary px-2 py-1 font-bold font-mono text-stroke uppercase leading-none duration-200"
-              >
-                {tag}
-              </span>
-            ))}
+          <div className="mt-5 flex flex-row items-center justify-between gap-3">
+            <div className="flex flex-wrap space-x-3">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="h-fit w-fit text-[10px] rounded-md border border-dashed border-stroke bg-tertiary px-2 py-1 font-bold font-mono text-stroke uppercase leading-none duration-200 group-hover:bg-highlight group-hover:text-background transition-colors"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="font-bold text-xs font-mono uppercase text-highlight">See More &gt;&gt;</div>
           </div>
         )}
-      </div>
+      </Link>
     </article>
   );
 }

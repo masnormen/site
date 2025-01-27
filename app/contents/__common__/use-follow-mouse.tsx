@@ -1,12 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { type RefObject, useEffect, useRef } from 'react';
+import { useHover } from 'usehooks-ts';
 
-export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>() {
+export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
+  onlyThumbnailHover = false,
+}: { onlyThumbnailHover?: boolean } = {}) {
   const ref = useRef<TRef>(null);
+  const isHover = useHover(ref as RefObject<HTMLElement>);
 
   useEffect(() => {
     if (
       typeof document === 'undefined' ||
-      typeof window === 'undefined'
+      typeof window === 'undefined' ||
+      (onlyThumbnailHover && !isHover)
     ) {
       return;
     }
@@ -33,7 +38,7 @@ export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>() {
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [isHover]);
 
   return ref;
 }
