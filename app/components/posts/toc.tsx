@@ -7,8 +7,6 @@ export function TableOfContents({
   post,
 }: { post: Pick<Post, 'slug' | 'metadata' | 'toc'> }) {
   return (
-    // <div className="pointer-events-none top-134 block h-full w-full justify-start duration-500 xl:absolute xl:mt-0! xl:flex xl:px-0">
-    // {/* <div className="pointer-events-auto justify-center sticky top-0 xl:h-dvh z-40 flex w-full flex-col space-y-2 rounded-lg xl:p-6 text-sm text-stroke duration-300 xl:w-[calc(((100vw-768px)/2)-5rem)] xl:max-w-xs xl:-translate-x-[calc(100%+1rem)] xl:overflow-y-auto xl:blur-[1px] xl:opacity-50 xl:hover:blur-none xl:hover:opacity-100"> */}
     <div
       className={cn(
         'relative flex flex-col',
@@ -21,7 +19,7 @@ export function TableOfContents({
           '1xxl:sticky 1xxl:top-[calc(10vh)] 1xxl:pt-14 1xxl:pl-4 1xxl:pr-8',
         )}
       >
-        <span className="hidden font-headline text-lg leading-tight 1xxl:block">
+        <span className="hidden font-headline text-xl leading-tight 1xxl:block">
           {post.metadata.title}
         </span>
         <span className="block text-lg font-semibold leading-tight 1xxl:hidden">

@@ -1,0 +1,53 @@
+---
+title: Using Git with SSH-over-HTTPS to Get around SSH Port Blocking
+description: A way to connect with GitHub server via SSH-over-HTTPS
+createdAt: "2024-02-25"
+tags:
+  - git
+---
+export * from './thumbnail';
+
+Recently, there’s this one cafe in which I seemingly can’t access Git every time I use their Wi-Fi. I can’t push, pull, or fetch anything. Every git command which involves a remote server is either refused to connect or always timed out. I had to use my mobile data, which is annoying and not good for my wallet.
+
+# The Culprit
+
+It turned out that the ISP which the café use (*I’m going to name and shame here: **N‌exa*** 🤡) has blocked any kind of SSH access. I found out because I figured I can not SSH into my VPS instance as well.
+
+I don’t know why some ISP does this weird blocking of SSH port. This may also happen to you if you’re using an internal company network. But fortunately, GitHub and some other Git providers have thought of this, and provided us with a way to connect with their server via SSH-over-HTTPS. If you’ve heard of DNS-over-HTTPS (DoH), it’s kind of a similar stuff, but with SSH instead!
+
+# Using SSH-over-HTTPS
+
+To check if SSH-over-HTTPS on GitHub is possible from your ISP, you can check using this command:
+
+```sh
+$ ssh -T -p 443 git@ssh.github.com
+> Hi [user]! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+Then, in your global `.gitconfig` file, insert this line or modify the existing config if it already exists:
+
+```ini
+[url "ssh://git@ssh.github.com:443/"]
+    insteadOf = https://github.com/
+
+#- OR, depending on your usage or remote urls:
+
+[url "ssh://git@ssh.github.com:443/"]
+    insteadOf = git@github.com:
+```
+
+> Tips: 🦊 GitLab also provide `ssh://git@altssh.gitlab.com:443/` for SSH-over-HTTPS.
+
+This will basically replace all remote url fetch of `https://github.com/` and `git@github.com:` into `ssh://git@ssh.github.com:443/`. So if you run:
+
+```sh
+$ git clone https://github.com/masnormen/ziyo
+```
+
+It will automatically be turned into this URL:
+
+```sh
+$ git clone ssh://git@ssh.github.com:443/masnormen/ziyo
+```
+
+Note that whether this works or not depends on your ISP. If your ISP is smart enough, it may still detect that you’re using the SSH protocol and block connection attempts. So good luck!

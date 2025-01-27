@@ -1,5 +1,6 @@
 import { normalizeTitle } from '@/utils/posts.client';
 import type { MDXContentProps } from 'mdx-bundler/client';
+import innerText from 'react-innertext';
 
 const Heading = ({
   level,
@@ -9,7 +10,7 @@ const Heading = ({
     React.JSX.IntrinsicElements['h1']
   >;
   return (
-    <Tag id={normalizeTitle(props.children?.toString() ?? '')} {...props} />
+    <Tag id={normalizeTitle(innerText(props.children ?? ''))} {...props} />
   );
 };
 

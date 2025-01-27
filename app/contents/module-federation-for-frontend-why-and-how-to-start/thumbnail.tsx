@@ -1,6 +1,10 @@
+import { cn } from '@/utils/cn';
 import type React from 'react';
 
-export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
+export const MFDiagram = ({
+  explode = false,
+  ...props
+}: React.JSX.IntrinsicElements['svg'] & { explode?: boolean }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +53,7 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
       </defs>
       <g transform="matrix(1, 0, 0, 1, -855.7423, 1919.9867)" opacity={1}>
         <path
-          className="animate-wiggle"
+          className={cn(explode ? 'translate-y-[5%]' : 'animate-wiggle')}
           d="M7,-0.0148 L151.7919,-0.3202 Q158.7919,-0.3349 158.8843,4.5503 L159.069,14.3207 Q159.1614,19.206 152.1614,19.2263 L6.1051,19.6504 Q-0.8949,19.6708 -0.6521,14.5378 L-0.1667,4.2719 Q0.0761,-0.8611 7.0756,-0.7806 L151.984,0.8856 Q158.9836,0.9661 158.9398,5.6146 L158.8521,14.9114 Q158.8083,19.5598 151.8083,19.5794 L6.8822,19.9852 Q-0.1178,20.0048 0.1236,15.0978 L0.6066,5.2838 Q0.848,0.3768 7,-0.0148 "
           stroke="#4cb05e"
           strokeWidth="3.5"
@@ -70,7 +74,7 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
             strokeLinejoin="round"
             strokeLinecap="round"
             pointerEvents="none"
-            className="animate-wiggle"
+            className={cn(explode ? 'translate-y-[5%]' : 'animate-wiggle')}
           >
             <g
               style={{
@@ -109,7 +113,7 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
             strokeLinejoin="round"
             strokeLinecap="round"
             pointerEvents="none"
-            className="animate-wiggle"
+            className={cn(explode ? 'translate-y-[5%]' : 'animate-wiggle')}
           >
             <g
               style={{
@@ -136,7 +140,11 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
       </g>
       <g transform="matrix(1, 0, 0, 1, -856.5089, 1750.276)" opacity={1}>
         <path
-          className="animate-wiggle-in-place"
+          className={cn(
+            explode
+              ? 'translate-y-[-5%] translate-x-[-5%]'
+              : 'animate-wiggle-in-place',
+          )}
           d="M6.9995,-0.0868 L68.7321,-0.8527 Q75.7315,-0.9395 75.6204,6.0596 L75.0144,44.215 Q74.9032,51.2141 67.9037,51.295 L6.4445,52.0053 Q-0.555,52.0862 -0.4165,45.0875 L0.3187,7.9562 Q0.4573,0.9575 7.457,0.8955 L70.0684,0.3402 Q77.0681,0.2781 77.0259,7.278 L76.7938,45.7758 Q76.7516,52.7757 69.752,52.694 L6.9522,51.9614 Q-0.0473,51.8798 -0.1257,44.8802 L-0.5418,7.7083 Q-0.6202,0.7087 6.9995,-0.0868 "
           stroke="#4ba1f1"
           strokeWidth="3.5"
@@ -145,17 +153,29 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
       </g>
       <g transform="matrix(1, 0, 0, 1, -819.7172, 1775.1405)" opacity={1}>
         <path
-          className="animate-wiggle-in-place"
+          className={cn(
+            explode
+              ? 'translate-y-[-5%] translate-x-[-5%]'
+              : 'animate-wiggle-in-place',
+          )}
           fill="#6fbbf8"
           d="M6.7638,0 L20.2913,0 Q27.0551,0 27.0551,4.7022 L27.0551,14.1067 Q27.0551,18.809 20.2913,18.809 L6.7638,18.809 Q0,18.809 0,14.1067 L0,4.7022 Q0,0 6.7638,0 "
         />
         <path
-          className="animate-wiggle-in-place"
+          className={cn(
+            explode
+              ? 'translate-y-[-5%] translate-x-[-5%]'
+              : 'animate-wiggle-in-place',
+          )}
           fill="url(#_export_2_r79__hash_pattern_light_0)"
           d="M6.7638,0 L20.2913,0 Q27.0551,0 27.0551,4.7022 L27.0551,14.1067 Q27.0551,18.809 20.2913,18.809 L6.7638,18.809 Q0,18.809 0,14.1067 L0,4.7022 Q0,0 6.7638,0 "
         />
         <path
-          className="animate-wiggle-in-place"
+          className={cn(
+            explode
+              ? 'translate-y-[-5%] translate-x-[-5%]'
+              : 'animate-wiggle-in-place',
+          )}
           d="M6.4947,-0.1024 L19.4841,-0.3073 Q25.9788,-0.4097 26.3462,4.3962 L27.081,14.0079 Q27.4484,18.8138 20.5383,19.0035 L6.7181,19.3829 Q-0.192,19.5726 -0.0097,14.6809 L0.3549,4.8975 Q0.5372,0.0058 6.9475,-0.0064 L19.7679,-0.0308 Q26.1781,-0.043 26.571,4.8691 L27.3569,14.6935 Q27.7498,19.6056 20.75,19.5513 L5.8847,19.436 Q-1.115,19.3818 -1.0058,14.4405 L-0.7873,4.5578 Q-0.678,-0.3835 6.4947,-0.1024 "
           stroke="#4ba1f1"
           strokeWidth="3.5"
@@ -164,17 +184,29 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
       </g>
       <g transform="matrix(1, 0, 0, 1, -850.994, 1776.2173)" opacity={1}>
         <path
-          className="animate-wiggle-in-place"
+          className={cn(
+            explode
+              ? 'translate-y-[-5%] translate-x-[-5%]'
+              : 'animate-wiggle-in-place',
+          )}
           fill="#e9acf8"
           d="M4.0749,0 L12.2248,0 Q16.2997,0 16.2997,4.3926 L16.2997,13.1777 Q16.2997,17.5702 12.2248,17.5702 L4.0749,17.5702 Q0,17.5702 0,13.1777 L0,4.3926 Q0,0 4.0749,0 "
         />
         <path
-          className="animate-wiggle-in-place"
+          className={cn(
+            explode
+              ? 'translate-y-[-5%] translate-x-[-5%]'
+              : 'animate-wiggle-in-place',
+          )}
           fill="url(#_export_2_r79__hash_pattern_light_0)"
           d="M4.0749,0 L12.2248,0 Q16.2997,0 16.2997,4.3926 L16.2997,13.1777 Q16.2997,17.5702 12.2248,17.5702 L4.0749,17.5702 Q0,17.5702 0,13.1777 L0,4.3926 Q0,0 4.0749,0 "
         />
         <path
-          className="animate-wiggle-in-place"
+          className={cn(
+            explode
+              ? 'translate-y-[-5%] translate-x-[-5%]'
+              : 'animate-wiggle-in-place',
+          )}
           d="M4.2878,-0.0028 L12.8635,-0.0085 Q17.1513,-0.0114 17.2071,4.645 L17.3187,13.9579 Q17.3745,18.6143 13.2367,18.1465 L4.9611,17.2107 Q0.8233,16.7428 0.4594,12.3961 L-0.2684,3.7028 Q-0.6323,-0.6439 3.8759,-0.4191 L12.8922,0.0304 Q17.4004,0.2551 17.337,4.718 L17.2102,13.6437 Q17.1468,18.1065 13.0824,17.7327 L4.9537,16.9852 Q0.8893,16.6114 0.8167,12.3286 L0.6714,3.763 Q0.5987,-0.5198 4.2878,-0.0028 "
           stroke="#e085f4"
           strokeWidth="3.5"
@@ -183,12 +215,20 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
       </g>
       <g transform="matrix(1, 0, 0, 1, -850.2372, 1763.7185)" opacity={1}>
         <path
-          className="animate-wiggle-in-place"
+          className={cn(
+            explode
+              ? 'translate-y-[-5%] translate-x-[-5%]'
+              : 'animate-wiggle-in-place',
+          )}
           fill="#ddedfa"
           d="M7,0 L52.0717,0 Q59.0717,0 59.0717,0.3815 L59.0717,1.1444 Q59.0717,1.5259 52.0717,1.5259 L7,1.5259 Q0,1.5259 0,1.1444 L0,0.3815 Q0,0 7,0 "
         />
         <path
-          className="animate-wiggle-in-place"
+          className={cn(
+            explode
+              ? 'translate-y-[-5%] translate-x-[-5%]'
+              : 'animate-wiggle-in-place',
+          )}
           d="M7,-0.0234 L51.9605,-0.1737 Q58.9604,-0.1971 59.1155,0.2465 L59.4258,1.1336 Q59.5809,1.5772 52.5812,1.6464 L6.1849,2.1053 Q-0.8148,2.1745 -0.7935,1.4133 L-0.7511,-0.1091 Q-0.7298,-0.8703 6.27,-0.8155 L51.7119,-0.4598 Q58.7117,-0.405 58.8533,-0.14 L59.1365,0.3902 Q59.2781,0.6553 52.2794,0.7902 L5.9424,1.6834 Q-1.0563,1.8183 -0.6964,1.5778 L0.0234,1.0968 Q0.3833,0.8563 7,-0.0234 "
           stroke="#4ba1f1"
           strokeWidth="3.5"
@@ -557,6 +597,11 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
             </clipPath>
           </defs>
           <g
+            className={cn(
+              explode
+                ? 'translate-y-[-5%] translate-x-[-5%]'
+                : 'animate-wiggle-in-place',
+            )}
             fill="none"
             stroke="#4ba1f1"
             strokeWidth="3.5"
@@ -591,7 +636,7 @@ export const MFDiagram = (props: React.JSX.IntrinsicElements['svg']) => {
   );
 };
 
-export function Thumbnail() {
+export function Thumbnail({ isHover = false }: { isHover?: boolean }) {
   return (
     <div
       className="max-w-full max-h-full aspect-3/2! flex flex-col items-center justify-center rounded-2xl"
@@ -600,8 +645,14 @@ export function Thumbnail() {
         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
       }}
     >
-      <div className="hover:scale-110 duration-500 transition-transform h-[80%] w-auto">
+      <div
+        className={cn(
+          isHover && 'scale-110',
+          'duration-500 transition-transform h-[80%] w-auto',
+        )}
+      >
         <MFDiagram
+          explode={isHover}
           style={{
             filter: 'drop-shadow(0 0 20px var(--theme-tertiary))',
           }}

@@ -1,11 +1,14 @@
-import { type RefObject, useEffect, useRef } from 'react';
-import { useHover } from 'usehooks-ts';
+import { mergeRefs } from '@/utils/merge-refs';
+import { useHover } from '@uidotdev/usehooks';
+import { useEffect, useRef } from 'react';
 
 export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
   onlyThumbnailHover = false,
 }: { onlyThumbnailHover?: boolean } = {}) {
-  const ref = useRef<TRef>(null);
-  const isHover = useHover(ref as RefObject<HTMLElement>);
+  const refObj = useRef<TRef>(null);
+  const [refCb, isHover] = useHover<TRef>();
+
+  const mergedRef = mergeRefs(refObj, refCb);
 
   useEffect(() => {
     if (
@@ -17,17 +20,17 @@ export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
     }
 
     const handleMouseMove = (event: MouseEvent) => {
-      if (ref.current) {
+      if (refObj.current) {
         const x = event.pageX;
         const xFromCenter = x - window.innerWidth / 2;
-        ref.current.style.setProperty(
+        refObj.current.style.setProperty(
           '--mouse-x',
           `${(xFromCenter ?? 0) * 0.02}px`,
         );
 
         const y = event.pageY;
         const yFromCenter = y - window.innerWidth / 2;
-        ref.current.style.setProperty(
+        refObj.current.style.setProperty(
           '--mouse-y',
           `${(yFromCenter ?? 0) * 0.02}px`,
         );
@@ -40,5 +43,5 @@ export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
     };
   }, [isHover]);
 
-  return ref;
+  return mergedRef;
 }

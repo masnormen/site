@@ -1,0 +1,74 @@
+---
+title: Resolving React/Next.js SSR Escaping Issue in Meta Tags
+description: Weird quirks regarding React's string escaping inside HTML attributes
+createdAt: "2023-06-11"
+tags:
+  - react
+---
+export * from './thumbnail';
+
+A while ago, while rewriting my personal website, I wanted to enhance the SEO and social media sharing experience by adding dynamic Open Graph Image generation using the `@vercel/og` library. This library generates Open Graph Images on-the-fly, providing better search engine optimization and improved social media sharing experience for websites.
+
+# The Problem
+
+## Implementing `@vercel/og`
+
+Since I use Next.js, [implementing this](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation) required me to create an API endpoint that would run my Edge Function. I created the endpoint at `/pages/api/content.png.tsx`. We need to pass the necessary data, such as the post title, post type, and tags. I decided to use the good ol' search query parameters. As a result, the meta tags on each blog post page would appear like this:
+
+```html
+<meta
+  property="og:image"
+  content="https://nourman.com/api/content.png?title=Hello&tags=Life&type=post"
+>
+```
+
+## Things went `&amp;&amp;` unexpectedly
+
+On local development environment, they work as expected. However, I soon discovered that once my code is deployed and SSR is activated, the meta tags turns out like this:
+
+```html /\&amp;/
+<meta
+  property="og:image"
+  content="https://nourman.com/api/content.png?title=Hello&amp;tags=Life&amp;type=post"
+>
+```
+
+The symbol meant to be an ampersand literal (`&`) turned into the escaped version `&amp;`! Why would Next.js escape the text content inside my meta tags?
+
+This caused issues with my API endpoint, as it didn't recognize the encoded ampersand and can't find the required parameters. When I encountered the issue, I decided to do some research to find out more about the problem. After digging through various resources and forums, it turns out that this problem has been around for quite some time and is a known issue with React, not Next.js as I previously thought.
+
+> The GitHub issue: https://github.com/facebook/react/issues/13838
+
+In some of the comments, others have mentioned "correctness" and backwards-compatibility with XHTML. So it seems that this issue won't be fixed in the near future. Even [Dan Abramov](https://twitter.com/dan_abramov) himself (one of the React core team) seems to not see this as an issue. He said that the parser or other components misinterpreting the escaped URL as "too naïve". While this might be true, a workaround still need to be done because unfortunately, a lot of social media websites are "too naïve" and can't seem to recognize the `&amp;` as just an ampersand.
+
+# Hacking things
+
+Despite the lack of an official fix, I determined myself to solve this. As strange as it sounds, I decided to pick a quite "silly" solution. I decided to just convert them into JSON objects, `stringify()` them, and then encode them in Base64! 😅
+
+```ts
+//@noErrors
+//@noErrorValidation
+const ogImage = btoa(
+  JSON.stringify({
+    title: post.title,
+    tags: post.tags,
+    type: post.type,
+  })
+);
+
+// Insert OG Image in NextSEO
+...
+url: `https://nourman.com/api/content.png?data=${ogImage}`,
+...
+```
+
+With this method, the rendered meta tag will look like this:
+
+```html /eyJ0aXRsZSI6IlJ1c3Q6IEZpcnN0IEltcHJlc3Npb25zIHRocm91Z2ggdGhlIEV5ZXMgb2YgYSBKUy9QeXRob24gY29kZXIiLCJ0YWdzIjpbIlJ1c3QiLCJEZXYiXSwidHlwZSI6ImJsb2cifQ==/
+<meta
+  property="og:image"
+  content="https://nourman.com/api/content.png?data=eyJ0aXRsZSI6IlJ1c3Q6IEZpcnN0IEltcHJlc3Npb25zIHRocm91Z2ggdGhlIEV5ZXMgb2YgYSBKUy9QeXRob24gY29kZXIiLCJ0YWdzIjpbIlJ1c3QiLCJEZXYiXSwidHlwZSI6ImJsb2cifQ=="
+>
+```
+
+In the API endpoint, we decrypt the `data` query parameter, then parse JSON as usual. Well, when it works, it works, I guess. I hope this very hacky solution helps others who may be experiencing a similar issue with passing query parameters in React meta tags.

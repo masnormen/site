@@ -6,6 +6,7 @@ import { Section } from '@/components/layouts/section';
 import { ArticleCard } from '@/components/posts/article-card';
 import { getPostList } from '@/services/posts';
 import { createServerFn } from '@tanstack/start';
+import dayjs from 'dayjs';
 import { getMDXExport } from 'mdx-bundler/client';
 import { useMemo } from 'react';
 
@@ -38,7 +39,7 @@ function Home() {
       >
         <div
           data-testid="bloglist"
-          className="grid mx-auto w-full max-w-4xl grid-cols-1 gap-8 md:gap-12"
+          className="grid mx-auto w-full max-w-4xl grid-cols-1 gap-8"
         >
           {posts.map((post, idx) => {
             const Thumbnail = mdxThumbnails[idx];
@@ -49,7 +50,7 @@ function Home() {
                 href={`/blog/${post.slug}`}
                 title={post.metadata.title}
                 description={post.metadata.description}
-                date={post.metadata.createdAt.toDateString()}
+                date={dayjs(post.metadata.createdAt).format('MMM DD, YYYY')}
                 tags={post.metadata.tags ?? []}
                 Thumbnail={Thumbnail}
                 dir={idx % 2 === 0 ? 'ltr' : 'rtl'}

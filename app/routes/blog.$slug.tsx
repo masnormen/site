@@ -7,6 +7,8 @@ import gfmCss from '@/styles/gfm.css?url';
 import shikiCss from '@/styles/shiki.css?url';
 import { Link, createFileRoute, notFound } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/start';
+import { useHover } from '@uidotdev/usehooks';
+import dayjs from 'dayjs';
 import { type MDXContentProps, getMDXExport } from 'mdx-bundler/client';
 import type React from 'react';
 import { lazy, useEffect, useMemo, useRef, useState } from 'react';
@@ -59,6 +61,8 @@ function Post() {
     if (!hasScrolled) setHasScrolled(isInViewport);
   }, [isInViewport]);
 
+  const [ref, isHover] = useHover<HTMLDivElement>();
+
   return (
     <>
       <Section className="border-tertiary border-t-2 border-dashed bg-blank px-8 gap-8 md:gap-10">
@@ -82,7 +86,7 @@ function Post() {
                 <div>
                   📆 Posted on{' '}
                   <span className="font-semibold">
-                    {post.metadata.createdAt.toDateString()}
+                    {dayjs(post.metadata.createdAt).format('MMM DD, YYYY')}
                   </span>
                 </div>
               )}
@@ -102,8 +106,11 @@ function Post() {
           </div>
 
           {typeof Thumbnail === 'function' && (
-            <div className="block relative aspect-3/2! w-full rounded-xl border-2 border-dashed border-tertiary cursor-default">
-              <Thumbnail />
+            <div
+              ref={ref}
+              className="flex flex-row justify-center relative aspect-3/2! w-full rounded-xl border-2 border-dashed border-tertiary cursor-default overflow-hidden"
+            >
+              <Thumbnail isHover={isHover} />
             </div>
           )}
 
@@ -119,7 +126,7 @@ function Post() {
         {/* Comments */}
         <aside
           ref={commentRef}
-          className="mt-14 w-full h-full flex flex-col mx-auto max-w-4xl"
+          className="w-full h-full flex flex-col mx-auto max-w-4xl"
         >
           {isInViewport && (
             <Comments

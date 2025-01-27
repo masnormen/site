@@ -11,6 +11,7 @@ import {
 } from '@shikijs/transformers';
 import { transformerTwoslash } from '@shikijs/twoslash';
 import { bundleMDX } from 'mdx-bundler';
+import pMemoize from 'p-memoize';
 import remarkGfm from 'remark-gfm';
 import type { ShikiTransformer } from 'shiki';
 
@@ -47,7 +48,7 @@ const transformCodeblockTitle = (): ShikiTransformer => {
   };
 };
 
-export const fetchPost = async (indexMdxPath: string): Promise<Post | null> => {
+const _fetchPost = async (indexMdxPath: string): Promise<Post | null> => {
   'use server';
   const postFolder = path.parse(indexMdxPath).dir;
   const slug = postFolder.split('/').pop()!;
@@ -100,3 +101,5 @@ export const fetchPost = async (indexMdxPath: string): Promise<Post | null> => {
     code: parsedMdxContent.code,
   };
 };
+
+export const fetchPost = pMemoize(_fetchPost);

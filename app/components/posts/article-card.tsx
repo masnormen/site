@@ -1,8 +1,9 @@
 import { cn } from '@/utils/cn';
 import { Link } from '@tanstack/react-router';
+import { useHover } from '@uidotdev/usehooks';
 
 export interface ArticleCardProps {
-  Thumbnail: React.FC | null;
+  Thumbnail: React.FC<{ isHover?: boolean }> | null;
   title: string;
   description?: string;
   date?: string;
@@ -23,8 +24,11 @@ export function ArticleCard({
   href,
   ...rest
 }: ArticleCardProps) {
+  const [ref, isHover] = useHover<HTMLDivElement>();
+
   return (
     <article
+      ref={ref}
       className={cn(
         'group/card relative flex w-full flex-col overflow-hidden bg-stroke sm:border-2 sm:border-dashed sm:border-secondary sm:hover:border-highlight sm:rounded-xl duration-200',
         dir === 'ltr' ? 'sm:flex-row' : 'sm:flex-row-reverse',
@@ -48,13 +52,11 @@ export function ArticleCard({
       {typeof Thumbnail === 'function' && (
         <div
           className={cn(
-            'block relative aspect-3/2! sm:w-55/100! w-full border-2 sm:border-t-0 sm:border-b-0 border-secondary group-hover/card:border-highlight border-dashed rounded-xl duration-200',
-            dir === 'ltr'
-              ? 'sm:rounded-l-xl sm:border-l-0 sm:rounded-r-none'
-              : 'sm:rounded-r-xl sm:border-r-0 sm:rounded-l-none',
+            'block relative aspect-3/2! sm:w-50/100! w-full border-2 sm:border-t-0 sm:border-b-0 border-secondary group-hover/card:border-highlight border-dashed duration-200',
+            dir === 'ltr' ? 'sm:border-l-0' : 'sm:border-r-0',
           )}
         >
-          <Thumbnail />
+          <Thumbnail isHover={isHover} />
         </div>
       )}
 
@@ -77,7 +79,7 @@ export function ArticleCard({
 
         {tags.length > 0 && (
           <div className="mt-5 flex flex-row items-center justify-between gap-3">
-            <div className="flex flex-wrap space-x-3">
+            <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <span
                   key={tag}
@@ -87,7 +89,9 @@ export function ArticleCard({
                 </span>
               ))}
             </div>
-            <div className="font-bold text-xs font-mono uppercase text-highlight">See More &gt;&gt;</div>
+            <div className="font-bold text-xs font-mono uppercase text-highlight">
+              See More &gt;&gt;
+            </div>
           </div>
         )}
       </Link>
