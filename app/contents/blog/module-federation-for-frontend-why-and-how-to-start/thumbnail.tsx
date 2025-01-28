@@ -1,3 +1,4 @@
+import type { ThumbnailProps } from '@/types/post';
 import { cn } from '@/utils/cn';
 import type React from 'react';
 
@@ -636,7 +637,7 @@ export const MFDiagram = ({
   );
 };
 
-export function Thumbnail({ isHover = false }: { isHover?: boolean }) {
+export function Thumbnail({ isHover = false }: ThumbnailProps) {
   return (
     <div
       className="max-w-full max-h-full aspect-3/2! flex flex-col items-center justify-center rounded-2xl"

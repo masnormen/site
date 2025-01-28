@@ -13,6 +13,10 @@ export type Heading = {
   level: number;
 };
 
+export type ThumbnailProps = {
+  isHover: boolean;
+};
+
 export const PostMetadata = z.object({
   title: z.string(),
   description: z.string(),

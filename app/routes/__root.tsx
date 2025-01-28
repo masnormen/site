@@ -1,7 +1,7 @@
 import { themeAtom } from '@/atoms/index';
 import { SVGFilters } from '@/components/filters/svg-filters';
 import appCss from '@/styles/app.css?url';
-import { env } from '@/utils/env';
+import { normalizeCssUrl } from '@/utils/normalize-css-url';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
@@ -81,7 +81,7 @@ export const Route = createRootRoute({
     links: [
       {
         rel: 'stylesheet',
-        href: appCss.split('?')[0],
+        href: normalizeCssUrl(appCss),
         suppressHydrationWarning: true,
       },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -119,12 +119,11 @@ function RootComponent() {
   return (
     <RootDocument>
       <QueryClientProvider client={queryClient}>
+        <ScrollRestoration scrollBehavior="instant" />
         <Outlet />
         <SVGFilters />
-        {env.NODE_ENV === 'development' && (
-          <ReactQueryDevtools initialIsOpen={false} />
-        )}
-        {env.NODE_ENV === 'development' && (
+        {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+        {import.meta.env.DEV && (
           <TanStackRouterDevtools initialIsOpen={false} />
         )}
       </QueryClientProvider>
@@ -141,7 +140,6 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       <body>
         <div id="_top_" className="w-0 h-0 invisible" />
         {children}
-        <ScrollRestoration />
         <Scripts />
       </body>
     </html>

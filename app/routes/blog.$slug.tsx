@@ -5,13 +5,16 @@ import { useInViewport } from '@/hooks/use-in-viewport';
 import { getPostBySlug } from '@/services/posts';
 import gfmCss from '@/styles/gfm.css?url';
 import shikiCss from '@/styles/shiki.css?url';
+import type { ThumbnailProps } from '@/types/post';
+import { normalizeCssUrl } from '@/utils/normalize-css-url';
+import Comments from '@giscus/react';
 import { Link, createFileRoute, notFound } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/start';
 import { useHover } from '@uidotdev/usehooks';
 import dayjs from 'dayjs';
 import { type MDXContentProps, getMDXExport } from 'mdx-bundler/client';
 import type React from 'react';
-import { lazy, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 const getPostBySlugServerFn = createServerFn({ method: 'GET' })
   .validator((slug: string) => slug)
@@ -28,26 +31,24 @@ export const Route = createFileRoute('/blog/$slug')({
     links: [
       {
         rel: 'stylesheet',
-        href: gfmCss.split('?')[0],
+        href: normalizeCssUrl(gfmCss),
         suppressHydrationWarning: true,
       },
       {
         rel: 'stylesheet',
-        href: shikiCss.split('?')[0],
+        href: normalizeCssUrl(shikiCss),
         suppressHydrationWarning: true,
       },
     ],
   }),
 });
 
-const Comments = lazy(() => import('@giscus/react'));
-
 function Post() {
   const post = Route.useLoaderData();
 
   const [PostContent, Thumbnail]: [
     React.FC<MDXContentProps>,
-    React.FC<MDXContentProps> | null,
+    React.FC<ThumbnailProps> | null,
   ] = useMemo(
     () => [getMDXExport(post.code).default, getMDXExport(post.code).Thumbnail],
     [post.code],

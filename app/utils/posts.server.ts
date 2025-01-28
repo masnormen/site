@@ -87,6 +87,16 @@ const _fetchPost = async (indexMdxPath: string): Promise<Post | null> => {
       ];
       return options;
     },
+    esbuildOptions: (options) => {
+      options.loader = {
+        ...options.loader,
+        '.png': 'dataurl',
+        '.jpg': 'dataurl',
+        '.jpeg': 'dataurl',
+        '.webp': 'dataurl',
+      };
+      return options;
+    },
   });
 
   const metadata = PostMetadata.safeParse(parsedMdxContent.frontmatter);
@@ -102,4 +112,6 @@ const _fetchPost = async (indexMdxPath: string): Promise<Post | null> => {
   };
 };
 
-export const fetchPost = pMemoize(_fetchPost);
+export const fetchPost = import.meta.env.DEV
+  ? _fetchPost
+  : pMemoize(_fetchPost);

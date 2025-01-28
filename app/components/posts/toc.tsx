@@ -44,7 +44,6 @@ export function TableOfContents({
                   params={{ slug: post.slug }}
                   hash={toc.id}
                   preload={false}
-                  resetScroll={false}
                   className="link ml-1 text-sm"
                 >
                   {toc.text}
@@ -59,7 +58,6 @@ export function TableOfContents({
             params={{ slug: post.slug }}
             hash="_top_"
             preload={false}
-            resetScroll={false}
             className="link hidden 1xxl:inline ml-1 text-sm w-min"
           >
             ↑ Back to top

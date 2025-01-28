@@ -1,19 +1,22 @@
+import type { ThumbnailProps } from '@/types/post';
 import { cn } from '@/utils/cn';
 import { Link } from '@tanstack/react-router';
 import { useHover } from '@uidotdev/usehooks';
 
 export interface ArticleCardProps {
-  Thumbnail: React.FC<{ isHover?: boolean }> | null;
+  type: 'blog' | 'works';
+  Thumbnail: React.FC<ThumbnailProps> | null;
   title: string;
   description?: string;
   date?: string;
   tags?: string[];
-  href: string;
+  slug: string;
   className?: string;
   dir: 'ltr' | 'rtl';
 }
 
 export function ArticleCard({
+  type,
   Thumbnail,
   title,
   description,
@@ -21,7 +24,7 @@ export function ArticleCard({
   className,
   dir = 'ltr',
   tags = [],
-  href,
+  slug,
   ...rest
 }: ArticleCardProps) {
   const [ref, isHover] = useHover<HTMLDivElement>();
@@ -36,24 +39,11 @@ export function ArticleCard({
       )}
       {...rest}
     >
-      {/* {typeof Thumbnail === 'string' && (
-        <img
-          src={Thumbnail}
-          alt={title}
-          className={cn(
-            'pointer-events-none aspect-3/2 object-cover duration-200 sm:w-55/100',
-            dir === 'ltr' ? 'sm:rounded-l-xl' : 'sm:rounded-r-xl',
-          )}
-          style={{
-            transform: 'translateZ(0)',
-          }}
-        />
-      )} */}
       {typeof Thumbnail === 'function' && (
         <div
           className={cn(
-            'block relative aspect-3/2! sm:w-50/100! w-full border-2 sm:border-t-0 sm:border-b-0 border-secondary group-hover/card:border-highlight border-dashed duration-200',
-            dir === 'ltr' ? 'sm:border-l-0' : 'sm:border-r-0',
+            'block relative aspect-3/2! sm:w-50/100! w-full border-secondary box-content group-hover/card:border-highlight border-dashed duration-200',
+            dir === 'ltr' ? 'sm:border-r-2' : 'sm:border-l-2',
           )}
         >
           <Thumbnail isHover={isHover} />
@@ -61,7 +51,11 @@ export function ArticleCard({
       )}
 
       <Link
-        to={href}
+        //TODO adjust type
+        to={type === 'blog' ? '/blog/$slug' : '/blog/$slug'}
+        params={{
+          slug,
+        }}
         className={cn(
           'group z-10 flex w-full flex-1 flex-col justify-end pt-5 sm:pb-8 text-stroke sm:px-6 bg-background hover:bg-quaternary transition-colors duration-200',
           className,

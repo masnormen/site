@@ -4,7 +4,7 @@ import { Footer } from '@/components/layouts/footer';
 import { Hero } from '@/components/layouts/hero';
 import { Section } from '@/components/layouts/section';
 import { ArticleCard } from '@/components/posts/article-card';
-import { getPostList } from '@/services/posts';
+import { getPostList, getProjectList } from '@/services/posts';
 import { createServerFn } from '@tanstack/start';
 import dayjs from 'dayjs';
 import { getMDXExport } from 'mdx-bundler/client';
@@ -14,17 +14,33 @@ const getPostListServerFn = createServerFn({ method: 'GET' }).handler(() =>
   getPostList(),
 );
 
+const getProjectListServerFn = createServerFn({ method: 'GET' }).handler(() =>
+  getProjectList(),
+);
+
 export const Route = createFileRoute('/')({
-  loader: () => getPostListServerFn(),
+  loader: async () => {
+    const [posts, projects] = await Promise.all([
+      getPostListServerFn(),
+      getProjectListServerFn(),
+    ]);
+    return { posts, projects };
+  },
   component: Home,
 });
 
 function Home() {
-  const posts = Route.useLoaderData();
+  const { posts, projects } = Route.useLoaderData();
 
-  const mdxThumbnails = useMemo(
+  const postMdxThumbnails = useMemo(
     () => posts.map((post) => getMDXExport(post.code).Thumbnail ?? null),
     [posts],
+  );
+
+  const projectMdxThumbnails = useMemo(
+    () =>
+      projects.map((project) => getMDXExport(project.code).Thumbnail ?? null),
+    [projects],
   );
 
   return (
@@ -42,12 +58,13 @@ function Home() {
           className="grid mx-auto w-full max-w-4xl grid-cols-1 gap-8"
         >
           {posts.map((post, idx) => {
-            const Thumbnail = mdxThumbnails[idx];
+            const Thumbnail = postMdxThumbnails[idx];
             return (
               <ArticleCard
                 key={idx}
                 className="bg-blank"
-                href={`/blog/${post.slug}`}
+                type="blog"
+                slug={post.slug}
                 title={post.metadata.title}
                 description={post.metadata.description}
                 date={dayjs(post.metadata.createdAt).format('MMM DD, YYYY')}
@@ -67,21 +84,26 @@ function Home() {
         className="border-tertiary border-t-2 border-dashed bg-background"
       >
         <div
-          data-testid="workslist"
-          className="grid mx-auto w-full max-w-4xl grid-cols-1 gap-8 md:gap-12"
+          data-testid="projectlist"
+          className="grid mx-auto w-full max-w-4xl grid-cols-1 gap-8"
         >
-          {/* {works.map((item, idx) => (
-            <ArticleCard
-              key={idx}
-              className="bg-blank"
-              href={`/blog/${item.href}`}
-              title={item.title}
-              date={item.date}
-              tags={item.tags}
-              thumbnail={item.thumbnail + '?random=' + idx}
-              dir={idx % 2 === 0 ? 'ltr' : 'rtl'}
-            />
-          ))} */}
+          {projects.map((project, idx) => {
+            const Thumbnail = projectMdxThumbnails[idx];
+            return (
+              <ArticleCard
+                key={idx}
+                className="bg-blank"
+                type="blog"
+                slug={project.slug}
+                title={project.metadata.title}
+                description={project.metadata.description}
+                date={dayjs(project.metadata.createdAt).format('MMM DD, YYYY')}
+                tags={project.metadata.tags ?? []}
+                Thumbnail={Thumbnail}
+                dir={idx % 2 === 0 ? 'ltr' : 'rtl'}
+              />
+            );
+          })}
         </div>
       </Section>
 
