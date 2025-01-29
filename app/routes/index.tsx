@@ -93,7 +93,7 @@ function Home() {
               <ArticleCard
                 key={idx}
                 className="bg-blank"
-                type="blog"
+                type="projects"
                 slug={project.slug}
                 title={project.metadata.title}
                 description={project.metadata.description}

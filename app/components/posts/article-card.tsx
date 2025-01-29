@@ -4,7 +4,7 @@ import { Link } from '@tanstack/react-router';
 import { useHover } from '@uidotdev/usehooks';
 
 export interface ArticleCardProps {
-  type: 'blog' | 'works';
+  type: 'blog' | 'projects';
   Thumbnail: React.FC<ThumbnailProps> | null;
   title: string;
   description?: string;
@@ -51,9 +51,9 @@ export function ArticleCard({
       )}
 
       <Link
-        //TODO adjust type
-        to={type === 'blog' ? '/blog/$slug' : '/blog/$slug'}
+        to="/$contentType/$slug"
         params={{
+          contentType: type,
           slug,
         }}
         className={cn(

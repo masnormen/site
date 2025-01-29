@@ -16,34 +16,11 @@ export * from './thumbnail'
 
 **Sunda.js** is a small library for converting/transliterating Latin into Sundanese script (Aksara Sunda Baku), or vice versa.
 
-## :eyes: Why this library?
+## 👀 Why this library?
 
 Sunda.js is based off of my other project, [Carakan.js](https://github.com/masnormen/carakanjs/), which is a transliterator library for Javanese script. After researching about the Sundanese script, I found that the Sundanese writing system is similar, and even a lot simpler than the Javanese one. Then, I realized that the same algorithm could be used to transliterate Latin into it. As I see that there's no library for transliterating Latin into Sundanese script yet (and vice versa), I decided to make one.
 
-Sunda.js is also fast. It just needs around ***2 milliseconds*** to convert a simple sentence.
-
-## :open_book: Table of Contents
-
-- [Sunda.js](#sundajs)
-  * [:eyes: Why this library?](#eyes-why-this-library)
-  * [:open_book: Table of Contents](#open_book-table-of-contents)
-  * [:rocket: Features](#rocket-features)
-  * [:package: Installation](#package-installation)
-  * [:keyboard: Usage](#keyboard-usage)
-    + [Latin &rarr; Sundanese using `toSundanese()`](#latin--sundanese-using-tosundanese)
-    + [Sundanese &rarr; Latin using `toLatin()`](#sundanese--latin-using-tolatin)
-    + [Notes](#notes)
-  * [:fire: API](#fire-api)
-    + [toSundanese(input)](#tosundaneseinput)
-      - [input](#input)
-    + [toLatin(input)](#tolatininput)
-      - [input](#input-1)
-    + [SundaHelper](#sundahelper)
-    + [LatinHelper](#latinhelper)
-  * [:toolbox: TODO](#toolbox-todo)
-  * [:books: References](#books-references)
-
-## :rocket: Features
+## 🚀 Features
 
 Currently, Sunda.js can handle these features:
 
@@ -54,7 +31,7 @@ Currently, Sunda.js can handle these features:
 - Angka
 - ...and many more (see the code yourself!)
 
-## :package: Installation
+## 📦 Installation
 
 NPM:
 
@@ -68,13 +45,20 @@ Yarn:
 $ yarn add sunda.js
 ```
 
-## :keyboard: Usage
+## ⌨️ Usage
 
-### Latin &rarr; Sundanese using `toSundanese()`
+### Latin -> Sundanese using `toSundanese()`
 
 **Basic example**
 
-```js
+```ts
+// @filename: index.d.ts
+declare module "sunda.js" {
+  export function toSundanese(input: string): string;
+  export function toLatin(input: string): string;
+}
+// @filename: main.ts
+// ---cut---
 import { toSundanese } from "sunda.js";
 
 let x = toSundanese("Wih, geulis euy!");
@@ -85,7 +69,15 @@ console.log(x)
 
 **Writing basic vowels**
 
-```js
+```ts
+// @filename: index.d.ts
+declare module "sunda.js" {
+  export function toSundanese(input: string): string;
+  export function toLatin(input: string): string;
+}
+// @filename: main.ts
+import { toSundanese } from "sunda.js";
+// ---cut---
 let x = toSundanese("pa pi pu pe pé peu po p");
 console.log(x)
 
@@ -94,7 +86,15 @@ console.log(x)
 
 **Writing various Rerangkén**
 
-```js
+```ts
+// @filename: index.d.ts
+declare module "sunda.js" {
+  export function toSundanese(input: string): string;
+  export function toLatin(input: string): string;
+}
+// @filename: main.ts
+import { toSundanese } from "sunda.js";
+// ---cut---
 let x = toSundanese("Di Klatén, ada santri kyai tebang pohon buah pir");
 console.log(x)
 
@@ -103,7 +103,15 @@ console.log(x)
 
 **Writing numbers**
 
-```js
+```ts
+// @filename: index.d.ts
+declare module "sunda.js" {
+  export function toSundanese(input: string): string;
+  export function toLatin(input: string): string;
+}
+// @filename: main.ts
+import { toSundanese } from "sunda.js";
+// ---cut---
 // pipe (|) will be automatically added around numbers
 
 let x = toSundanese("tanggal 17 bulan 8 taun 1945");
@@ -112,11 +120,18 @@ console.log(x)
 // => ᮒᮀᮌᮜ᮪ |᮱᮷| ᮘᮥᮜᮔ᮪ |᮸| ᮒᮅᮔ᮪ |᮱᮹᮴᮵|
 ```
 
-### Sundanese &rarr; Latin using `toLatin()`
+### Sundanese -> Latin using `toLatin()`
 
 **Basic example**
 
-```js
+```ts
+// @filename: index.d.ts
+declare module "sunda.js" {
+  export function toSundanese(input: string): string;
+  export function toLatin(input: string): string;
+}
+// @filename: main.ts
+// ---cut---
 import { toLatin } from "sunda.js";
 
 let x = toLatin("ᮝᮤᮂ, ᮌᮩᮜᮤᮞ᮪ ᮉᮚ᮪!");
@@ -127,7 +142,15 @@ console.log(x)
 
 **Detecting rerangkén when converting back to Latin**
 
-```js
+```ts
+// @filename: index.d.ts
+declare module "sunda.js" {
+  export function toSundanese(input: string): string;
+  export function toLatin(input: string): string;
+}
+// @filename: main.ts
+import { toLatin } from "sunda.js";
+// ---cut---
 let x = toLatin("ᮓᮤ ᮊᮣᮒᮦᮔ᮪, ᮃᮓ ᮞᮔ᮪ᮒᮢᮤ ᮊᮡᮄ ᮒᮨᮘᮀ ᮕᮧᮠᮧᮔ᮪ ᮘᮥᮃᮂ ᮕᮤᮁ");
 console.log(x)
 
@@ -136,7 +159,15 @@ console.log(x)
 
 **Writing numbers**
 
-```js
+```ts
+// @filename: index.d.ts
+declare module "sunda.js" {
+  export function toSundanese(input: string): string;
+  export function toLatin(input: string): string;
+}
+// @filename: main.ts
+import { toLatin } from "sunda.js";
+// ---cut---
 // pipe (|) will be automatically removed from around numbers
 
 let x = toLatin("ᮒᮀᮌᮜ᮪ |᮱᮷| ᮘᮥᮜᮔ᮪ |᮸| ᮒᮅᮔ᮪ |᮱᮹᮴᮵|");
@@ -151,7 +182,7 @@ console.log(x)
 - In Sundanese -> Latin transliteration, pipe (|) immediately before and after numbers will be removed.
 - Other than pipe (|), all characters that's not Sundanese or Latin character (like dot, comma, semicolon, etc) will be output as it is.
 
-## :fire: API
+## 🔥 API
 
 Sunda.js package exports four things: functions `toSundanese()` & `toLatin()`, and also namespace `SundaHelper` and `LatinHelper` which contains various helper.
 
@@ -182,12 +213,12 @@ A namespace which contains various helper for the engine to convert Latin letter
 
 A namespace which contains various helper for the engine to convert Sundanese letters into Latin Script.
 
-## :toolbox: TODO
+## 🧰 TODO
 
 - [x] support transliteration of Sundanese script back to Latin
 - [ ] support more punctuations from ancient Sundanese character (Bindu Surya, Bindu Panglong, etc)
 
-## :books: References
+## 📕 References
 
 - [Aksara Sunda Baku (Wikipedia ID)](https://id.wikipedia.org/wiki/Aksara_Sunda_Baku)
 - [Kairaga](https://www.kairaga.com/)
