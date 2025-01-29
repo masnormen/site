@@ -73,7 +73,13 @@ const _fetchPost = async (indexMdxPath: string): Promise<Post | null> => {
             inline: 'tailing-curly-colon',
             theme: 'vitesse-dark',
             transformers: [
-              transformerTwoslash(),
+              transformerTwoslash({
+                twoslashOptions: {
+                  handbookOptions: {
+                    noErrorValidation: true,
+                  },
+                },
+              }),
               transformerColorizedBrackets(),
               transformCodeblockTitle(),
               transformerMetaHighlight(),

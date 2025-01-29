@@ -1,3 +1,4 @@
+import { Route } from '@/routes/$contentType.$slug';
 import type { Post } from '@/types/post';
 import { cn } from '@/utils/cn';
 import { Link } from '@tanstack/react-router';
@@ -6,11 +7,13 @@ import { Fragment } from 'react/jsx-runtime';
 export function TableOfContents({
   post,
 }: { post: Pick<Post, 'slug' | 'metadata' | 'toc'> }) {
+  const params = Route.useParams();
+
   return (
     <div
       className={cn(
         'relative flex flex-col',
-        'contain-inline-size 1xxl:absolute 1xxl:top-0 1xxl:left-0 1xxl:-translate-x-full 1xxl:h-full 1xxl:w-[calc(((100vw-896px)/2)-8px)] 1xxl:max-w-xs 1xxl:blur-[2px] 1xxl:opacity-50 1xxl:hover:blur-none 1xxl:hover:opacity-100 duration-200',
+        '@container 1xxl:absolute 1xxl:top-0 1xxl:left-0 1xxl:-translate-x-full 1xxl:h-full 1xxl:w-[calc(((100vw-896px)/2)-8px)] 1xxl:max-w-xs 1xxl:blur-[1px] 1xxl:opacity-50 1xxl:hover:blur-none 1xxl:hover:opacity-100 duration-200',
       )}
     >
       <div
@@ -40,8 +43,8 @@ export function TableOfContents({
                 {toc.level === 2 && '→ '}
                 {toc.level === 3 && '• '}
                 <Link
-                  to="/blog/$slug"
-                  params={{ slug: post.slug }}
+                  to="/$contentType/$slug"
+                  params={{ contentType: params.contentType, slug: post.slug }}
                   hash={toc.id}
                   preload={false}
                   className="link ml-1 text-sm"
@@ -54,8 +57,8 @@ export function TableOfContents({
           ))}
           <br className="hidden 1xxl:block" />
           <Link
-            to="/blog/$slug"
-            params={{ slug: post.slug }}
+            to="/$contentType/$slug"
+            params={{ contentType: params.contentType, slug: post.slug }}
             hash="_top_"
             preload={false}
             className="link hidden 1xxl:inline ml-1 text-sm w-min"
