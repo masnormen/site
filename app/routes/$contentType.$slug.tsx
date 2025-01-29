@@ -1,3 +1,4 @@
+import { Footer } from '@/components/layouts/footer';
 import { Section } from '@/components/layouts/section';
 import { MDXSubstitution } from '@/components/posts/mdx-substitution';
 import { TableOfContents } from '@/components/posts/toc';
@@ -170,6 +171,8 @@ function Post() {
           )}
         </aside>
       </Section>
+
+      <Footer />
     </>
   );
 }

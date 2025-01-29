@@ -1,4 +1,4 @@
-import { normalizeTitle } from '@/utils/posts.client';
+import { normalizeTitle } from '@/utils/posts';
 import type { MDXContentProps } from 'mdx-bundler/client';
 import innerText from 'react-innertext';
 

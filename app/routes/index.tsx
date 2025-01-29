@@ -1,10 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router';
-
 import { Footer } from '@/components/layouts/footer';
 import { Hero } from '@/components/layouts/hero';
 import { Section } from '@/components/layouts/section';
 import { ArticleCard } from '@/components/posts/article-card';
 import { getPostList, getProjectList } from '@/services/posts';
+import { createFileRoute } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/start';
 import dayjs from 'dayjs';
 import { getMDXExport } from 'mdx-bundler/client';
@@ -100,7 +99,7 @@ function Home() {
                 date={dayjs(project.metadata.createdAt).format('MMM DD, YYYY')}
                 tags={project.metadata.tags ?? []}
                 Thumbnail={Thumbnail}
-                dir={idx % 2 === 0 ? 'ltr' : 'rtl'}
+                dir="ltr"
               />
             );
           })}

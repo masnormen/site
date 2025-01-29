@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { type Post, PostMetadata } from '@/types/post';
-import { getHeadings } from '@/utils/posts.client';
+import { getHeadings } from '@/utils/posts';
 import { transformerColorizedBrackets } from '@shikijs/colorized-brackets';
 import rehypeShiki from '@shikijs/rehype';
 import {
