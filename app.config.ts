@@ -58,7 +58,7 @@ export default defineConfig({
         projects: ['./tsconfig.json'],
       }),
       viteRestart({
-        reload: ['./app/contents/**/*'],
+        reload: ['./app/**/*'],
       }),
     ],
   },

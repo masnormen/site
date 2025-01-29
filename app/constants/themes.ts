@@ -1,1 +1,5 @@
-export const THEMES = { peachy: '🍑', deuteranomaly: '👁️', seasalt: '🌊' };
+export const THEMES = {
+  peachy: '🍑',
+  deuteranomaly: '👁️',
+  seasalt: '🌊',
+} as const;

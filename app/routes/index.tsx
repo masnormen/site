@@ -77,7 +77,7 @@ function Home() {
       </Section>
 
       <Section
-        id="works"
+        id="projects"
         title="Projects"
         description="Things and fun projects I&lsquo;ve worked on, mostly open-source"
         className="border-tertiary border-t-2 border-dashed bg-background"

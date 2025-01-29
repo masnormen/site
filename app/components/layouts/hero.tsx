@@ -88,7 +88,7 @@ export function Hero() {
 
       <Link to="/" className="static">
         <div className="static text-center shadow-2xs drop-shadow-md duration-300">
-          <h1 className="relative isolate flex flex-col items-center text-center font-headline text-[min(14cqw,4.5rem)] text-secondary tracking-wide drop-shadow-[5px_5px_0px_var(--theme-tertiary)] transition-all hover:drop-shadow-[5px_5px_0px_var(--theme-highlight)]">
+          <h1 className="relative isolate flex flex-col items-center text-center font-headline text-[min(14cqw,4.5rem)] text-background tracking-wide drop-shadow-[5px_5px_0px_var(--theme-tertiary)] transition-all hover:drop-shadow-[5px_5px_0px_var(--theme-highlight)]">
             <PlanetRing />
             <span className="filter-gooey z-20 inline w-fit rounded-xl bg-stroke box-decoration-clone px-4 pt-2 pb-1 leading-[1.25] transition-all">
               Nourman
@@ -386,7 +386,6 @@ const LoremIpsumText = ({
     <div
       className={cn(
         'absolute aspect-square cursor-text font-bold font-mono text-stroke uppercase leading-none',
-        'border-2 border-tertiary border-dashed',
         className,
       )}
       {...props}

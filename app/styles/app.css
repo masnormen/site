@@ -103,7 +103,7 @@
 
   [data-theme="seasalt"] {
     --theme: seasalt;
-    --theme-background: #e4efee;
+    --theme-background: #efede4;
     --theme-secondary: #a1c9c9;
     --theme-tertiary: #bae8e8;
     --theme-quaternary: #ffedd5;
@@ -134,7 +134,7 @@
     }
 
     [data-theme="seasalt"] {
-      --theme-background: color(display-p3 0.894118 0.937255 0.933333 / 1.0);
+      --theme-background: color(display-p3 0.937255 0.929412 0.894118 / 1.000000);
       --theme-secondary: color(display-p3 0.631373 0.788235 0.788235 / 1.0);
       --theme-tertiary: color(display-p3 0.729412 0.909804 0.909804 / 1.0);
       --theme-quaternary: color(display-p3 1.0 0.929412 0.835294 / 1.0);
@@ -149,13 +149,6 @@
     width: 100%;
     margin: 0;
     padding: 0;
-  }
-
-  @media (min-width: 425px) {
-    html,
-    body {
-      scroll-padding-top: 2.5rem;
-    }
   }
 
   *::selection {

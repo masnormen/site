@@ -1,6 +1,9 @@
 import { themeAtom } from '@/atoms/index';
 import { SVGFilters } from '@/components/filters/svg-filters';
+import { Navbar } from '@/components/layouts/navbar';
 import appCss from '@/styles/app.css?url';
+import gfmCss from '@/styles/gfm.css?url';
+import shikiCss from '@/styles/shiki.css?url';
 import { normalizeCssUrl } from '@/utils/normalize-css-url';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -84,18 +87,20 @@ export const Route = createRootRoute({
         href: normalizeCssUrl(appCss),
         suppressHydrationWarning: true,
       },
+      {
+        rel: 'stylesheet',
+        href: normalizeCssUrl(gfmCss),
+        suppressHydrationWarning: true,
+      },
+      {
+        rel: 'stylesheet',
+        href: normalizeCssUrl(shikiCss),
+        suppressHydrationWarning: true,
+      },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: '' },
       { rel: 'icon', href: '/favicon.png' },
     ],
-    scripts: import.meta.env.DEV
-      ? [
-          {
-            type: 'module',
-            children: `import RefreshRuntime from "/_build/@react-refresh"; RefreshRuntime.injectIntoGlobalHook(window); window.$RefreshReg$ = () => {}; window.$RefreshSig$ = () => (type) => type`,
-          },
-        ]
-      : [],
   }),
   component: RootComponent,
 });
@@ -119,13 +124,16 @@ function RootComponent() {
   return (
     <RootDocument>
       <QueryClientProvider client={queryClient}>
-        <ScrollRestoration scrollBehavior="instant" />
+        <Navbar />
+
         <Outlet />
-        <SVGFilters />
+
         {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
         {import.meta.env.DEV && (
           <TanStackRouterDevtools initialIsOpen={false} />
         )}
+        <SVGFilters />
+        <ScrollRestoration scrollBehavior="instant" />
       </QueryClientProvider>
     </RootDocument>
   );

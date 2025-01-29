@@ -1,59 +1,46 @@
-import { useAtom } from 'jotai';
-import { useState } from 'react';
-
 import { themeAtom } from '@/atoms/index';
-import { THEMES } from '@/constants/themes';
-import { cn } from '@/utils/cn';
-
 import { GitHubIcon } from '@/components/assets/github';
 import { LinkedInIcon } from '@/components/assets/linkedin';
-import { Link } from '@tanstack/react-router';
+import { THEMES } from '@/constants/themes';
+import { cn } from '@/utils/cn';
+import { Link, type LinkComponentProps } from '@tanstack/react-router';
+import { useWindowScroll } from '@uidotdev/usehooks';
+import { useAtom } from 'jotai';
 
-type NavigationItemProps = { href?: string; onClick?: () => void } & {
-  children: React.ReactNode;
-  className?: string;
-  isNewTab?: boolean;
-  'aria-label'?: string;
-};
+type NavItemProps =
+  | ({
+      type: 'button';
+    } & React.ButtonHTMLAttributes<HTMLButtonElement>)
+  | ({
+      type: 'link';
+    } & (
+      | (Omit<LinkComponentProps, 'href' | 'children'> & {
+          children: React.ReactNode;
+        })
+      | ({ href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>)
+    ));
 
-function NavigationItem({
-  className,
-  children,
-  isNewTab,
-  onClick,
-  href,
-  ...props
-}: NavigationItemProps) {
-  if (!href) {
+function NavItem({ className: customClassName, ...props }: NavItemProps) {
+  const className =
+    'flex rounded-md px-3 py-1.5 text-nowrap whitespace-nowrap text-sm font-semibold font-mono uppercase text-stroke duration-500 hover:bg-stroke hover:text-background';
+
+  if (props.type === 'button') {
     return (
       <button
-        type="button"
-        onClick={onClick}
-        className={cn(
-          'flex rounded-xl px-4 py-3 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background',
-          className,
-        )}
+        className={cn(className, customClassName)}
         {...props}
-      >
-        {children}
-      </button>
+        type="button"
+      />
     );
   }
 
+  const Wrapper = 'href' in props ? 'a' : Link;
   return (
-    <Link
-      {...props}
-      to={href}
-      className={cn(
-        'flex rounded-xl px-4 py-3 text-sm font-semibold uppercase text-stroke duration-500 hover:bg-stroke hover:text-background',
-        className,
-      )}
-      target={isNewTab ? '_blank' : '_self'}
+    <Wrapper
+      className={cn(className, customClassName)}
       rel="noopener noreferrer"
       {...props}
-    >
-      {children}
-    </Link>
+    />
   );
 }
 
@@ -66,7 +53,7 @@ function NavigationSection({
     <div
       onClick={(e) => e.stopPropagation()}
       className={cn(
-        'flex flex-row justify-center rounded-xl border border-stroke drop-shadow-[4px_4px_0px_var(--theme-tertiary)] transition-all duration-200 hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)]',
+        'flex px-3 flex-row h-min justify-center rounded-2xl border border-dashed border-highlight drop-shadow-[4px_4px_0px_var(--theme-tertiary)] transition-all duration-200 hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)]',
         className,
       )}
       {...props}
@@ -77,80 +64,44 @@ function NavigationSection({
 }
 
 export function Navbar() {
-  const [isMenuShown, setMenuShown] = useState(false);
-
+  const [{ y }] = useWindowScroll();
   const [theme, setTheme] = useAtom(themeAtom);
 
-  const themeNames = Object.keys(THEMES);
-
   return (
-    <>
-      {/* <div className="invisible h-20" /> */}
-      <nav className="fixed top-0 z-50 flex w-full flex-col items-center justify-center bg-gray-50 bg-opacity-20 backdrop-blur-xs duration-500">
-        <button
+    <nav
+      className={cn(
+        'fixed bottom-0 left-1/2 -translate-x-1/2 pb-8 z-50 flex justify-center h-min w-min flex-row items-stretch bg-transparent transition-all duration-500',
+        (y ?? 0) < 400 ? 'opacity-0 invisible blur-md' : '',
+      )}
+    >
+      <NavigationSection className="bg-secondary">
+        <NavItem type="link" to="/">
+          Home
+        </NavItem>
+        <NavItem type="link" to="/" hash="blog" className="hidden md:flex">
+          Blog
+        </NavItem>
+        <NavItem type="link" to="/" hash="projects" className="hidden md:flex">
+          Projects
+        </NavItem>
+        <NavItem type="link" href="https://linkedin.com/in/nourmanhajar">
+          <LinkedInIcon className="h-3.5 my-auto" />
+        </NavItem>
+        <NavItem type="link" href="https://github.com/masnormen">
+          <GitHubIcon className="h-3.5 my-auto" />
+        </NavItem>
+        <NavItem
           type="button"
-          onClick={() => setMenuShown(!isMenuShown)}
-          className="my-4 flex cursor-pointer flex-row justify-center rounded-2xl border border-stroke bg-blank px-4 py-3 text-sm font-semibold uppercase text-stroke shadow-lg duration-500 hover:bg-stroke hover:text-background hover:shadow-secondary md:hidden"
+          onClick={() => {
+            const themeNames = Object.keys(THEMES) as (keyof typeof THEMES)[];
+            const nextThemeIndex =
+              (themeNames.indexOf(theme) + 1) % themeNames.length;
+            setTheme(themeNames[nextThemeIndex]!);
+          }}
         >
-          {isMenuShown ? 'Close' : 'Menu'}
-        </button>
-
-        <div
-          onClick={() => setMenuShown(false)}
-          className={cn(
-            !isMenuShown ? 'hidden md:flex' : 'flex',
-            'h-[calc(100vh-78px)] w-full flex-col items-center justify-center gap-8 space-y-2 bg-black/20 px-6 py-4 transition md:h-fit md:w-full md:max-w-(--breakpoint-md) md:flex-row md:items-stretch md:justify-between md:gap-0 md:space-y-0 md:bg-transparent md:px-0',
-          )}
-        >
-          <NavigationSection
-            onClick={() => setMenuShown(false)}
-            className="bg-blank"
-          >
-            <NavigationItem href="/">nourman.com</NavigationItem>
-          </NavigationSection>
-
-          <NavigationSection
-            onClick={() => setMenuShown(false)}
-            className="bg-secondary md:absolute md:left-1/2 md:-translate-x-1/2"
-          >
-            <NavigationItem href="/#blog">Blog</NavigationItem>
-            <NavigationItem href="/#works">Works</NavigationItem>
-            <NavigationItem
-              onClick={() =>
-                setTheme(
-                  themeNames[
-                    (themeNames.indexOf(theme) + 1) % themeNames.length
-                  ] as string,
-                )
-              }
-            >
-              ({THEMES[theme as keyof typeof THEMES]})
-            </NavigationItem>
-          </NavigationSection>
-
-          <NavigationSection
-            onClick={() => setMenuShown(false)}
-            className="bg-tertiary"
-          >
-            <NavigationItem
-              aria-label="LinkedIn"
-              isNewTab
-              className="text-black"
-              href="https://linkedin.com/in/nourmanhajar"
-            >
-              <LinkedInIcon className="h-5" />
-            </NavigationItem>
-            <NavigationItem
-              aria-label="GitHub"
-              isNewTab
-              className="text-black"
-              href="https://github.com/masnormen"
-            >
-              <GitHubIcon className="h-5" />
-            </NavigationItem>
-          </NavigationSection>
-        </div>
-      </nav>
-    </>
+          🔄🎨
+        </NavItem>
+      </NavigationSection>
+    </nav>
   );
 }

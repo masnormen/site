@@ -4,10 +4,7 @@ import { MDXSubstitution } from '@/components/posts/mdx-substitution';
 import { TableOfContents } from '@/components/posts/toc';
 import { useInViewport } from '@/hooks/use-in-viewport';
 import { getPostBySlug, getProjectBySlug } from '@/services/posts';
-import gfmCss from '@/styles/gfm.css?url';
-import shikiCss from '@/styles/shiki.css?url';
 import type { ThumbnailProps } from '@/types/post';
-import { normalizeCssUrl } from '@/utils/normalize-css-url';
 import Comments from '@giscus/react';
 import { Link, createFileRoute, notFound } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/start';
@@ -48,23 +45,10 @@ export const Route = createFileRoute('/$contentType/$slug')({
     if (!project) throw notFound();
     return project;
   },
-  head: () => ({
-    links: [
-      {
-        rel: 'stylesheet',
-        href: normalizeCssUrl(gfmCss),
-        suppressHydrationWarning: true,
-      },
-      {
-        rel: 'stylesheet',
-        href: normalizeCssUrl(shikiCss),
-        suppressHydrationWarning: true,
-      },
-    ],
-  }),
 });
 
 function Post() {
+  const params = Route.useParams();
   const content = Route.useLoaderData();
 
   const [PostContent, Thumbnail]: [
@@ -91,8 +75,17 @@ function Post() {
   return (
     <>
       <Section className="border-tertiary border-t-2 border-dashed bg-blank px-8 gap-8 md:gap-10">
+        <Link to="/" className="link text-lg">
+          ← Home
+        </Link>
         <div className="w-full h-full flex flex-col mx-auto max-w-4xl gap-8">
-          <Link to="/" className="text-center inline">
+          <Link
+            to="/$contentType/$slug"
+            params={{
+              ...params,
+            }}
+            className="text-center inline"
+          >
             <h1 className="inline flex-col text-center items-center rounded-3xl bg-quaternary decoration-clone px-6 py-0.5 font-headline text-[8vw] !leading-[1.4] tracking-wide text-stroke drop-shadow-[5px_5px_0px_var(--theme-tertiary)] transition-all hover:drop-shadow-[5px_5px_0px_var(--theme-highlight)] sm:text-5xl sm:!leading-[1.38]">
               {content.metadata.title}
             </h1>
