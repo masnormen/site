@@ -1,21 +1,32 @@
-import path from 'path';
+// import path from 'path';
 import { defineConfig } from '@tanstack/start/config';
-import fg from 'fast-glob';
+// import fg from 'fast-glob';
 import rollupPluginCopy from 'rollup-plugin-copy';
 import viteRestart from 'vite-plugin-restart';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
-const CONTENTS_PATH = `${process.cwd()}/app/contents` as const;
+// const BLOG_CONTENTS_PATH = `${process.cwd()}/app/contents/blog` as const;
+// const PROJECT_CONTENTS_PATH = `${process.cwd()}/app/contents/blog` as const;
 
-const getPostSlugList = async () => {
-  return fg
-    .globSync(path.resolve(CONTENTS_PATH, '**', 'index.mdx'))
-    .map((indexMdxPath) => {
-      const postFolder = path.parse(indexMdxPath).dir;
-      const slug = postFolder.split('/').pop()!;
-      return slug;
-    });
-};
+// const getPostSlugList = async () => {
+//   return fg
+//     .globSync(path.resolve(BLOG_CONTENTS_PATH, '**', 'index.mdx'))
+//     .map((indexMdxPath) => {
+//       const postFolder = path.parse(indexMdxPath).dir;
+//       const slug = postFolder.split('/').pop()!;
+//       return slug;
+//     });
+// };
+
+// const getProjectSlugList = async () => {
+//   return fg
+//     .globSync(path.resolve(PROJECT_CONTENTS_PATH, '**', 'index.mdx'))
+//     .map((indexMdxPath) => {
+//       const postFolder = path.parse(indexMdxPath).dir;
+//       const slug = postFolder.split('/').pop()!;
+//       return slug;
+//     });
+// };
 
 export default defineConfig({
   server: {
@@ -33,15 +44,18 @@ export default defineConfig({
         }),
       ],
     },
-    preset: 'node-server',
-    hooks: {
-      'prerender:routes': async (routes) => {
-        const postsSlugs = await getPostSlugList();
-        for (const slug of postsSlugs) {
-          routes.add(`/blog/${slug}`);
-        }
-      },
-    },
+    preset: 'vercel',
+    // hooks: {
+    //   'prerender:routes': async (routes) => {
+    //     const postsSlugs = await Promise.all([
+    //       getPostSlugList(),
+    //       getProjectSlugList(),
+    //     ]);
+    //     for (const slug of postsSlugs.flat()) {
+    //       routes.add(`/blog/${slug}`);
+    //     }
+    //   },
+    // },
     prerender: {
       routes: ['/'],
       crawlLinks: true,
