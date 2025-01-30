@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Disallow: /noindex/*
-
-# Host
-Host: https://nourman.com
-
-# Sitemaps
-Sitemap: https://nourman.com/sitemap.xml
