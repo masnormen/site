@@ -1,10 +1,8 @@
 import { z } from 'zod';
 
 const server = z.object({
-  NODE_ENV: z.enum(['development', 'test', 'production']),
-  POSTS_NOTION_ID: z.string(),
-  WORKS_NOTION_ID: z.string(),
-  REVALIDATE_TOKEN: z.string().optional(),
+  APP_ENV: z.enum(['development', 'production']),
+  SENTRY_DSN: z.string().url(),
 });
 // const serverVars = Object.keys(server.shape) as Array<keyof z.infer<typeof server>>;
 
