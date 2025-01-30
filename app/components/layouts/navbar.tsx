@@ -6,6 +6,7 @@ import { cn } from '@/utils/cn';
 import { Link, type LinkComponentProps } from '@tanstack/react-router';
 import { useWindowScroll } from '@uidotdev/usehooks';
 import { useAtom } from 'jotai';
+import { toast } from 'sonner';
 
 type NavItemProps =
   | ({
@@ -22,7 +23,7 @@ type NavItemProps =
 
 function NavItem({ className: customClassName, ...props }: NavItemProps) {
   const className =
-    'flex rounded-md px-3 py-1.5 text-nowrap whitespace-nowrap text-sm font-semibold font-mono uppercase text-stroke duration-500 hover:bg-stroke hover:text-background';
+    'flex rounded-md px-3 py-1.5 text-nowrap whitespace-nowrap text-sm font-semibold font-mono uppercase text-stroke duration-500 cursor-pointer hover:bg-stroke hover:text-background';
 
   if (props.type === 'button') {
     return (
@@ -44,7 +45,7 @@ function NavItem({ className: customClassName, ...props }: NavItemProps) {
   );
 }
 
-function NavigationSection({
+function NavSection({
   className,
   children,
   ...props
@@ -53,7 +54,7 @@ function NavigationSection({
     <div
       onClick={(e) => e.stopPropagation()}
       className={cn(
-        'flex px-3 flex-row h-min justify-center rounded-2xl border border-dashed border-highlight drop-shadow-[4px_4px_0px_var(--theme-tertiary)] transition-all duration-200 hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)]',
+        'flex px-3 flex-row h-min justify-center rounded-2xl border border-dashed border-highlight drop-shadow-[4px_4px_0px_var(--theme-tertiary)] transition-all duration-200 hover:drop-shadow-[0_0_2px_var(--theme-highlight)]',
         className,
       )}
       {...props}
@@ -70,11 +71,11 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        'fixed bottom-0 left-1/2 -translate-x-1/2 pb-8 z-50 flex justify-center h-min w-min flex-row items-stretch bg-transparent transition-all duration-500',
-        (y ?? 0) < 400 ? 'opacity-0 invisible blur-md' : '',
+        'fixed left-1/2 -translate-x-1/2 pb-8 z-50 flex justify-center h-min w-min flex-row items-stretch bg-transparent transition-all duration-500',
+        (y ?? 0) < 64 ? 'opacity-0 invisible blur-md -bottom-10' : 'bottom-0',
       )}
     >
-      <NavigationSection className="bg-secondary">
+      <NavSection className="bg-secondary">
         <NavItem type="link" to="/">
           Home
         </NavItem>
@@ -97,11 +98,12 @@ export function Navbar() {
             const nextThemeIndex =
               (themeNames.indexOf(theme) + 1) % themeNames.length;
             setTheme(themeNames[nextThemeIndex]!);
+            toast('Theme has been changed!', { id: 'theme-change' });
           }}
         >
           🔄🎨
         </NavItem>
-      </NavigationSection>
+      </NavSection>
     </nav>
   );
 }

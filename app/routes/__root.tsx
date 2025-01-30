@@ -16,6 +16,7 @@ import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { Meta, Scripts } from '@tanstack/start';
 import { useAtomValue } from 'jotai';
 import { type ReactNode, useEffect } from 'react';
+import { Toaster } from 'sonner';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -132,6 +133,7 @@ function RootComponent() {
         {import.meta.env.DEV && (
           <TanStackRouterDevtools initialIsOpen={false} />
         )}
+        <Toaster position="top-center" />
         <SVGFilters />
         <ScrollRestoration scrollBehavior="instant" />
       </QueryClientProvider>

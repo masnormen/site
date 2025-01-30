@@ -81,6 +81,7 @@ function Post() {
         <div className="w-full h-full flex flex-col mx-auto max-w-4xl gap-8">
           <Link
             to="/$contentType/$slug"
+            preload={false}
             params={{
               ...params,
             }}

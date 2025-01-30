@@ -86,7 +86,7 @@ export function Hero() {
         </div>
       </div>
 
-      <Link to="/" className="static">
+      <Link to="/" className="static text-transparent">
         <div className="static text-center shadow-2xs drop-shadow-md duration-300">
           <h1 className="relative isolate flex flex-col items-center text-center font-headline text-[min(14cqw,4.5rem)] text-background tracking-wide drop-shadow-[5px_5px_0px_var(--theme-tertiary)] transition-all hover:drop-shadow-[5px_5px_0px_var(--theme-highlight)]">
             <PlanetRing />

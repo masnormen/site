@@ -36,6 +36,7 @@
     "react-innertext": "^1.1.5",
     "remark-gfm": "^4.0.0",
     "shiki": "^2.1.0",
+    "sonner": "^1.7.3",
     "tailwind-merge": "^2.6.0",
     "twoslash": "^0.2.12",
     "vinxi": "^0.5.1",
