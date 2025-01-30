@@ -1,0 +1,194 @@
+---
+title: "Module Federation for Frontend: Why and How to Start?"
+description: What is Module Federation and why you'd want to implement one
+createdAt: "2024-06-24"
+tags:
+  - frontend
+  - architecture
+---
+export * from './thumbnail';
+
+You might have heard of microfrontend architecture. Module federation is an architectural pattern for the decentralization of JavaScript applications (similar to microservices on the server-side) and is usually a complement for microfrontend architecture
+
+By sharing code and resources among multiple JS (usually frontend) project, it allows you to build, test and deploy a lot of applications independently. This can improve the productivity of engineers within a multiple-team/multiple-module context and might be desirable.
+
+# Why? A Case of “Islands”
+
+<img style={{width: "576px"}} src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F20924efa-3776-4837-8776-d57d5bee2a73%2FScreenshot_2024-06-24_at_22.16.29.png?table=block&id=b5a0bd4a-15dd-42de-b641-a0a6c9f740f7&cache=v2"/>
+*An e-commerce homepage*
+
+Let’s imagine a scenario. You are a technical architect or principal engineer of an e-commerce website. You have 3 main squads with their own frontend teams. Your homepage looks like the picture above. The user might see one solid web page, but they are actually **“islands”** of components with 3 teams maintaining different sections of the website. How would you plan the architecture of the frontend?
+
+## Why You Might Not Want: Monolith
+
+Managing this with a monolith architecture would be difficult.
+
+- Teams might have different standards, preference of tech stack, etc
+- Agreeing to a unified everything might slow teams down.
+- Code would be tightly coupled between teams.
+- Project size would get very large, very fast.
+- Build times would be slower over time and maintenance can be a PITA.
+- Build, test, and deployment process must be coordinated and synchronized heavily between teams to prevent disaster from happening.
+
+With a large enough size and number of teams, it’s simply infeasible to use the monolith architecture.
+
+## Why You Might Not Want: Classic Microfrontend
+
+Some organizations might implement the microfrontend architecture. Using a monorepo, the project structure would be something like this:
+
+```
+📁 normen-shop/
+├── 📁 modules/
+│   ├── 📁 mf-digital-goods/
+│   ├── 📁 mf-platform/
+│   └── 📁 mf-promo/
+├── 🟡 nx.json
+└── 🟡 package.json
+```
+
+- Each team’s code live within the `modules/mf-*` folder.
+- Each team might have their own standards, code structure, etc.
+- The platform/core team still provides “the shell” or a container for the application which imports the components and hooks from other team’s project into the user-facing page. They need to be combined somewhere to provide a complete and unified web experience for the users.
+
+Take a look at an example for our homepage in the `mf-platform` project:
+
+```tsx title="modules/mf-platform/pages/index.tsx"
+// @noErrorValidation
+// @filename: ambient.d.ts
+declare module "react"
+declare module '~/components/Navbar' {
+    export default any
+}
+declare module '@mf-promo/Ticker' {
+    export default any
+}
+// @filename: index.tsx
+import React from "react"
+// ---cut---
+import Navbar from "~/components/Navbar"
+import Ticker from "@mf-promo/Ticker";
+
+function Homepage() {
+  return (
+    <>
+      <Navbar />
+      <Ticker />
+  //   ^^^^^^
+    </>
+  )
+}
+```
+
+It is pretty neat, but still has some downsides. For example, if the Promo team wants to change something in the ticker component:
+
+- Promo team updates their `Ticker` component in the package `mf-promo`
+- However it can’t be deployed on its own.
+- Because the `Ticker` component is imported by `mf-platform`, Promo team would need to notify the Platform/Core team to rebuild `mf-platform` to reflect the changes on the website.
+- Ultimately, we still has the same problem as before: code/modules from all team needs to be built everytime there’s an update. (Depending on your bundling strategy, this might not be the case)
+
+The build, test, and deployment process is still coupled between teams. This also applies for the other teams. Not saying it is bad, but certainly the process can be improved.
+
+## Why You’d Want: Module Federation
+
+Module federation can be used when you already implement a classic microfrontend architecture. And indeed the only difference is, instead of importing directly from `mf-promo`, you just need to use a “remote import”. That is, remotely importing/loading a component from another host/instance, and then using it yourself.
+
+> Module Federation website: https://module-federation.io/
+
+Take a look at this code for our homepage in the `mf-platform` project with module federation. We have set up imports from `@mf-promo` to be imported from other project using federation:
+
+```tsx title="modules/mf-platform/pages/index.tsx"
+// @noErrorValidation
+// @filename: ambient.d.ts
+declare module "react"
+declare module '~/components/Navbar' {
+    export default any
+}
+declare module '@mf-promo/Ticker' {
+    export default any
+}
+// @filename: index.tsx
+import React from "react"
+// ---cut---
+import Navbar from "~/components/Navbar"
+import Ticker from "@mf-promo/Ticker";
+//                  ^^^^^^^^^
+
+function Homepage() {
+  return (
+    <>
+      <Navbar />
+      <Ticker />
+    </>
+  )
+}
+```
+
+Huh? That’s the same code with the Classic Microfrontend code! What’s the difference?
+
+Here the Ticker is not actually imported directly from the `mf-promo` package, but from a **remote host** running a separate instance. The secret lies in how the bundler for Module Federation works. The bundler will “translate” the import above into a remote import on build time.
+
+Using federation, the code will roughly translates to this code: (not real code)
+
+
+```tsx title="modules/mf-platform/pages/index.tsx"
+// @noErrorValidation
+// @filename: ambient.d.ts
+declare module "react"
+declare module "https://*"
+declare module '~/components/Navbar' {
+    export default any
+}
+declare module '@mf-promo/Ticker' {
+    export default any
+}
+// @filename: index.tsx
+import React from "react"
+// ---cut---
+import Navbar from "~/components/Navbar"
+
+const Ticker = React.lazy(
+  () => import("https://promo-team.acme.com/ticker-component.js")
+)
+
+function Homepage() {
+  return (
+    <>
+      <Navbar />
+      <Ticker />
+    </>
+  )
+}
+```
+
+Here are some advantages of it:
+
+- Using module federation, we can dynamically load the component from other remote host. This means, Promo team’s can deploy the change build, test, and deploy individually, and the changes would be reflected instantly on the Platform/Core team project.
+- The Promo team can “expose” the components which they want the Platform team to show. You might say this is kind of similar with an *Island Architecture*.
+- You can also expose a full, single web page, not just components. You can even expose a regular JS function. Everything bundleable, really.
+- They can also make their own separate site for their own use (`https://promo-team.acme.com`).
+- Promo team can build, test, and deploy their changes independently from the Platform team. Changes in the `Ticker` component can be shipped instantly without needing to rebuild the entire `mf-platform`.
+
+With this, you can build a reliable, loosely-coupled ecosystem with multi-teams/multi modules deployment.
+
+<img style={{width: "576px"}} src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2Fc00e9df8-9ad5-412f-ace6-52c054ca65da%2FScreenshot_2024-06-24_at_23.37.18.png?table=block&id=509335d5-60f6-4273-8366-b55e32c1ca9f&cache=v2"/>
+*An e-commerce homepage*
+
+# How to Start Using Module Federation
+
+If you want to start using Module Federation, there are a few options:
+
+## Using Federation Runtime directly
+
+Supports registering shared dependencies at runtime, dynamically registering and loading remote modules, and can use the plugin system.
+
+## Using Module Federation as a Compiler/Bundler Plugin
+
+The majority of module federation project is probably using this option. You can use Module Federation with Webpack 5, Rspack, Vite, etc. You can read about the difference here.
+
+Note that Module Federation is framework-agnostic. So you may use a wide range of variety of frameworks, like vanilla React with Rsbuild, Next.js, and Angular. Although you can, it’s not recommended to mix two codes of different framework (ex: React-Angular).
+
+> Unfortunately, Module Federation support for Next.js has been discontinued. But they are building something new so stay tuned.
+
+# Verdict
+
+Module Federation is a very promising for organizations with large teams and large modules of frontend code. Even more so if each team has their own different capacity and velocity in development. It frees each team from being co-dependent on each other and allows teams to build, test, and deploy independently while still ensuring a consistent, solid, and unified user experience for end users. Hope this post helps!

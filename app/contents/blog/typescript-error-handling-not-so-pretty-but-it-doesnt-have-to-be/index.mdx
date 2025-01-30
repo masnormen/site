@@ -1,0 +1,211 @@
+---
+title: "TypeScript Error Handling: Not So Pretty, but It Doesn't Have to Be"
+description: Borrowing Go's style of error handling in TypeScript
+createdAt: "2023-10-14"
+tags:
+  - typescript
+---
+export * from './thumbnail';
+
+`try` / `catch` syntax is quite the norm for handling errors in most of C-style programming languages. However, it can become difficult to maintain readability in a codebase already filled with `for`, `if`, `const`, and `function` blocks. `try` / `catch` syntax also forces you to make an extra indentation. It can lead to a deeply nested code that is difficult to read and maintain.
+
+# So what?
+
+Imagine you're building an application, and has to use a library which provides a `getTLD()` function.
+
+```ts title="node_modules/some-library/src/getTLD.ts"
+export function getTLD(urlStr: string): string {
+  const url = new URL(urlStr)
+  const tld = url.hostname.split(".").at(-1)
+
+  // Will throw error when URL is an IP address and doesn't contain real TLD
+  if (!tld || /^\d+$/.test(tld)) throw Error("Not a domain")
+  return tld
+}
+```
+
+Oh, sure, I could just wrap the callsite in a `try` / `catch` and do something when the URL isn't a domain. But:
+
+- It may seem like `getTLD()` can only throw one type of error (`Not a domain`), but in reality, a `TypeError` can also be thrown by `new URL()` when `urlStr` is not a valid URL. So it's not always clear what type of error might be thrown 🤷
+- Even if we read the code carefully and then use a `try` / `catch` when calling it, manually typing the error value is needed, because by default it's `any` or `unknown` (depends on your `tsconfig.json`)
+
+## Reading through Spaghetti code
+
+Another example: here we have three operations which we need to wrap with `try` / `catch` so we can produce different error message for each operations.
+
+```ts title="index.ts"
+function fetch(): Data { return {name: ""} }
+function generateData(str: string): DataJson { return {name: "", json: ()=> "value"} }
+type Data = {name:string};
+type DataJson = {name:string; json(): "value"};
+// ---cut---
+async function doSomething() {
+  let data: Data;
+  try {
+    data = await fetch()
+  } catch(e) {
+    throw Error("Error when fetching data")
+  }
+
+  let someMoreData: DataJson;
+  try {
+    someMoreData = await generateData(data.name)
+  } catch(e) {
+    throw Error("Error when generating data")
+  }
+
+  try {
+    return await someMoreData.json()
+  } catch(e) {
+    throw Error("Error when parsing someMoreData")
+  }
+}
+```
+
+- Great. We can handle all the different types of error here. But at the cost of more nested sections and therefore losing a little bit of readability.
+- Same as the 1st example, when `catch`\-ing something, the type of `e` is also always `any` or `unknown`.
+
+So there are three problems:
+- Ambiguity in whether or not a function can throw an Error
+- Ambiguity in what type of error a function can throw
+- Slightly less readability
+
+# Copying the Gopher's way...
+
+## Creating a "Safe" executor
+
+We will borrow the Go's style of error handling in TS. We begin with creating a `Result` type, which is a discriminated union of two tuples, one containing only the successful result, and one with only the error. And then we create a `safe()` function. The argument for the function needs to be a function, because else we can't catch the error.
+
+```ts title="utils/safe.ts"
+export type Result<T, E extends Error> =
+  | [T, null]
+  | [null, E];
+
+export async function safe<T, E extends Error = Error>(
+  fn: (...args: any[]) => T | Promise<T>
+): Promise<Result<T, E>> {
+  try {
+    const data = await fn();
+    return [data, null];
+  } catch (e) {
+    return [null, e as E];
+  }
+}
+```
+
+The function is pretty simple as it’s basically just a `try` / `catch` wrapper with extra steps. But we can simplify error handling, narrow down types effectively, and achieve cleaner code. We only need `if`s. If needed, we can also infer the data and error result type, and/or cast them.
+
+The `doSomething()` function can be updated as follows.
+
+```ts title="index.ts"
+// @noErrors
+export type Result<T, E extends Error> =
+  | [T, null]
+  | [null, E];
+
+export async function safe<T, E extends Error = Error>(
+  fn: (...args: any[]) => T | Promise<T>
+): Promise<Result<T, E>> {
+  try {
+    const data = await fn();
+    return [data, null];
+  } catch (e) {
+    return [null, e as E];
+  }
+}
+function fetch(): Data { return {name: ""} }
+function generateData(str: string): DataJson { return {name: "", json: ()=> "value"} }
+type Data = {name:string};
+type DataJson = {name:string; json(): "value"};
+// ---cut---
+async function doSomething() {
+  const [data, err1] = await safe(() => fetch(...))
+  if (err1) {
+    throw Error("Error when fetching data")
+  }
+
+  const [someMoreData, err2] = await safe(() => generateData(data.name))
+//                                                           ^?
+  if (err2) {
+    throw Error("Error when generating data")
+  }
+
+  const [result, err3] = await safe(() => someMoreData.json())
+//                                        ^?
+  if (err3) {
+    throw Error("Error when parsing someMoreData")
+  }
+
+  return result
+//       ^?
+}
+```
+
+Looks a lot like Go 🦫
+
+## Casting Types Manually
+
+```ts title="fetch-data.ts"
+// @noErrorValidation
+export type Result<T, E extends Error> =
+  | [T, null]
+  | [null, E];
+
+export async function safe<T, E extends Error = Error>(
+  fn: (...args: any[]) => T | Promise<T>
+): Promise<Result<T, E>> {
+  try {
+    const data = await fn();
+    return [data, null];
+  } catch (e) {
+    return [null, e as E];
+  }
+}
+type User = { id: string; name: string; }
+type AxiosResponse<T> = { data: T }
+type AxiosError = Error;
+function axios(s) { return s as any; }
+// ---cut---
+// Another use case for Axios, response typing + error handling at once.
+
+// ⚠️ Don't actually do this.
+// ⚠️ Please use library like Zod/Typebox instead to validate data.
+
+const [res, err] = await safe<AxiosResponse<User>, AxiosError>(() => axios("..."))
+
+if (err) {
+  console.log(err.message)
+//            ^?
+} else {
+  // ...
+  console.log(res.data)
+//            ^?
+}
+```
+
+## Why bother?
+
+- Discriminated union type `Result` makes narrowing down the types easier and let us use Go's style of error handling while still being typesafe.
+- Returning a tuple enables us to do declaration and assignment in the same line. It also enables us to destructure it and gives flexibility for naming.
+
+```ts
+// @noErrorValidation
+// @noErrors
+const [name_it_whatever, you_like] = await safe(...)
+```
+
+- `safe` is an async function so that it can accept both synchronous and asynchronous function without trouble.
+- Now our code is much more readable than using a lot of `try` / `catch` clauses. 🥳
+
+But even then, please note that this is by no means a "best practice". Even I would use the traditional `try` / `catch` when working with simpler stuff. This is just an attempt for exploring another style of error handling. It sure helps to make a complex logic to be more readable, especially when working with poorly documented third-party libraries.
+
+# Update as of 2024: ECMAScript *Safe Assignment Operator*
+
+The new ECMAScript Safe Assignment Operator Proposal (`?=`) is coming, and the usage is pretty much similar to the example we've tried so far. This new native syntax makes our code cleaner and more efficient.
+
+```ts
+// @noErrorValidation
+// @noErrors
+const [error, data] ?= await someAsyncFunction();
+if (error) handle(error);
+```

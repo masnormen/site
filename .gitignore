@@ -1,0 +1,21 @@
+node_modules
+
+# We use pnpm
+package-lock.json
+yarn.lock
+
+.DS_Store
+.cache
+.env
+.vercel
+.output
+.vinxi
+
+/build/
+/api/
+/server/build
+/public/build
+.vinxi
+
+.env.local
+.env.*.local

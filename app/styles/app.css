@@ -1,0 +1,319 @@
+@import "tailwindcss";
+
+@config '../../tailwind.config.ts';
+
+@theme {
+  --breakpoint-1xxl: 85.375rem;
+}
+
+@layer base {
+  :root {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  @font-face {
+    font-family: Headline;
+    src: url(/assets/fonts/PPEditorialOld.otf) format("opentype");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Geist";
+    font-style: normal;
+    font-weight: 200 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/geist/v1/gyByhwUxId8gMEwSGFWNOITddY4.woff2)
+      format("woff2");
+    unicode-range:
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  @font-face {
+    font-family: "Geist";
+    font-style: normal;
+    font-weight: 200 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/geist/v1/gyByhwUxId8gMEwcGFWNOITd.woff2)
+      format("woff2");
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-weight: 200 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/geistmono/v1/or3nQ6H-1_WfwkMZI_qYFrkdmhHkjkotbA.woff2)
+      format("woff2");
+    unicode-range:
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  @font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-weight: 200 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/geistmono/v1/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2)
+      format("woff2");
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: emoji;
+    src: local("Apple Color Emoji"), local("Android Emoji"),
+      local("Segoe UI Emoji"), local("NotoColorEmoji"),
+      local("Noto Color Emoji"), local("Segoe UI Symbol"),
+      local("Android Emoji"), local("EmojiSymbols"), local("Symbola");
+    unicode-range: U+1F300-1F5FF, U+1F600-1F64F, U+1F680-1F6FF, U+2600-26FF;
+  }
+
+  :root {
+    --font-headline: "Headline";
+    --font-mono: "Geist Mono";
+    --font-main: "Geist";
+  }
+
+  [data-theme="peachy"] {
+    --theme: peachy;
+    --theme-background: #fff6f0;
+    --theme-secondary: #e9b9ba;
+    --theme-tertiary: #caf0c3;
+    --theme-quaternary: #fbf5ee;
+    --theme-highlight: #ff8ba7;
+    --theme-stroke: #4e3d4e;
+    --theme-blank: #fcfcfc;
+  }
+
+  [data-theme="deuteranomaly"] {
+    --theme: deuteranomaly;
+    --theme-background: #f6f0ec;
+    --theme-secondary: #ffd8c5;
+    --theme-tertiary: #face83;
+    --theme-quaternary: #ffedd5;
+    --theme-highlight: #24a8a0;
+    --theme-stroke: #003313;
+    --theme-blank: #f7f5f2;
+  }
+
+  [data-theme="seasalt"] {
+    --theme: seasalt;
+    --theme-background: #efede4;
+    --theme-secondary: #a1c9c9;
+    --theme-tertiary: #bae8e8;
+    --theme-quaternary: #ffedd5;
+    --theme-highlight: #dca342;
+    --theme-stroke: #272343;
+    --theme-blank: #fffffe;
+  }
+
+  @supports (color: color(display-p3 1 1 1)) {
+    [data-theme="peachy"] {
+      --theme-background: color(display-p3 1.0 0.964706 0.941176 / 1.0);
+      --theme-secondary: color(display-p3 0.913725 0.72549 0.729412 / 1.0);
+      --theme-tertiary: color(display-p3 0.792157 0.941176 0.764706 / 1.0);
+      --theme-quaternary: color(display-p3 0.984314 0.960784 0.933333 / 1.0);
+      --theme-highlight: color(display-p3 1.0 0.545098 0.654902 / 1.0);
+      --theme-stroke: color(display-p3 0.305882 0.239216 0.305882 / 1.0);
+      --theme-blank: color(display-p3 0.988235 0.988235 0.988235 / 1.0);
+    }
+
+    [data-theme="deuteranomaly"] {
+      --theme-background: color(display-p3 0.964706 0.941176 0.92549 / 1.0);
+      --theme-secondary: color(display-p3 1.0 0.847059 0.772549 / 1.0);
+      --theme-tertiary: color(display-p3 0.980392 0.807843 0.513725 / 1.0);
+      --theme-quaternary: color(display-p3 1.0 0.929412 0.835294 / 1.0);
+      --theme-highlight: color(display-p3 0.141176 0.658824 0.627451 / 1.0);
+      --theme-stroke: color(display-p3 0.0 0.2 0.07451 / 1.0);
+      --theme-blank: color(display-p3 0.968627 0.960784 0.94902 / 1.0);
+    }
+
+    [data-theme="seasalt"] {
+      --theme-background: color(display-p3 0.937255 0.929412 0.894118 / 1.000000);
+      --theme-secondary: color(display-p3 0.631373 0.788235 0.788235 / 1.0);
+      --theme-tertiary: color(display-p3 0.729412 0.909804 0.909804 / 1.0);
+      --theme-quaternary: color(display-p3 1.0 0.929412 0.835294 / 1.0);
+      --theme-highlight: color(display-p3 0.862745 0.639216 0.258824 / 1.0);
+      --theme-stroke: color(display-p3 0.152941 0.137255 0.262745 / 1.0);
+      --theme-blank: color(display-p3 1.0 1.0 0.996078 / 1.0);
+    }
+  }
+
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  *::selection {
+    background-color: var(--theme-secondary);
+    color: var(--theme-stroke);
+  }
+
+  :target ~ .notion-h-title {
+    animation: pulse-link 1s cubic-bezier(0.4, 0, 0.6, 1) 2;
+  }
+
+  @keyframes pulse-link {
+    50% {
+      opacity: 0.7;
+      background-color: var(--theme-tertiary);
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: var(--theme-quaternary);
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #555;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--theme-tertiary);
+  }
+
+  /* Backgrounds */
+
+  .bg-pattern-wavy {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='18' viewBox='0 0 100 18'%3E%3Cpath fill='currentColor' fill-opacity='0.075' d='M61.82 18c3.47-1.45 6.86-3.78 11.3-7.34C78 6.76 80.34 5.1 83.87 3.42 88.56 1.16 93.75 0 100 0v6.16C98.76 6.05 97.43 6 96 6c-9.59 0-14.23 2.23-23.13 9.34-1.28 1.03-2.39 1.9-3.4 2.66h-7.65zm-23.64 0H22.52c-1-.76-2.1-1.63-3.4-2.66C11.57 9.3 7.08 6.78 0 6.16V0c6.25 0 11.44 1.16 16.14 3.42 3.53 1.7 5.87 3.35 10.73 7.24 4.45 3.56 7.84 5.9 11.31 7.34zM61.82 0h7.66a39.57 39.57 0 0 1-7.34 4.58C57.44 6.84 52.25 8 46 8S34.56 6.84 29.86 4.58A39.57 39.57 0 0 1 22.52 0h15.66C41.65 1.44 45.21 2 50 2c4.8 0 8.35-.56 11.82-2z'%3E%3C/path%3E%3C/svg%3E");
+  }
+
+  /* Atomic components */
+
+  .link {
+    color: var(--theme-highlight);
+    -webkit-text-decoration-color: var(--theme-highlight);
+    text-decoration: underline var(--theme-highlight);
+    text-decoration-color: var(--theme-highlight);
+    text-underline-offset: 0.15em;
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+    box-shadow: inset 0 0em transparent, inset 0 0em var(--theme-secondary);
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    width: auto;
+  }
+
+  .link:hover {
+    color: var(--theme-stroke);
+    box-shadow: inset 0 0em transparent, inset 0 -1.1em var(--theme-tertiary);
+  }
+
+  .filter-gooey {
+    filter: url(#gooey);
+  }
+
+  .filter-noisy {
+    filter: url(#noisy);
+  }
+
+  .filter-noisier {
+    filter: url(#noisier);
+  }
+
+  .theme-transitioning * {
+    transition-duration: 500ms;
+    transition-property: color, background-color, border-color, box-shadow,
+      filter, fill, stroke;
+  }
+
+  @keyframes spin-clockwise {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-clockwise {
+    animation: spin-clockwise var(--spin-speed, 30s) linear infinite;
+  }
+
+  @keyframes spin-counterclockwise {
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  .animate-spin-counterclockwise {
+    animation: spin-counterclockwise var(--spin-speed, 30s) linear infinite;
+  }
+
+  @keyframes spin-orbit {
+    0% {
+      transform: rotateX(-75deg) rotateZ(0);
+    }
+    100% {
+      transform: rotateX(-75deg) rotateZ(360deg);
+    }
+  }
+  .animate-spin-orbit {
+    transform-origin: center center;
+    animation: spin-orbit var(--spin-speed, 30s) linear infinite;
+  }
+
+  @keyframes bounce-stopmotion {
+    0%,
+    100% {
+      transform: translateY(-8%)
+        translate(var(--tw-translate-x), var(--tw-translate-y))
+        rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+    25% {
+      transform: translateY(0%)
+        translate(var(--tw-translate-x), var(--tw-translate-y))
+        rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+    50% {
+      transform: translateY(8%)
+        translate(var(--tw-translate-x), var(--tw-translate-y))
+        rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+    75% {
+      transform: translateY(0%)
+        translate(var(--tw-translate-x), var(--tw-translate-y))
+        rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+  }
+  .animate-bounce-stopmotion {
+    animation: bounce-stopmotion 1s cubic-bezier(1, -1, 0, 2) infinite;
+  }
+}
+
+@layer components {
+  @keyframes wiggle-in-place {
+    0%,
+    100% {
+      transform: rotate(3deg);
+    }
+    50% {
+      transform: rotate(-3deg);
+    }
+  }
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: translateY(-1%) rotate(-2deg) translateX(-1%);
+    }
+    50% {
+      transform: translateY(1%) rotate(2deg) translateX(0);
+    }
+  }
+}
+
+@utility animate-wiggle {
+  animation: wiggle 3s linear infinite;
+}
+@utility animate-wiggle-in-place {
+  animation: wiggle-in-place 3s linear infinite;
+}

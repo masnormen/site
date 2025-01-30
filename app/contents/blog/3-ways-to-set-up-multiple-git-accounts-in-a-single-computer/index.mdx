@@ -1,0 +1,253 @@
+---
+title: 3 Ways to Set Up Multiple Git Accounts in a Single Computer
+description: Managing multiple Git credentials with ease
+createdAt: "2021-11-24"
+tags:
+  - git
+---
+export * from './thumbnail';
+
+Developers around the world is probably already familiar with Git and the most popular Git platform, GitHub. As a developer, I have my own personal GitHub account. But oftentimes, my workplace requires me to have a work-dedicated account.
+
+On my laptop, I set up my work account first, and everything works flawlessly. When I want to switch my work account to my personal account, Git seems to only support having one account in one machine.
+
+You have to add and remove the GitHub SSH keys for each account manually when you want to switch. I searched for solutions on the internet. But from what I read, it seems that sometimes those solutions work and sometimes they don't.
+
+I tried using GitHub Desktop (yeah, I'm that desperate) but it doesn't support this feature yet. Even the GitHub team seems to intentionally leave this issue unsolved. Why though!?
+
+> https://github.com/desktop/desktop/issues/3707
+
+In the end, I found 3 ways to use multiple Git account in one computer. First, you need to configure your accounts.
+
+# Before you start
+
+## Add your first GitHub Account
+
+In this example, I'll add my work account first, then I'll add my personal Git account. You can follow the guide here:
+
+> https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+I created the SSH key for my work account using ed25519 algorithm, like this:
+
+```sh
+$ ssh-keygen -t ed25519 -C "work@gmail.com"
+```
+
+This will create `id_ed25519` and `id_ed25519.pub` files in your `~/.ssh` directory by default.
+
+And then, copy and add the contents of the public key onto your GitHub account settings, explained by this docs:
+
+> https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+
+## Add your other GitHub Account
+
+For this other account, you roughly need to follow the steps same as above. You should name the generated file with a different name from the first account, though.
+
+I created the key for my personal account using other algorithm, RSA, like this:
+
+```sh
+$ ssh-keygen -t rsa -b 4096 -C "personal@gmail.com"
+```
+
+And then save them with other name. I chose `id_rsa_personal`. Don't forget to add the key into your GitHub account settings.
+
+# Managing multiple credentials
+
+So now I have two SSH keys in my computer and I have added them into GitHub:
+
+- My work GitHub account key (`work@gmail.com`) located at `~/.ssh/id_ed25519`
+- My personal GitHub account key (`personal@gmail.com`) located at `~/.ssh/id_rsa_personal`
+
+Below these section is the many options you can choose on how to use your multiple GitHub accounts.
+
+## Option 1: Switch account based on current working directory
+
+For this option, you have to place all your work-related files in `~/Work` and you need to make sure you don't need to use your work account everywhere else. You'd want to access your project everywhere else using your personal account.
+
+**Editing `.gitconfig`**
+
+We need to create separate Git config files for each account. One for work account and one for personal account:
+
+```ini title="~/.gitconfig.personal"
+[user]
+    name = personal-account
+    email = personal@gmail.com
+[core]
+    sshCommand = ssh -i ~/.ssh/id_rsa_personal -F /dev/null
+```
+
+```ini title="~/.gitconfig.work"
+[user]
+    name = work-account
+    email = work@gmail.com
+[core]
+    sshCommand = ssh -i ~/.ssh/id_ed25519 -F /dev/null
+```
+
+In your `~/.gitconfig`, add something like this:
+
+```ini title="~/.gitconfig"
+[includeIf "gitdir/i:~/"]
+    path = ~/.gitconfig.personal
+[includeIf "gitdir/i:~/Work/"]
+    path = ~/.gitconfig.work
+```
+
+Explanation:
+
+- `.gitconfig.personal` and `.gitconfig.work` tells Git to use your configured name, email, and `sshCommand` to execute when authentication is required. This `sshCommand` adds the corresponding GitHub SSH key everytime we need authentication.
+- The `.gitconfig` tells Git to use the config file `~/.gitconfig.personal` when your current working directory is on your home (`~/`) directory and its subfolders. It also tells Git to use the config file `~/.gitconfig.work` when your current working directory is on `~/Work`. `gitdir/i:` tells Git to read the directory name as case-insensitive.
+
+**Usage**
+
+Just `cd` into your work folder and your account will be switched accordingly when you use Git. See this example:
+
+```sh
+#- Cloning your work account's private repo on home will NOT work
+#- As Git will use your personal account's key in this directory
+
+(~/) $ git clone ssh://git@github.com/work-account/work-private-repo
+Cloning into 'work-private-repo'...
+ERROR: Repository not found.
+fatal: Could not read from remote repository.
+...
+
+#- Cloning your work account's private repo on ~/Works WILL work
+#- As Git will use your work account's key in this directory
+
+(~/) $ cd ~/Works
+(~/Works) $ git clone ssh://git@github.com/work-account/work-private-repo
+Cloning into 'work-private-repo'...
+remote: Enumerating objects: 187, done.
+remote: Counting objects: 100% (187/187), done.
+...
+```
+
+Similarly, if you want to clone a private repo from your personal GitHub account, it will only work if you're on a directory outside of `~/Works`. Easy right?
+
+**Pros**
+- Probably this is the best option for you if you separate your work and personal project files
+
+**Cons**
+- Your account only works on your specified directory. Less "flexibility"
+- Doesn't work well if your work and personal files are messy and scattered everywhere. But c'mon, just tidy it up!
+
+## Option 2: Switch Git account based on custom host
+
+Open the file `~/.ssh/config` and edit it to be like this:
+
+```plaintext
+Host github.com-personal
+  IdentityFile ~/.ssh/id_rsa_personal
+  HostName github.com
+  PreferredAuthentications publickey
+  UseKeychain yes
+  AddKeysToAgent yes
+
+Host github.com-work
+  IdentityFile ~/.ssh/id_ed25519
+  HostName github.com
+  PreferredAuthentications publickey
+  UseKeychain yes
+  AddKeysToAgent yes
+```
+
+Here, we can see the two identity files we created before, under two different hosts. Which means:
+- When accessing `github.com-personal`, use the key `~/.ssh/id_rsa_personal`
+- Otherwise, when accessing `github.com-work`, use the key `~/.ssh/id_ed25519`
+- Add the key to the SSH agent if it's not added yet
+- After doing so, resolve the actual host `github.com`
+
+Git will use different SSH files automatically when you use the corresponding host. You can also add a fallback using `Host *`. Let's say I want to use my personal GitHub account when the URL requested is neither `github.com-work` nor `github.com-personal`, just add this section:
+
+```plaintext
+#- SSH config for fallback (wildcard host)
+Host *
+  IdentityFile ~/.ssh/id_rsa_personal
+  HostName github.com
+  PreferredAuthentications publickey
+  UseKeychain yes
+  AddKeysToAgent yes
+```
+
+**Usage**
+
+When you want to use your personal account:
+
+```sh title="Cloning using personal account"
+$ git clone ssh://git@github.com-personal/personal-account/personal-private-repo
+```
+
+Similarly, if you want to use your work account, do this:
+
+```sh title="Cloning using work account"
+$ git clone ssh://git@github.com-work/work-account/work-private-repo
+```
+
+You will also need to update your origin URLs in your existing repos to use them with your preferred account, like this:
+
+```sh title="Changing remote url"
+#- Change the 'origin' remote's URL
+$ git remote set-url origin ssh://git@github.com-personal/personal-account/personal-private-repo
+
+#- Now it will automatically use your personal account when doing actions in the local repo
+$ git remote -v
+origin	ssh://git@github.com-personal/personal-account/personal-private-repo (fetch)
+origin	ssh://git@github.com-personal/personal-account/personal-private-repo (push)
+```
+
+**Pros**
+- Can be configured per-repository folder
+
+**Cons**
+- You'll have to change all of your repo's remote URLs to use one of the configured host
+- Might accidentally use the wrong account if you forgot to change the host
+
+## Option 3: Manually switch account using command line alias
+
+Note that this option *will only work if* you have done the steps explained in **Option 2** above. If you're not a fan of the options above and just want a really, really simple way to switch account whenever you want it, you can make an alias in your shell to do this.
+
+In your `.bashrc` or `.zshrc` or whatever your shell's config file is, you can add these line:
+
+```sh title=".zshrc"
+alias use-personal-git="ssh-add -D && ssh-add -K ~/.ssh/id_rsa_personal &>/dev/null && ssh -T git@github.com-personal"
+
+alias use-work-git="ssh-add -D && ssh-add -K ~/.ssh/id_ed25519 &>/dev/null && ssh -T git@github.com-office"
+```
+
+Basically we remove all SSH keys and then add the corresponding GitHub SSH key that we want everytime we want to use that account. Then, we call `ssh -T` to make sure the account can be used.
+
+**Usage**
+
+I think it's self-explanatory already. If you want to use your personal account, you run this:
+
+```sh title="Using personal account"
+$ use-personal-git
+All identities removed.
+Hi personal-account! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+Similarly, if you want to use your work account, do this:
+
+```sh title="Using work account"
+$ use-work-git
+All identities removed.
+Hi work-account! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+**Pros**
+
+- Pretty straightforward
+- You use the selected account only when you need it
+
+**Cons**
+
+- Since this also needs #2 to be configured, why not just use #2? Or even better, #1?
+
+# Conclusion
+
+So those are 3 ways you can choose to use multiple Git accounts in a single computer. I hope it can be helpful for newcomers or even experts who need to use two or more accounts in one machine.
+
+I'm not really doing something new here. I actually compiled this article after reading a bunch of Stackoverflow questions and other people's blog posts.
+
+Git is already >15 years old now. It's annoying that things as simple as account switching is not possible without "hacks". I hope 5 years from now this post will become obsolete 🙂
