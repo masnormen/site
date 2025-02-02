@@ -1,6 +1,6 @@
-import { mergeRefs } from '@/utils/merge-refs';
 import { useHover } from '@uidotdev/usehooks';
 import { useEffect, useRef } from 'react';
+import { mergeRefs } from './merge-refs';
 
 export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
   onlyThumbnailHover = false,

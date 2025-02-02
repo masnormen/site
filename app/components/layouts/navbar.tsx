@@ -39,7 +39,6 @@ function NavItem({ className: customClassName, ...props }: NavItemProps) {
   return (
     <Wrapper
       className={cn(className, customClassName)}
-      reloadDocument
       target={'href' in props ? '_blank' : undefined}
       rel={'href' in props ? 'noopener noreferrer' : undefined}
       {...props}

@@ -75,13 +75,12 @@ function Post() {
   return (
     <>
       <Section className="border-tertiary border-t-2 border-dashed bg-blank px-8 gap-8 md:gap-10">
-        <Link to="/" reloadDocument className="link text-lg">
+        <Link to="/" className="link text-lg">
           ← Home
         </Link>
         <div className="w-full h-full flex flex-col mx-auto max-w-4xl gap-8">
           <Link
             to="/$contentType/$slug"
-            reloadDocument
             preload={false}
             params={{
               ...params,

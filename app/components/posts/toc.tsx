@@ -46,7 +46,6 @@ export function TableOfContents({
                   to="/$contentType/$slug"
                   params={{ contentType: params.contentType, slug: post.slug }}
                   hash={toc.id}
-                  reloadDocument
                   preload={false}
                   className="link ml-1 text-sm"
                 >
@@ -61,7 +60,6 @@ export function TableOfContents({
             to="/$contentType/$slug"
             params={{ contentType: params.contentType, slug: post.slug }}
             hash="_top_"
-            reloadDocument
             preload={false}
             className="link hidden 1xxl:inline ml-1 text-sm w-min"
           >

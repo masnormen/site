@@ -28,7 +28,7 @@ import viteTsConfigPaths from 'vite-tsconfig-paths';
 //     });
 // };
 
-const PRESET = 'vercel-static' as string;
+const PRESET = 'node-server' as string;
 
 export default defineConfig({
   server: {
