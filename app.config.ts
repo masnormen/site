@@ -1,9 +1,9 @@
-// import path from 'path';
 import { defineConfig } from '@tanstack/start/config';
-// import fg from 'fast-glob';
 import rollupPluginCopy from 'rollup-plugin-copy';
 import viteRestart from 'vite-plugin-restart';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
+// import path from 'path';
+// import fg from 'fast-glob';
 
 // const BLOG_CONTENTS_PATH = `${process.cwd()}/app/contents/blog` as const;
 // const PROJECT_CONTENTS_PATH = `${process.cwd()}/app/contents/blog` as const;
@@ -28,8 +28,11 @@ import viteTsConfigPaths from 'vite-tsconfig-paths';
 //     });
 // };
 
+const PRESET = 'vercel-static' as string;
+
 export default defineConfig({
   server: {
+    preset: PRESET,
     rollupConfig: {
       plugins: [
         // Needed to copy TypeScript's shipped .d.ts file for Twoslash to work
@@ -37,14 +40,24 @@ export default defineConfig({
           targets: [
             {
               src: 'node_modules/typescript/lib',
-              dest: '.output/server/node_modules/typescript',
+              dest:
+                PRESET === 'vercel'
+                  ? '.vercel/output/functions/__nitro.func/node_modules/typescript'
+                  : '.output/server/node_modules/typescript',
             },
+            ...(PRESET === 'vercel'
+              ? [
+                  {
+                    src: 'app/contents',
+                    dest: '.vercel/output/functions/__nitro.func/app',
+                  },
+                ]
+              : []),
           ],
           hook: 'writeBundle',
         }),
       ],
     },
-    preset: 'vercel',
     // hooks: {
     //   'prerender:routes': async (routes) => {
     //     const postsSlugs = await Promise.all([

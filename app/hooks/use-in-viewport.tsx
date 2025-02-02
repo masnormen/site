@@ -1,6 +1,9 @@
 import { type RefObject, useEffect, useState } from 'react';
 
-export const useInViewport = <T extends HTMLElement = HTMLElement>(ref: RefObject<T | null>, rootMargin?: string) => {
+export const useInViewport = <T extends HTMLElement = HTMLElement>(
+  ref: RefObject<T | null>,
+  rootMargin?: string,
+) => {
   const [isInViewport, setInViewport] = useState(false);
   useEffect(() => {
     const current = ref.current;

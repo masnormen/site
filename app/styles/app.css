@@ -134,7 +134,7 @@
     }
 
     [data-theme="seasalt"] {
-      --theme-background: color(display-p3 0.937255 0.929412 0.894118 / 1.000000);
+      --theme-background: color(display-p3 0.937255 0.929412 0.894118 / 1.0);
       --theme-secondary: color(display-p3 0.631373 0.788235 0.788235 / 1.0);
       --theme-tertiary: color(display-p3 0.729412 0.909804 0.909804 / 1.0);
       --theme-quaternary: color(display-p3 1.0 0.929412 0.835294 / 1.0);
