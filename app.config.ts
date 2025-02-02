@@ -49,7 +49,7 @@ export default defineConfig({
               ? [
                   {
                     src: 'app/contents',
-                    dest: '.vercel/output/functions/__nitro.func',
+                    dest: '.vercel/output/functions/__nitro.func/app',
                   },
                 ]
               : []),
