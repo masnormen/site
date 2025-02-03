@@ -63,4 +63,4 @@ COPY --from=builder /app/tsconfig.json ./tsconfig.json
 
 EXPOSE 3000
 
-CMD ["pnpm", "start"]
+CMD ["node", ".output/server/index.mjs"]

@@ -6,7 +6,6 @@ import { NotFoundComponent } from '@/components/layouts/not-found';
 import appCss from '@/styles/app.css?url';
 import gfmCss from '@/styles/gfm.css?url';
 import shikiCss from '@/styles/shiki.css?url';
-import { env } from '@/utils/env';
 import { normalizeCssUrl } from '@/utils/normalize-css-url';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -100,29 +99,29 @@ export const Route = createRootRoute({
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: '' },
       { rel: 'icon', href: '/favicon.png' },
-      ...(env.VITE_GA_ID || env.VITE_GTM_ID
+      ...(import.meta.env.VITE_GA_ID || import.meta.env.VITE_GTM_ID
         ? [{ rel: 'preconnect', href: 'https://www.googletagmanager.com' }]
         : []),
     ],
     scripts: [
-      ...(env.VITE_GA_ID
+      ...(import.meta.env.VITE_GA_ID
         ? [
             {
               async: true,
-              src: `https://www.googletagmanager.com/gtag/js?id=${env.VITE_GA_ID}`,
+              src: `https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_ID}`,
             },
             {
               dangerouslySetInnerHTML: {
                 __html: `window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', '${env.VITE_GA_ID}');`,
+      gtag('config', '${import.meta.env.VITE_GA_ID}');`,
               },
             },
           ]
         : []),
 
-      ...(env.VITE_GTM_ID
+      ...(import.meta.env.VITE_GTM_ID
         ? [
             {
               dangerouslySetInnerHTML: {
@@ -130,7 +129,7 @@ export const Route = createRootRoute({
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','${env.VITE_GTM_ID}');`,
+  })(window,document,'script','dataLayer','${import.meta.env.VITE_GTM_ID}');`,
               },
             },
           ]
