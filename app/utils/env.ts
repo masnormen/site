@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 const any = z.object({
-  APP_ENV: z.enum(['development', 'production']),
-  SENTRY_DSN: z.string().url().optional().catch(undefined),
+  VITE_APP_ENV: z.union([z.literal('development'), z.literal('production')]),
+  VITE_SENTRY_DSN: z.string().url().optional().catch(undefined),
   VITE_GA_ID: z.string().optional(),
   VITE_GTM_ID: z.string().optional(),
 });

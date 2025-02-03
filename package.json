@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "dotenvx run --convention=nextjs -- vinxi dev",
     "build": "dotenvx run --convention=nextjs -- vinxi build",
-    "start": "dotenvx run --convention=nextjs -- vinxi start",
+    "start": "dotenvx run --convention=nextjs -- node .output/server/index.mjs",
     "lint": "biome ci ./app",
     "lint:fix": "biome check --write ./app",
     "typecheck": "dotenvx run --convention=nextjs -- tsc"

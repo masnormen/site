@@ -10,11 +10,11 @@ const router = createRouter();
 
 hydrateRoot(document, <StartClient router={router} />);
 
-if (import.meta.env.PROD && !!env.SENTRY_DSN) {
+if (import.meta.env.PROD && !!env.VITE_SENTRY_DSN) {
   Sentry.init({
-    dsn: env.SENTRY_DSN,
+    dsn: env.VITE_SENTRY_DSN,
     release: '1.0',
-    environment: env.APP_ENV,
+    environment: env.VITE_APP_ENV,
     integrations: [Sentry.tanstackRouterBrowserTracingIntegration(router)],
     tracesSampleRate: 1.0,
   });
