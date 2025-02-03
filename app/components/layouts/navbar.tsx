@@ -65,7 +65,7 @@ function NavSection({
   );
 }
 
-export function Navbar() {
+export function Navbar({ alwaysVisible = false }: { alwaysVisible?: boolean }) {
   const [{ y }] = useWindowScroll();
   const [theme, setTheme] = useAtom(themeAtom);
 
@@ -73,7 +73,9 @@ export function Navbar() {
     <nav
       className={cn(
         'fixed left-1/2 -translate-x-1/2 pb-8 z-50 flex justify-center h-min w-min flex-row items-stretch bg-transparent transition-all duration-500',
-        (y ?? 0) < 64 ? 'opacity-0 invisible blur-md -bottom-10' : 'bottom-0',
+        !alwaysVisible && (y ?? 0) < 64
+          ? 'opacity-0 invisible blur-md -bottom-10'
+          : 'bottom-0',
       )}
     >
       <NavSection className="bg-stroke">

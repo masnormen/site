@@ -1,13 +1,15 @@
 import { themeAtom } from '@/atoms/index';
 import { SVGFilters } from '@/components/filters/svg-filters';
+import { CustomErrorComponent } from '@/components/layouts/error';
 import { Navbar } from '@/components/layouts/navbar';
+import { NotFoundComponent } from '@/components/layouts/not-found';
 import appCss from '@/styles/app.css?url';
 import gfmCss from '@/styles/gfm.css?url';
 import shikiCss from '@/styles/shiki.css?url';
 import { normalizeCssUrl } from '@/utils/normalize-css-url';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Outlet, createRootRoute } from '@tanstack/react-router';
+import { CatchBoundary, Outlet, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { Meta, Scripts } from '@tanstack/start';
 import { useAtomValue } from 'jotai';
@@ -100,6 +102,8 @@ export const Route = createRootRoute({
     ],
   }),
   component: RootComponent,
+  errorComponent: CustomErrorComponent,
+  notFoundComponent: NotFoundComponent,
 });
 
 const queryClient = new QueryClient();
@@ -109,6 +113,7 @@ function RootComponent() {
 
   useEffect(() => {
     if (typeof document === 'undefined') return;
+
     if (!document.documentElement.classList.contains('theme-transitioning')) {
       document.documentElement.classList.add('theme-transitioning');
       setTimeout(() => {
@@ -120,18 +125,20 @@ function RootComponent() {
 
   return (
     <RootDocument>
-      <QueryClientProvider client={queryClient}>
-        <Navbar />
+      <CatchBoundary getResetKey={() => 'reset'}>
+        <QueryClientProvider client={queryClient}>
+          <Navbar />
 
-        <Outlet />
+          <Outlet />
 
-        {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
-        {import.meta.env.DEV && (
-          <TanStackRouterDevtools initialIsOpen={false} />
-        )}
-        <Toaster position="top-center" />
-        <SVGFilters />
-      </QueryClientProvider>
+          {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+          {import.meta.env.DEV && (
+            <TanStackRouterDevtools initialIsOpen={false} />
+          )}
+          <Toaster position="top-center" />
+          <SVGFilters />
+        </QueryClientProvider>
+      </CatchBoundary>
     </RootDocument>
   );
 }
