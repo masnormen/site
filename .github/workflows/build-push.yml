@@ -21,3 +21,7 @@ jobs:
         with:
           push: true
           tags: masnormen/nourman-com:${{ github.ref == 'refs/heads/main' && 'latest' || 'preview' }}
+          build-args: |
+            "APP_ENV=${{ variables.APP_ENV }}"
+            "VITE_GA_ID=${{ variables.VITE_GA_ID }}"
+            "VITE_GTM_ID=${{ variables.VITE_GTM_ID }}"
