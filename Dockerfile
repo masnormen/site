@@ -4,8 +4,8 @@ FROM node:22-alpine AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-ENV COREPACK_DEFAULT_TO_LATEST=0
-RUN corepack enable && corepack prepare
+ENV COREPACK_INTEGRITY_KEYS=0
+RUN corepack enable
 
 # Install packages
 
