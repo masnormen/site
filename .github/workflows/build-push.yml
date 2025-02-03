@@ -20,4 +20,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: masnormen/nourman-com:latest
+          tags: masnormen/nourman-com:${{ github.ref == 'refs/heads/main' && 'latest' || 'preview' }}
