@@ -25,3 +25,4 @@ jobs:
             "APP_ENV=${{ vars.APP_ENV }}"
             "VITE_GA_ID=${{ vars.VITE_GA_ID }}"
             "VITE_GTM_ID=${{ vars.VITE_GTM_ID }}"
+            "SENTRY_DSN=${{ vars.SENTRY_DSN }}"
