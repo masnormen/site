@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 const any = z.object({
   APP_ENV: z.enum(['development', 'production']),
-  SENTRY_DSN: z.string().url().optional(),
+  SENTRY_DSN: z.string().url().optional().catch(undefined),
   VITE_GA_ID: z.string().optional(),
   VITE_GTM_ID: z.string().optional(),
 });
