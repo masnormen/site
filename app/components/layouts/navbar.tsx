@@ -23,7 +23,7 @@ type NavItemProps =
 
 function NavItem({ className: customClassName, ...props }: NavItemProps) {
   const className =
-    'flex rounded-md px-3 py-1.5 text-nowrap whitespace-nowrap text-sm font-semibold font-mono uppercase text-stroke duration-500 cursor-pointer hover:bg-stroke hover:text-background';
+    'flex rounded-md px-3 py-1.5 text-nowrap whitespace-nowrap text-sm font-semibold font-mono uppercase text-blank duration-500 cursor-pointer outline-2 outline-transparent hover:outline-tertiary hover:bg-tertiary hover:text-stroke';
 
   if (props.type === 'button') {
     return (
@@ -76,7 +76,7 @@ export function Navbar() {
         (y ?? 0) < 64 ? 'opacity-0 invisible blur-md -bottom-10' : 'bottom-0',
       )}
     >
-      <NavSection className="bg-secondary">
+      <NavSection className="bg-stroke">
         <NavItem type="link" to="/">
           Home
         </NavItem>

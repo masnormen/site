@@ -7,11 +7,7 @@ import shikiCss from '@/styles/shiki.css?url';
 import { normalizeCssUrl } from '@/utils/normalize-css-url';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import {
-  Outlet,
-  ScrollRestoration,
-  createRootRoute,
-} from '@tanstack/react-router';
+import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { Meta, Scripts } from '@tanstack/start';
 import { useAtomValue } from 'jotai';
@@ -135,7 +131,6 @@ function RootComponent() {
         )}
         <Toaster position="top-center" />
         <SVGFilters />
-        <ScrollRestoration scrollBehavior="instant" />
       </QueryClientProvider>
     </RootDocument>
   );

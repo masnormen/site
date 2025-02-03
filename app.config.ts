@@ -33,6 +33,9 @@ const PRESET = 'node-server' as string;
 export default defineConfig({
   server: {
     preset: PRESET,
+    routeRules: {
+      '/sitemap.xml': { proxy: { to: '/api/sitemap' } },
+    },
     rollupConfig: {
       plugins: [
         // Needed to copy TypeScript's shipped .d.ts file for Twoslash to work
@@ -58,17 +61,6 @@ export default defineConfig({
         }),
       ],
     },
-    // hooks: {
-    //   'prerender:routes': async (routes) => {
-    //     const postsSlugs = await Promise.all([
-    //       getPostSlugList(),
-    //       getProjectSlugList(),
-    //     ]);
-    //     for (const slug of postsSlugs.flat()) {
-    //       routes.add(`/blog/${slug}`);
-    //     }
-    //   },
-    // },
     prerender: {
       routes: ['/'],
       crawlLinks: true,
@@ -80,12 +72,15 @@ export default defineConfig({
     },
   },
   vite: {
+    define: {
+      __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+    },
     plugins: [
       viteTsConfigPaths({
         projects: ['./tsconfig.json'],
       }),
       viteRestart({
-        reload: ['./app/**/*'],
+        reload: ['./app/contents/**/*'],
       }),
     ],
   },
