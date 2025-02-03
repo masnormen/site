@@ -10,7 +10,7 @@ const router = createRouter();
 
 hydrateRoot(document, <StartClient router={router} />);
 
-if (!import.meta.env.DEV) {
+if (import.meta.env.PROD && !!env.SENTRY_DSN) {
   Sentry.init({
     dsn: env.SENTRY_DSN,
     release: '1.0',

@@ -2,13 +2,18 @@ import { z } from 'zod';
 
 const server = z.object({
   APP_ENV: z.enum(['development', 'production']),
-  SENTRY_DSN: z.string().url(),
+  SENTRY_DSN: z.string().url().optional(),
 });
-// const serverVars = Object.keys(server.shape) as Array<keyof z.infer<typeof server>>;
+const serverVars = Object.keys(server.shape) as Array<
+  keyof typeof server.shape
+>;
 
-const client = z.object({});
-const clientVars = Object.keys(server.shape) as Array<
-  keyof z.infer<typeof server>
+const client = z.object({
+  VITE_GA_ID: z.string().optional(),
+  VITE_GTM_ID: z.string().optional(),
+});
+const clientVars = Object.keys(client.shape) as Array<
+  keyof typeof client.shape
 >;
 
 const merged = server.merge(client);
@@ -30,9 +35,9 @@ if (!!process.env.SKIP_ENV_VALIDATION == false) {
   }
 
   env = new Proxy(parsed.data, {
-    get(target: z.infer<typeof merged>, prop: keyof z.infer<typeof merged>) {
+    get(target: z.infer<typeof merged>, prop: keyof typeof merged.shape) {
       if (typeof prop !== 'string') return undefined;
-      if (!isServer && !clientVars.includes(prop))
+      if (!isServer && (serverVars as string[]).includes(prop))
         throw new Error(
           // biome-ignore lint/nursery/noProcessEnv: needed
           process.env.NODE_ENV === 'production'
