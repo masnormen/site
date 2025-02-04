@@ -64,10 +64,10 @@ function Home() {
                 className="bg-blank"
                 type="blog"
                 slug={post.slug}
-                title={post.metadata.title}
-                description={post.metadata.description}
-                date={dayjs(post.metadata.createdAt).format('MMM DD, YYYY')}
-                tags={post.metadata.tags ?? []}
+                title={post.title}
+                description={post.description}
+                date={dayjs(post.createdAt).format('MMM DD, YYYY')}
+                tags={post.tags ?? []}
                 Thumbnail={Thumbnail}
                 dir={idx % 2 === 0 ? 'ltr' : 'rtl'}
               />
@@ -94,10 +94,10 @@ function Home() {
                 className="bg-blank"
                 type="projects"
                 slug={project.slug}
-                title={project.metadata.title}
-                description={project.metadata.description}
-                date={dayjs(project.metadata.createdAt).format('MMM DD, YYYY')}
-                tags={project.metadata.tags ?? []}
+                title={project.title}
+                description={project.description}
+                date={dayjs(project.createdAt).format('MMM DD, YYYY')}
+                tags={project.tags ?? []}
                 Thumbnail={Thumbnail}
                 dir="ltr"
               />

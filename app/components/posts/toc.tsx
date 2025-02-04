@@ -6,7 +6,7 @@ import { Fragment } from 'react/jsx-runtime';
 
 export function TableOfContents({
   post,
-}: { post: Pick<Post, 'slug' | 'metadata' | 'toc'> }) {
+}: { post: Pick<Post, 'title' | 'slug' | 'toc'> }) {
   const params = Route.useParams();
 
   return (
@@ -23,7 +23,7 @@ export function TableOfContents({
         )}
       >
         <span className="hidden font-headline text-xl leading-tight 1xxl:block">
-          {post.metadata.title}
+          {post.title}
         </span>
         <span className="block text-lg font-semibold leading-tight 1xxl:hidden">
           Table of Contents
