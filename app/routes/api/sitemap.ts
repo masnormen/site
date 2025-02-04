@@ -1,29 +1,5 @@
 import path from 'node:path';
 import { createAPIFileRoute } from '@tanstack/start/api';
-import fg from 'fast-glob';
-
-const BLOG_CONTENTS_PATH = `${process.cwd()}/app/contents/blog` as const;
-const PROJECT_CONTENTS_PATH = `${process.cwd()}/app/contents/projects` as const;
-
-const getPostSlugList = async () => {
-  return fg
-    .globSync(path.resolve(BLOG_CONTENTS_PATH, '**', 'index.mdx'))
-    .map((indexMdxPath) => {
-      const postFolder = path.parse(indexMdxPath).dir;
-      const slug = postFolder.split('/').pop()!;
-      return slug;
-    });
-};
-
-const getProjectSlugList = async () => {
-  return fg
-    .globSync(path.resolve(PROJECT_CONTENTS_PATH, '**', 'index.mdx'))
-    .map((indexMdxPath) => {
-      const postFolder = path.parse(indexMdxPath).dir;
-      const slug = postFolder.split('/').pop()!;
-      return slug;
-    });
-};
 
 const SitemapURLTemplate = (
   loc: string,
@@ -46,10 +22,24 @@ ${urls.join('\n')}
 
 export const APIRoute = createAPIFileRoute('/api/sitemap')({
   GET: async () => {
-    const [postSlugs, projectSlugs] = await Promise.all([
-      getPostSlugList(),
-      getProjectSlugList(),
-    ]);
+    const postModules = import.meta.glob(`../../contents/blog/**/index.mdx`, {
+      query: '?raw',
+      import: 'default',
+    });
+    const postSlugs = Object.keys(postModules).map(
+      (modulePath) => path.parse(path.dirname(modulePath)).base,
+    );
+
+    const projectsModules = import.meta.glob(
+      `../../contents/blog/**/index.mdx`,
+      {
+        query: '?raw',
+        import: 'default',
+      },
+    );
+    const projectSlugs = Object.keys(projectsModules).map(
+      (modulePath) => path.parse(path.dirname(modulePath)).base,
+    );
 
     const date = __BUILD_TIME__;
     const sitemap = SitemapXMLTemplate([

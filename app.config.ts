@@ -1,5 +1,5 @@
 import { defineConfig } from '@tanstack/start/config';
-import rollupPluginCopy from 'rollup-plugin-copy';
+// import rollupPluginCopy from 'rollup-plugin-copy';
 import viteRestart from 'vite-plugin-restart';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
@@ -14,26 +14,18 @@ export default defineConfig({
     rollupConfig: {
       plugins: [
         // Needed to copy TypeScript's shipped .d.ts file for Twoslash to work
-        rollupPluginCopy({
-          targets: [
-            {
-              src: 'node_modules/typescript/lib',
-              dest:
-                PRESET === 'vercel'
-                  ? '.vercel/output/functions/__nitro.func/node_modules/typescript'
-                  : '.output/server/node_modules/typescript',
-            },
-            // ...(PRESET === 'vercel'
-            //   ? [
-            //       {
-            //         src: 'dist',
-            //         dest: '.vercel/output/functions/__nitro.func/dist',
-            //       },
-            //     ]
-            //   : []),
-          ],
-          hook: 'writeBundle',
-        }),
+        // rollupPluginCopy({
+        //   targets: [
+        //     {
+        //       src: 'node_modules/typescript/lib',
+        //       dest:
+        //         PRESET === 'vercel'
+        //           ? '.vercel/output/functions/__nitro.func/node_modules/typescript'
+        //           : '.output/server/node_modules/typescript',
+        //     },
+        //   ],
+        //   hook: 'writeBundle',
+        // }),
       ],
     },
     prerender: {

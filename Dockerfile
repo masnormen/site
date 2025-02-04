@@ -52,7 +52,7 @@ ENV VITE_SENTRY_DSN=${VITE_SENTRY_DSN}
 
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=builder /app/dist ./app/dist
+COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/.vinxi ./.vinxi
 COPY --from=builder /app/.output ./.output
 
