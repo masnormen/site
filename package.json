@@ -6,8 +6,10 @@
   "scripts": {
     "dev:tsr": "dotenvx run --convention=nextjs -- vinxi dev",
     "dev:mdx": "dotenvx run --convention=nextjs -- tsx build-mdx.ts -w",
-    "dev": "concurrently -c blue,yellow --pad-prefix pnpm:dev:tsr pnpm:dev:mdx",
-    "build": "dotenvx run --convention=nextjs -- vinxi build",
+    "dev": "concurrently -c yellow,blue --pad-prefix pnpm:dev:mdx pnpm:dev:tsr",
+    "build:tsr": "dotenvx run --convention=nextjs -- vinxi build",
+    "build:mdx": "dotenvx run --convention=nextjs -- tsx build-mdx.ts",
+    "build": "pnpm build:mdx && pnpm build:tsr",
     "start": "dotenvx run --convention=nextjs -- node .output/server/index.mjs",
     "lint": "biome ci ./app",
     "lint:fix": "biome check --write ./app",
