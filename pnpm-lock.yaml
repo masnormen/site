@@ -17,18 +17,6 @@ importers:
       '@sentry/react':
         specifier: ^8.54.0
         version: 8.54.0(react@19.0.0)
-      '@shikijs/colorized-brackets':
-        specifier: ^2.2.0
-        version: 2.2.0
-      '@shikijs/rehype':
-        specifier: ^2.2.0
-        version: 2.2.0
-      '@shikijs/transformers':
-        specifier: ^2.2.0
-        version: 2.2.0
-      '@shikijs/twoslash':
-        specifier: ^2.2.0
-        version: 2.2.0(typescript@5.7.3)
       '@tanstack/react-query':
         specifier: ^5.66.0
         version: 5.66.0(react@19.0.0)
@@ -59,9 +47,6 @@ importers:
       jotai:
         specifier: ^2.11.3
         version: 2.11.3(@types/react@19.0.8)(react@19.0.0)
-      mdx-bundler:
-        specifier: ^10.0.3
-        version: 10.0.3(acorn@8.14.0)(esbuild@0.24.2)
       p-memoize:
         specifier: ^7.1.1
         version: 7.1.1
@@ -74,21 +59,12 @@ importers:
       react-innertext:
         specifier: ^1.1.5
         version: 1.1.5(@types/react@19.0.8)(react@19.0.0)
-      remark-gfm:
-        specifier: ^4.0.0
-        version: 4.0.0
-      shiki:
-        specifier: ^2.2.0
-        version: 2.2.0
       sonner:
         specifier: ^1.7.4
         version: 1.7.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       tailwind-merge:
         specifier: ^3.0.1
         version: 3.0.1
-      twoslash:
-        specifier: ^0.2.12
-        version: 0.2.12(typescript@5.7.3)
       vinxi:
         specifier: ^0.5.1
         version: 0.5.1(@types/node@22.13.0)(db0@0.2.1)(ioredis@5.4.2)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(yaml@2.7.0)
@@ -108,6 +84,18 @@ importers:
       '@mdx-js/esbuild':
         specifier: ^3.1.0
         version: 3.1.0(acorn@8.14.0)(esbuild@0.24.2)
+      '@shikijs/colorized-brackets':
+        specifier: ^2.2.0
+        version: 2.2.0
+      '@shikijs/rehype':
+        specifier: ^2.2.0
+        version: 2.2.0
+      '@shikijs/transformers':
+        specifier: ^2.2.0
+        version: 2.2.0
+      '@shikijs/twoslash':
+        specifier: ^2.2.0
+        version: 2.2.0(typescript@5.7.3)
       '@tailwindcss/postcss':
         specifier: ^4.0.3
         version: 4.0.3
@@ -138,18 +126,27 @@ importers:
       remark-frontmatter:
         specifier: ^5.0.0
         version: 5.0.0
+      remark-gfm:
+        specifier: ^4.0.0
+        version: 4.0.0
       remark-mdx-frontmatter:
         specifier: ^5.0.0
         version: 5.0.0
       rollup-plugin-copy:
         specifier: ^3.5.0
         version: 3.5.0
+      shiki:
+        specifier: ^2.2.0
+        version: 2.2.0
       tailwindcss:
         specifier: ^4.0.3
         version: 4.0.3
       tsx:
         specifier: ^4.19.2
         version: 4.19.2
+      twoslash:
+        specifier: ^0.2.12
+        version: 0.2.12(typescript@5.7.3)
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -264,10 +261,6 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
-
-  '@babel/runtime@7.26.7':
-    resolution: {integrity: sha512-AOPI3D+a8dXnja+iwsUqGRjr1BbZIe771sXdapOtYI531gSqpi92vXivKcq2asu/DFpdl1ceFAKZyRzK2PCVcQ==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/standalone@7.26.5':
     resolution: {integrity: sha512-vXbSrFq1WauHvOg/XWcjkF6r7wDSHbN3+3Aro6LYjfODpGw8dCyqqbUMRX5LXlgzVAUrTSN6JkepFiHhLKHV5Q==}
@@ -2740,12 +2733,6 @@ packages:
   mdast-util-to-string@4.0.0:
     resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
 
-  mdx-bundler@10.0.3:
-    resolution: {integrity: sha512-vRtVZ5t+nUP0QtoRVgjDFO10YDjRgKe/19ie0IR8FqE8SugNn5RP4sCWBPzKoEwoGbqfQOrgHy+PHCVyfaCDQQ==}
-    engines: {node: '>=18', npm: '>=6'}
-    peerDependencies:
-      esbuild: 0.*
-
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
 
@@ -3213,9 +3200,6 @@ packages:
     resolution: {integrity: sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A==}
     engines: {node: '>=4'}
 
-  regenerator-runtime@0.14.1:
-    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
-
   regex-recursion@5.1.1:
     resolution: {integrity: sha512-ae7SBCbzVNrIjgSbh7wMznPcQel1DNlDtzensnFxpiNpXt1U2ju/bHugH422r+4LAVS1FpW1YCwilmnNsjum9w==}
 
@@ -3233,9 +3217,6 @@ packages:
 
   remark-gfm@4.0.0:
     resolution: {integrity: sha512-U92vJgBPkbw4Zfu/IiW2oTZLSL3Zpv+uI7My2eq8JxKgqraFdU8YUGicEJCEgSbeaG+QDFqIcwwfMTOEelPxuA==}
-
-  remark-mdx-frontmatter@4.0.0:
-    resolution: {integrity: sha512-PZzAiDGOEfv1Ua7exQ8S5kKxkD8CDaSb4nM+1Mprs6u8dyvQifakh+kCj6NovfGXW+bTvrhjaR3srzjS2qJHKg==}
 
   remark-mdx-frontmatter@5.0.0:
     resolution: {integrity: sha512-kI75pshe27TM71R+0iX7C3p4MbGMdygkvSbrk1WYSar88WAwR2JfQilofcDGgDNFAWUo5IwTPyq9XvGpifTwqQ==}
@@ -3746,10 +3727,6 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  uuid@9.0.1:
-    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
-    hasBin: true
-
   vfile-message@4.0.2:
     resolution: {integrity: sha512-jRDZ1IMLttGj41KcZvlrYAaI3CfqpLpfpf+Mfig13viT6NKvRzWZ+lXz0Y5D60w6uJIBAOGq9mSHf0gktF0duw==}
 
@@ -4040,10 +4017,6 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.7
       '@babel/helper-plugin-utils': 7.26.5
-
-  '@babel/runtime@7.26.7':
-    dependencies:
-      regenerator-runtime: 0.14.1
 
   '@babel/standalone@7.26.5': {}
 
@@ -7071,22 +7044,6 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
 
-  mdx-bundler@10.0.3(acorn@8.14.0)(esbuild@0.24.2):
-    dependencies:
-      '@babel/runtime': 7.26.7
-      '@esbuild-plugins/node-resolve': 0.2.2(esbuild@0.24.2)
-      '@fal-works/esbuild-plugin-global-externals': 2.1.2
-      '@mdx-js/esbuild': 3.1.0(acorn@8.14.0)(esbuild@0.24.2)
-      esbuild: 0.24.2
-      gray-matter: 4.0.3
-      remark-frontmatter: 5.0.0
-      remark-mdx-frontmatter: 4.0.0
-      uuid: 9.0.1
-      vfile: 6.0.3
-    transitivePeerDependencies:
-      - acorn
-      - supports-color
-
   merge-stream@2.0.0: {}
 
   merge2@1.4.1: {}
@@ -7785,8 +7742,6 @@ snapshots:
     dependencies:
       redis-errors: 1.2.0
 
-  regenerator-runtime@0.14.1: {}
-
   regex-recursion@5.1.1:
     dependencies:
       regex: 5.1.1
@@ -7825,15 +7780,6 @@ snapshots:
       unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
-
-  remark-mdx-frontmatter@4.0.0:
-    dependencies:
-      '@types/mdast': 4.0.4
-      estree-util-is-identifier-name: 3.0.0
-      estree-util-value-to-estree: 3.2.1
-      toml: 3.0.0
-      unified: 11.0.5
-      yaml: 2.7.0
 
   remark-mdx-frontmatter@5.0.0:
     dependencies:
@@ -8370,8 +8316,6 @@ snapshots:
       react: 19.0.0
 
   util-deprecate@1.0.2: {}
-
-  uuid@9.0.1: {}
 
   vfile-message@4.0.2:
     dependencies:

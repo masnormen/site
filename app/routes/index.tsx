@@ -3,10 +3,10 @@ import { Hero } from '@/components/layouts/hero';
 import { Section } from '@/components/layouts/section';
 import { ArticleCard } from '@/components/posts/article-card';
 import { getPostList, getProjectList } from '@/services/posts';
+import { getMDXExport } from '@/utils/posts';
 import { createFileRoute } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/start';
 import dayjs from 'dayjs';
-import { getMDXExport } from 'mdx-bundler/client';
 import { useMemo } from 'react';
 
 const getPostListServerFn = createServerFn({ method: 'GET' }).handler(() =>

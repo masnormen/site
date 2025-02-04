@@ -59,7 +59,7 @@ const transformCodeblockTitle = (): ShikiTransformer => {
 
 /**
  * Based on mdx-bundler's `bundleMDX` function by Kent C. Dodds
- * @see https://github.com/kentcdodds/mdx-bundler/blob/main/src/index.js
+ * @see https://github.com/kentcdodds/mdx-bundler
  */
 function getBuildOptions({ sourcePaths }: { sourcePaths: string[] }) {
   const entryPoints = [] as Array<{

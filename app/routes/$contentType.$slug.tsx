@@ -5,12 +5,12 @@ import { TableOfContents } from '@/components/posts/toc';
 import { useInViewport } from '@/hooks/use-in-viewport';
 import { getPostBySlug, getProjectBySlug } from '@/services/posts';
 import type { ThumbnailProps } from '@/types/post';
+import { getMDXExport } from '@/utils/posts';
 import Comments from '@giscus/react';
 import { Link, createFileRoute, notFound } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/start';
 import { useHover } from '@uidotdev/usehooks';
 import dayjs from 'dayjs';
-import { type MDXContentProps, getMDXExport } from 'mdx-bundler/client';
 import type React from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
@@ -52,7 +52,7 @@ function Post() {
   const content = Route.useLoaderData();
 
   const [PostContent, Thumbnail]: [
-    React.FC<MDXContentProps>,
+    React.FC<{ components: Record<string, React.FC> }>,
     React.FC<ThumbnailProps> | null,
   ] = useMemo(
     () => [
