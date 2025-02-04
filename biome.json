@@ -96,6 +96,7 @@
           "level": "error",
           "options": {
             "allow": [
+              "info",
               "warn",
               "error"
             ]

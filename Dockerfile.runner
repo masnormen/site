@@ -1,0 +1,37 @@
+# Dockerfile for when the file is already built
+
+FROM node:22-alpine AS base
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
+# Install packages
+
+FROM base AS deps
+
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+COPY ./pnpm-lock.yaml package.json ./
+
+RUN pnpm install --prod --frozen-lockfile
+
+# Copy built files
+
+FROM node:22-alpine AS runner
+
+WORKDIR /app
+ENV NODE_ENV=production
+COPY ./app/contents ./app/contents
+COPY ./.vinxi ./.vinxi
+COPY ./.output ./.output
+# For ESBuild
+COPY --from=deps /app/node_modules ./node_modules
+COPY ./tsconfig.json ./tsconfig.json
+
+# Expose port and run the server
+
+EXPOSE 3000
+
+CMD ["node", ".output/server/index.mjs"]

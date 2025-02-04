@@ -1,5 +1,4 @@
 import { normalizeTitle } from '@/utils/posts';
-import type { MDXContentProps } from 'mdx-bundler/client';
 import innerText from 'react-innertext';
 
 const Heading = ({
@@ -14,7 +13,7 @@ const Heading = ({
   );
 };
 
-export const MDXSubstitution: MDXContentProps['components'] = {
+export const MDXSubstitution: Record<string, React.FC> = {
   h1: (props) => <Heading level={1} {...props} />,
   h2: (props) => <Heading level={2} {...props} />,
   h3: (props) => <Heading level={3} {...props} />,

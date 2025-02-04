@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn';
+import { cn } from '../../common/cn';
 
 const HTTPS = (props: React.JSX.IntrinsicElements['svg']) => {
   return (

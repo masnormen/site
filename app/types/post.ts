@@ -1,8 +1,7 @@
 import { z } from 'zod';
 
-export type Post = {
+export type Post = PostFrontMatter & {
   slug: string;
-  metadata: PostMetadata;
   toc: Heading[];
   code: string;
 };
@@ -17,11 +16,11 @@ export type ThumbnailProps = {
   isHover: boolean;
 };
 
-export const PostMetadata = z.object({
+export const PostFrontMatter = z.object({
   title: z.string(),
   description: z.string(),
   createdAt: z.coerce.date(),
   tags: z.array(z.string()).optional(),
 });
 
-export type PostMetadata = z.infer<typeof PostMetadata>;
+export type PostFrontMatter = z.infer<typeof PostFrontMatter>;

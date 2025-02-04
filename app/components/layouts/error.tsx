@@ -1,134 +1,73 @@
-import CartoonArrow from '@/components/assets/cartoon-arrow';
+import { Navbar } from '@/components/layouts/navbar';
 import { cn } from '@/utils/cn';
 import { Link } from '@tanstack/react-router';
 import type { CSSProperties } from 'react';
 
-export function Hero() {
+export function CustomErrorComponent() {
   return (
-    <header className="@container relative flex w-full h-full flex-col items-center justify-center overflow-hidden transition-transform xs:h-[78vh] bg-background px-4 supports-dvh:h-dvh xs:supports-dvh:h-[78vh] md:px-8">
-      <NoiseBg />
+    <>
+      <Navbar alwaysVisible />
+      <main className="@container relative flex w-full h-full flex-col items-center justify-center overflow-hidden transition-transform bg-background px-4 supports-dvh:h-dvh min-h-screen supports-[height:100dvh]:min-h-dvh md:px-8">
+        <CirclingStars />
 
-      <CirclingStars />
+        <LoremIpsumText
+          style={
+            {
+              '--spin-speed': '60s',
+            } as CSSProperties
+          }
+          className="h-[460px] aspect-square animate-spin-clockwise text-[3.1px]"
+          text="404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404"
+        />
+        <LoremIpsumText
+          className="h-[520px] aspect-square animate-spin-counterclockwise text-[2.9px] opacity-80"
+          text="404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404"
+        />
+        <LoremIpsumText
+          className="h-[583px] aspect-square animate-spin-counterclockwise text-[2.6px] opacity-60"
+          text="40404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404"
+        />
+        <LoremIpsumText
+          className="h-[640px] aspect-square animate-spin-counterclockwise text-[2.4px] opacity-40"
+          text="40404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404"
+        />
+        <LoremIpsumText
+          className="h-[700px] aspect-square animate-spin-counterclockwise text-[2.2px] opacity-25"
+          text="40404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404"
+        />
 
-      <LoremIpsumText
-        style={
-          {
-            '--spin-speed': '60s',
-          } as CSSProperties
-        }
-        className="h-[460px] aspect-square animate-spin-clockwise text-[3.1px]"
-        text={
-          <>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut finibus
-            pulvinar dolor sit amet varius. Vestibulum a justo male- !
-          </>
-        }
-      />
-      <LoremIpsumText
-        className="h-[520px] aspect-square animate-spin-counterclockwise text-[2.9px] opacity-80"
-        text={
-          <>
-            -suada, porta orci a, dictum diam. Cras massa arcu, volutpat sed
-            fringilla ut, volutpat non enim. Suspendisse at tortor sed ligula !
-          </>
-        }
-      />
-      <LoremIpsumText
-        className="h-[583px] aspect-square animate-spin-counterclockwise text-[2.6px] opacity-60"
-        text={
-          <>
-            efficitur laoreet. Nunc orci est, ornare eget condimentum et,
-            fermentum id est. Fusce in libero aliquet, tincidunt felis ac,
-            interdum nulla. Praes-
-          </>
-        }
-      />
-      <LoremIpsumText
-        className="h-[640px] aspect-square animate-spin-counterclockwise text-[2.4px] opacity-40"
-        text={
-          <>
-            Praesent diam est, mollis in vestibulum eget, hendrerit quis mauris.
-            In hac habitasse platea dictumst. Aenean feugiat euismod pretium.
-            Quisque facilisis. Viva-
-          </>
-        }
-      />
-      <LoremIpsumText
-        className="h-[700px] aspect-square animate-spin-counterclockwise text-[2.2px] opacity-25"
-        text={
-          <>
-            mus ac felis non libero vulputate commodo. Fusce elit est, ultrices
-            vitae tortor eu, sollicitudin finibus eros. Ut eleifend sodales
-            magna sit amet faucibus. Nullam fermentum !
-          </>
-        }
-      />
-
-      <div className="absolute top-[31%] left-1/2 -translate-x-1/2 -translate-y-3/4 xs:top-1/4 @3xl:top-[50%] @3xl:-translate-x-72 @3xl:-translate-y-64 z-20 flex flex-col items-center justify-center text-center">
-        <div className="mt-2 rotate-[-2deg] drop-shadow-[4px_4px_0px_var(--theme-tertiary)] duration-300 @3xl:hover:rotate-[5deg] hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)]">
-          <h2 className="filter-gooey inline rounded-2xl bg-secondary box-decoration-clone px-3 pt-2 pb-3 text-center font-mono text-[min(5cqw,1.25rem)] text-highlight leading-[1.5] drop-shadow-none hover:drop-shadow-none">
-            software_
-            <br />
-            engineer();
-          </h2>
+        <div className="absolute top-[31%] left-1/2 -translate-x-1/2 -translate-y-3/4 xs:top-1/4 @3xl:top-[50%] @3xl:-translate-x-72 @3xl:-translate-y-64 z-20 flex flex-col items-center justify-center text-center">
+          <div className="mt-2 rotate-[-2deg] drop-shadow-[4px_4px_0px_var(--theme-tertiary)] duration-300 @3xl:hover:rotate-[5deg] hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)]">
+            <h2 className="filter-gooey inline rounded-2xl bg-secondary box-decoration-clone px-3 pt-2 pb-3 text-center font-headline text-[min(5cqw,1.25rem)] text-stroke leading-[1.5] drop-shadow-none hover:drop-shadow-none">
+              bugs everywhere, eh?
+            </h2>
+          </div>
         </div>
-      </div>
 
-      <div className="absolute top-[70%] right-1/2 translate-x-1/2 -translate-y-2/3 xs:top-3/4 @3xl:translate-x-72 @3xl:-translate-y-8 z-20 flex flex-col items-center justify-center text-center">
-        <div className="@3xl:hover:-rotate-6 mt-2 @3xl:rotate-6 rotate-6 drop-shadow-[4px_4px_0px_var(--theme-tertiary)] duration-300 hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)]">
-          <h2 className="filter-gooey inline whitespace-nowrap rounded-2xl bg-blank px-4 py-2 text-center font-headline font-light text-[min(5cqw,1.25rem)] text-highlight">
-            based in{' '}
-            <span className="rounded-lg bg-gray-200 px-1 py-0.5 font-medium font-mono text-[90%] text-stroke">
-              IDN
-            </span>{' '}
-            🇮🇩
-          </h2>
-        </div>
-      </div>
+        <Link to="/">
+          <div className="absolute top-[70%] right-1/2 translate-x-1/2 -translate-y-2/3 xs:top-3/4 @3xl:translate-x-72 @3xl:-translate-y-8 z-20 flex flex-col items-center justify-center text-center">
+            <div className="mt-2 @3xl:rotate-6 rotate-6 drop-shadow-[4px_4px_0px_var(--theme-tertiary)] duration-300 hover:drop-shadow-[4px_4px_0px_var(--theme-highlight)]">
+              <h2 className="filter-gooey inline whitespace-nowrap rounded-2xl bg-blank px-4 py-2 text-center font-headline font-light text-[min(5cqw,1.25rem)] text-highlight">
+                ← go 🏠home?
+              </h2>
+            </div>
+          </div>
+        </Link>
 
-      <Link to="/" className="static text-transparent">
         <div className="static text-center shadow-2xs drop-shadow-md duration-300">
-          <h1 className="relative isolate flex flex-col items-center text-center font-headline text-[min(14cqw,4.5rem)] text-background tracking-wide drop-shadow-[5px_5px_0px_var(--theme-tertiary)] transition-all hover:drop-shadow-[5px_5px_0px_var(--theme-highlight)]">
-            <PlanetRing />
-            <span className="filter-gooey z-20 inline w-fit rounded-xl bg-stroke box-decoration-clone px-4 pt-2 pb-1 leading-[1.25] transition-all">
-              Nourman
+          <h1 className="relative isolate flex flex-col items-center text-center font-mono font-bold text-[min(24cqw,7.5rem)] text-stroke tracking-wide">
+            <span className="z-20 inline w-fit rounded-xl px-4 pt-2 pb-1 leading-[1.25] transition-all">
+              Error happened
             </span>
-            <span className="filter-gooey -mt-5 z-0 inline w-fit bg-stroke px-5 pt-5 pb-2 leading-[1.25] transition-all">
-              Hajar
+            <span className="z-20 inline text-[1rem]">
+              Sorry, we got error! :(
             </span>
           </h1>
         </div>
-      </Link>
-
-      <a
-        href="/#blog"
-        className="absolute bottom-[10%] block xs:hidden animate-bounce-stopmotion text-highlight"
-      >
-        <CartoonArrow className="h-12 rotate-[140deg] text-stroke" />
-      </a>
-    </header>
+      </main>
+    </>
   );
 }
-
-const PlanetRing = () => {
-  return (
-    <div className="-translate-y-[52%] -translate-x-1/2 md:-translate-y-[51%] pointer-events-none absolute top-1/2 left-1/2 z-10 aspect-square @3xl:h-[750px] h-[min(750px,100cqw)] @3xl:w-[750px] w-[min(750px,100cqw)] @3xl:rotate-[-14deg] transition-transform duration-1000">
-      <div
-        style={{
-          background:
-            'radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 54%, var(--theme-background) 55%, var(--theme-tertiary) 60%, var(--theme-blank) 62%, var(--theme-highlight) 63%, var(--theme-secondary) 65%, rgba(77,72,76,0) 72%, rgba(24,19,25,0) 100%)',
-        }}
-        className="filter-noisier aspect-square h-full w-full origin-center animate-spin-orbit rounded-full opacity-75 transition-all"
-      />
-    </div>
-  );
-};
-
-const NoiseBg = () => {
-  return (
-    <div className="filter-noisy aspect-square! absolute z-0 h-[200vmax] w-[200vmax] animate-spin-counterclockwise items-center justify-center bg-background" />
-  );
-};
 
 const CirclingStars = () => {
   return (
