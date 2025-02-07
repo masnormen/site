@@ -52,7 +52,6 @@ export function ArticleCard({
 
       <Link
         to="/$contentType/$slug"
-        reloadDocument
         params={{
           contentType: type,
           slug,

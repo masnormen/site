@@ -8,6 +8,8 @@ export function createRouter() {
     defaultStaleTime: Infinity,
     defaultHashScrollIntoView: true,
     defaultSsr: true,
+    scrollRestoration: true,
+    scrollRestorationBehavior: 'instant',
   });
 }
 

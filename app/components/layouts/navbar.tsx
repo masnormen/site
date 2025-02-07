@@ -23,7 +23,7 @@ type NavItemProps =
 
 function NavItem({ className: customClassName, ...props }: NavItemProps) {
   const className =
-    'flex rounded-md px-3 py-1.5 text-nowrap whitespace-nowrap text-sm font-semibold font-mono uppercase text-stroke duration-500 cursor-pointer hover:bg-stroke hover:text-background';
+    'flex rounded-md px-3 py-1.5 text-nowrap whitespace-nowrap text-sm font-semibold font-mono uppercase text-blank duration-500 cursor-pointer outline-2 outline-transparent hover:outline-tertiary hover:bg-tertiary hover:text-stroke';
 
   if (props.type === 'button') {
     return (
@@ -39,7 +39,6 @@ function NavItem({ className: customClassName, ...props }: NavItemProps) {
   return (
     <Wrapper
       className={cn(className, customClassName)}
-      reloadDocument
       target={'href' in props ? '_blank' : undefined}
       rel={'href' in props ? 'noopener noreferrer' : undefined}
       {...props}
@@ -66,7 +65,7 @@ function NavSection({
   );
 }
 
-export function Navbar() {
+export function Navbar({ alwaysVisible = false }: { alwaysVisible?: boolean }) {
   const [{ y }] = useWindowScroll();
   const [theme, setTheme] = useAtom(themeAtom);
 
@@ -74,10 +73,12 @@ export function Navbar() {
     <nav
       className={cn(
         'fixed left-1/2 -translate-x-1/2 pb-8 z-50 flex justify-center h-min w-min flex-row items-stretch bg-transparent transition-all duration-500',
-        (y ?? 0) < 64 ? 'opacity-0 invisible blur-md -bottom-10' : 'bottom-0',
+        !alwaysVisible && (y ?? 0) < 64
+          ? 'opacity-0 invisible blur-md -bottom-10'
+          : 'bottom-0',
       )}
     >
-      <NavSection className="bg-secondary">
+      <NavSection className="bg-stroke">
         <NavItem type="link" to="/">
           Home
         </NavItem>

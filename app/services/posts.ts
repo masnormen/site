@@ -1,46 +1,17 @@
-import path from 'path';
-import type { Post } from '@/types/post';
-import { fetchPost } from '@/utils/posts.server';
-import fg from 'fast-glob';
-
-const BLOG_CONTENTS_PATH = `${process.cwd()}/app/contents/blog` as const;
-const PROJECTS_CONTENTS_PATH =
-  `${process.cwd()}/app/contents/projects` as const;
+import { fetchPost, fetchPostList } from '@/utils/posts.server';
 
 export const getPostBySlug = (slug: string) => {
-  const indexMdxPath = path.resolve(BLOG_CONTENTS_PATH, slug, 'index.mdx');
-  return fetchPost(indexMdxPath);
+  return fetchPost('blog', slug);
 };
 
 export const getPostList = async () => {
-  const indexMdxPaths = fg.globSync(
-    path.resolve(BLOG_CONTENTS_PATH, '**', 'index.mdx'),
-  );
-  const postList = await Promise.all(
-    indexMdxPaths.map((indexMdxPath) => fetchPost(indexMdxPath)),
-  );
-  return postList
-    .filter((post): post is Post => !!post)
-    .sort(
-      (a, b) => b.metadata.createdAt.getTime() - a.metadata.createdAt.getTime(),
-    );
+  return fetchPostList('blog');
 };
 
 export const getProjectBySlug = (slug: string) => {
-  const indexMdxPath = path.resolve(PROJECTS_CONTENTS_PATH, slug, 'index.mdx');
-  return fetchPost(indexMdxPath);
+  return fetchPost('projects', slug);
 };
 
 export const getProjectList = async () => {
-  const indexMdxPaths = fg.globSync(
-    path.resolve(PROJECTS_CONTENTS_PATH, '**', 'index.mdx'),
-  );
-  const projectList = await Promise.all(
-    indexMdxPaths.map((indexMdxPath) => fetchPost(indexMdxPath)),
-  );
-  return projectList
-    .filter((post): post is Post => !!post)
-    .sort(
-      (a, b) => b.metadata.createdAt.getTime() - a.metadata.createdAt.getTime(),
-    );
+  return fetchPostList('projects');
 };
