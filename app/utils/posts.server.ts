@@ -23,7 +23,9 @@ const _fetchPost = async (
 
 export const fetchPost = import.meta.env.DEV
   ? _fetchPost
-  : pMemoize(_fetchPost);
+  : pMemoize(_fetchPost, {
+      cacheKey: ([contentType, slug]) => `${contentType}/${slug}`,
+    });
 
 const _fetchPostList = async (contentType: 'blog' | 'projects') => {
   const modules =
