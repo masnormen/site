@@ -45,6 +45,37 @@ export const Route = createFileRoute('/$contentType/$slug')({
     if (!project) throw notFound();
     return project;
   },
+  head: ({ params, loaderData }) => ({
+    meta: [
+      {
+        title: `${loaderData?.title || (params.contentType === 'blog' ? 'Article' : 'Project')} • Nourman Hajar`,
+      },
+      {
+        name: 'description',
+        content:
+          loaderData?.description ||
+          'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+      },
+      {
+        property: 'og:title',
+        content: `${loaderData?.title || (params.contentType === 'blog' ? 'Article' : 'Project')} • Nourman Hajar`,
+      },
+      {
+        property: 'og:description',
+        content:
+          loaderData?.description ||
+          'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+      },
+      {
+        property: 'og:url',
+        content: `https://nourman.com/${params.contentType}/${params.slug}`,
+      },
+      {
+        rel: 'canonical',
+        href: `https://nourman.com/${params.contentType}/${params.slug}`,
+      },
+    ],
+  }),
 });
 
 function Post() {

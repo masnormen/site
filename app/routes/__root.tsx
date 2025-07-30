@@ -59,10 +59,10 @@ export const Route = createRootRoute({
         property: 'og:url',
         content: 'https://nourman.com/',
       },
-      {
-        property: 'og:image',
-        content: 'https://nourman.com/api/site.png',
-      },
+      // {
+      //   property: 'og:image',
+      //   content: 'https://nourman.com/api/site.png',
+      // },
       {
         property: 'og:image:type',
         content: 'image/png',
@@ -78,6 +78,10 @@ export const Route = createRootRoute({
       {
         property: 'og:site_name',
         content: 'Nourman Hajar • Software Engineer',
+      },
+      {
+        rel: 'canonical',
+        href: 'https://nourman.com/',
       },
     ],
     links: [
