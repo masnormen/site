@@ -18,9 +18,9 @@ import grayMatter, { type GrayMatterFile } from 'gray-matter';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-import type { ShikiTransformer } from 'shiki';
 import { PostFrontMatter } from '@/types/post';
 import { getHeadings } from '@/utils/posts';
+import type { ShikiTransformer } from 'shiki';
 
 const DIST_PATH = path.resolve(process.cwd(), 'dist');
 

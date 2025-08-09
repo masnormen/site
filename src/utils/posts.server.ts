@@ -7,18 +7,23 @@ const _fetchPost = async (
   contentType: 'blog' | 'projects',
   slug: string,
 ): Promise<Post | null> => {
-  const { default: mdxCode } = await import(
-    `../../dist/${contentType}/${slug}/index.js?raw`
-  );
-  const { default: metadata } = await import(
-    `../../dist/${contentType}/${slug}/index.json`
-  );
+  try {
+    const { default: mdxCode } = await import(
+      `../../dist/${contentType}/${slug}/index.js?raw`
+    );
+    const { default: metadata } = await import(
+      `../../dist/${contentType}/${slug}/index.json`
+    );
 
-  return {
-    ...(metadata as Omit<Post, 'code' | 'slug'>),
-    slug,
-    code: mdxCode as string,
-  };
+    return {
+      ...(metadata as Omit<Post, 'code' | 'slug'>),
+      slug,
+      code: mdxCode as string,
+    };
+  } catch (error) {
+    console.error(`Error fetching post: ${error}`);
+    return null;
+  }
 };
 
 export const fetchPost = import.meta.env.DEV
