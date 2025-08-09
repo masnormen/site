@@ -3,18 +3,17 @@ import { SVGFilters } from '@/components/filters/svg-filters';
 import { CustomErrorComponent } from '@/components/layouts/error';
 import { Navbar } from '@/components/layouts/navbar';
 import { NotFoundComponent } from '@/components/layouts/not-found';
-import appCss from '@/styles/app.css?url';
-import gfmCss from '@/styles/gfm.css?url';
-import shikiCss from '@/styles/shiki.css?url';
-import { normalizeCssUrl } from '@/utils/normalize-css-url';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { CatchBoundary, Outlet, createRootRoute } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
-import { Meta, Scripts } from '@tanstack/start';
+import { HeadContent, Scripts } from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { useAtomValue } from 'jotai';
 import { type ReactNode, useEffect } from 'react';
 import { Toaster } from 'sonner';
+import appCss from '../styles/app.css?url';
+import gfmCss from '../styles/gfm.css?url';
+import shikiCss from '../styles/shiki.css?url';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -87,17 +86,17 @@ export const Route = createRootRoute({
     links: [
       {
         rel: 'stylesheet',
-        href: normalizeCssUrl(appCss),
+        href: appCss,
         suppressHydrationWarning: true,
       },
       {
         rel: 'stylesheet',
-        href: normalizeCssUrl(gfmCss),
+        href: gfmCss,
         suppressHydrationWarning: true,
       },
       {
         rel: 'stylesheet',
-        href: normalizeCssUrl(shikiCss),
+        href: shikiCss,
         suppressHydrationWarning: true,
       },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -182,7 +181,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html>
       <head>
-        <Meta />
+        <HeadContent />
       </head>
       <body>
         <div id="_top_" className="w-0 h-0 invisible" />

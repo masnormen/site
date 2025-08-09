@@ -8,7 +8,7 @@ import type { ThumbnailProps } from '@/types/post';
 import { getMDXExport } from '@/utils/posts';
 import Comments from '@giscus/react';
 import { Link, createFileRoute, notFound } from '@tanstack/react-router';
-import { createServerFn } from '@tanstack/start';
+import { createServerFn } from '@tanstack/react-start';
 import { useHover } from '@uidotdev/usehooks';
 import dayjs from 'dayjs';
 import type React from 'react';

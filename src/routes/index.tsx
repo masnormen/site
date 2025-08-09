@@ -5,7 +5,7 @@ import { ArticleCard } from '@/components/posts/article-card';
 import { getPostList, getProjectList } from '@/services/posts';
 import { getMDXExport } from '@/utils/posts';
 import { createFileRoute } from '@tanstack/react-router';
-import { createServerFn } from '@tanstack/start';
+import { createServerFn } from '@tanstack/react-start';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
 

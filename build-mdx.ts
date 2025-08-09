@@ -233,7 +233,7 @@ const { values: cmdArgs } = parseArgs({
 });
 
 const sourcePaths = FastGlob.globSync(
-  path.resolve(process.cwd(), './app/contents/**/index.mdx'),
+  path.resolve(process.cwd(), './src/contents/**/index.mdx'),
 );
 
 if (cmdArgs.watch) {
