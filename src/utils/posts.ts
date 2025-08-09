@@ -1,8 +1,7 @@
-import type { Heading } from '@/types/post';
-
 import React from 'react';
-import ReactDOM from 'react-dom';
 import _jsx_runtime from 'react/jsx-runtime';
+import ReactDOM from 'react-dom';
+import type { Heading } from '@/types/post';
 
 export const HEADING_REGEX = /^#+\s+/;
 

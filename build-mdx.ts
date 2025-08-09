@@ -1,8 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
-import { PostFrontMatter } from '@/types/post';
-import { getHeadings } from '@/utils/posts';
 import { NodeResolvePlugin } from '@esbuild-plugins/node-resolve';
 import { globalExternals } from '@fal-works/esbuild-plugin-global-externals';
 import mdxESBuild from '@mdx-js/esbuild';
@@ -21,6 +19,8 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import type { ShikiTransformer } from 'shiki';
+import { PostFrontMatter } from '@/types/post';
+import { getHeadings } from '@/utils/posts';
 
 const DIST_PATH = path.resolve(process.cwd(), 'dist');
 
@@ -65,7 +65,7 @@ function getBuildOptions({ sourcePaths }: { sourcePaths: string[] }) {
   const entryPoints = [] as Array<{
     entryPath: string;
     slug: string;
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    // biome-ignore lint/suspicious/noExplicitAny: need to
     grayMatter: GrayMatterFile<any>;
   }>;
 
@@ -84,7 +84,7 @@ function getBuildOptions({ sourcePaths }: { sourcePaths: string[] }) {
     absWorkingDir: process.cwd(),
     define: {
       'process.env.NODE_ENV': JSON.stringify(
-        // biome-ignore lint/nursery/noProcessEnv: needed
+        // biome-ignore lint/style/noProcessEnv: needed
         process.env.NODE_ENV ?? 'production',
       ),
     },

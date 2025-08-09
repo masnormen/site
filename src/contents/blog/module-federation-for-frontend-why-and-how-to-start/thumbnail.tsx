@@ -1,6 +1,6 @@
-import type { ThumbnailProps } from '@/types/post';
-import type React from 'react';
 import { cn } from '../../common/cn';
+import type React from 'react';
+import type { ThumbnailProps } from '@/types/post';
 
 export const MFDiagram = ({
   explode = false,

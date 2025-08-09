@@ -1,12 +1,14 @@
-import { Route } from '@/routes/$contentType.$slug';
-import type { Post } from '@/types/post';
-import { cn } from '@/utils/cn';
 import { Link } from '@tanstack/react-router';
 import { Fragment } from 'react/jsx-runtime';
+import { Route } from '@/routes/$contentType.$slug';
+import { cn } from '@/utils/cn';
+import type { Post } from '@/types/post';
 
 export function TableOfContents({
   post,
-}: { post: Pick<Post, 'title' | 'slug' | 'toc'> }) {
+}: {
+  post: Pick<Post, 'title' | 'slug' | 'toc'>;
+}) {
   const params = Route.useParams();
 
   return (

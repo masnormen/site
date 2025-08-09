@@ -1,4 +1,4 @@
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: need to
 export function mergeRefs<T = any>(
   ...refs: Array<React.Ref<T> | undefined | null>
 ): React.RefCallback<T> {

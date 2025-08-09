@@ -1,5 +1,5 @@
-import type { ThumbnailProps } from '@/types/post';
 import { Gopher, TSCry } from './assets/image-datauris';
+import type { ThumbnailProps } from '@/types/post';
 
 export function Thumbnail({ isHover }: ThumbnailProps) {
   return (

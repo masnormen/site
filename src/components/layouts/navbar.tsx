@@ -1,12 +1,12 @@
+import { Link, type LinkComponentProps } from '@tanstack/react-router';
+import { useWindowScroll } from '@uidotdev/usehooks';
+import { useAtom } from 'jotai';
+import { toast } from 'sonner';
 import { themeAtom } from '@/atoms/index';
 import { GitHubIcon } from '@/components/assets/github';
 import { LinkedInIcon } from '@/components/assets/linkedin';
 import { THEMES } from '@/constants/themes';
 import { cn } from '@/utils/cn';
-import { Link, type LinkComponentProps } from '@tanstack/react-router';
-import { useWindowScroll } from '@uidotdev/usehooks';
-import { useAtom } from 'jotai';
-import { toast } from 'sonner';
 
 type NavItemProps =
   | ({

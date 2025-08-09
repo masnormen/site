@@ -1,7 +1,7 @@
 import path from 'node:path';
-import type { Post } from '@/types/post';
 import dayjs from 'dayjs';
 import pMemoize from 'p-memoize';
+import type { Post } from '@/types/post';
 
 const _fetchPost = async (
   contentType: 'blog' | 'projects',

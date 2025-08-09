@@ -1,5 +1,5 @@
-import type { ThumbnailProps } from '@/types/post';
 import { useFollowMouse } from '../../common/use-follow-mouse';
+import type { ThumbnailProps } from '@/types/post';
 
 export function Thumbnail({ isHover }: ThumbnailProps) {
   const ref = useFollowMouse();

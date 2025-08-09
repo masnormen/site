@@ -1,17 +1,22 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import {
+  CatchBoundary,
+  createRootRoute,
+  HeadContent,
+  Outlet,
+  Scripts,
+} from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import { useAtomValue } from 'jotai';
+import { type ReactNode, useEffect } from 'react';
+import { Toaster } from 'sonner';
 import { themeAtom } from '@/atoms/index';
 import { SVGFilters } from '@/components/filters/svg-filters';
 import { CustomErrorComponent } from '@/components/layouts/error';
 import { Navbar } from '@/components/layouts/navbar';
 import { NotFoundComponent } from '@/components/layouts/not-found';
 import { normalizeCssUrl } from '@/utils/normalize-css-url';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { CatchBoundary, Outlet, createRootRoute } from '@tanstack/react-router';
-import { HeadContent, Scripts } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
-import { useAtomValue } from 'jotai';
-import { type ReactNode, useEffect } from 'react';
-import { Toaster } from 'sonner';
 import appCss from '../styles/app.css?url';
 import gfmCss from '../styles/gfm.css?url';
 import shikiCss from '../styles/shiki.css?url';

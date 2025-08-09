@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.2/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
   "vcs": {
     "enabled": false,
     "clientKind": "git",
@@ -7,8 +7,9 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": [
-      "*.gen.ts"
+    "includes": [
+      "**",
+      "!**/*.gen.ts"
     ]
   },
   "formatter": {
@@ -21,14 +22,28 @@
     "lineWidth": 80,
     "attributePosition": "auto",
     "bracketSpacing": true,
-    "ignore": [
-      "**/build",
-      "**/.next",
-      "**/node_modules"
+    "includes": [
+      "**",
+      "!**/build",
+      "!**/.next",
+      "!**/node_modules"
     ]
   },
-  "organizeImports": {
-    "enabled": true
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              {
+                "type": false
+              }
+            ]
+          }
+        }
+      }
+    }
   },
   "linter": {
     "enabled": true,
@@ -36,10 +51,9 @@
       "recommended": false,
       "complexity": {
         "noExtraBooleanCast": "error",
-        "noMultipleSpacesInRegularExpressionLiterals": "error",
         "noUselessCatch": "off",
-        "noWith": "error",
-        "useArrowFunction": "off"
+        "useArrowFunction": "off",
+        "noAdjacentSpacesInRegex": "error"
       },
       "a11y": {
         "useValidAnchor": "error"
@@ -52,7 +66,6 @@
         "noGlobalObjectCalls": "error",
         "noInnerDeclarations": "error",
         "noInvalidConstructorSuper": "error",
-        "noNewSymbol": "error",
         "noNonoctalDecimalEscape": "error",
         "noPrecisionLoss": "error",
         "noSelfAssign": "error",
@@ -73,18 +86,22 @@
         "noUnusedImports": {
           "level": "error",
           "fix": "unsafe"
-        }
+        },
+        "noInvalidBuiltinInstantiation": "error",
+        "useValidTypeof": "error"
       },
-      "nursery": {
-        "noProcessEnv": "error"
-      },
+      "nursery": {},
       "style": {
         "useBlockStatements": "off",
         "useImportType": "error",
         "useSelfClosingElements": {
+          "options": {
+            "ignoreHtmlElements": true
+          },
           "level": "error",
           "fix": "safe"
-        }
+        },
+        "noProcessEnv": "error"
       },
       "suspicious": {
         "noAssignInExpressions": "error",
@@ -120,13 +137,14 @@
         "noSparseArray": "error",
         "noUnsafeNegation": "error",
         "useGetterReturn": "error",
-        "useValidTypeof": "error",
         "noArrayIndexKey": "off",
-        "noExplicitAny": "error"
+        "noExplicitAny": "error",
+        "noWith": "error"
       }
     },
-    "ignore": [
-      "**/node_modules"
+    "includes": [
+      "**",
+      "!**/node_modules"
     ]
   },
   "javascript": {

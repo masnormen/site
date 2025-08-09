@@ -4,7 +4,9 @@ import { mergeRefs } from './merge-refs';
 
 export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
   onlyThumbnailHover = false,
-}: { onlyThumbnailHover?: boolean } = {}) {
+}: {
+  onlyThumbnailHover?: boolean;
+} = {}) {
   const refObj = useRef<TRef>(null);
   const [refCb, isHover] = useHover<TRef>();
 

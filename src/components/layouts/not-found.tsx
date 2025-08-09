@@ -1,6 +1,6 @@
+import { Link } from '@tanstack/react-router';
 import { Navbar } from '@/components/layouts/navbar';
 import { cn } from '@/utils/cn';
-import { Link } from '@tanstack/react-router';
 import type { CSSProperties } from 'react';
 
 export function NotFoundComponent() {

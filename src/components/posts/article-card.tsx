@@ -1,7 +1,7 @@
-import type { ThumbnailProps } from '@/types/post';
-import { cn } from '@/utils/cn';
 import { Link } from '@tanstack/react-router';
 import { useHover } from '@uidotdev/usehooks';
+import { cn } from '@/utils/cn';
+import type { ThumbnailProps } from '@/types/post';
 
 export interface ArticleCardProps {
   type: 'blog' | 'projects';

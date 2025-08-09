@@ -1,6 +1,6 @@
+import { Link } from '@tanstack/react-router';
 import CartoonArrow from '@/components/assets/cartoon-arrow';
 import { cn } from '@/utils/cn';
-import { Link } from '@tanstack/react-router';
 import type { CSSProperties } from 'react';
 
 export function Hero() {

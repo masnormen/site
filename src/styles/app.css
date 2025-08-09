@@ -66,7 +66,8 @@
 
   @font-face {
     font-family: emoji;
-    src: local("Apple Color Emoji"), local("Android Emoji"),
+    src:
+      local("Apple Color Emoji"), local("Android Emoji"),
       local("Segoe UI Emoji"), local("NotoColorEmoji"),
       local("Noto Color Emoji"), local("Segoe UI Symbol"),
       local("Android Emoji"), local("EmojiSymbols"), local("Symbola");
@@ -114,33 +115,33 @@
 
   @supports (color: color(display-p3 1 1 1)) {
     [data-theme="peachy"] {
-      --theme-background: color(display-p3 1.0 0.964706 0.941176 / 1.0);
-      --theme-secondary: color(display-p3 0.913725 0.72549 0.729412 / 1.0);
-      --theme-tertiary: color(display-p3 0.792157 0.941176 0.764706 / 1.0);
-      --theme-quaternary: color(display-p3 0.984314 0.960784 0.933333 / 1.0);
-      --theme-highlight: color(display-p3 1.0 0.545098 0.654902 / 1.0);
-      --theme-stroke: color(display-p3 0.305882 0.239216 0.305882 / 1.0);
-      --theme-blank: color(display-p3 0.988235 0.988235 0.988235 / 1.0);
+      --theme-background: color(display-p3 1 0.964706 0.941176 / 1);
+      --theme-secondary: color(display-p3 0.913725 0.72549 0.729412 / 1);
+      --theme-tertiary: color(display-p3 0.792157 0.941176 0.764706 / 1);
+      --theme-quaternary: color(display-p3 0.984314 0.960784 0.933333 / 1);
+      --theme-highlight: color(display-p3 1 0.545098 0.654902 / 1);
+      --theme-stroke: color(display-p3 0.305882 0.239216 0.305882 / 1);
+      --theme-blank: color(display-p3 0.988235 0.988235 0.988235 / 1);
     }
 
     [data-theme="deuteranomaly"] {
-      --theme-background: color(display-p3 0.964706 0.941176 0.92549 / 1.0);
-      --theme-secondary: color(display-p3 1.0 0.847059 0.772549 / 1.0);
-      --theme-tertiary: color(display-p3 0.980392 0.807843 0.513725 / 1.0);
-      --theme-quaternary: color(display-p3 1.0 0.929412 0.835294 / 1.0);
-      --theme-highlight: color(display-p3 0.141176 0.658824 0.627451 / 1.0);
-      --theme-stroke: color(display-p3 0.0 0.2 0.07451 / 1.0);
-      --theme-blank: color(display-p3 0.968627 0.960784 0.94902 / 1.0);
+      --theme-background: color(display-p3 0.964706 0.941176 0.92549 / 1);
+      --theme-secondary: color(display-p3 1 0.847059 0.772549 / 1);
+      --theme-tertiary: color(display-p3 0.980392 0.807843 0.513725 / 1);
+      --theme-quaternary: color(display-p3 1 0.929412 0.835294 / 1);
+      --theme-highlight: color(display-p3 0.141176 0.658824 0.627451 / 1);
+      --theme-stroke: color(display-p3 0 0.2 0.07451 / 1);
+      --theme-blank: color(display-p3 0.968627 0.960784 0.94902 / 1);
     }
 
     [data-theme="seasalt"] {
-      --theme-background: color(display-p3 0.937255 0.929412 0.894118 / 1.0);
-      --theme-secondary: color(display-p3 0.631373 0.788235 0.788235 / 1.0);
-      --theme-tertiary: color(display-p3 0.729412 0.909804 0.909804 / 1.0);
-      --theme-quaternary: color(display-p3 1.0 0.929412 0.835294 / 1.0);
-      --theme-highlight: color(display-p3 0.862745 0.639216 0.258824 / 1.0);
-      --theme-stroke: color(display-p3 0.152941 0.137255 0.262745 / 1.0);
-      --theme-blank: color(display-p3 1.0 1.0 0.996078 / 1.0);
+      --theme-background: color(display-p3 0.937255 0.929412 0.894118 / 1);
+      --theme-secondary: color(display-p3 0.631373 0.788235 0.788235 / 1);
+      --theme-tertiary: color(display-p3 0.729412 0.909804 0.909804 / 1);
+      --theme-quaternary: color(display-p3 1 0.929412 0.835294 / 1);
+      --theme-highlight: color(display-p3 0.862745 0.639216 0.258824 / 1);
+      --theme-stroke: color(display-p3 0.152941 0.137255 0.262745 / 1);
+      --theme-blank: color(display-p3 1 1 0.996078 / 1);
     }
   }
 
@@ -198,7 +199,9 @@
     text-underline-offset: 0.15em;
     -webkit-text-decoration-skip: ink;
     text-decoration-skip-ink: auto;
-    box-shadow: inset 0 0em transparent, inset 0 0em var(--theme-secondary);
+    box-shadow:
+      inset 0 0em transparent,
+      inset 0 0em var(--theme-secondary);
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
     width: auto;
@@ -206,7 +209,9 @@
 
   .link:hover {
     color: var(--theme-stroke);
-    box-shadow: inset 0 0em transparent, inset 0 -1.1em var(--theme-tertiary);
+    box-shadow:
+      inset 0 0em transparent,
+      inset 0 -1.1em var(--theme-tertiary);
   }
 
   .filter-gooey {
@@ -223,8 +228,8 @@
 
   .theme-transitioning * {
     transition-duration: 500ms;
-    transition-property: color, background-color, border-color, box-shadow,
-      filter, fill, stroke;
+    transition-property:
+      color, background-color, border-color, box-shadow, filter, fill, stroke;
   }
 
   @keyframes spin-clockwise {

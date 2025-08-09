@@ -1,5 +1,5 @@
-import { normalizeTitle } from '@/utils/posts';
 import innerText from 'react-innertext';
+import { normalizeTitle } from '@/utils/posts';
 
 const Heading = ({
   level,
