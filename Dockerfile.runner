@@ -24,7 +24,6 @@ FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 COPY ./app/contents ./app/contents
-COPY ./.vinxi ./.vinxi
 COPY ./.output ./.output
 # For ESBuild
 COPY --from=deps /app/node_modules ./node_modules

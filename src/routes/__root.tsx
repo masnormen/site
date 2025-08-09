@@ -3,6 +3,7 @@ import { SVGFilters } from '@/components/filters/svg-filters';
 import { CustomErrorComponent } from '@/components/layouts/error';
 import { Navbar } from '@/components/layouts/navbar';
 import { NotFoundComponent } from '@/components/layouts/not-found';
+import { normalizeCssUrl } from '@/utils/normalize-css-url';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { CatchBoundary, Outlet, createRootRoute } from '@tanstack/react-router';
@@ -86,17 +87,17 @@ export const Route = createRootRoute({
     links: [
       {
         rel: 'stylesheet',
-        href: appCss,
+        href: normalizeCssUrl(appCss),
         suppressHydrationWarning: true,
       },
       {
         rel: 'stylesheet',
-        href: gfmCss,
+        href: normalizeCssUrl(gfmCss),
         suppressHydrationWarning: true,
       },
       {
         rel: 'stylesheet',
-        href: shikiCss,
+        href: normalizeCssUrl(shikiCss),
         suppressHydrationWarning: true,
       },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
