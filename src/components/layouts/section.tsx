@@ -4,6 +4,7 @@ interface SectionProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
   title?: React.ReactNode;
   description?: React.ReactNode;
+  icon?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
 }
@@ -12,30 +13,30 @@ export function Section({
   title,
   children,
   description = '',
+  icon,
   className = '',
   ...rest
 }: SectionProps) {
   return (
     <section
       className={cn(
-        'relative flex w-full flex-col items-center justify-center bg-blank px-4 py-8 md:py-16 gap-8 md:gap-16 text-stroke',
+        '@container relative flex flex-col transition-transform mx-auto border-x-1 border-dashed border-xline w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-oxl px-5 py-24',
         className,
       )}
       {...rest}
     >
-      {!!title && (
-        <header className="flex w-full flex-col gap-2">
-          <div className="text-center font-bold font-mono text-xl leading-[1.3]">
-            {title}
-          </div>
-          {!!description && (
-            <span className="text-center font-mono text-xs leading-[1.3]">
-              {description}
-            </span>
-          )}
+      <div className="w-ixl mx-auto">
+        <div className="absolute left-0 -translate-x-1/2 -translate-y-0.5 select-none">
+          {icon}
+        </div>
+
+        <header>
+          <h1 className="font-serif text-[40px] leading-[1.25]">{title}</h1>
+          <div className="mt-5 font-serif text-xl">{description}</div>
         </header>
-      )}
-      {children}
+
+        {children}
+      </div>
     </section>
   );
 }

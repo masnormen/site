@@ -105,7 +105,7 @@ function Post() {
 
   return (
     <>
-      <Section className="border-tertiary border-t-2 border-dashed bg-blank px-8 gap-8 md:gap-10">
+      <Section>
         <Link to="/" className="link text-lg">
           ← Home
         </Link>
@@ -128,7 +128,7 @@ function Post() {
         </div>
       </Section>
 
-      <Section className="border-tertiary border-t-2 border-dashed bg-blank">
+      <Section>
         <article className="relative w-full h-full flex flex-col mx-auto max-w-4xl gap-8">
           <div className="flex w-full flex-col space-y-12">
             <div className="flex w-full flex-col items-center justify-between space-x-2 space-y-4 text-center md:flex-row md:space-y-0">

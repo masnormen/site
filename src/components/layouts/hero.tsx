@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 
 export function Hero() {
   return (
-    <header className="@container relative flex h-[584px] flex-col items-center justify-center transition-transform mx-auto border-x-1 border-dashed border-xline w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-oxl px-5">
+    <header className="@container relative flex h-[584px] flex-col items-center justify-center transition-transform mx-auto border-x-1 border-b-1 border-dashed border-xline w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-oxl px-5">
       <span className="text-lg xl:text-xl text-center">Hello, I'm</span>
       <Link
         to="/"

@@ -48,9 +48,20 @@ function Home() {
 
       <Section
         id="blog"
-        title="Blog"
-        description="On software engineering, web development, and random tech stuff"
-        className="border-tertiary border-t-2 border-dashed bg-blank"
+        title={
+          <>
+            Featured <span className="text-xblue">Posts</span>
+          </>
+        }
+        icon={
+          <img
+            src="/assets/images/floral-yellow-blue.png"
+            className="size-16 rotate-[45deg] hover:rotate-[-20deg] hover:scale-120 transition-transform"
+            draggable="false"
+            alt="Floral decoration"
+          />
+        }
+        description="On software engineering, web development, and random things I like."
       >
         <div
           data-testid="bloglist"
@@ -80,7 +91,6 @@ function Home() {
         id="projects"
         title="Projects"
         description="Things and fun projects I&lsquo;ve worked on, mostly open-source"
-        className="border-tertiary border-t-2 border-dashed bg-background"
       >
         <div
           data-testid="projectlist"
