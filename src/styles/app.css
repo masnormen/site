@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-@config '../../tailwind.config.ts';
-
-@theme {
-  --breakpoint-1xxl: 85.375rem;
-}
-
 @layer base {
   :root {
     -webkit-font-smoothing: antialiased;
@@ -14,12 +8,6 @@
 }
 
 @layer utilities {
-  @font-face {
-    font-family: Headline;
-    src: url(/assets/fonts/PPEditorialOld.otf) format("opentype");
-    font-display: swap;
-  }
-
   @font-face {
     font-family: "Geist";
     font-style: normal;
@@ -65,6 +53,98 @@
   }
 
   @font-face {
+    font-family: "Instrument Serif";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/instrumentserif/v4/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjgn7Motmp5r61.woff2)
+      format("woff2");
+    unicode-range:
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  @font-face {
+    font-family: "Instrument Serif";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/instrumentserif/v4/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjjH7Motmp5g.woff2)
+      format("woff2");
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: "Instrument Serif";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/instrumentserif/v4/jizBRFtNs2ka5fXjeivQ4LroWlx-6zsTjnTLgNuZ5w.woff2)
+      format("woff2");
+    unicode-range:
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  @font-face {
+    font-family: "Instrument Serif";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/instrumentserif/v4/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2)
+      format("woff2");
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: "Instrument Sans";
+    font-style: italic;
+    font-weight: 400 700;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/instrumentsans/v3/pxitypc9vsFDm051Uf6KVwgkfoSbSnNPooZAN0lInHGpCWNu2ZGRqXp6pRwM.woff2)
+      format("woff2");
+    unicode-range:
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  @font-face {
+    font-family: "Instrument Sans";
+    font-style: italic;
+    font-weight: 400 700;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/instrumentsans/v3/pxitypc9vsFDm051Uf6KVwgkfoSbSnNPooZAN0lInHGpCWNu15GRqXp6pQ.woff2)
+      format("woff2");
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: "Instrument Sans";
+    font-style: normal;
+    font-weight: 400 700;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/instrumentsans/v3/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0She1ZuWi3hKpA.woff2)
+      format("woff2");
+    unicode-range:
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  @font-face {
+    font-family: "Instrument Sans";
+    font-style: normal;
+    font-weight: 400 700;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/instrumentsans/v3/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2)
+      format("woff2");
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
     font-family: emoji;
     src:
       local("Apple Color Emoji"), local("Android Emoji"),
@@ -75,34 +155,6 @@
   }
 
   :root {
-    --font-headline: "Headline";
-    --font-mono: "Geist Mono";
-    --font-main: "Geist";
-  }
-
-  [data-theme="peachy"] {
-    --theme: peachy;
-    --theme-background: #fff6f0;
-    --theme-secondary: #e9b9ba;
-    --theme-tertiary: #caf0c3;
-    --theme-quaternary: #fbf5ee;
-    --theme-highlight: #ff8ba7;
-    --theme-stroke: #4e3d4e;
-    --theme-blank: #fcfcfc;
-  }
-
-  [data-theme="deuteranomaly"] {
-    --theme: deuteranomaly;
-    --theme-background: #f6f0ec;
-    --theme-secondary: #ffd8c5;
-    --theme-tertiary: #face83;
-    --theme-quaternary: #ffedd5;
-    --theme-highlight: #24a8a0;
-    --theme-stroke: #003313;
-    --theme-blank: #f7f5f2;
-  }
-
-  [data-theme="seasalt"] {
     --theme: seasalt;
     --theme-background: #efede4;
     --theme-secondary: #a1c9c9;
@@ -114,27 +166,7 @@
   }
 
   @supports (color: color(display-p3 1 1 1)) {
-    [data-theme="peachy"] {
-      --theme-background: color(display-p3 1 0.964706 0.941176 / 1);
-      --theme-secondary: color(display-p3 0.913725 0.72549 0.729412 / 1);
-      --theme-tertiary: color(display-p3 0.792157 0.941176 0.764706 / 1);
-      --theme-quaternary: color(display-p3 0.984314 0.960784 0.933333 / 1);
-      --theme-highlight: color(display-p3 1 0.545098 0.654902 / 1);
-      --theme-stroke: color(display-p3 0.305882 0.239216 0.305882 / 1);
-      --theme-blank: color(display-p3 0.988235 0.988235 0.988235 / 1);
-    }
-
-    [data-theme="deuteranomaly"] {
-      --theme-background: color(display-p3 0.964706 0.941176 0.92549 / 1);
-      --theme-secondary: color(display-p3 1 0.847059 0.772549 / 1);
-      --theme-tertiary: color(display-p3 0.980392 0.807843 0.513725 / 1);
-      --theme-quaternary: color(display-p3 1 0.929412 0.835294 / 1);
-      --theme-highlight: color(display-p3 0.141176 0.658824 0.627451 / 1);
-      --theme-stroke: color(display-p3 0 0.2 0.07451 / 1);
-      --theme-blank: color(display-p3 0.968627 0.960784 0.94902 / 1);
-    }
-
-    [data-theme="seasalt"] {
+    :root {
       --theme-background: color(display-p3 0.937255 0.929412 0.894118 / 1);
       --theme-secondary: color(display-p3 0.631373 0.788235 0.788235 / 1);
       --theme-tertiary: color(display-p3 0.729412 0.909804 0.909804 / 1);
@@ -142,6 +174,9 @@
       --theme-highlight: color(display-p3 0.862745 0.639216 0.258824 / 1);
       --theme-stroke: color(display-p3 0.152941 0.137255 0.262745 / 1);
       --theme-blank: color(display-p3 1 1 0.996078 / 1);
+
+      color: var(--color-xstroke);
+      background-color: var(--color-xblank);
     }
   }
 
@@ -321,4 +356,61 @@
 }
 @utility animate-wiggle-in-place {
   animation: wiggle-in-place 3s linear infinite;
+}
+
+@theme inline {
+  --font-headline:
+    "Headline", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji;
+
+  --font-main:
+    "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji;
+
+  --font-title:
+    "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji;
+  --font-serif:
+    "Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times,
+    serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji", emoji;
+  --font-mono:
+    "Geist Mono", ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo,
+    "Liberation Mono", "Courier New", monospace, emoji;
+  --font-sans:
+    "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji;
+
+  --color-background: var(--theme-background);
+  --color-secondary: var(--theme-secondary);
+  --color-tertiary: var(--theme-tertiary);
+  --color-quaternary: var(--theme-quaternary);
+  --color-highlight: var(--theme-highlight);
+  --color-stroke: var(--theme-stroke);
+  --color-blank: var(--theme-blank);
+
+  --color-xred: #fd1e1f;
+  --color-xblue: #0015d4;
+  --color-xyellow: #ffcb41;
+  --color-xcyan: #84def9;
+  --color-xpink: #ff8fca;
+
+  --color-xblank: #f6f5f1;
+  --color-xline: #d3d3d3;
+  --color-xbg: #ececec;
+  --color-xarrow: #e4e3dd;
+  --color-xghostwhite: #f8f8ff;
+
+  --color-xstroke: #0b1215;
+
+  /* Outer container width */
+  --container-oxl: 968px;
+  /* Inner width */
+  --container-ixl: 824px;
+  /* Inner article width */
+  --container-axl: 666px;
+
+  /* Content card radiuses */
+  --radius-cxl: 40px;
+  /* Menubar radiuses */
+  --radius-mxl: 44px;
+
+  --breakpoint-1xxl: 85.375rem;
+  --breakpoint-xs: 425px;
 }

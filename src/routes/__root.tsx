@@ -8,10 +8,7 @@ import {
   Scripts,
 } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
-import { useAtomValue } from 'jotai';
-import { type ReactNode, useEffect } from 'react';
 import { Toaster } from 'sonner';
-import { themeAtom } from '@/atoms/index';
 import { SVGFilters } from '@/components/filters/svg-filters';
 import { CustomErrorComponent } from '@/components/layouts/error';
 import { Navbar } from '@/components/layouts/navbar';
@@ -20,6 +17,7 @@ import { normalizeCssUrl } from '@/utils/normalize-css-url';
 import appCss from '../styles/app.css?url';
 import gfmCss from '../styles/gfm.css?url';
 import shikiCss from '../styles/shiki.css?url';
+import type { ReactNode } from 'react';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -149,19 +147,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 const queryClient = new QueryClient();
 
 function RootComponent() {
-  const theme = useAtomValue(themeAtom);
+  // const theme = useAtomValue(themeAtom);
 
-  useEffect(() => {
-    if (typeof document === 'undefined') return;
+  // useEffect(() => {
+  //   if (typeof document === 'undefined') return;
 
-    if (!document.documentElement.classList.contains('theme-transitioning')) {
-      document.documentElement.classList.add('theme-transitioning');
-      setTimeout(() => {
-        document.documentElement.removeAttribute('class');
-      }, 1000);
-    }
-    document.documentElement.dataset.theme = theme;
-  }, [theme]);
+  //   if (!document.documentElement.classList.contains('theme-transitioning')) {
+  //     document.documentElement.classList.add('theme-transitioning');
+  //     setTimeout(() => {
+  //       document.documentElement.removeAttribute('class');
+  //     }, 1000);
+  //   }
+  //   document.documentElement.dataset.theme = theme;
+  // }, [theme]);
 
   return (
     <RootDocument>
