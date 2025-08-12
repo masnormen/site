@@ -2,10 +2,12 @@ import { createFileRoute } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
+import { BigArrow } from '@/components/assets/big-arrow';
 import { Footer } from '@/components/layouts/footer';
 import { Hero } from '@/components/layouts/hero';
 import { Section } from '@/components/layouts/section';
 import { ArticleCard } from '@/components/posts/article-card';
+import { BlogCard } from '@/components/posts/blog-card';
 import { getPostList, getProjectList } from '@/services/posts';
 import { getMDXExport } from '@/utils/posts';
 
@@ -56,21 +58,29 @@ function Home() {
         icon={
           <img
             src="/assets/images/floral-yellow-blue.png"
-            className="size-16 rotate-[45deg] hover:rotate-[-20deg] hover:scale-120 transition-transform"
+            className="w-full h-full rotate-[45deg] hover:rotate-[-20deg] hover:scale-120 transition-transform"
             draggable="false"
             alt="Floral decoration"
           />
         }
         description="On software engineering, web development, and random things I like."
+        before={
+          <>
+            <BigArrow className="absolute -top-2 xl-top-4 left-1/2 -translate-x-1/2 text-xarrow w-[50px] sm:w-[105px] rotate-90 select-none" />
+            <span className="hidden sm:block absolute -top-2.5 xl:-top-3.5 left-1/2 -translate-x-1/2 text-xghoststroke italic text-xs xl:text-base select-none text-center">
+              come into my digital corner! 🏡
+            </span>
+          </>
+        }
       >
         <div
           data-testid="bloglist"
-          className="grid mx-auto w-full max-w-4xl grid-cols-1 gap-8"
+          className="grid mx-auto w-full max-w-4xl grid-cols-1 gap-2 sm:gap-8"
         >
           {posts.map((post, idx) => {
             const Thumbnail = postMdxThumbnails[idx];
             return (
-              <ArticleCard
+              <BlogCard
                 key={idx}
                 className="bg-blank"
                 type="blog"
@@ -80,7 +90,7 @@ function Home() {
                 date={dayjs(post.createdAt).format('MMM DD, YYYY')}
                 tags={post.tags ?? []}
                 Thumbnail={Thumbnail}
-                dir={idx % 2 === 0 ? 'ltr' : 'rtl'}
+                nth={idx}
               />
             );
           })}

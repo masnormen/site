@@ -1,6 +1,10 @@
-export function BigArrow() {
+export function BigArrow(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 191.57 64.25">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 191.57 64.25"
+      {...props}
+    >
       <defs>
         <style
           dangerouslySetInnerHTML={{ __html: '.cls-1{fill:currentColor;}' }}

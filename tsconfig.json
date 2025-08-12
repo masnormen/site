@@ -28,6 +28,7 @@
       "@/*": ["src/*"]
     }
   },
+  "exclude": ["node_modules", "dist", ".tanstack", ".output", ".nitro"],
   "mdx": {
     "checkMdx": true
   }

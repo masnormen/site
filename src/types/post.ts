@@ -12,7 +12,7 @@ export type Heading = {
   level: number;
 };
 
-export type ThumbnailProps = {
+export type ThumbnailProps = React.HTMLAttributes<HTMLDivElement> & {
   isHover: boolean;
 };
 

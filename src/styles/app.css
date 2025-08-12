@@ -185,6 +185,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
   }
 
   *::selection {
@@ -398,6 +399,7 @@
   --color-xghostwhite: #f8f8ff;
 
   --color-xstroke: #0b1215;
+  --color-xghoststroke: #848484;
 
   /* Outer container width */
   --container-oxl: 968px;

@@ -1,6 +1,8 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import dayjs from 'dayjs';
 import pMemoize from 'p-memoize';
+import glob from 'tiny-glob';
 import type { Post } from '@/types/post';
 
 const _fetchPost = async (
@@ -33,22 +35,16 @@ export const fetchPost = import.meta.env.DEV
     });
 
 const _fetchPostList = async (contentType: 'blog' | 'projects') => {
-  const modules =
+  const modulePaths =
     // Glob import can't use dynamic segments, so we need to use two separate import
     contentType === 'blog'
-      ? import.meta.glob(`../../dist/blog/**/index.js`, {
-          query: '?raw',
-          import: 'default',
-        })
-      : import.meta.glob(`../../dist/projects/**/index.js`, {
-          query: '?raw',
-          import: 'default',
-        });
+      ? await glob(path.resolve(process.cwd(), `dist/blog/**/index.js`))
+      : await glob(path.resolve(process.cwd(), `dist/projects/**/index.js`));
 
   const postList = await Promise.all(
-    Object.entries(modules).map(async ([modulePath, module]) => {
+    modulePaths.map(async (modulePath) => {
       const slug = path.parse(path.dirname(modulePath)).base;
-      const mdxCode = await module();
+      const mdxCode = fs.readFileSync(modulePath, 'utf-8');
       const metadata = await import(
         `../../dist/${contentType}/${slug}/index.json`
       );

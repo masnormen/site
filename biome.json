@@ -117,7 +117,8 @@
               "warn",
               "error"
             ]
-          }
+          },
+          "fix": "none"
         },
         "noControlCharactersInRegex": "error",
         "noDebugger": "error",

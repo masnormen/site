@@ -1,4 +1,5 @@
 import { cn } from '../../common/cn';
+import type { ThumbnailProps } from '@/types/post';
 
 const HTTPS = (props: React.JSX.IntrinsicElements['svg']) => {
   return (
@@ -400,18 +401,27 @@ const SSH = ({
   );
 };
 
-export function Thumbnail({ isHover }: { isHover?: boolean }) {
+export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   return (
-    <div className="max-w-full max-h-full aspect-3/2! flex flex-col items-center justify-center relative bg-blank filter-noisy">
-      <div className="absolute top-[10%] left-1/2 -translate-x-1/2 h-[70%] w-min">
+    <div
+      className={cn(
+        'w-full h-full flex flex-col items-center justify-center relative bg-[#f9e1f7] filter-noisy',
+        className,
+      )}
+      {...rest}
+    >
+      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 h-[55%] w-min">
         <SSH
-          className="font-mono font-bold animate-bounce"
+          className={cn(
+            'font-mono font-bold animate-bounce',
+            isHover && 'text-[8cqw]',
+          )}
           text={isHover ? '🤓☝️' : 'SSH'}
         />
       </div>
       <div
         className={cn(
-          'absolute top-[27%] left-1/2 -translate-x-1/2 h-[70%] w-min',
+          'absolute top-[35%] left-1/2 -translate-x-1/2 h-[50%] w-min',
           isHover && 'animate-wiggle-in-place',
         )}
       >

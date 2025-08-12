@@ -111,7 +111,6 @@ function getBuildOptions({ sourcePaths }: { sourcePaths: string[] }) {
       }),
       NodeResolvePlugin({
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
-        // resolveOptions: { basedir: cwd },
       }),
       mdxESBuild({
         remarkPlugins: [
