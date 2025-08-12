@@ -24,7 +24,7 @@ export function Section({
   return (
     <section
       className={cn(
-        '@container relative flex flex-col transition-transform mx-auto border-x-1 border-b-1 border-dashed border-xline w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-oxl py-12 sm:py-24',
+        '@container relative flex flex-col overflow-visible transition-transform mx-auto border-x-1 border-b-1 border-dashed border-xline w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-oxl py-12 sm:py-24',
         className,
       )}
       {...rest}

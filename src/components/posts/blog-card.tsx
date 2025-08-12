@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useHover } from '@uidotdev/usehooks';
-import { HourGlassishShape } from '@/components/assets/random-shape';
 import { Chip } from '@/components/posts/chip';
+import { ThumbnailDisplay } from '@/components/posts/thumbnail-display';
 import type { ThumbnailProps } from '@/types/post';
 
 export interface BlogCardProps {
@@ -37,6 +37,7 @@ export function BlogCard({
         contentType: type,
         slug,
       }}
+      className="active:scale-98 transition-transform duration-300"
     >
       <article
         className="group relative
@@ -70,13 +71,11 @@ export function BlogCard({
         </header>
 
         {typeof Thumbnail === 'function' && (
-          <div className="isolate relative flex m-auto aspect-square! w-[158px] h-[158px] sm:w-[198px] sm:h-[198px] mx-auto group-hover:scale-105 transition-all duration-400">
-            <HourGlassishShape className="z-0 absolute translate-y-[3%] rotate-[65deg] w-full h-auto text-xblue pointer-events-none group-hover:rotate-[-25deg] group-hover:text-xyellow transition-all duration-400" />
-            <Thumbnail
-              isHover={isHover}
-              className="z-10 block relative aspect-square! border border-xbg rounded-cxl group-hover:shadow-lg"
-            />
-          </div>
+          <ThumbnailDisplay
+            Thumbnail={Thumbnail}
+            isHover={isHover}
+            withOrnaments
+          />
         )}
 
         <div className="hidden lg:flex flex-col justify-center p-9 pl-14 gap-3">

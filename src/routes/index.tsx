@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
@@ -8,6 +8,7 @@ import { Hero } from '@/components/layouts/hero';
 import { Section } from '@/components/layouts/section';
 import { ArticleCard } from '@/components/posts/article-card';
 import { BlogCard } from '@/components/posts/blog-card';
+import { Button } from '@/components/ui/button';
 import { getPostList, getProjectList } from '@/services/posts';
 import { getMDXExport } from '@/utils/posts';
 
@@ -66,11 +67,19 @@ function Home() {
         description="On software engineering, web development, and random things I like."
         before={
           <>
-            <BigArrow className="absolute -top-2 xl-top-4 left-1/2 -translate-x-1/2 text-xarrow w-[50px] sm:w-[105px] rotate-90 select-none" />
+            <BigArrow className="absolute -top-2 left-1/2 -translate-x-1/2 text-xarrow w-[50px] sm:w-[105px] rotate-90 select-none" />
             <span className="hidden sm:block absolute -top-2.5 xl:-top-3.5 left-1/2 -translate-x-1/2 text-xghoststroke italic text-xs xl:text-base select-none text-center">
               come into my digital corner! 🏡
             </span>
           </>
+        }
+        after={
+          <Button
+            asChild
+            className="z-10 absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2"
+          >
+            <Link to="/">View All</Link>
+          </Button>
         }
       >
         <div
