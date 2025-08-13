@@ -118,8 +118,17 @@ export function ProjectCard({
   ...rest
 }: ProjectCardProps) {
   return (
-    <article className="@container relative flex flex-col-reverse lg:flex-row gap-6 lg:gap-8">
-      <div className="grid grid-rows-[1fr_auto] sm:grid-rows-1 sm:grid-cols-[2fr_1fr] items-center justify-center">
+    <article
+      className={cn(
+        '@container group/card relative flex flex-col-reverse gap-6 sm:gap-4 lg:gap-6',
+        nth % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse',
+      )}
+    >
+      <div
+        className={cn(
+          'grid grid-rows-[1fr_auto] sm:grid-rows-1 sm:grid-cols-[2fr_1fr] items-center justify-center',
+        )}
+      >
         <Link
           to="/$contentType/$slug"
           params={{
@@ -136,7 +145,7 @@ export function ProjectCard({
             transition-all duration-400 rounded-tl-cxl rounded-tr-cxl sm:rounded-tr-none sm:rounded-bl-cxl"
             {...rest}
           >
-            <div className="flex flex-col h-full py-8 pl-9 pr-12 justify-center gap-2">
+            <div className="flex flex-col h-full p-6 sm:py-8 sm:pl-9 sm:pr-12 justify-center gap-2">
               <div className="flex flex-row gap-1.5">
                 {tags.map((tag, idx) => (
                   <TechStack key={idx} tag={tag} />
@@ -236,8 +245,8 @@ export function ProjectCard({
               src={Thumbnail}
               className="z-10 block relative aspect-16/10 h-full w-auto object-center object-cover bg-xghostwhite border border-xbg rounded-cxl group-hover:shadow-lg group-hover:scale-102 transition-transform duration-400"
             />
-            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xbg rounded-cxl rotate-6 group-hover:-rotate-12 group-hover:bg-xyellow transition-all duration-400" />
-            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xpink rounded-cxl -rotate-6 group-hover:rotate-6 transition-transform duration-400" />
+            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xbg rounded-cxl rotate-6 group-hover/card:-rotate-12 group-hover/card:bg-xyellow transition-all duration-400" />
+            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xpink rounded-cxl -rotate-6 group-hover/card:rotate-6 transition-transform duration-400" />
           </div>
         </Link>
       )}
