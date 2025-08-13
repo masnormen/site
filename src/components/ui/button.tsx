@@ -17,7 +17,7 @@ export function Button({
     <Comp
       type={asChild ? undefined : 'button'}
       className={cn(
-        'inline-flex items-center justify-center px-6 py-[13px] font-title font-semibold bg-xblue rounded-3xl text-base text-white leading-[1] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-xblue/80 hover:cursor-pointer active:scale-97',
+        'inline-flex items-center justify-center px-6 py-[13px] font-title font-semibold bg-xblue rounded-3xl text-base text-white leading-[1] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-xblue/80 hover:cursor-pointer active:scale-97',
         className,
       )}
       {...rest}

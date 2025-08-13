@@ -5,8 +5,7 @@ import { ThumbnailDisplay } from '@/components/posts/thumbnail-display';
 import type { ThumbnailProps } from '@/types/post';
 
 export interface BlogCardProps {
-  type: 'blog' | 'projects';
-  Thumbnail: React.FC<ThumbnailProps> | null;
+  Thumbnail: React.FC<ThumbnailProps> | string | null;
   title: string;
   description?: string;
   date?: string;
@@ -17,7 +16,6 @@ export interface BlogCardProps {
 }
 
 export function BlogCard({
-  type,
   Thumbnail,
   title,
   description,
@@ -34,7 +32,7 @@ export function BlogCard({
     <Link
       to="/$contentType/$slug"
       params={{
-        contentType: type,
+        contentType: 'blog',
         slug,
       }}
       className="active:scale-98 transition-transform duration-300"
@@ -57,7 +55,7 @@ export function BlogCard({
           ))}
         </div>
 
-        <header className="flex flex-col py-8 sm:pl-9 sm:pr-12 justify-center gap-2 sm:gap-3">
+        <header className="flex flex-col w-full py-8 sm:pl-9 sm:pr-12 justify-center gap-2 sm:gap-3">
           <h1 className="font-title font-semibold text-left text-base lg:text-xl leading-[1.2] lg:line-clamp-4">
             {title}
           </h1>
@@ -70,7 +68,7 @@ export function BlogCard({
           </time>
         </header>
 
-        {typeof Thumbnail === 'function' && (
+        {!!Thumbnail && (
           <ThumbnailDisplay
             Thumbnail={Thumbnail}
             isHover={isHover}

@@ -11,12 +11,12 @@ export function ThumbnailDisplay({
 }: Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> & {
   isHover?: boolean;
   withOrnaments?: boolean;
-  Thumbnail: React.FC<ThumbnailProps>;
+  Thumbnail: React.FC<ThumbnailProps> | string;
 }) {
   return (
     <div
       className={cn(
-        'isolate relative flex m-auto aspect-square! w-[158px] h-[158px] sm:w-[198px] sm:h-[198px] mx-auto group-hover:scale-105 transition-all duration-400',
+        'isolate relative flex m-auto aspect-square! w-[180px] h-[180px] sm:w-[198px] sm:h-[198px] mx-auto group-hover:scale-105 transition-all duration-400',
         className,
       )}
       {...rest}
@@ -24,10 +24,18 @@ export function ThumbnailDisplay({
       {withOrnaments && (
         <HourGlassishShape className="z-0 absolute translate-y-[3%] rotate-[65deg] w-full h-auto text-xblue pointer-events-none group-hover:rotate-[-25deg] group-hover:text-xyellow transition-all duration-400" />
       )}
-      <Thumbnail
-        isHover={isHover}
-        className="z-10 block relative aspect-square! border border-xbg rounded-cxl group-hover:shadow-lg"
-      />
+
+      {typeof Thumbnail === 'function' ? (
+        <Thumbnail
+          isHover={isHover}
+          className="z-10 block relative aspect-square! border border-xbg rounded-cxl group-hover:shadow-lg"
+        />
+      ) : (
+        <img
+          src={Thumbnail}
+          className="z-10 block relative aspect-square! object-center object-contain bg-xghostwhite border border-xbg rounded-cxl group-hover:shadow-lg"
+        />
+      )}
     </div>
   );
 }

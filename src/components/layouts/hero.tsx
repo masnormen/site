@@ -20,13 +20,11 @@ export function Hero() {
         src="/assets/images/floral-yellow-blue.png"
         className="absolute size-[80px] sm:size-[18cqw] xl:size-[220px] -translate-y-[220px] sm:left-0 sm:-translate-x-1/2 sm:-translate-y-[100px] rotate-[14deg] hover:rotate-[340deg] hover:scale-80 transition-transform select-none"
         draggable="false"
-        alt="Floral decoration"
       />
       <img
         src="/assets/images/x-pink-blue.png"
         className="absolute size-[50px] sm:size-[15cqw] xl:size-[190px] translate-y-[220px] sm:right-0 sm:translate-x-1/2 sm:translate-y-[100px] rotate-[-18deg] hover:rotate-[-345deg] hover:scale-80 transition-transform select-none"
         draggable="false"
-        alt="Floral decoration"
       />
       <div className="hidden sm:block absolute left-0 -translate-x-1/2 translate-y-[120px] rotate-[-7deg]">
         <div className="filter-gooey mt-2 rotate-[-2deg] drop-shadow-[4px_4px_0px_var(--color-xyellow)] duration-300 hover:rotate-[15deg] hover:drop-shadow-[4px_4px_0px_var(--color-xblue)] text-center">
