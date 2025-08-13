@@ -243,10 +243,10 @@ export function ProjectCard({
           <div className="relative aspect-16/10 h-full w-auto">
             <img
               src={Thumbnail}
-              className="z-10 block relative aspect-16/10 h-full w-auto object-center object-cover bg-xghostwhite border border-xbg rounded-cxl group-hover:shadow-lg group-hover:scale-102 transition-transform duration-400"
+              className="z-10 block relative aspect-16/10 h-full w-auto object-center object-cover bg-xghostwhite border border-xbg rounded-cxl sm:group-hover:shadow-lg sm:group-hover/card:scale-102 transition-transform duration-400"
             />
-            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xbg rounded-cxl rotate-6 group-hover/card:-rotate-12 group-hover/card:bg-xyellow transition-all duration-400" />
-            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xpink rounded-cxl -rotate-6 group-hover/card:rotate-6 transition-transform duration-400" />
+            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xbg rounded-cxl rotate-6 sm:group-hover/card:-rotate-12 sm:group-hover/card:bg-xyellow transition-all duration-400" />
+            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xpink rounded-cxl -rotate-6 sm:group-hover/card:rotate-6 transition-transform duration-400" />
           </div>
         </Link>
       )}

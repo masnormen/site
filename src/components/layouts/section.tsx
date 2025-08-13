@@ -36,11 +36,15 @@ export function Section({
           {icon}
         </div>
 
-        <header className="mb-12 sm:mb-16">
-          <h1 className="font-serif text-2xl sm:text-[40px] leading-[1.25]">{title}</h1>
-          <div className="mt-2 sm:mt-5 font-serif text-sm sm:text-xl leading-[1.25]">
-            {description}
-          </div>
+        <header className='mb-5'>
+          <h1 className="font-serif text-2xl sm:text-[40px] leading-[1.25]">
+            {title}
+          </h1>
+          {description && (
+            <div className="mt-2 sm:mt-5 mb-12 sm:mb-11 font-serif text-sm sm:text-xl leading-[1.25]">
+              {description}
+            </div>
+          )}
         </header>
 
         {children}
