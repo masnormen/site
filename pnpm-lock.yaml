@@ -17,6 +17,9 @@ importers:
       '@iconify-icon/react':
         specifier: ^3.0.0
         version: 3.0.0(react@19.0.0)
+      '@iconify/react':
+        specifier: ^6.0.0
+        version: 6.0.0(react@19.0.0)
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.9)(react@19.0.0)
@@ -917,6 +920,11 @@ packages:
 
   '@iconify-icon/react@3.0.0':
     resolution: {integrity: sha512-TOyzGUIfOFbmRQflMbf8k8bBGbeVAVCnvJ/rKz2SgBOV6VZLv7E9gzLvkPzfkZ2HZL+GbRtLNX/GJq2EI54OFQ==}
+    peerDependencies:
+      react: '>=16'
+
+  '@iconify/react@6.0.0':
+    resolution: {integrity: sha512-eqNscABVZS8eCpZLU/L5F5UokMS9mnCf56iS1nM9YYHdH8ZxqZL9zyjSwW60IOQFsXZkilbBiv+1paMXBhSQnw==}
     peerDependencies:
       react: '>=16'
 
@@ -5351,6 +5359,11 @@ snapshots:
   '@iconify-icon/react@3.0.0(react@19.0.0)':
     dependencies:
       iconify-icon: 3.0.0
+      react: 19.0.0
+
+  '@iconify/react@6.0.0(react@19.0.0)':
+    dependencies:
+      '@iconify/types': 2.0.0
       react: 19.0.0
 
   '@iconify/types@2.0.0': {}

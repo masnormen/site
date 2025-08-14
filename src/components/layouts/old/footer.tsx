@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react';
 
 export function Footer() {
   return (
-    <footer className="@container flex flex-col items-center justify-center text-center relative bg-xbg border-t border-dashed border-xline">
+    <footer className="@container flex flex-col items-center justify-center text-center filter-noisy relative bg-quaternary px-6 py-12 text-stroke/75 md:px-4 border-t-2 border-dashed border-quaternary overflow-hidden">
       <Link
         to="/"
         className="text-center w-full max-w-4xl inline-flex flex-row pb-8 items-center justify-center font-bold font-mono text-[min(16cqw,104px)] [text-shadow:var(--theme-secondary)_4px_4px] hover:[text-shadow:var(--theme-highlight)_8px_8px] transition-[text-shadow] duration-500"
