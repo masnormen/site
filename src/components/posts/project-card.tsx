@@ -1,4 +1,4 @@
-import { Icon } from '@iconify-icon/react';
+import { Icon } from '@iconify/react';
 import { Link } from '@tanstack/react-router';
 import { CircleComplete, CircleIncomplete } from '@/components/assets/circles';
 import {

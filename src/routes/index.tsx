@@ -1,4 +1,4 @@
-import { Icon } from '@iconify-icon/react/dist/iconify.mjs';
+import { Icon } from '@iconify/react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import dayjs from 'dayjs';
@@ -185,16 +185,16 @@ function Home() {
           </div>
           <p className="first-letter:font-serif first-letter:font-bold first-letter:text-[48px] first-letter:leading-[1] first-letter:float-left first-letter:mr-3">
             I <b>grew up</b> surrounded by computers. I wrote my first blog at 9
-            years old, installed Arch Linux (yes, the painful & manual way) on
-            my laptop when I was 11, and did my first real programming project
-            when I was 13. Basically, I carry the love for programming with me
-            all my life.
+            years old, installed Arch Linux (yes, the manual way) on my laptop
+            at 11, and shipped my first real code at 13. Basically, I've carried
+            the love for programming with me all my life, and became a Software
+            Engineer.
           </p>
           <p>
-            Besides working, I'm currently pursuing my master's in Cybersecurity
-            at Monash University on weekends (<strong>fun fact:</strong> I'm
-            able to study there all thanks to a scholarship from a literal 😼
-            cat meme{' '}
+            Alongside my work, I'm currently pursuing a Master's in
+            Cybersecurity at Monash University on weekends. (
+            <strong>Fun fact</strong>: this was made possible by a scholarship
+            from a literal 😼 cat meme{' '}
             <Tooltip>
               <TooltipTrigger className="cursor-pointer">
                 <a
@@ -222,15 +222,17 @@ function Home() {
           </div>
 
           <p className="clear-right">
-            I usually use TypeScript and build React apps. That being said, I’m
-            comfortable to move between frameworks and language like Svelte, Go,
-            Python, Rust, PHP, and others to solve problems efficiently. 😉
+            My go-to tools for work are TypeScript and React, but I'm a
+            pragmatic engineer at heart. I'm comfortable moving between
+            frameworks and languages, like Svelte, Go, Python, Rust, PHP, or
+            whatever tool is best suited to solve the problem at hand. Also, new
+            tools are a welcome fun challenge!
           </p>
           <p>
-            Now I'm based in <strong>Jakarta, Indonesia</strong>. Having been
-            raised multilingually in Indonesian and Javanese, I’m also a fluent
-            English speaker. I've even picked up a bit of Japanese (still need
-            to practice!)
+            I'm currently based in <strong>Jakarta, Indonesia</strong>. Having
+            been raised multilingually in Indonesian and Javanese, I’m also a
+            fluent English speaker and have picked up some conversational
+            Japanese (still practicing!).
           </p>
         </div>
       </Section>

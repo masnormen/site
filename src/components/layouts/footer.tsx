@@ -1,45 +1,79 @@
 import { Link } from '@tanstack/react-router';
-import type { CSSProperties } from 'react';
+
+// TODO: Update the footer content
 
 export function Footer() {
   return (
-    <footer className="@container flex flex-col items-center justify-center text-center relative bg-xbg border-t border-dashed border-xline">
-      <Link
-        to="/"
-        className="text-center w-full max-w-4xl inline-flex flex-row pb-8 items-center justify-center font-bold font-mono text-[min(16cqw,104px)] [text-shadow:var(--theme-secondary)_4px_4px] hover:[text-shadow:var(--theme-highlight)_8px_8px] transition-[text-shadow] duration-500"
-      >
-        .n
-        <span className="relative -mb-[0.1em] mx-[0.05em]">
-          <span className="absolute top-0 left-1/2 translate-y-[-0.5em] -translate-x-1/2 text-transparent [text-shadow:none]">
-            o
-          </span>
-          <svg
-            aria-hidden
-            viewBox="0 0 100 100"
-            style={{ '--spin-speed': '10s' } as CSSProperties}
-            className="flex aspect-square h-[1.3ch] animate-spin-clockwise font-mono text-blank [text-shadow:var(--theme-highlight)_1px_1px] select-none"
-          >
-            <defs>
-              <path
-                id="circle"
-                d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-              />
-            </defs>
-            <text fill="currentColor">
-              <textPath xlinkHref="#circle" className="text-[1rem]">
-                NOURMAN·COM·NOURMAN·COM·
-              </textPath>
-            </text>
-          </svg>
-          <div
-            aria-hidden
-            className="absolute top-0 left-0 h-full w-full flex font-mono items-center justify-center text-center text-[0.14em] text-stroke select-none"
-          >
-            ©{new Date().getFullYear()}
+    <footer className="flex flex-col items-center overflow-hidden justify-center bg-xbg border-t-1 border-dashed border-xline">
+      <div className="@container relative flex flex-col items-center h-[584px] w-[calc(100%-64px)] sm:w-[calc(100%-128px)] max-w-ixl mx-auto pt-24">
+        <nav className="grid grid-cols-[1fr_1fr_0.55fr] w-full gap-6">
+          <div className="">
+            <div className="font-title font-bold text-2xl leading-[1.15]">
+              General
+            </div>
+            <div className="flex flex-col mt-8 gap-4">
+              {['Home', 'Blog', 'Projects', 'Guestbook', 'Attributions'].map(
+                (item) => (
+                  <Link
+                    to="/"
+                    className="font-semibold font-title text-base text-xblue hover:underline hover:underline-offset-2"
+                    key={item}
+                  >
+                    {item}
+                  </Link>
+                ),
+              )}
+            </div>
           </div>
-        </span>
-        urmanhjr
-      </Link>
+          <div className="">
+            <div className="font-title font-bold text-2xl leading-[1.15]">
+              Connect
+            </div>
+            <div className="flex flex-col mt-8 gap-4">
+              {['Book a Call ↗', 'LinkedIn ↗', 'GitHub ↗'].map((item) => (
+                <Link
+                  to="/"
+                  className="font-semibold font-title text-base text-xblue hover:underline hover:underline-offset-2"
+                  key={item}
+                >
+                  {item}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="">
+            <div className="font-title font-bold text-2xl leading-[1.15]">
+              Misc
+            </div>
+            <div className="flex flex-col mt-8 font-title text-sm gap-4 leading-[1.5]">
+              <p>
+                Last deployed at{' '}
+                <i>
+                  {typeof window === 'undefined'
+                    ? '-'
+                    : /** biome-ignore lint/suspicious/noExplicitAny: it exists at runtime */
+                      (window as any).__BUILD_TIME__}
+                </i>{' '}
+                with commit <b>31f5a1e</b>.
+              </p>
+              <p>
+                Powered by <b>TanStack Start</b>.
+              </p>
+              <p>
+                Have a nice <b>Thursday</b>!
+              </p>
+            </div>
+          </div>
+        </nav>
+
+        <div className="mt-16 w-full text-center font-title text-sm text-xghoststroke">
+          All Rights Reserved © 2020-{new Date().getFullYear()}
+        </div>
+
+        <div className="absolute bottom-0 flex w-full font-serif text-[148px] text-xyellow text-center leading-[0.45]">
+          NOURMAN·COM
+        </div>
+      </div>
     </footer>
   );
 }
