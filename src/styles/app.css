@@ -7,6 +7,7 @@
   :root {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: 64px;
   }
 }
 
@@ -231,26 +232,25 @@
   /* Atomic components */
 
   .link {
-    color: var(--theme-highlight);
-    -webkit-text-decoration-color: var(--theme-highlight);
-    text-decoration: underline var(--theme-highlight);
-    text-decoration-color: var(--theme-highlight);
+    color: var(--color-xblue);
+    -webkit-text-decoration-color: var(--color-xyellow);
+    text-decoration: underline var(--color-xyellow);
+    text-decoration-color: var(--color-xyellow);
     text-underline-offset: 0.15em;
     -webkit-text-decoration-skip: ink;
     text-decoration-skip-ink: auto;
     box-shadow:
       inset 0 0em transparent,
-      inset 0 0em var(--theme-secondary);
+      inset 0 0em var(--color-xblue);
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-    width: auto;
   }
 
   .link:hover {
-    color: var(--theme-stroke);
+    color: var(--color-xstroke);
     box-shadow:
       inset 0 0em transparent,
-      inset 0 -1.1em var(--theme-tertiary);
+      inset 0 -1.1em var(--color-xyellow);
   }
 
   .filter-gooey {

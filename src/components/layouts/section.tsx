@@ -1,4 +1,5 @@
 import { cn } from '@/utils/cn';
+import type { RefObject } from 'react';
 
 interface SectionProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
@@ -9,6 +10,7 @@ interface SectionProps
   before?: React.ReactNode;
   after?: React.ReactNode;
   className?: string;
+  ref?: RefObject<HTMLDivElement | null>;
 }
 
 export function Section({
@@ -31,21 +33,25 @@ export function Section({
     >
       {before}
 
-      <div className="w-[calc(100%-64px)] sm:w-[calc(100%-128px)] max-w-ixl mx-auto">
-        <div className="absolute left-0 size-8 sm:size-16 -translate-x-1/2 sm:-translate-y-[10%] select-none">
-          {icon}
-        </div>
+      <div className="w-[calc(100%-64px)] md:w-[calc(100%-128px)] max-w-ixl mx-auto">
+        {icon && (
+          <div className="absolute left-0 size-8 sm:size-16 -translate-x-1/2 sm:-translate-y-[10%] select-none">
+            {icon}
+          </div>
+        )}
 
-        <header className='mb-8'>
-          <h1 className="font-serif text-2xl sm:text-[40px] leading-[1.25]">
-            {title}
-          </h1>
-          {description && (
-            <div className="mt-2 sm:mt-4 mb-12 sm:mb-10 font-serif text-sm sm:text-xl leading-[1.25]">
-              {description}
-            </div>
-          )}
-        </header>
+        {title && (
+          <header className="mb-8">
+            <h1 className="font-serif text-2xl sm:text-[40px] leading-[1.25]">
+              {title}
+            </h1>
+            {description && (
+              <div className="mt-2 sm:mt-4 mb-12 sm:mb-10 font-serif text-sm sm:text-xl leading-[1.25]">
+                {description}
+              </div>
+            )}
+          </header>
+        )}
 
         {children}
       </div>

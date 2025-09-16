@@ -56,7 +56,7 @@ export function BlogCard({
         </div>
 
         <header className="flex flex-col w-full py-8 sm:pl-9 sm:pr-12 justify-center gap-2 sm:gap-3">
-          <h1 className="font-title font-semibold text-left text-base lg:text-xl leading-[1.2] lg:line-clamp-4">
+          <h1 className="font-title font-semibold text-pretty text-left text-base lg:text-xl leading-[1.2] lg:line-clamp-4">
             {title}
           </h1>
           <div className="text-sm line-clamp-4 lg:hidden">{description}</div>

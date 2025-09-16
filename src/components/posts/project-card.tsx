@@ -154,7 +154,7 @@ export function ProjectCard({
                   <TechStack key={idx} tag={tag} />
                 ))}
               </div>
-              <h1 className="font-title font-semibold text-left text-base lg:text-xl leading-[1.2] lg:line-clamp-4">
+              <h1 className="font-title font-semibold text-pretty text-left text-base lg:text-xl leading-[1.2] lg:line-clamp-4">
                 {title}
               </h1>
               <div className="text-sm lg:text-base line-clamp-3 leading-[1.25]">

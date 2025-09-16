@@ -156,8 +156,8 @@ function RootComponent() {
           <Outlet />
 
           {/* Top/Bottom fade */}
-          <div className="z-50 fixed top-0 w-screen h-16 bg-gradient-to-t from-transparent to-xblank" />
-          <div className="z-50 fixed bottom-0 w-screen h-16 bg-gradient-to-b from-transparent to-xblank" />
+          <div className="pointer-events-none z-50 fixed top-0 w-screen h-20 bg-gradient-to-t from-xblank/0 to-xblank" />
+          <div className="pointer-events-none z-50 fixed bottom-0 w-screen h-20 bg-gradient-to-b from-xblank/0 to-xblank" />
 
           {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
           {import.meta.env.DEV && (

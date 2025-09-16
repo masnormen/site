@@ -5,13 +5,15 @@ import { Link } from '@tanstack/react-router';
 const FooterSection = ({
   title,
   children,
+  className,
 }: {
   title: string;
   children: React.ReactNode;
+  className?: string;
 }) => (
-  <div>
+  <div className={className}>
     <div className="font-title font-bold text-2xl leading-[1.15]">{title}</div>
-    <div className="flex flex-col mt-4 md:mt-8 gap-2 md:gap-4">{children}</div>
+    <div className="flex flex-col mt-4 md:mt-8 gap-2 md:gap-4 *:w-fit">{children}</div>
   </div>
 );
 
@@ -25,7 +27,7 @@ export function Footer() {
               (item) => (
                 <Link
                   to="/"
-                  className="font-semibold font-title text-base text-xblue hover:underline hover:underline-offset-2"
+                  className="link font-semibold font-title text-base"
                   key={item}
                 >
                   {item}
@@ -37,17 +39,17 @@ export function Footer() {
             {['Book a Call ↗', 'LinkedIn ↗', 'GitHub ↗'].map((item) => (
               <Link
                 to="/"
-                className="font-semibold font-title text-base text-xblue hover:underline hover:underline-offset-2"
+                className="link font-semibold font-title text-base"
                 key={item}
               >
                 {item}
               </Link>
             ))}
           </FooterSection>
-          <FooterSection title="Misc">
+          <FooterSection title="Misc" className="text-sm">
             <p>
               Last deployed at{' '}
-              <i>
+              <i suppressHydrationWarning>
                 {typeof window === 'undefined'
                   ? '-'
                   : /** biome-ignore lint/suspicious/noExplicitAny: it exists at runtime */

@@ -46,7 +46,7 @@ export function About() {
           <Tooltip>
             <TooltipTrigger className="cursor-pointer">
               <a
-                className="text-xblue underline decoration-1 underline-offset-2"
+                className="link font-semibold"
                 href="https://www.instagram.com/ecommurz/"
                 target="_blank"
                 rel="noopener noreferrer"

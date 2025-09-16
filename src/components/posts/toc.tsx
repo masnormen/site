@@ -6,68 +6,56 @@ import type { Post } from '@/types/post';
 
 export function TableOfContents({
   post,
+  className,
 }: {
   post: Pick<Post, 'title' | 'slug' | 'toc'>;
+  className?: string;
 }) {
   const params = Route.useParams();
 
   return (
     <div
       className={cn(
-        'relative flex flex-col',
-        '@container 1xxl:absolute 1xxl:top-0 1xxl:left-0 1xxl:-translate-x-full 1xxl:h-full 1xxl:w-[calc(((100vw-896px)/2)-8px)] 1xxl:max-w-xs 1xxl:blur-[1px] 1xxl:opacity-50 1xxl:hover:blur-none 1xxl:hover:opacity-100 duration-200',
+        '@container sm:sticky top-16 flex flex-col bg-xbg mt-8 md:mt-8 lg:my-8 px-5 py-8 rounded-l-cxl lg:rounded-l-none rounded-r-cxl sm:hover:scale-99 sm:hover:shadow-2xs sm:hover:bg-xarrow transition-all duration-200',
+        className,
       )}
     >
-      <div
-        className={cn(
-          'flex flex-col gap-4 w-full',
-          '1xxl:sticky 1xxl:top-[calc(10vh)] 1xxl:pt-14 1xxl:pl-4 1xxl:pr-8',
-        )}
-      >
-        <span className="hidden font-headline text-xl leading-tight 1xxl:block">
-          {post.title}
-        </span>
-        <span className="block text-lg font-semibold leading-tight 1xxl:hidden">
-          Table of Contents
-        </span>
-        <div className="block space-y-1 leading-7">
-          {post.toc.map((toc) => (
-            <Fragment key={toc.id}>
-              <span
-                className={cn(
-                  'inline-block text-highlight',
-                  toc.level === 1 && 'ml-5 indent-[-1.28rem] font-semibold',
-                  toc.level === 2 && 'ml-8 -indent-5',
-                  toc.level === 3 && 'ml-10 indent-[-0.9rem]',
-                )}
+      <div className="block space-y-1 leading-tight">
+        {post.toc.map((toc) => (
+          <Fragment key={toc.id}>
+            <span
+              className={cn(
+                'inline-block text-xpink -mb-1 not-last:mb-1.5',
+                toc.level === 1 && 'ml-5 indent-[-1.28rem] font-semibold',
+                toc.level === 2 && 'ml-8 -indent-5',
+                toc.level === 3 && 'ml-10 indent-[-0.9rem]',
+              )}
+            >
+              {toc.level === 1 && '▲ '}
+              {toc.level === 2 && '→ '}
+              {toc.level === 3 && '• '}
+              <Link
+                to="/$contentType/$slug"
+                params={{ contentType: params.contentType, slug: post.slug }}
+                hash={toc.id}
+                preload={false}
+                className="link ml-1 text-sm"
               >
-                {toc.level === 1 && '▲ '}
-                {toc.level === 2 && '→ '}
-                {toc.level === 3 && '• '}
-                <Link
-                  to="/$contentType/$slug"
-                  params={{ contentType: params.contentType, slug: post.slug }}
-                  hash={toc.id}
-                  preload={false}
-                  className="link ml-1 text-sm"
-                >
-                  {toc.text}
-                </Link>
-              </span>
-              <br />
-            </Fragment>
-          ))}
-          <br className="hidden 1xxl:block" />
-          <Link
-            to="/$contentType/$slug"
-            params={{ contentType: params.contentType, slug: post.slug }}
-            hash="_top_"
-            preload={false}
-            className="link hidden 1xxl:inline ml-1 text-sm w-min"
-          >
-            ↑ Back to top
-          </Link>
-        </div>
+                {toc.text}
+              </Link>
+            </span>
+            <br />
+          </Fragment>
+        ))}
+        <Link
+          to="/$contentType/$slug"
+          params={{ contentType: params.contentType, slug: post.slug }}
+          hash="_top_"
+          preload={false}
+          className="link inline ml-1 text-sm w-min"
+        >
+          ↑ Back to top
+        </Link>
       </div>
     </div>
   );
