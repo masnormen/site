@@ -15,8 +15,8 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@iconify/react':
-        specifier: ^6.0.1
-        version: 6.0.1(react@19.0.0)
+        specifier: ^6.0.2
+        version: 6.0.2(react@19.0.0)
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.13)(react@19.0.0)
@@ -58,7 +58,7 @@ importers:
         version: 1.11.18
       jotai:
         specifier: ^2.14.0
-        version: 2.14.0(@babel/core@7.28.0)(@babel/template@7.27.2)(@types/react@19.1.13)(react@19.0.0)
+        version: 2.14.0(@babel/core@7.28.4)(@babel/template@7.27.2)(@types/react@19.1.13)(react@19.0.0)
       p-memoize:
         specifier: ^7.1.1
         version: 7.1.1
@@ -934,8 +934,8 @@ packages:
       react: ^16 || ^17 || ^18 || ^19
       react-dom: ^16 || ^17 || ^18 || ^19
 
-  '@iconify/react@6.0.1':
-    resolution: {integrity: sha512-fCocnAfiGXjrA0u7KkS3W/OQHNp9LRFICudvOtxmS3Mf7U92aDhP50wyzRbobZli51zYt9ksZ9g0J7H586XvOQ==}
+  '@iconify/react@6.0.2':
+    resolution: {integrity: sha512-SMmC2sactfpJD427WJEDN6PMyznTFMhByK9yLW0gOTtnjzzbsi/Ke/XqsumsavFPwNiXs8jSiYeZTmLCLwO+Fg==}
     peerDependencies:
       react: '>=16'
 
@@ -5391,7 +5391,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@iconify/react@6.0.1(react@19.0.0)':
+  '@iconify/react@6.0.2(react@19.0.0)':
     dependencies:
       '@iconify/types': 2.0.0
       react: 19.0.0
@@ -7956,9 +7956,9 @@ snapshots:
 
   jiti@2.5.1: {}
 
-  jotai@2.14.0(@babel/core@7.28.0)(@babel/template@7.27.2)(@types/react@19.1.13)(react@19.0.0):
+  jotai@2.14.0(@babel/core@7.28.4)(@babel/template@7.27.2)(@types/react@19.1.13)(react@19.0.0):
     optionalDependencies:
-      '@babel/core': 7.28.0
+      '@babel/core': 7.28.4
       '@babel/template': 7.27.2
       '@types/react': 19.1.13
       react: 19.0.0

@@ -6,7 +6,7 @@ import type { CSSProperties } from 'react';
 export function NotFoundComponent() {
   return (
     <>
-      <Navbar alwaysVisible />
+      <Navbar />
       <main className="@container relative flex w-full h-full flex-col items-center justify-center overflow-hidden transition-transform bg-background px-4 supports-dvh:h-dvh min-h-screen supports-[height:100dvh]:min-h-dvh md:px-8">
         <CirclingStars />
 

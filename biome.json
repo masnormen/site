@@ -85,7 +85,7 @@
         "useJsxKeyInIterable": "error",
         "noUnusedImports": {
           "level": "error",
-          "fix": "unsafe"
+          "fix": "none"
         },
         "noInvalidBuiltinInstantiation": "error",
         "useValidTypeof": "error"

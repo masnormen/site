@@ -254,7 +254,7 @@ function Home() {
         className="border-b-0"
       >
         <div className="grid grid-flow-row grid-rows-[auto_1fr_1fr] grid-cols-2 lg:grid-rows-[auto_1fr] lg:grid-cols-4 xl:grid-flow-col xl:grid-cols-[auto_1fr_1fr] xl:grid-rows-2 gap-2 sm:gap-4">
-          <div className="group/card relative col-span-2 lg:col-span-4 xl:col-span-1 xl:row-span-2">
+          <div className="group/card z-0 relative col-span-2 lg:col-span-4 xl:col-span-1 xl:row-span-2">
             <div className="flex flex-col justify-between rounded-cxl bg-xbg p-8 text-center h-full w-full z-10 relative">
               <div className="font-title text-lg lg:text-2xl text-left">
                 Wanna{' '}
