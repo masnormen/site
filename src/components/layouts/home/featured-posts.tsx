@@ -1,7 +1,7 @@
 import { getRouteApi, Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
-import { BigArrow } from '@/components/assets/lines';
+import { BigArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { BlogCard } from '@/components/posts/blog-card';
 import { Button } from '@/components/ui/button';

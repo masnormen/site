@@ -1,4 +1,4 @@
-import { HourGlassishShape } from '@/components/assets/random-shape';
+import { HourGlassishShape } from '@/components/assets/shapes/misc';
 import { cn } from '@/utils/cn';
 import type { ThumbnailProps } from '@/types/post';
 

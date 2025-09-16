@@ -23,7 +23,6 @@ export function LinkedInIcon({ className }: { className?: string }) {
           fontFamily="none"
           fontWeight="none"
           fontSize="none"
-          textAnchor="none"
         >
           <path d="M0,192v-192h192v192z" fill="none" />
           <g fill="currentColor">

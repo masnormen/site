@@ -9,7 +9,7 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { Toaster } from 'sonner';
-import { SVGFilters } from '@/components/filters/svg-filters';
+import { SVGFilters } from '@/components/assets/svg-filters';
 import { CustomErrorComponent } from '@/components/layouts/error';
 import { Navbar } from '@/components/layouts/navbar';
 import { NotFoundComponent } from '@/components/layouts/not-found';
@@ -147,20 +147,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 const queryClient = new QueryClient();
 
 function RootComponent() {
-  // const theme = useAtomValue(themeAtom);
-
-  // useEffect(() => {
-  //   if (typeof document === 'undefined') return;
-
-  //   if (!document.documentElement.classList.contains('theme-transitioning')) {
-  //     document.documentElement.classList.add('theme-transitioning');
-  //     setTimeout(() => {
-  //       document.documentElement.removeAttribute('class');
-  //     }, 1000);
-  //   }
-  //   document.documentElement.dataset.theme = theme;
-  // }, [theme]);
-
   return (
     <RootDocument>
       <CatchBoundary getResetKey={() => 'reset'}>

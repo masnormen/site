@@ -1,6 +1,9 @@
 import { Icon } from '@iconify/react';
 import { Link } from '@tanstack/react-router';
-import { CircleComplete, CircleIncomplete } from '@/components/assets/circles';
+import {
+  CircleComplete,
+  CircleIncomplete,
+} from '@/components/assets/shapes/circles';
 import {
   Tooltip,
   TooltipContent,

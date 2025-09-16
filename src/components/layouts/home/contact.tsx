@@ -1,8 +1,11 @@
 import { Icon } from '@iconify/react';
-import { CircleComplete, CircleIncomplete } from '@/components/assets/circles';
-import { SpringyArrow, WavyGrass } from '@/components/assets/lines';
-import { KiteishShape } from '@/components/assets/random-shape';
-import { ContactButton } from '@/components/homepage/contact-button';
+import {
+  CircleComplete,
+  CircleIncomplete,
+} from '@/components/assets/shapes/circles';
+import { SpringyArrow, WavyGrass } from '@/components/assets/shapes/lines';
+import { KiteishShape } from '@/components/assets/shapes/misc';
+import { ContactButton } from '@/components/layouts/home/contact-button';
 import { Section } from '@/components/layouts/section';
 
 export function Contact() {

@@ -1,4 +1,4 @@
-import { WingishShape } from '@/components/assets/random-shape';
+import { WingishShape } from '@/components/assets/shapes/misc';
 import { Section } from '@/components/layouts/section';
 import {
   Tooltip,
