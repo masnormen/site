@@ -23,7 +23,7 @@ export function About() {
         />
       }
     >
-      <div className="space-y-5 text-sm lg:text-base">
+      <div className="space-y-5 text-sm lg:text-base leading-[1.6]">
         <div className="group relative size-[220px] md:size-[250px] aspect-square isolate mx-auto sm:mx-0 sm:-mt-16 sm:float-right sm:ml-6 sm:mb-6 md:ml-15">
           <img
             src="/assets/images/portrait.webp"
@@ -34,11 +34,10 @@ export function About() {
           <WingishShape className="absolute w-full h-full inline-block top-[1%] -left-[5%] scale-104 z-0 text-xyellow -rotate-24 group-hover:rotate-0 group-hover:-top-[1%] group-hover:text-xblue transition-all duration-400" />
         </div>
         <p className="first-letter:font-serif first-letter:font-bold first-letter:text-[48px] first-letter:leading-[1] first-letter:float-left first-letter:mr-3">
-          I <b>grew up</b> surrounded by computers. I wrote my first blog at 9
-          years old, installed Arch Linux (yes, the manual way) on my laptop at
-          11, and shipped my first real code at 13. Basically, I've carried the
-          love for programming with me all my life, and became a Software
-          Engineer.
+          I grew up surrounded by computers. Wrote my first blog at 9yo,
+          installed Arch Linux (yes, the manual way) on my laptop at 11, and
+          shipped my first real code at 13. Basically, I've carried the love for
+          programming with me all my life, and became a Software Engineer.
         </p>
         <p>
           Alongside my work, I'm currently pursuing a Master's in Cybersecurity
@@ -74,14 +73,14 @@ export function About() {
           My go-to tools for work are TypeScript and React, but I'm a pragmatic
           engineer at heart. I'm comfortable moving between frameworks and
           languages, like Svelte, Go, Python, Rust, PHP, or whatever tool is
-          best suited to solve the problem at hand. Also, new tools are a
-          welcome fun challenge!
+          best suited to solve the problem at hand. New tools are a welcome fun
+          challenge!
         </p>
         <p>
-          I'm currently based in <strong>Jakarta, Indonesia</strong>. Having
-          been raised multilingually in Indonesian and Javanese, I’m also a
-          fluent English speaker and have picked up some conversational Japanese
-          (still practicing!).
+          Currently, I'm based in Jakarta, Indonesia. Having been raised
+          multilingually in Indonesian and Javanese, I’m also a fluent English
+          speaker and have picked up some conversational Japanese (still
+          practicing!).
         </p>
       </div>
     </Section>
