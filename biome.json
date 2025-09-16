@@ -80,7 +80,11 @@
         "useValidForDirection": "error",
         "useYield": "error",
         "noUndeclaredVariables": "off",
-        "noUnusedVariables": "error",
+        "noUnusedVariables": {
+          "level": "error",
+          "fix": "none",
+          "options": {}
+        },
         "useExhaustiveDependencies": "off",
         "useJsxKeyInIterable": "error",
         "noUnusedImports": {
