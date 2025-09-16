@@ -1,4 +1,5 @@
 import innerText from 'react-innertext';
+import { ImageZoom } from '@/components/ui/image-zoom';
 import { normalizeTitle } from '@/utils/posts';
 
 const Heading = ({
@@ -20,4 +21,9 @@ export const MDXSubstitution: Record<string, React.FC> = {
   h4: (props) => <Heading level={4} {...props} />,
   h5: (props) => <Heading level={5} {...props} />,
   h6: (props) => <Heading level={6} {...props} />,
+  Img: (props) => (
+    <ImageZoom>
+      <img id="sdasd" {...props} />
+    </ImageZoom>
+  ),
 };

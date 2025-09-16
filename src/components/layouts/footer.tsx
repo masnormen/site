@@ -13,7 +13,9 @@ const FooterSection = ({
 }) => (
   <div className={className}>
     <div className="font-title font-bold text-2xl leading-[1.15]">{title}</div>
-    <div className="flex flex-col mt-4 md:mt-8 gap-2 md:gap-4 *:w-fit">{children}</div>
+    <div className="flex flex-col mt-4 md:mt-8 gap-2 md:gap-4 *:w-fit">
+      {children}
+    </div>
   </div>
 );
 
@@ -48,14 +50,8 @@ export function Footer() {
           </FooterSection>
           <FooterSection title="Misc" className="text-sm">
             <p>
-              Last deployed at{' '}
-              <i suppressHydrationWarning>
-                {typeof window === 'undefined'
-                  ? '-'
-                  : /** biome-ignore lint/suspicious/noExplicitAny: it exists at runtime */
-                    (window as any).__BUILD_TIME__}
-              </i>{' '}
-              with commit <b>31f5a1e</b>.
+              Last deployed at <i>{__BUILD_TIME__}</i> with commit{' '}
+              <b>31f5a1e</b>.
             </p>
             <p>
               Powered by <b>TanStack Start</b>.

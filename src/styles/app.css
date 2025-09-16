@@ -193,34 +193,34 @@
   }
 
   *::selection {
-    background-color: var(--theme-secondary);
-    color: var(--theme-stroke);
+    background-color: var(--color-xyellow);
+    color: var(--color-xblue);
   }
 
-  :target ~ .notion-h-title {
+  :target ~ :where(h1, h2, h3, h4, h5, h6) {
     animation: pulse-link 1s cubic-bezier(0.4, 0, 0.6, 1) 2;
   }
 
   @keyframes pulse-link {
     50% {
       opacity: 0.7;
-      background-color: var(--theme-tertiary);
+      background-color: var(--color-tertiary);
     }
   }
 
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
-    background-color: var(--theme-quaternary);
+    background-color: var(--color-xghostwhite);
     border-radius: 20px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #555;
+    background-color: var(--color-xghoststroke);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--theme-tertiary);
+    background-color: var(--color-xyellow);
   }
 
   /* Backgrounds */

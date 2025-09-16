@@ -1,20 +1,36 @@
 import { Link } from '@tanstack/react-router';
+import { cn } from '@/utils/cn';
 
-export function Hero() {
+export function Hero({
+  children,
+  className,
+}: {
+  children?: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <header className="@container relative flex h-[584px] flex-col items-center justify-center transition-transform mx-auto border-x-1 border-b-1 border-dashed border-xline w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-oxl px-5">
-      <span className="text-lg xl:text-xl text-center">Hello, I'm</span>
-      <Link
-        to="/"
-        className="mt-2 text-7xl xl:text-8xl text-xblue hover:text-xyellow hover:text-shadow-xblue font-serif leading-[1] xl:leading-[1.25] transition-colors"
-      >
-        <h1 className="text-center">Nourman Hajar</h1>
-      </Link>
-      <span className="mt-5 xl:mt-3 text-sm sm:text-lg xl:text-xl max-w-[500px] text-center">
-        Dedicated <b>Software Engineer</b> you can count on. I help companies,
-        clients, and founders craft a scalable web solution for their brands and
-        products.
-      </span>
+    <header
+      className={cn(
+        '@container relative flex h-[584px] flex-col items-center justify-center transition-transform mx-auto border-x-1 border-b-1 border-dashed border-xline w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-oxl px-5',
+        className,
+      )}
+    >
+      {children ?? (
+        <>
+          <span className="text-lg xl:text-xl text-center">Hello, I'm</span>
+          <Link
+            to="/"
+            className="mt-2 text-7xl xl:text-8xl text-xblue hover:text-xyellow hover:text-shadow-xblue font-serif leading-[1] xl:leading-[1.25] transition-colors"
+          >
+            <h1 className="text-center">Nourman Hajar</h1>
+          </Link>
+          <span className="mt-5 xl:mt-3 text-sm sm:text-lg xl:text-xl max-w-[500px] text-center">
+            Dedicated <b>Software Engineer</b> you can count on. I help
+            companies, clients, and founders craft a scalable web solution for
+            their brands and products.
+          </span>
+        </>
+      )}
 
       <img
         src="/assets/images/floral-yellow-blue.png"

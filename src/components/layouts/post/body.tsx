@@ -41,7 +41,7 @@ export function PostBody() {
   return (
     <Section className="py-0! md:py-0!">
       <div className="relative flex flex-col-reverse lg:grid lg:grid-cols-[1fr_216px] w-full gap-8">
-        <article className="relative w-full h-full flex flex-col mx-auto max-w-4xl gap-8 sm:py-8 lg:py-16">
+        <article className="relative w-full h-full flex flex-col mx-auto max-w-4xl gap-8 pb-8 sm:py-8 lg:py-16">
           {/* Post body */}
           <div
             ref={postContentRef}
