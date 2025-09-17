@@ -16,7 +16,7 @@ export function TableOfContents({
   return (
     <div
       className={cn(
-        '@container sm:sticky top-16 flex flex-col bg-xbg mt-8 md:mt-8 lg:my-8 px-5 py-8 rounded-l-cxl lg:rounded-l-none rounded-r-cxl sm:hover:scale-99 sm:hover:shadow-2xs sm:hover:bg-xarrow transition-all duration-200',
+        '@container sm:sticky top-16 flex flex-col bg-xbg mt-8 lg:mt-16 lg:mb-8 px-5 py-4 lg:py-8 rounded-xl md:rounded-l-cxl lg:rounded-l-none md:rounded-r-cxl sm:hover:scale-99 sm:hover:shadow-2xs sm:hover:bg-xarrow transition-all duration-200',
         className,
       )}
     >
@@ -25,7 +25,7 @@ export function TableOfContents({
           <Fragment key={toc.id}>
             <span
               className={cn(
-                'inline-block text-xpink -mb-1 not-last:mb-1.5',
+                'inline-block text-xpink -mb-1 not-last-of-type:mb-1.5',
                 toc.level === 1 && 'ml-5 indent-[-1.28rem] font-semibold',
                 toc.level === 2 && 'ml-8 -indent-5',
                 toc.level === 3 && 'ml-10 indent-[-0.9rem]',
@@ -52,7 +52,7 @@ export function TableOfContents({
           params={{ contentType: params.contentType, slug: post.slug }}
           hash="_top_"
           preload={false}
-          className="link inline ml-1 text-sm w-min"
+          className="link hidden lg:inline-flex mt-1.5 ml-1 text-sm"
         >
           ↑ Back to top
         </Link>

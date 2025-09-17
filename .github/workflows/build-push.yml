@@ -26,3 +26,4 @@ jobs:
             VITE_GA_ID=${{ vars.VITE_GA_ID }}
             VITE_GTM_ID=${{ vars.VITE_GTM_ID }}
             VITE_SENTRY_DSN=${{ vars.VITE_SENTRY_DSN }}
+            VITE_BUILD_SHA=${{ github.sha }}

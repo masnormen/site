@@ -51,7 +51,7 @@ export function Footer() {
           <FooterSection title="Misc" className="text-sm">
             <p>
               Last deployed at <i>{__BUILD_TIME__}</i> with commit{' '}
-              <b>31f5a1e</b>.
+              <b>{__BUILD_SHA__.slice(0, 8)}</b>.
             </p>
             <p>
               Powered by <b>TanStack Start</b>.

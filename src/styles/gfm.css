@@ -70,6 +70,7 @@
     inset 0 0em var(--color-xyellow);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  word-break: break-word
 }
 
 .markdown-body a:hover {
@@ -104,33 +105,45 @@
   font-size: 2em;
 }
 
-.markdown-body h1::before {
+.markdown-body h1::before,
+.markdown-body h2::before,
+.markdown-body h3::before {
   display: inline-block;
   position: absolute;
   margin-left: -5.25rem;
   content: "▲ ";
   font-weight: 700;
   user-select: none;
+}
+
+@media (max-width: 1200px) {
+  .markdown-body h1::before,
+  .markdown-body h2::before,
+  .markdown-body h3::before {
+    margin-left: -4.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .markdown-body h1::before,
+  .markdown-body h2::before,
+  .markdown-body h3::before {
+    margin-left: -2.7rem;
+  }
+}
+
+.markdown-body h1::before {
+  content: "▲ ";
   color: var(--color-xblue);
 }
 
 .markdown-body h2::before {
-  display: inline-block;
-  position: absolute;
-  margin-left: -5.25rem;
   content: "→ ";
-  font-weight: 700;
-  user-select: none;
   color: var(--color-xred);
 }
 
 .markdown-body h3::before {
-  display: inline-block;
-  position: absolute;
-  margin-left: -5.25rem;
   content: "• ";
-  font-weight: 700;
-  user-select: none;
   color: var(--color-xpink);
 }
 
