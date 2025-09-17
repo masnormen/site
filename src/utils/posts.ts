@@ -33,7 +33,7 @@ export const normalizeTitle = (title: string): string => {
     .toLowerCase();
 };
 
-export const getHeading = (line: string): Heading => ({
+export const getHeading = (line: string, idx: number): Heading => ({
   id: normalizeTitle(line),
   text: line.replace(HEADING_REGEX, ''),
   level: line.split(/\s/).shift()?.length ?? 1,

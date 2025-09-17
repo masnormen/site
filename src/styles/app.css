@@ -7,7 +7,7 @@
   :root {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scroll-padding-top: 64px;
+    scroll-padding-top: 54px;
   }
 }
 
@@ -197,14 +197,14 @@
     color: var(--color-xblue);
   }
 
-  :target ~ :where(h1, h2, h3, h4, h5, h6) {
+  :where(h1, h2, h3, h4, h5, h6):target {
     animation: pulse-link 1s cubic-bezier(0.4, 0, 0.6, 1) 2;
   }
 
   @keyframes pulse-link {
     50% {
       opacity: 0.7;
-      background-color: var(--color-tertiary);
+      background-color: var(--color-xyellow);
     }
   }
 

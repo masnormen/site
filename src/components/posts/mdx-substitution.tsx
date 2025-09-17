@@ -1,6 +1,6 @@
 import innerText from 'react-innertext';
-import { ImageZoom } from '@/components/ui/image-zoom';
 import { normalizeTitle } from '@/utils/posts';
+import type React from 'react';
 
 const Heading = ({
   level,
@@ -21,12 +21,4 @@ export const MDXSubstitution: Record<string, React.FC> = {
   h4: (props) => <Heading level={4} {...props} />,
   h5: (props) => <Heading level={5} {...props} />,
   h6: (props) => <Heading level={6} {...props} />,
-  Img: (props) => (
-    <ImageZoom
-      zoomMargin={8}
-      backdropClassName='[&_[data-rmiz-modal-overlay="visible"]]:bg-black/80 [&_[data-rmiz-modal-img]]:rounded-xl'
-    >
-      <img {...props} />
-    </ImageZoom>
-  ),
 };

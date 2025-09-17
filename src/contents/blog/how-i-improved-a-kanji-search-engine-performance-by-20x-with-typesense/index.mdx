@@ -27,7 +27,7 @@ So there are a lot of criteria here. This makes a pretty challenging task, as I 
 
 The database used by Ziyo is just a simple SQLite file containing the information above. I tried to do it in a single SQL query and it actually works according to my needs. The result is pretty satisfying.
 
-<Img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F40109b71-1ecb-4ef0-ad45-253fec920bda%2FSecure_File.png?table=block&id=c7b09c87-4041-4741-a4a0-219b6ca3adcd&cache=v2"/>
+<img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F40109b71-1ecb-4ef0-ad45-253fec920bda%2FSecure_File.png?table=block&id=c7b09c87-4041-4741-a4a0-219b6ca3adcd&cache=v2"/>
 *Searching for "dou"*
 
 In the example above, I search for the reading **dou (どう・ドウ)**. It nicely ranks the result according to kanji popularity and word match.
@@ -43,10 +43,10 @@ Using SQL alone is really hurting performance, as the query needed is quite larg
 I tested it using a simple load test with `oha` using 15 concurrent connections (the most concurrent connections I can get for it to return 100% success rate)
 
 <div className="flex flex-col sm:flex-row">
-  <Img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2Feb6188df-fc7f-4e50-a9b4-04d98997bd7f%2FUntitled.png?table=block&id=6c34fc8d-de1c-4a30-8360-7bca9e1a2ce0&cache=v2"/>
-  <Img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F03323447-2b9b-4d3c-8dea-a678263e1109%2FUntitled.png?table=block&id=69905719-258c-4e0b-84b6-7a378b137775&cache=v2"/>
+  <img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2Feb6188df-fc7f-4e50-a9b4-04d98997bd7f%2FUntitled.png?table=block&id=6c34fc8d-de1c-4a30-8360-7bca9e1a2ce0&cache=v2"/>
+  <img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F03323447-2b9b-4d3c-8dea-a678263e1109%2FUntitled.png?table=block&id=69905719-258c-4e0b-84b6-7a378b137775&cache=v2"/>
 </div>
-<Img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F9bb3fcb9-0d3d-4adb-836c-c392e31fdb49%2FUntitled.png?table=block&id=b5ce397e-729b-43c9-9685-e9e18ceb1972&cache=v2"/>
+<img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F9bb3fcb9-0d3d-4adb-836c-c392e31fdb49%2FUntitled.png?table=block&id=b5ce397e-729b-43c9-9685-e9e18ceb1972&cache=v2"/>
 
 It can barely handle 3-4 RPS. We need something more powerful!
 
@@ -59,10 +59,10 @@ I haven’t been tinkering around with backend stuff for some time, so I needed 
 I came across this post comparing Algolia, Typesense, Elasticsearch, and Meilisearch. I found Typesense to be the most powerful of them all and the easiest to set up. With some configuration, I spun a container, converted the Ziyo database into `jsonl` ready to be imported by Typesense, and connected the backend code to Typesense. The result is really good.
 
 <div className="flex flex-col sm:flex-row">
-  <Img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F0abd39b4-72c3-461a-8bbd-4111bdc1268e%2FUntitled.png?table=block&id=a2564b98-bf75-45dc-9a74-58102f612e93&cache=v2"/>
-  <Img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2Fa8d9112a-519c-45aa-b553-9f0cdf3c5fac%2FUntitled.png?table=block&id=33d193f5-b1e6-4a84-8a8d-89195c60d7fe&cache=v2"/>
+  <img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F0abd39b4-72c3-461a-8bbd-4111bdc1268e%2FUntitled.png?table=block&id=a2564b98-bf75-45dc-9a74-58102f612e93&cache=v2"/>
+  <img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2Fa8d9112a-519c-45aa-b553-9f0cdf3c5fac%2FUntitled.png?table=block&id=33d193f5-b1e6-4a84-8a8d-89195c60d7fe&cache=v2"/>
 </div>
-<Img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F5dc9e2a4-926c-4043-b63f-8c72bc421eef%2FUntitled.png?table=block&id=f6b4c29c-e817-4528-87b0-8c81c8d82c4e&cache=v2"/>
+<img className="sm:w-1/2" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F5dc9e2a4-926c-4043-b63f-8c72bc421eef%2FUntitled.png?table=block&id=f6b4c29c-e817-4528-87b0-8c81c8d82c4e&cache=v2"/>
 
 An improvement of more than 20x is achieved. It now can handle up to 89 RPS!
 

@@ -1,7 +1,7 @@
 import { Link, type LinkComponent } from '@tanstack/react-router';
 
 const FOOTER_CONTENT = {
-  general: [
+  navigate: [
     { label: 'Home', to: '/' },
     { label: 'Blog', to: '/', hash: 'blog' },
     { label: 'Projects', to: '/', hash: 'projects' },
@@ -63,7 +63,14 @@ const FooterSection = ({
   className?: string;
 }) => (
   <div className={className}>
-    <div className="font-title font-bold text-2xl leading-[1.15]">{title}</div>
+    <div className="relative font-title font-bold text-2xl leading-[1.15]">
+      <img
+        src="/assets/images/x-pink-blue.png"
+        className="inline-block mr-3 size-6 rotate-[25deg] hover:rotate-[-40deg] hover:scale-120 transition-transform"
+        draggable="false"
+      />
+      {title}
+    </div>
     <div className="flex flex-col mt-4 md:mt-8 gap-2 md:gap-4 *:w-fit">
       {children}
     </div>
@@ -75,9 +82,9 @@ export function Footer() {
     <footer className="flex flex-col items-center overflow-hidden justify-center bg-xbg border-t-1 border-dashed border-xline">
       <div className="@container relative flex flex-col items-center w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-ixl md:h-[584px] mx-auto pt-12 md:pt-24">
         <nav className="flex flex-col md:grid md:grid-cols-[1fr_1fr_0.55fr] w-full gap-6">
-          <FooterSection title="General">
-            {FOOTER_CONTENT.general.map((item) => (
-              <FooterLink item={item} key={item.to} />
+          <FooterSection title="Navigate">
+            {FOOTER_CONTENT.navigate.map((item) => (
+              <FooterLink item={item} key={item.label} />
             ))}
           </FooterSection>
           <FooterSection title="Connect">
