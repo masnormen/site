@@ -51,7 +51,7 @@ function NavSection({
     <div
       onClick={(e) => e.stopPropagation()}
       className={cn(
-        'flex px-3 flex-row h-[42px] justify-center rounded-mxl transition-all duration-200',
+        'flex px-3 flex-row h-[42px] justify-center rounded-mxl transition-all duration-200 gap-2',
         className,
       )}
       {...props}

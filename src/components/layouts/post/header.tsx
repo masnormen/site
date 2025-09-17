@@ -62,7 +62,7 @@ export function PostHeader() {
           <div className="relative">
             <SlimArrow className="hidden md:block absolute top-0 left-1/2 -translate-y-[85%] -translate-x-[100%] text-xarrow flip -scale-x-100 rotate-[-60deg] select-none" />
             <span className="hidden md:block absolute whitespace-nowrap top-0 left-1/2 -translate-y-[350%] -translate-x-[100%] text-xghoststroke/50 italic text-xs select-none text-center">
-              psshh. try hovering the thumbnail
+              psshh. try hovering the thumbnail!
             </span>
             <ThumbnailDisplay
               Thumbnail={Thumbnail}

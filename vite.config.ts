@@ -16,7 +16,7 @@ export default defineConfig({
       projects: ['./tsconfig.json'],
     }),
     viteRestart({
-      reload: ['./dist/**/*'],
+      restart: ['./dist/**/*'],
     }),
     tanstackStart({
       customViteReactPlugin: true,

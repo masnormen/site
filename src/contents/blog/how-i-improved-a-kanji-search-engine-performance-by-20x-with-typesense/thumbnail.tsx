@@ -9,7 +9,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
     <div
       ref={ref}
       className={cn(
-        'w-full h-full flex flex-col items-center justify-center bg-white',
+        '@container w-full h-full flex flex-col items-center justify-center bg-white',
         className,
       )}
       style={{
@@ -19,9 +19,9 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
       }}
       {...rest}
     >
-      <div className="font-bold text-[#4a3003] drop-shadow-lg text-[3cqw]">
+      <div className="font-bold text-[#4a3003] drop-shadow-lg text-[9cqw]">
         <div className="[text-shadow:5px_5px_60px_#DD8F09]">
-          ジヨ<span className="ml-3 text-[2cqw]">ziyo</span>
+          ジヨ<span className="ml-3 text-[6cqw]">ziyo</span>
         </div>
       </div>
 
@@ -44,7 +44,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
           </svg>
           <div className="flex h-11 w-full rounded-md bg-transparent py-3 outline-none">
             <img
-              className={cn('h-[2cqh]', isHover && 'hue-rotate-90')}
+              className={cn('h-[2cqh] my-auto', isHover && 'hue-rotate-90')}
               src="https://typesense.org/docs/images/typesense_logo.svg"
             />
           </div>
@@ -55,47 +55,41 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
             <div
               className={cn(
                 isHover ? 'bg-[#fdede8]' : 'bg-[#fff8ea]',
-                'relative flex select-none items-center rounded-sm px-[0.5cqw] outline-none border-b border-[#fce2b5] py-0',
+                'relative flex select-none items-center rounded-sm px-[1cqw] outline-none border-b border-[#fce2b5] py-0',
               )}
             >
-              <div className="flex h-full w-full flex-row items-start px-[1cqw] py-[0.5cqw] gap-[1cqw]">
-                <div className="text-[2cqw] text-[#513400]" lang="ja">
+              <div className="flex h-full w-full flex-row items-start px-[3cqw] py-[4.5cqw] gap-[3cqw]">
+                <div className="text-[6cqw] text-[#513400]" lang="ja">
                   速
                 </div>
-                <div className="flex flex-col gap-[0.5cqw] pt-0.5">
+                <div className="flex flex-col gap-[1.5cqw] pt-0.5">
                   <div className="flex flex-row flex-nowrap gap-2">
                     <span
-                      className="inline-block whitespace-nowrap rounded-full px-[0.5cqw] py-[0.5cqw] text-[1cqw] shadow-sm transition bg-rose-100 font-bold text-gray-900"
+                      className="inline-block whitespace-nowrap rounded-full px-[1.5cqw] py-[1.5cqw] text-[3cqw] shadow-sm transition bg-rose-100 font-bold text-gray-900"
                       lang="ja"
                     >
                       ソク
                     </span>
                     <span
-                      className="inline-block whitespace-nowrap rounded-full px-[0.5cqw] py-[0.5cqw] text-[1cqw] shadow-sm transition bg-[#fce2b5] font-bold text-gray-900"
+                      className="inline-block whitespace-nowrap rounded-full px-[1.5cqw] py-[1.5cqw] text-[3cqw] shadow-sm transition bg-[#fce2b5] font-bold text-gray-900"
                       lang="ja"
                     >
                       はや.い
                     </span>
                     <span
-                      className="inline-block whitespace-nowrap rounded-full px-[0.5cqw] py-[0.5cqw] text-[1cqw] shadow-sm transition bg-[#fce2b5] font-bold text-gray-900"
-                      lang="ja"
-                    >
-                      はや-
-                    </span>
-                    <span
-                      className="inline-block whitespace-nowrap rounded-full px-[0.5cqw] py-[0.5cqw] text-[1cqw] font-medium shadow-sm transition bg-purple-100 text-gray-900"
+                      className="inline-block whitespace-nowrap rounded-full px-[1.5cqw] py-[1.5cqw] text-[3cqw] font-medium shadow-sm transition bg-purple-100 text-gray-900"
                       lang="zh"
                     >
                       sù
                     </span>
                     <span
-                      className="inline-block whitespace-nowrap rounded-full px-2 py-1 text-xs font-medium shadow-sm transition bg-blue-100 text-gray-900"
+                      className="inline-block whitespace-nowrap rounded-full px-[1.5cqw] py-[1.5cqw] text-[3cqw] font-medium shadow-sm transition bg-blue-100 text-gray-900"
                       lang="ko"
                     >
                       속
                     </span>
                   </div>
-                  <div className="flex flex-row flex-wrap gap-2 text-[1cqw] font-bold text-amber-900">
+                  <div className="flex flex-row flex-wrap gap-2 text-[3cqw] font-bold text-amber-900">
                     quick, fast
                   </div>
                 </div>

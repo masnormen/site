@@ -42,11 +42,11 @@ export function Section({
 
         {title && (
           <header className="mb-8">
-            <h1 className="font-serif text-2xl sm:text-[40px] leading-[1.25]">
+            <h1 className="font-serif text-3xl sm:text-[40px] leading-[1.25]">
               {title}
             </h1>
             {description && (
-              <div className="mt-2 sm:mt-4 mb-12 sm:mb-10 font-serif text-sm sm:text-xl leading-[1.25]">
+              <div className="mt-2 sm:mt-4 mb-12 sm:mb-10 font-serif text-base sm:text-xl leading-[1.25]">
                 {description}
               </div>
             )}

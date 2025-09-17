@@ -72,7 +72,7 @@ export function FeaturedPosts() {
         <aside>
           <SlimArrow className="hidden lg:block absolute top-0 left-[72%] -translate-y-[100%] text-xarrow flip rotate-[60deg] select-none" />
           <span className="hidden lg:block absolute whitespace-nowrap top-0 left-4/5 -translate-y-[450%] -translate-x-[60%] text-xghoststroke/50 italic text-xs select-none text-center">
-            psshh. try hovering the thumbnail
+            psshh. try hovering each thumbnail!
           </span>
         </aside>
       </div>

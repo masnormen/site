@@ -3,6 +3,7 @@ import { Fragment } from 'react/jsx-runtime';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { Route } from '@/routes/$contentType.$slug';
 import { cn } from '@/utils/cn';
+import type { CSSProperties } from 'react';
 import type { Post } from '@/types/post';
 
 export function TableOfContents({
@@ -23,7 +24,7 @@ export function TableOfContents({
       <details
         className={cn(
           'flex flex-col bg-xbg mt-8 lg:mt-16 px-5 py-4 lg:py-8 rounded-xl lg:rounded-l-none lg:rounded-r-cxl sm:hover:scale-99 sm:hover:shadow-2xs sm:hover:bg-xarrow transition-all duration-200',
-          '[&[open]_summary]:mb-2 [&:not([open])_summary]:text-xghoststroke',
+          '[&[open]_summary]:mb-2',
           className,
         )}
         open={isLargeScreen ? true : undefined}
@@ -35,27 +36,34 @@ export function TableOfContents({
           {post.toc.map((toc) => (
             <Fragment key={toc.id}>
               <span
+                style={
+                  {
+                    '--indent': `${(toc.level - 1) * 1.25}ch`,
+                  } as CSSProperties
+                }
                 className={cn(
-                  'inline-block text-xpink -mb-1 not-last-of-type:mb-1.5',
-                  toc.level === 1 && 'ml-5 indent-[-1.25rem] font-semibold',
-                  toc.level === 2 && 'ml-8 indent-[-1.4rem]',
-                  toc.level === 3 && 'ml-10 indent-[-0.8rem]',
+                  'inline-flex flex-row text-xpink -mb-1 not-last-of-type:mb-1.5 gap-2',
+                  'pl-[var(--indent)]',
+                  toc.level === 1 && 'font-semibold',
                 )}
               >
-                <span className="select-none">
-                  {toc.level === 1 && '▲ '}
-                  {toc.level === 2 && '→ '}
-                  {toc.level === 3 && '• '}
+                <span className="inline-block select-none">
+                  {['▲', '→', '✻', '△', '⬠', '⬡'][toc.level - 1]}
                 </span>
-                <Link
-                  to="/$contentType/$slug"
-                  params={{ contentType: params.contentType, slug: post.slug }}
-                  hash={toc.id}
-                  preload={false}
-                  className="link ml-1 text-sm"
-                >
-                  {toc.text}
-                </Link>
+                <div>
+                  <Link
+                    to="/$contentType/$slug"
+                    params={{
+                      contentType: params.contentType,
+                      slug: post.slug,
+                    }}
+                    hash={toc.id}
+                    preload={false}
+                    className="link text-sm break-words"
+                  >
+                    {toc.text}
+                  </Link>
+                </div>
               </span>
               <br />
             </Fragment>
