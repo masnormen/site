@@ -5,6 +5,7 @@ import duration from 'dayjs/plugin/duration';
 import { useAtom } from 'jotai';
 import { useMemo } from 'react';
 import { readingTimeMsAtom } from '@/atoms/index';
+import { SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { Chip } from '@/components/posts/chip';
 import { ThumbnailDisplay } from '@/components/posts/thumbnail-display';
@@ -58,11 +59,17 @@ export function PostHeader() {
         </Link>
 
         {!!Thumbnail && (
-          <ThumbnailDisplay
-            Thumbnail={Thumbnail}
-            isHover={isHover}
-            className="size-full sm:size-full lg:size-[198px]"
-          />
+          <div className="relative">
+            <SlimArrow className="absolute top-0 left-1/2 -translate-y-[85%] -translate-x-[100%] text-xarrow flip -scale-x-100 rotate-[-60deg] select-none" />
+            <span className="hidden sm:block absolute whitespace-nowrap top-0 left-1/2 -translate-y-[350%] -translate-x-[100%] text-xghoststroke/50 italic text-xs select-none text-center">
+              psshh. try hovering the thumbnail
+            </span>
+            <ThumbnailDisplay
+              Thumbnail={Thumbnail}
+              isHover={isHover}
+              className="size-full sm:size-full lg:size-[198px]"
+            />
+          </div>
         )}
 
         <div className="absolute left-0 top-0 size-8 sm:size-16 md:size-22 -translate-x-1/2 -translate-y-1/2 select-none">

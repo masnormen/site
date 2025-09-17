@@ -1,6 +1,57 @@
-import { Link } from '@tanstack/react-router';
+import { Link, type LinkComponent } from '@tanstack/react-router';
 
-// TODO: Update the footer content
+const FOOTER_CONTENT = {
+  general: [
+    { label: 'Home', to: '/' },
+    { label: 'Blog', to: '/', hash: 'blog' },
+    { label: 'Projects', to: '/', hash: 'projects' },
+    // { type: 'internal', label: 'Guestbook', to: '/guestbook' },
+    // { type: 'internal', label: 'Attributions', to: '/attributions' },
+  ],
+  connect: [
+    {
+      label: 'Book a Call ↗',
+      href: 'https://calendly.com/nourman-hajar/30min',
+    },
+    {
+      label: 'LinkedIn ↗',
+      href: 'https://www.linkedin.com/in/nourmanhajar/',
+    },
+    {
+      label: 'GitHub ↗',
+      href: 'https://github.com/masnormen',
+    },
+  ],
+} as const satisfies Record<
+  string,
+  Array<
+    {
+      label: string;
+    } & Parameters<LinkComponent<'a', string>>[0]
+  >
+>;
+
+const FooterLink = ({
+  item: { label, ...rest },
+}: {
+  item: {
+    label: string;
+  } & Parameters<LinkComponent<'a', string>>[0];
+}) =>
+  rest.to ? (
+    <Link className="link font-semibold" {...rest}>
+      {label}
+    </Link>
+  ) : (
+    <a
+      className="link font-semibold"
+      {...rest}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {label}
+    </a>
+  );
 
 const FooterSection = ({
   title,
@@ -25,27 +76,13 @@ export function Footer() {
       <div className="@container relative flex flex-col items-center w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-ixl md:h-[584px] mx-auto pt-12 md:pt-24">
         <nav className="flex flex-col md:grid md:grid-cols-[1fr_1fr_0.55fr] w-full gap-6">
           <FooterSection title="General">
-            {['Home', 'Blog', 'Projects', 'Guestbook', 'Attributions'].map(
-              (item) => (
-                <Link
-                  to="/"
-                  className="link font-semibold font-title text-base"
-                  key={item}
-                >
-                  {item}
-                </Link>
-              ),
-            )}
+            {FOOTER_CONTENT.general.map((item) => (
+              <FooterLink item={item} key={item.to} />
+            ))}
           </FooterSection>
           <FooterSection title="Connect">
-            {['Book a Call ↗', 'LinkedIn ↗', 'GitHub ↗'].map((item) => (
-              <Link
-                to="/"
-                className="link font-semibold font-title text-base"
-                key={item}
-              >
-                {item}
-              </Link>
+            {FOOTER_CONTENT.connect.map((item) => (
+              <FooterLink item={item} key={item.label} />
             ))}
           </FooterSection>
           <FooterSection title="Misc" className="text-sm">

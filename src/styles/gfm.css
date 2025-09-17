@@ -102,7 +102,7 @@
   margin: 0.67em 0;
   font-weight: 600;
   padding-bottom: 0.3em;
-  font-size: 2em;
+  font-size: 1.8em;
 }
 
 .markdown-body h1::before,
@@ -110,7 +110,7 @@
 .markdown-body h3::before {
   display: inline-block;
   position: absolute;
-  margin-left: -5.25rem;
+  margin-left: -5.20rem;
   content: "▲ ";
   font-weight: 700;
   user-select: none;

@@ -26,14 +26,16 @@ export function TableOfContents({
             <span
               className={cn(
                 'inline-block text-xpink -mb-1 not-last-of-type:mb-1.5',
-                toc.level === 1 && 'ml-5 indent-[-1.28rem] font-semibold',
-                toc.level === 2 && 'ml-8 -indent-5',
-                toc.level === 3 && 'ml-10 indent-[-0.9rem]',
+                toc.level === 1 && 'ml-5 indent-[-1.25rem] font-semibold',
+                toc.level === 2 && 'ml-8 indent-[-1.4rem]',
+                toc.level === 3 && 'ml-10 indent-[-0.8rem]',
               )}
             >
-              {toc.level === 1 && '▲ '}
-              {toc.level === 2 && '→ '}
-              {toc.level === 3 && '• '}
+              <span className="select-none">
+                {toc.level === 1 && '▲ '}
+                {toc.level === 2 && '→ '}
+                {toc.level === 3 && '• '}
+              </span>
               <Link
                 to="/$contentType/$slug"
                 params={{ contentType: params.contentType, slug: post.slug }}
