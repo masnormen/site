@@ -33,7 +33,7 @@ export function About() {
           <WingishShape className="absolute w-full h-full inline-block top-[1%] -left-[5%] scale-104 z-0 text-xyellow -rotate-24 group-hover:-rotate-45 group-hover:-top-[1%] group-hover:text-xbg transition-all duration-400" />
           <WingishShape className="absolute w-full h-full inline-block top-[1%] -left-[5%] scale-104 z-0 text-xyellow -rotate-24 group-hover:rotate-0 group-hover:-top-[1%] group-hover:text-xblue transition-all duration-400" />
         </div>
-        <p className="first-letter:font-serif first-letter:font-bold first-letter:text-[48px] first-letter:leading-[1] first-letter:float-left first-letter:mr-3">
+        <p>
           I grew up surrounded by computers. Wrote my first blog at 9yo,
           installed Arch Linux (yes, the manual way) on my laptop at 11, and
           shipped my first real code at 13. Basically, I've carried the love for

@@ -63,7 +63,7 @@ function NavSection({
 
 export function Navbar() {
   return (
-    <nav className="fixed left-1/2 -translate-x-1/2 h-[42px] py-4 z-9999 flex justify-center w-min flex-row items-stretch bg-transparent transition-all duration-500 bottom-10 sm:bottom-[initial] sm:top-0">
+    <nav className="fixed left-1/2 -translate-x-1/2 h-[42px] py-4 z-9999 flex justify-center w-min flex-row items-stretch bg-transparent transition-all duration-500 bottom-15 sm:bottom-[initial] sm:top-0">
       <NavSection className="bg-xstroke">
         <NavItem type="link" to="/">
           <Icon icon="mingcute:home-6-fill" className="text-base mt-[1px]" />

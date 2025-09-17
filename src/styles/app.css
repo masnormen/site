@@ -241,7 +241,7 @@
     text-decoration-skip-ink: auto;
     box-shadow:
       inset 0 0em transparent,
-      inset 0 0em var(--color-xblue);
+      inset 0 0em var(--color-xpink);
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
   }

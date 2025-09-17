@@ -43,7 +43,7 @@ export function FeaturedProjects() {
     >
       <div
         data-testid="projectlist"
-        className="relative grid mx-auto w-full max-w-4xl grid-cols-1 gap-8"
+        className="relative grid mx-auto w-full max-w-4xl grid-cols-1 gap-12 sm:gap-8"
       >
         {projects.map((project, idx) => {
           const Thumbnail = projectMdxThumbnails[idx];

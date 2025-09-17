@@ -1,4 +1,6 @@
 import { Link, type LinkComponent } from '@tanstack/react-router';
+import dayjs from 'dayjs';
+import { useMemo } from 'react';
 
 const FOOTER_CONTENT = {
   navigate: [
@@ -78,10 +80,15 @@ const FooterSection = ({
 );
 
 export function Footer() {
+  const deployString = useMemo(
+    () => dayjs(__BUILD_TIME__).format('DD MMM YYYY HH:mm:ss Z'),
+    [],
+  );
+  const todayString = useMemo(() => dayjs().format('dddd'), []);
   return (
     <footer className="flex flex-col items-center overflow-hidden justify-center bg-xbg border-t-1 border-dashed border-xline">
       <div className="@container relative flex flex-col items-center w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-ixl md:h-[584px] mx-auto pt-12 md:pt-24">
-        <nav className="flex flex-col md:grid md:grid-cols-[1fr_1fr_0.55fr] w-full gap-6">
+        <nav className="flex flex-col md:grid md:grid-cols-[1fr_1fr_0.55fr] w-full gap-12 md:gap-6">
           <FooterSection title="Navigate">
             {FOOTER_CONTENT.navigate.map((item) => (
               <FooterLink item={item} key={item.label} />
@@ -94,19 +101,26 @@ export function Footer() {
           </FooterSection>
           <FooterSection title="Misc" className="text-sm">
             <p>
-              Last deployed at <i>{__BUILD_TIME__}</i> with commit{' '}
-              <b>{__BUILD_SHA__.slice(0, 8)}</b>.
+              Last deployed at <i>{deployString}</i> with commit{' '}
+              <a
+                href={
+                  __BUILD_SHA__ === 'dev'
+                    ? '/'
+                    : `https://github.com/masnormen/site/commit/${__BUILD_SHA__}`
+                }
+                className="link font-semibold"
+              >
+                {__BUILD_SHA__.slice(0, 8)}
+              </a>
+              .
             </p>
             <p>
-              Powered by <b>TanStack Start</b>.
-            </p>
-            <p>
-              Have a nice <b>Thursday</b>!
+              Have a nice <b>{todayString}</b>!
             </p>
           </FooterSection>
         </nav>
 
-        <div className="mt-8 md:mt-16 w-full text-center font-title text-sm text-xghoststroke">
+        <div className="mt-16 w-full text-center font-title text-sm text-xghoststroke">
           All Rights Reserved © 2020-{new Date().getFullYear()}
         </div>
 

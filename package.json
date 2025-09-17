@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev:tsr": "dotenvx run --convention=nextjs -- vite dev",
+    "dev:tsr": "dotenvx run --convention=nextjs -- vite dev --host",
     "dev:mdx": "dotenvx run --convention=nextjs -- tsx build-mdx.ts -w",
     "dev": "concurrently -c yellow,blue --pad-prefix pnpm:dev:mdx pnpm:dev:tsr",
     "build:tsr": "dotenvx run --convention=nextjs -- vite build",
