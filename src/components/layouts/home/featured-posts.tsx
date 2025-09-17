@@ -1,10 +1,9 @@
-import { getRouteApi, Link } from '@tanstack/react-router';
+import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
-import { BigArrow } from '@/components/assets/shapes/lines';
+import { BigArrow, SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { BlogCard } from '@/components/posts/blog-card';
-import { Button } from '@/components/ui/button';
 import { getMDXExport } from '@/utils/posts';
 
 const indexRoute = getRouteApi('/');
@@ -41,18 +40,18 @@ export function FeaturedPosts() {
           </span>
         </>
       }
-      after={
-        <Button
-          asChild
-          className="z-10 absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2"
-        >
-          <Link to="/">View All</Link>
-        </Button>
-      }
+      // after={
+      //   <Button
+      //     asChild
+      //     className="z-10 absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2"
+      //   >
+      //     <Link to="/">View All</Link>
+      //   </Button>
+      // }
     >
       <div
         data-testid="bloglist"
-        className="grid mx-auto w-full max-w-4xl grid-cols-1 gap-2 sm:gap-8"
+        className="relative grid mx-auto w-full max-w-4xl grid-cols-1 gap-2 sm:gap-8"
       >
         {posts.map((post, idx) => {
           const Thumbnail = postMdxThumbnails[idx];
@@ -69,6 +68,13 @@ export function FeaturedPosts() {
             />
           );
         })}
+
+        <aside>
+          <SlimArrow className="hidden lg:block absolute top-0 left-[72%] -translate-y-[100%] text-xarrow flip rotate-[60deg] select-none" />
+          <span className="hidden lg:block absolute whitespace-nowrap top-0 left-4/5 -translate-y-[450%] -translate-x-[60%] text-xghoststroke/50 italic text-xs select-none text-center">
+            psshh. try hovering the thumbnail
+          </span>
+        </aside>
       </div>
     </Section>
   );

@@ -124,7 +124,7 @@ export function ProjectCard({
     <article
       className={cn(
         '@container group/card relative flex flex-col-reverse gap-6 sm:gap-4 lg:gap-6',
-        nth % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse',
+        nth % 2 === 0 ? 'lg:flex-row-reverse' : 'lg:flex-row',
       )}
     >
       <div

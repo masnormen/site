@@ -60,8 +60,8 @@ export function PostHeader() {
 
         {!!Thumbnail && (
           <div className="relative">
-            <SlimArrow className="absolute top-0 left-1/2 -translate-y-[85%] -translate-x-[100%] text-xarrow flip -scale-x-100 rotate-[-60deg] select-none" />
-            <span className="hidden sm:block absolute whitespace-nowrap top-0 left-1/2 -translate-y-[350%] -translate-x-[100%] text-xghoststroke/50 italic text-xs select-none text-center">
+            <SlimArrow className="hidden md:block absolute top-0 left-1/2 -translate-y-[85%] -translate-x-[100%] text-xarrow flip -scale-x-100 rotate-[-60deg] select-none" />
+            <span className="hidden md:block absolute whitespace-nowrap top-0 left-1/2 -translate-y-[350%] -translate-x-[100%] text-xghoststroke/50 italic text-xs select-none text-center">
               psshh. try hovering the thumbnail
             </span>
             <ThumbnailDisplay
@@ -72,7 +72,7 @@ export function PostHeader() {
           </div>
         )}
 
-        <div className="absolute left-0 top-0 size-8 sm:size-16 md:size-22 -translate-x-1/2 -translate-y-1/2 select-none">
+        <div className="absolute left-0 top-0 size-12 sm:size-16 md:size-22 -translate-x-1/2 -translate-y-1/2 select-none">
           <img
             src="/assets/images/floral-yellow-blue.png"
             className="w-full h-full rotate-[12deg] hover:rotate-[-20deg] hover:scale-120 transition-transform"
@@ -80,7 +80,7 @@ export function PostHeader() {
           />
         </div>
 
-        <div className="hidden md:block absolute right-0 bottom-0 size-8 sm:size-16 md:size-18 translate-x-1/3 translate-y-1/3 select-none">
+        <div className="hidden sm:block absolute right-0 bottom-0 size-12 sm:size-16 md:size-18 translate-x-1/3 translate-y-1/3 select-none">
           <img
             src="/assets/images/x-pink-blue.png"
             className="w-full h-full -rotate-[12deg] hover:rotate-[20deg] hover:scale-120 transition-transform"
