@@ -52,10 +52,10 @@ export const Route = createFileRoute('/$contentType/$slug')({
         property: 'og:url',
         content: `https://nourman.com/${params.contentType}/${params.slug}`,
       },
-      {
-        property: 'og:image',
-        content: `https://nourman.com/opengraph/${params.contentType}/${params.slug}`,
-      },
+      // {
+      //   property: 'og:image',
+      //   content: `https://nourman.com/opengraph/${params.contentType}/${params.slug}`,
+      // },
       {
         rel: 'canonical',
         href: `https://nourman.com/${params.contentType}/${params.slug}`,
