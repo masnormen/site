@@ -62,10 +62,6 @@ export const Route = createRootRoute({
         property: 'og:url',
         content: 'https://nourman.com/',
       },
-      // {
-      //   property: 'og:image',
-      //   content: 'https://nourman.com/api/site.png',
-      // },
       {
         property: 'og:image:type',
         content: 'image/png',

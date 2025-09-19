@@ -124,7 +124,7 @@ export function Footer() {
           All rights reserved © 2020-{new Date().getFullYear()}
         </div>
 
-        <div className="mt-16 md:mt-0 md:absolute z-100 bottom-0 flex w-full font-serif text-[min(14.5vw,148px)] dmd:text-[148px] text-xyellow text-center leading-[0.45]">
+        <div className="mt-16 md:mt-0 md:absolute z-100 bottom-0 flex w-full font-serif text-[min(14.5vw,148px)] text-xyellow text-center leading-[0.45]">
           NOURMAN·COM
         </div>
       </div>
