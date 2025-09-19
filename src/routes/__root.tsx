@@ -63,6 +63,10 @@ export const Route = createRootRoute({
         content: 'https://nourman.com/',
       },
       {
+        property: 'og:image',
+        content: 'https://nourman.com/opengraph',
+      },
+      {
         property: 'og:image:type',
         content: 'image/png',
       },

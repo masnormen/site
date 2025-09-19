@@ -1,6 +1,5 @@
 import Comments from '@giscus/react';
 import { createFileRoute, notFound } from '@tanstack/react-router';
-import { createServerFn } from '@tanstack/react-start';
 import { useEffect, useRef, useState } from 'react';
 import { Footer } from '@/components/layouts/footer';
 import { Contact } from '@/components/layouts/home/contact';
@@ -8,15 +7,7 @@ import { PostBody } from '@/components/layouts/post/body';
 import { PostHeader } from '@/components/layouts/post/header';
 import { Section } from '@/components/layouts/section';
 import { useInViewport } from '@/hooks/use-in-viewport';
-import { getPostBySlug, getProjectBySlug } from '@/services/posts';
-
-const getPostBySlugServerFn = createServerFn({ method: 'GET' })
-  .validator((slug: string) => slug)
-  .handler(({ data: slug }) => getPostBySlug(slug));
-
-const getProjectBySlugServerFn = createServerFn({ method: 'GET' })
-  .validator((slug: string) => slug)
-  .handler(({ data: slug }) => getProjectBySlug(slug));
+import { getContentServerFn } from '@/services/posts';
 
 export const Route = createFileRoute('/$contentType/$slug')({
   component: Post,
@@ -32,14 +23,9 @@ export const Route = createFileRoute('/$contentType/$slug')({
     },
   },
   loader: async ({ params }) => {
-    if (params.contentType === 'blog') {
-      const post = await getPostBySlugServerFn({ data: params.slug });
-      if (!post) throw notFound();
-      return post;
-    }
-    const project = await getProjectBySlugServerFn({ data: params.slug });
-    if (!project) throw notFound();
-    return project;
+    const content = await getContentServerFn({ data: params });
+    if (!content) throw notFound();
+    return content;
   },
   head: ({ params, loaderData }) => ({
     meta: [
@@ -65,6 +51,10 @@ export const Route = createFileRoute('/$contentType/$slug')({
       {
         property: 'og:url',
         content: `https://nourman.com/${params.contentType}/${params.slug}`,
+      },
+      {
+        property: 'og:image',
+        content: `https://nourman.com/opengraph/${params.contentType}/${params.slug}`,
       },
       {
         rel: 'canonical',

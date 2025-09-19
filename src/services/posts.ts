@@ -1,17 +1,12 @@
+import { createServerFn } from '@tanstack/react-start';
 import { fetchPost, fetchPostList } from '@/utils/posts.server';
 
-export const getPostBySlug = (slug: string) => {
-  return fetchPost('blog', slug);
-};
+export const getContentServerFn = createServerFn({ method: 'GET' })
+  .validator(
+    (params: { contentType: 'blog' | 'projects'; slug: string }) => params,
+  )
+  .handler(({ data }) => fetchPost(data.contentType, data.slug));
 
-export const getPostList = async () => {
-  return fetchPostList('blog');
-};
-
-export const getProjectBySlug = (slug: string) => {
-  return fetchPost('projects', slug);
-};
-
-export const getProjectList = async () => {
-  return fetchPostList('projects');
-};
+export const getContentListServerFn = createServerFn({ method: 'GET' })
+  .validator((contentType: 'blog' | 'projects') => contentType)
+  .handler(({ data: tag }) => fetchPostList(tag));

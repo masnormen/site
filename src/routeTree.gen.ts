@@ -14,6 +14,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContentTypeSlugRouteImport } from './routes/$contentType.$slug'
 import { ServerRoute as SitemapDotxmlServerRouteImport } from './routes/sitemap[.]xml'
+import { ServerRoute as OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRouteImport } from './routes/opengraph.{-$contentType}.{-$slug}'
 
 const rootServerRouteImport = createServerRootRoute()
 
@@ -32,6 +33,12 @@ const SitemapDotxmlServerRoute = SitemapDotxmlServerRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootServerRouteImport,
 } as any)
+const OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRoute =
+  OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRouteImport.update({
+    id: '/opengraph/{-$contentType}/{-$slug}',
+    path: '/opengraph/{-$contentType}/{-$slug}',
+    getParentRoute: () => rootServerRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -60,24 +67,28 @@ export interface RootRouteChildren {
 }
 export interface FileServerRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlServerRoute
+  '/opengraph/{-$contentType}/{-$slug}': typeof OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRoute
 }
 export interface FileServerRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlServerRoute
+  '/opengraph/{-$contentType}/{-$slug}': typeof OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRoute
 }
 export interface FileServerRoutesById {
   __root__: typeof rootServerRouteImport
   '/sitemap.xml': typeof SitemapDotxmlServerRoute
+  '/opengraph/{-$contentType}/{-$slug}': typeof OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRoute
 }
 export interface FileServerRouteTypes {
   fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths: '/sitemap.xml'
+  fullPaths: '/sitemap.xml' | '/opengraph/{-$contentType}/{-$slug}'
   fileServerRoutesByTo: FileServerRoutesByTo
-  to: '/sitemap.xml'
-  id: '__root__' | '/sitemap.xml'
+  to: '/sitemap.xml' | '/opengraph/{-$contentType}/{-$slug}'
+  id: '__root__' | '/sitemap.xml' | '/opengraph/{-$contentType}/{-$slug}'
   fileServerRoutesById: FileServerRoutesById
 }
 export interface RootServerRouteChildren {
   SitemapDotxmlServerRoute: typeof SitemapDotxmlServerRoute
+  OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRoute: typeof OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -107,6 +118,13 @@ declare module '@tanstack/react-start/server' {
       preLoaderRoute: typeof SitemapDotxmlServerRouteImport
       parentRoute: typeof rootServerRouteImport
     }
+    '/opengraph/{-$contentType}/{-$slug}': {
+      id: '/opengraph/{-$contentType}/{-$slug}'
+      path: '/opengraph/{-$contentType}/{-$slug}'
+      fullPath: '/opengraph/{-$contentType}/{-$slug}'
+      preLoaderRoute: typeof OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRouteImport
+      parentRoute: typeof rootServerRouteImport
+    }
   }
 }
 
@@ -119,6 +137,8 @@ export const routeTree = rootRouteImport
   ._addFileTypes<FileRouteTypes>()
 const rootServerRouteChildren: RootServerRouteChildren = {
   SitemapDotxmlServerRoute: SitemapDotxmlServerRoute,
+  OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRoute:
+    OpengraphChar123ContentTypeChar125Char123SlugChar125ServerRoute,
 }
 export const serverRouteTree = rootServerRouteImport
   ._addFileChildren(rootServerRouteChildren)
