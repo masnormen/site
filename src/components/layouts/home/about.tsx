@@ -23,8 +23,8 @@ export function About() {
         />
       }
     >
-      <div className="space-y-5 text-sm lg:text-base leading-[1.6]">
-        <div className="group relative size-[220px] md:size-[250px] aspect-square isolate mx-auto sm:mx-0 sm:-mt-16 sm:float-right sm:ml-6 sm:mb-6 md:ml-15">
+      <div className="block h-full space-y-5 text-sm lg:text-base leading-[1.6]">
+        <div className="group h-full relative size-[220px] md:size-[250px] aspect-square isolate mx-auto sm:mx-0 sm:-mt-16 sm:float-right sm:ml-6 sm:mb-6 md:ml-8">
           <img
             src="/assets/images/portrait.webp"
             className="h-full w-full aspect-square relative z-10 rounded-full border-2 border-xbg shadow-lg group-hover:scale-98 group-hover:rotate-6 group-hover:shadow-2xl transition-all duration-400 "
@@ -34,15 +34,22 @@ export function About() {
           <WingishShape className="absolute w-full h-full inline-block top-[1%] -left-[5%] scale-104 z-0 text-xyellow -rotate-24 group-hover:rotate-0 group-hover:-top-[1%] group-hover:text-xblue transition-all duration-400" />
         </div>
         <p>
-          I grew up surrounded by computers. Wrote my first blog at 9yo,
-          installed Arch Linux (yes, the manual way) on my laptop at 11, and
-          shipped my first real code at 13. Basically, I've carried the love for
-          programming with me all my life, and became a Software Engineer.
+          I grew up surrounded by computers. I wrote my first blog at 9yo,
+          installed Arch Linux at 11 (yes, the manual way), and shipped my first
+          code at 13. Now based in Jakarta, I speak Indonesian, English, and
+          Javanese with some conversational Japanese under my belt (still
+          practicing!).
         </p>
         <p>
-          Alongside my work, I'm currently pursuing a Master's in Cybersecurity
-          at Monash University on weekends. (<strong>Fun fact</strong>: this was
-          made possible by a scholarship from a literal 😼 cat meme{' '}
+          My go-to tools are TypeScript and React, but I'm a pragmatic engineer
+          at heart 🧐. I'm comfortable moving between frameworks and languages,
+          like Svelte, Go, Python, Rust, PHP, or whatever tool is best suited to
+          solve the problem at hand. New tools are a welcome fun challenge! 🛠️
+        </p>
+        <p>
+          I'm currently expanding my skills by pursuing a Master's in
+          Cybersecurity at Monash University. (<b>fun fact:</b> all this was
+          made possible by a scholarship from a literal 😼 cat{' '}
           <Tooltip>
             <TooltipTrigger className="cursor-pointer">
               <a
@@ -51,7 +58,7 @@ export function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                account
+                meme account
               </a>
             </TooltipTrigger>
             <TooltipContent>
@@ -59,28 +66,6 @@ export function About() {
             </TooltipContent>
           </Tooltip>
           ).
-        </p>
-
-        <div className="relative hidden sm:flex items-center justify-center float-left w-[30%] h-[clamp(150px,calc(200px+(1000px-100vw)*0.05),400px)] mr-6 clear-both">
-          <img
-            src="/assets/images/floral-red-blue.png"
-            className="size-[128px] rotate-[-27deg] hover:rotate-[28deg] transition-transform"
-            draggable="false"
-          />
-        </div>
-
-        <p className="clear-right">
-          My go-to tools for work are TypeScript and React, but I'm a pragmatic
-          engineer at heart. I'm comfortable moving between frameworks and
-          languages, like Svelte, Go, Python, Rust, PHP, or whatever tool is
-          best suited to solve the problem at hand. New tools are a welcome fun
-          challenge!
-        </p>
-        <p>
-          Currently, I'm based in Jakarta, Indonesia. Having been raised
-          multilingually in Indonesian and Javanese, I’m also a fluent English
-          speaker and have picked up some conversational Japanese (still
-          practicing!).
         </p>
       </div>
     </Section>
