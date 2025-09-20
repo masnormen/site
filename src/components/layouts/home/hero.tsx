@@ -17,7 +17,9 @@ export function Hero({
     >
       {children ?? (
         <>
-          <span className="text-lg xl:text-xl text-center text-xghoststroke">Hello, I'm</span>
+          <span className="text-lg xl:text-xl text-center text-xghoststroke">
+            Hello, I'm
+          </span>
           <Link
             to="/"
             className="mt-1 text-7xl xl:text-8xl text-xstroke hover:text-xyellow font-serif italic leading-[1] xl:leading-[1.25] transition-colors"
@@ -25,9 +27,12 @@ export function Hero({
             <h1 className="text-center">Nourman Hajar</h1>
           </Link>
           <span className="mt-6 text-sm sm:text-lg xl:text-xl max-w-[500px] text-center">
-            Dedicated <span className='font-semibold text-xblue/90s'>Software Engineer</span> you can count on. I help
-            companies, clients, and founders craft a scalable web solution for
-            their brands and products.
+            Dedicated{' '}
+            <span className="font-semibold text-xblue/90">
+              Software Engineer
+            </span>{' '}
+            you can count on. I help companies, clients, and founders craft a
+            scalable web solution for their brands and products.
           </span>
         </>
       )}
