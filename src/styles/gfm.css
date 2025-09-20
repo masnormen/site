@@ -143,7 +143,7 @@
 }
 
 .markdown-body h3::before {
-  content: "• ";
+  content: " ✻ ";
   color: var(--color-xpink);
 }
 
@@ -358,8 +358,13 @@
 .markdown-body h6 {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
-  font-weight: 600;
   line-height: 1.25;
+}
+
+.markdown-body h1 {
+  font-weight: 600;
+  padding-bottom: 0.3em;
+  font-size: 2em;
 }
 
 .markdown-body h2 {

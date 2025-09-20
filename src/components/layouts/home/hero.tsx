@@ -17,15 +17,15 @@ export function Hero({
     >
       {children ?? (
         <>
-          <span className="text-lg xl:text-xl text-center">Hello, I'm</span>
+          <span className="text-lg xl:text-xl text-center text-xghoststroke">Hello, I'm</span>
           <Link
             to="/"
-            className="mt-2 text-7xl xl:text-8xl text-xblue hover:text-xyellow hover:text-shadow-xblue font-serif leading-[1] xl:leading-[1.25] transition-colors"
+            className="mt-1 text-7xl xl:text-8xl text-xstroke hover:text-xyellow font-serif italic leading-[1] xl:leading-[1.25] transition-colors"
           >
             <h1 className="text-center">Nourman Hajar</h1>
           </Link>
-          <span className="mt-5 xl:mt-3 text-sm sm:text-lg xl:text-xl max-w-[500px] text-center">
-            Dedicated <b>Software Engineer</b> you can count on. I help
+          <span className="mt-6 text-sm sm:text-lg xl:text-xl max-w-[500px] text-center">
+            Dedicated <span className='font-semibold text-xblue/90s'>Software Engineer</span> you can count on. I help
             companies, clients, and founders craft a scalable web solution for
             their brands and products.
           </span>
@@ -52,11 +52,11 @@ export function Hero({
         </div>
       </div>
       <div className="hidden sm:block absolute right-0 translate-x-1/2 -translate-y-[120px] rotate-[-7deg]">
-        <div className="filter-gooey hover:rotate-12 mt-2 duration-300 drop-shadow-[4px_4px_0px_var(--color-xyellow)] hover:drop-shadow-[4px_4px_0px_var(--color-xblue)] text-center">
-          <h2 className="inline whitespace-nowrap rounded-2xl bg-xghostwhite px-4 py-2 text-center font-title font-light text-[2cqw] xl:text-[1.25rem] text-xyellow drop-shadow-none select-none">
+        <div className="filter-gooey hover:rotate-12 mt-2 duration-300 drop-shadow-[4px_4px_0px_var(--color-xyellow)] hover:drop-shadow-[4px_4px_0px_var(--color-xyellow)] text-center">
+          <h2 className="inline whitespace-nowrap rounded-2xl bg-xstroke px-4 py-2 text-center font-title font-light text-[2cqw] xl:text-[1.25rem] text-xyellow drop-shadow-none select-none">
             based in{' '}
-            <span className="rounded-lg bg-gray-200 px-1 py-0.5 font-medium font-mono text-[90%] text-stroke">
-              IDN
+            <span className="rounded-lg tracking-tighter bg-gray-200 px-1 font-mono text-[0.8em] uppercase font-bold text-xblue">
+              Indonesia
             </span>{' '}
             🇮🇩
           </h2>
