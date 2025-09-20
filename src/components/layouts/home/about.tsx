@@ -47,9 +47,10 @@ export function About() {
           solve the problem at hand. New tools are a welcome fun challenge! 🛠️
         </p>
         <p>
-          I'm currently expanding my skills by pursuing a Master's in
-          Cybersecurity at Monash University. (<b>fun fact:</b> all this was
-          made possible by a scholarship from a literal 😼 cat{' '}
+          Outside of working as a Software Engineer, I'm currently expanding my
+          skills by pursuing a Master's in Cybersecurity at Monash University. (
+          <b>fun fact:</b> all this was made possible by a scholarship from a
+          literal 😼 cat{' '}
           <Tooltip>
             <TooltipTrigger className="cursor-pointer">
               <a
