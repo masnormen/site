@@ -87,7 +87,7 @@ export function Footer() {
   const todayString = useMemo(() => dayjs().format('dddd'), []);
   return (
     <footer className="flex flex-col items-center overflow-hidden justify-center bg-xbg border-t-1 border-dashed border-xline">
-      <div className="@container relative flex flex-col items-center w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-ixl md:h-[584px] mx-auto pt-12 md:pt-24">
+      <div className="@container relative flex flex-col items-center w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-ixl md:h-[532px] mx-auto pt-12 md:pt-24">
         <nav className="flex flex-col md:grid md:grid-cols-[1fr_1fr_0.55fr] w-full gap-12 md:gap-6">
           <FooterSection title="Navigate">
             {FOOTER_CONTENT.navigate.map((item) => (
@@ -124,9 +124,12 @@ export function Footer() {
           All rights reserved © 2020-{new Date().getFullYear()}
         </div>
 
-        <div className="mt-16 md:mt-0 md:absolute z-100 bottom-0 flex w-full font-serif text-[min(14.5vw,148px)] text-xyellow text-center leading-[0.45]">
+        <Link
+          to="/"
+          className="mt-16 md:mt-0 mx-auto md:absolute z-100 bottom-0 flex justify-center w-full font-serif tracking-tighter text-[min(11.9vw,128px)] font-medium italic text-xghoststroke/40 text-center leading-[0.7] transition-colors duration-400 select-none hover:text-xyellow"
+        >
           NOURMAN·COM
-        </div>
+        </Link>
       </div>
     </footer>
   );

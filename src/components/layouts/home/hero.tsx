@@ -60,8 +60,8 @@ export function Hero({
         <div className="filter-gooey hover:rotate-12 mt-2 duration-300 drop-shadow-[4px_4px_0px_var(--color-xyellow)] hover:drop-shadow-[4px_4px_0px_var(--color-xyellow)] text-center">
           <h2 className="inline whitespace-nowrap rounded-2xl bg-xstroke px-4 py-2 text-center font-title font-light text-[2cqw] xl:text-[1.25rem] text-xyellow drop-shadow-none select-none">
             based in{' '}
-            <span className="rounded-lg tracking-tighter bg-gray-200 px-1 font-mono text-[0.8em] uppercase font-bold text-xblue">
-              Indonesia
+            <span className="rounded-md tracking-tighter bg-gray-200 px-1 font-mono text-[0.9em] uppercase font-bold text-xblue">
+              IDN
             </span>{' '}
             🇮🇩
           </h2>
