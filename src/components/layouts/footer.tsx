@@ -13,7 +13,7 @@ const FOOTER_CONTENT = {
   connect: [
     {
       label: 'Book a Call ↗',
-      href: 'https://calendly.com/nourman-hajar/30min',
+      href: 'https://cal.com/nourman',
     },
     {
       label: 'LinkedIn ↗',
