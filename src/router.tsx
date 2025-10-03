@@ -13,6 +13,7 @@ export function createRouter() {
     scrollRestorationBehavior: 'instant',
     notFoundMode: 'root',
     defaultNotFoundComponent: NotFoundComponent,
+    defaultViewTransition: true,
   });
 }
 
