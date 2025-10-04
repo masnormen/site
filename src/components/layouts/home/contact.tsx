@@ -23,6 +23,7 @@ export function Contact() {
           className="w-full h-full rotate-[45deg] hover:rotate-[-20deg] hover:scale-120 transition-transform"
           draggable="false"
           loading="lazy"
+          alt=""
         />
       }
       className="border-b-0"

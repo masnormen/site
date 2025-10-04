@@ -78,6 +78,7 @@ export function PostHeader() {
             className="w-full h-full rotate-[12deg] hover:rotate-[-20deg] hover:scale-120 transition-transform"
             draggable="false"
             loading="lazy"
+            alt=""
           />
         </div>
 
@@ -87,6 +88,7 @@ export function PostHeader() {
             className="w-full h-full -rotate-[12deg] hover:rotate-[20deg] hover:scale-120 transition-transform"
             draggable="false"
             loading="lazy"
+            alt=""
           />
         </div>
       </div>
@@ -103,6 +105,7 @@ export function PostHeader() {
             className="hidden md:inline-flex! size-6 rotate-[20deg] hover:rotate-[-20deg] hover:scale-120 transition-transform mr-4"
             draggable="false"
             loading="lazy"
+            alt=""
           />
           <span className="font-semibold">
             {dayjs(content.createdAt).format('DD MMM YYYY')}
@@ -114,6 +117,7 @@ export function PostHeader() {
             className="inline-flex size-8 aspect-square relative rounded-full shadow-lg mx-1"
             draggable="false"
             loading="lazy"
+            alt="My portrait"
           />{' '}
           <span className="hidden lg:inline! font-semibold">Nourman Hajar</span>
         </p>

@@ -88,7 +88,7 @@ const TechStack = ({ tag }: { tag: string }) => {
 
   return (
     <Tooltip>
-      <TooltipTrigger className="cursor-pointer">
+      <TooltipTrigger className="cursor-pointer" aria-label={tag}>
         <TechStackIcon />
       </TooltipTrigger>
       <TooltipContent>
@@ -139,6 +139,7 @@ export function ProjectCard({
             slug,
           }}
           className="active:scale-98 transition-transform duration-300"
+          aria-label={title}
         >
           <header
             className="group relative
@@ -226,6 +227,7 @@ export function ProjectCard({
             'group flex justify-between lg:justify-start mx-auto lg:mx-0 left-0 relative z-10 w-full sm:h-[180px] lg:w-auto lg:h-[200px] aspect-16/10',
             nth % 2 === 0 ? 'flex-row' : 'flex-row-reverse',
           )}
+          aria-label={title}
         >
           <div className="hidden sm:flex items-center justify-center h-full w-full">
             {nth % 2 === 0 ? (
@@ -234,6 +236,7 @@ export function ProjectCard({
                 className="block lg:hidden size-[20cqw] rotate-[18deg] group-hover:rotate-[-25deg] transition-transform"
                 draggable="false"
                 loading="lazy"
+                alt=""
               />
             ) : (
               <img
@@ -241,6 +244,7 @@ export function ProjectCard({
                 className="block lg:hidden size-[20cqw] rotate-[-18deg] group-hover:rotate-[25deg] transition-transform"
                 draggable="false"
                 loading="lazy"
+                alt=""
               />
             )}
           </div>
@@ -250,6 +254,7 @@ export function ProjectCard({
               src={Thumbnail}
               className="z-10 block relative aspect-16/10 h-full w-auto object-center object-cover bg-xghostwhite border border-xbg rounded-cxl sm:group-hover:shadow-lg sm:group-hover/card:scale-102 transition-transform duration-400"
               loading="lazy"
+              alt={title}
             />
             <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xbg rounded-cxl rotate-6 sm:group-hover/card:-rotate-12 sm:group-hover/card:bg-xyellow transition-all duration-400" />
             <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xpink rounded-cxl -rotate-6 sm:group-hover/card:rotate-6 transition-transform duration-400" />

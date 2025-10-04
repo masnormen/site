@@ -37,6 +37,7 @@ export function ThumbnailDisplay({
           src={Thumbnail}
           className="z-10 block relative aspect-square! object-center object-contain bg-xghostwhite border border-xbg rounded-cxl group-hover:shadow-lg"
           loading={loading}
+          alt="Post Thumbnail"
         />
       )}
     </div>

@@ -36,6 +36,7 @@ export function BlogCard({
         slug,
       }}
       className="active:scale-98 transition-transform duration-300"
+      aria-label={title}
     >
       <article
         className="group relative

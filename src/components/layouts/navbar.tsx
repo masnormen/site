@@ -65,7 +65,7 @@ export function Navbar() {
   return (
     <nav className="fixed left-1/2 -translate-x-1/2 h-[42px] py-4 z-9999 flex justify-center w-min flex-row items-stretch bg-transparent transition-all duration-500 bottom-15 sm:bottom-[initial] sm:top-0">
       <NavSection className="bg-xstroke">
-        <NavItem type="link" to="/">
+        <NavItem type="link" to="/" aria-label="Home">
           <Icon icon="mingcute:home-6-fill" className="text-base mt-[1px]" />
         </NavItem>
         <NavItem type="link" to="/" hash="blog">
@@ -74,10 +74,18 @@ export function Navbar() {
         <NavItem type="link" to="/" hash="projects">
           Projects
         </NavItem>
-        <NavItem type="link" href="https://linkedin.com/in/nourmanhajar">
+        <NavItem
+          type="link"
+          href="https://linkedin.com/in/nourmanhajar"
+          aria-label="LinkedIn"
+        >
           <LinkedInIcon className="h-3.5 my-auto" />
         </NavItem>
-        <NavItem type="link" href="https://github.com/masnormen">
+        <NavItem
+          type="link"
+          href="https://github.com/masnormen"
+          aria-label="GitHub"
+        >
           <GitHubIcon className="h-3.5 my-auto" />
         </NavItem>
       </NavSection>

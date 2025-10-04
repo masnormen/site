@@ -30,6 +30,7 @@ export function FeaturedProjects() {
           className="w-[70%] h-[70%] rotate-[25deg] hover:rotate-[-40deg] translate-x-[10%] translate-y-[20%] hover:scale-120 transition-transform"
           draggable="false"
           loading="lazy"
+          alt=""
         />
       }
       description="Tiny fraction of things and fun projects I‘ve worked on, mostly open-source."
