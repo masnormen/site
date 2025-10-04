@@ -73,6 +73,7 @@ export function BlogCard({
             Thumbnail={Thumbnail}
             isHover={isHover}
             withOrnaments
+            loading="lazy"
           />
         )}
 

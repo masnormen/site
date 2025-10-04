@@ -13,10 +13,7 @@ import { SVGFilters } from '@/components/assets/svg-filters';
 import { CustomErrorComponent } from '@/components/layouts/error';
 import { Navbar } from '@/components/layouts/navbar';
 import { NotFoundComponent } from '@/components/layouts/not-found';
-import { normalizeCssUrl } from '@/utils/normalize-css-url';
-import appCss from '../styles/app.css?url';
-import gfmCss from '../styles/gfm.css?url';
-import shikiCss from '../styles/shiki.css?url';
+import appCss from '../styles/app.css?inline';
 import type { ReactNode } from 'react';
 
 export const Route = createRootRoute({
@@ -89,22 +86,50 @@ export const Route = createRootRoute({
     ],
     links: [
       {
-        rel: 'stylesheet',
-        href: normalizeCssUrl(appCss),
-        suppressHydrationWarning: true,
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossOrigin: 'anonymous',
       },
       {
-        rel: 'stylesheet',
-        href: normalizeCssUrl(gfmCss),
-        suppressHydrationWarning: true,
+        rel: 'preconnect',
+        href: 'https://api.iconify.design',
+        crossOrigin: 'anonymous',
       },
       {
-        rel: 'stylesheet',
-        href: normalizeCssUrl(shikiCss),
-        suppressHydrationWarning: true,
+        rel: 'preload',
+        href: 'https://fonts.gstatic.com/s/instrumentsans/v3/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
       },
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: '' },
+      {
+        rel: 'preload',
+        href: 'https://fonts.gstatic.com/s/instrumentsans/v3/pxitypc9vsFDm051Uf6KVwgkfoSbSnNPooZAN0lInHGpCWNu15GRqXp6pQ.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: 'https://fonts.gstatic.com/s/geistmono/v1/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: 'https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeP2Xz5c.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: 'https://fonts.gstatic.com/s/fraunces/v38/6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjeveQ7ZXk8g.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
       { rel: 'icon', href: '/favicon.png' },
       ...(import.meta.env.VITE_GA_ID || import.meta.env.VITE_GTM_ID
         ? [{ rel: 'preconnect', href: 'https://www.googletagmanager.com' }]
@@ -138,6 +163,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           ]
         : []),
     ],
+    styles: [{ children: appCss }],
   }),
   component: RootComponent,
   errorComponent: CustomErrorComponent,

@@ -70,6 +70,7 @@ const FooterSection = ({
         src="/assets/images/x-pink-blue.png"
         className="inline-block mr-3 size-6 rotate-[25deg] hover:rotate-[-40deg] hover:scale-120 transition-transform"
         draggable="false"
+        loading="lazy"
       />
       {title}
     </div>

@@ -19,6 +19,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
           className={
             isHover ? 'ml-[32%] mb-[28%] -rotate-30' : 'ml-[24%] mb-[24%]'
           }
+          loading="lazy"
         />
       </div>
       <div className="absolute h-full top-[5%] left-[3%] w-1/2 flex justify-center items-center">
@@ -27,6 +28,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
           height="auto"
           src={TSCry}
           className={cn(isHover && 'rotate-30 -ml-2 -mb-4')}
+          loading="lazy"
         />
       </div>
 

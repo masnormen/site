@@ -46,6 +46,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
             <img
               className={cn('h-[2cqh] my-auto', isHover && 'hue-rotate-90')}
               src="https://typesense.org/docs/images/typesense_logo.svg"
+              loading="lazy"
             />
           </div>
         </div>

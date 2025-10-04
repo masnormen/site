@@ -7,11 +7,13 @@ export function ThumbnailDisplay({
   isHover = false,
   withOrnaments,
   Thumbnail,
+  loading,
   ...rest
 }: Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> & {
   isHover?: boolean;
   withOrnaments?: boolean;
   Thumbnail: React.FC<ThumbnailProps> | string;
+  loading?: 'eager' | 'lazy';
 }) {
   return (
     <div
@@ -34,6 +36,7 @@ export function ThumbnailDisplay({
         <img
           src={Thumbnail}
           className="z-10 block relative aspect-square! object-center object-contain bg-xghostwhite border border-xbg rounded-cxl group-hover:shadow-lg"
+          loading={loading}
         />
       )}
     </div>

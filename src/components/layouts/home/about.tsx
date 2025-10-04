@@ -20,6 +20,7 @@ export function About() {
           src="/assets/images/x-yellow-blue.png"
           className="w-[70%] h-[70%] rotate-[25deg] hover:rotate-[-40deg] translate-x-[10%] translate-y-[20%] hover:scale-120 transition-transform"
           draggable="false"
+          loading="lazy"
         />
       }
     >
@@ -29,6 +30,7 @@ export function About() {
             src="/assets/images/portrait.webp"
             className="h-full w-full aspect-square relative z-10 rounded-full border-2 border-xbg shadow-lg group-hover:scale-98 group-hover:rotate-6 group-hover:shadow-2xl transition-all duration-400 "
             draggable="false"
+            loading="lazy"
           />
           <WingishShape className="absolute w-full h-full inline-block top-[1%] -left-[5%] scale-104 z-0 text-xyellow -rotate-24 group-hover:-rotate-45 group-hover:-top-[1%] group-hover:text-xbg transition-all duration-400" />
           <WingishShape className="absolute w-full h-full inline-block top-[1%] -left-[5%] scale-104 z-0 text-xyellow -rotate-24 group-hover:rotate-0 group-hover:-top-[1%] group-hover:text-xblue transition-all duration-400" />

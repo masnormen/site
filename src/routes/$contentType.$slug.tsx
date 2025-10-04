@@ -8,6 +8,8 @@ import { PostHeader } from '@/components/layouts/post/header';
 import { Section } from '@/components/layouts/section';
 import { useInViewport } from '@/hooks/use-in-viewport';
 import { getContentServerFn } from '@/services/posts';
+import gfmCss from '../styles/gfm.css?inline';
+import shikiCss from '../styles/shiki.css?inline';
 
 export const Route = createFileRoute('/$contentType/$slug')({
   component: Post,
@@ -61,6 +63,7 @@ export const Route = createFileRoute('/$contentType/$slug')({
         href: `https://nourman.com/${params.contentType}/${params.slug}`,
       },
     ],
+    styles: [{ children: gfmCss }, { children: shikiCss }],
   }),
 });
 

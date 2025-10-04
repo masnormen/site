@@ -29,6 +29,7 @@ export function FeaturedPosts() {
           src="/assets/images/floral-yellow-blue.png"
           className="w-full h-full rotate-[45deg] hover:rotate-[-20deg] hover:scale-120 transition-transform"
           draggable="false"
+          loading="lazy"
         />
       }
       description="On software engineering, web development, and random things I like."

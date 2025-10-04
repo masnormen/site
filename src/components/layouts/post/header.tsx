@@ -77,6 +77,7 @@ export function PostHeader() {
             src="/assets/images/floral-yellow-blue.png"
             className="w-full h-full rotate-[12deg] hover:rotate-[-20deg] hover:scale-120 transition-transform"
             draggable="false"
+            loading="lazy"
           />
         </div>
 
@@ -85,6 +86,7 @@ export function PostHeader() {
             src="/assets/images/x-pink-blue.png"
             className="w-full h-full -rotate-[12deg] hover:rotate-[20deg] hover:scale-120 transition-transform"
             draggable="false"
+            loading="lazy"
           />
         </div>
       </div>
@@ -100,6 +102,7 @@ export function PostHeader() {
             src="/assets/images/x-yellow-blue.png"
             className="hidden md:inline-flex! size-6 rotate-[20deg] hover:rotate-[-20deg] hover:scale-120 transition-transform mr-4"
             draggable="false"
+            loading="lazy"
           />
           <span className="font-semibold">
             {dayjs(content.createdAt).format('DD MMM YYYY')}
@@ -110,6 +113,7 @@ export function PostHeader() {
             src="/assets/images/portrait.webp"
             className="inline-flex size-8 aspect-square relative rounded-full shadow-lg mx-1"
             draggable="false"
+            loading="lazy"
           />{' '}
           <span className="hidden lg:inline! font-semibold">Nourman Hajar</span>
         </p>

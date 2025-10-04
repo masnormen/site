@@ -16,11 +16,11 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
       {...rest}
     >
       <div className="absolute top-1/2 left-[10%] w-2/5 flex justify-center items-center translate-x-[calc(-0.7*var(--mouse-x,0))] translate-y-[calc(-1*var(--mouse-y,0))]">
-        <img width="70%" height="auto" src={Popcat} />
+        <img width="70%" height="auto" src={Popcat} loading="lazy" />
       </div>
 
       <div className="absolute top-1/2 left-[45%] w-1/2 flex justify-center items-center animate-wiggle">
-        <img width="70%" height="auto" src={GitLogo} />
+        <img width="70%" height="auto" src={GitLogo} loading="lazy" />
       </div>
 
       <div className="absolute top-[25%] left-[20%] flex justify-center items-center font-bold font-mono text-[5cqw]">
