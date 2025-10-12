@@ -1,6 +1,5 @@
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { useMemo } from 'react';
 import { BigArrow, SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { BlogCard } from '@/components/posts/blog-card';
@@ -11,9 +10,8 @@ const indexRoute = getRouteApi('/');
 export function FeaturedPosts() {
   const { posts } = indexRoute.useLoaderData();
 
-  const postMdxThumbnails = useMemo(
-    () => posts.map((post) => getMDXExport(post.code).Thumbnail ?? null),
-    [posts],
+  const postMdxThumbnails = posts.map(
+    (post) => getMDXExport(post.code).Thumbnail ?? null,
   );
 
   return (

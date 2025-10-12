@@ -354,9 +354,9 @@
   --font-title:
     "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji;
   --font-serif:
-    "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", Times,
-    serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji", emoji;
+    "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji",
+    emoji;
   --font-mono:
     "Geist Mono", ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo,
     "Liberation Mono", "Courier New", monospace, emoji;

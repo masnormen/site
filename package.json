@@ -60,7 +60,7 @@
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.2",
-    "babel-plugin-react-compiler": "19.1.0-rc.3",
+    "babel-plugin-react-compiler": "1.0.0",
     "concurrently": "^9.2.1",
     "esbuild": "^0.24.2",
     "fast-glob": "^3.3.3",

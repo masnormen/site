@@ -1,5 +1,4 @@
 import { getRouteApi } from '@tanstack/react-router';
-import { useMemo } from 'react';
 import { SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { ProjectCard } from '@/components/posts/project-card';
@@ -10,10 +9,8 @@ const indexRoute = getRouteApi('/');
 export function FeaturedProjects() {
   const { projects } = indexRoute.useLoaderData();
 
-  const projectMdxThumbnails = useMemo(
-    () =>
-      projects.map((project) => getMDXExport(project.code).Thumbnail ?? null),
-    [projects],
+  const projectMdxThumbnails = projects.map(
+    (project) => getMDXExport(project.code).Thumbnail ?? null,
   );
 
   return (

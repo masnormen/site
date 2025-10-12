@@ -1,6 +1,6 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useSetAtom } from 'jotai';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { readingTimeMsAtom } from '@/atoms/index';
 import { Section } from '@/components/layouts/section';
 import { MDXSubstitution } from '@/components/posts/mdx-substitution';
@@ -31,10 +31,7 @@ const useCalculateReadingTime = () => {
 export function PostBody() {
   const content = postRoute.useLoaderData();
 
-  const PostContent = useMemo(
-    () => getMDXExport(content.code).default,
-    [content],
-  );
+  const PostContent = getMDXExport(content.code).default;
 
   const postContentRef = useCalculateReadingTime();
 

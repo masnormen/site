@@ -1,14 +1,11 @@
 import { Link, type LinkComponent } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { useMemo } from 'react';
 
 const FOOTER_CONTENT = {
   navigate: [
     { label: 'Home', to: '/' },
     { label: 'Blog', to: '/', hash: 'blog' },
     { label: 'Projects', to: '/', hash: 'projects' },
-    // { type: 'internal', label: 'Guestbook', to: '/guestbook' },
-    // { type: 'internal', label: 'Attributions', to: '/attributions' },
   ],
   connect: [
     {
@@ -82,11 +79,9 @@ const FooterSection = ({
 );
 
 export function Footer() {
-  const deployString = useMemo(
-    () => dayjs(__BUILD_TIME__).format('DD MMM YYYY HH:mm:ss Z'),
-    [],
-  );
-  const todayString = useMemo(() => dayjs().format('dddd'), []);
+  const deployString = dayjs(__BUILD_TIME__).format('DD MMM YYYY HH:mm:ss Z');
+  const todayString = dayjs().format('dddd');
+
   return (
     <footer className="flex flex-col items-center overflow-hidden justify-center bg-xbg border-t-1 border-dashed border-xline">
       <div className="@container relative flex flex-col items-center w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-ixl md:h-[532px] mx-auto pt-12 md:pt-24">

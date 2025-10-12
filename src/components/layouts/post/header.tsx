@@ -3,7 +3,6 @@ import { useHover } from '@uidotdev/usehooks';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import { useAtom } from 'jotai';
-import { useMemo } from 'react';
 import { readingTimeMsAtom } from '@/atoms/index';
 import { SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
@@ -19,11 +18,7 @@ export function PostHeader() {
   const [ref, isHover] = useHover<HTMLDivElement>();
 
   const content = postRoute.useLoaderData();
-
-  const Thumbnail = useMemo(
-    () => getMDXExport(content.code).Thumbnail ?? null,
-    [content],
-  );
+  const Thumbnail = getMDXExport(content.code).Thumbnail ?? null;
 
   const [readingTimeMs] = useAtom(readingTimeMsAtom);
 
