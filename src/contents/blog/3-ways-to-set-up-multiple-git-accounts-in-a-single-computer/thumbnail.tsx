@@ -12,7 +12,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
     <div
       ref={ref}
       className={cn(
-        'bg-background filter-noisy @container relative flex aspect-3/2! max-h-full max-w-full flex-col items-center justify-center',
+        'filter-noisy @container relative flex aspect-3/2! max-h-full max-w-full flex-col items-center justify-center bg-background',
         className,
       )}
       {...rest}
@@ -21,7 +21,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
         <img width="70%" height="auto" src={Popcat} loading="lazy" alt="" />
       </div>
 
-      <div className="animate-wiggle absolute top-1/2 left-[45%] flex w-1/2 items-center justify-center">
+      <div className="absolute top-1/2 left-[45%] flex w-1/2 animate-wiggle items-center justify-center">
         <img width="70%" height="auto" src={GitLogo} loading="lazy" alt="" />
       </div>
 

@@ -24,6 +24,7 @@ const useCalculateReadingTime = () => {
       const time = Math.ceil((words / wordsPerMinute) * 60 * 1000);
       setReadingTimeMs(time);
     }
+    // oxlint-disable-next-line eslint-plugin-react-hooks/exhaustive-deps
   }, []);
 
   return postContentRef;
@@ -46,7 +47,7 @@ export function PostBody() {
           </div>
         </article>
 
-        <aside className="border-xline relative h-full border-dashed lg:border-l">
+        <aside className="relative h-full border-dashed border-xline lg:border-l">
           <TableOfContents post={content} />
         </aside>
       </div>

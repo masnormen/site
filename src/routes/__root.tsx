@@ -177,8 +177,8 @@ function RootComponent() {
           <Outlet />
 
           {/* Top/Bottom fade */}
-          <div className="from-xblank/0 to-xblank pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t" />
-          <div className="from-xblank/0 to-xblank pointer-events-none fixed bottom-0 z-50 h-20 w-screen bg-gradient-to-b" />
+          <div className="pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t from-xblank/0 to-xblank" />
+          <div className="pointer-events-none fixed bottom-0 z-50 h-20 w-screen bg-gradient-to-b from-xblank/0 to-xblank" />
 
           {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
           {import.meta.env.DEV && <TanStackRouterDevtools initialIsOpen={false} />}

@@ -57,7 +57,7 @@ const FooterSection = ({
   className?: string;
 }) => (
   <div className={className}>
-    <div className="font-title relative text-2xl leading-[1.15] font-bold">
+    <div className="relative font-title text-2xl leading-[1.15] font-bold">
       <img
         src="/assets/images/x-pink-blue.png"
         className="mr-3 inline-block size-6 rotate-[25deg] transition-transform hover:scale-120 hover:rotate-[-40deg]"
@@ -76,8 +76,8 @@ export function Footer() {
   const todayString = dayjs().format('dddd');
 
   return (
-    <footer className="bg-xbg border-xline flex flex-col items-center justify-center overflow-hidden border-t-1 border-dashed">
-      <div className="max-w-ixl @container relative mx-auto flex w-[calc(100dvw-64px)] flex-col items-center pt-12 sm:w-[80dvw] md:h-[532px] md:pt-24">
+    <footer className="flex flex-col items-center justify-center overflow-hidden border-t-1 border-dashed border-xline bg-xbg">
+      <div className="@container relative mx-auto flex w-[calc(100dvw-64px)] max-w-ixl flex-col items-center pt-12 sm:w-[80dvw] md:h-[532px] md:pt-24">
         <nav className="flex w-full flex-col gap-12 md:grid md:grid-cols-[1fr_1fr_0.55fr] md:gap-6">
           <FooterSection title="Navigate">
             {FOOTER_CONTENT.navigate.map((item) => (
@@ -106,13 +106,13 @@ export function Footer() {
           </FooterSection>
         </nav>
 
-        <div className="font-title text-xghoststroke mt-16 w-full text-center text-sm">
+        <div className="mt-16 w-full text-center font-title text-sm text-xghoststroke">
           All rights reserved © 2020-{new Date().getFullYear()}
         </div>
 
         <Link
           to="/"
-          className="text-xghoststroke/40 hover:text-xyellow bottom-0 z-100 mx-auto mt-16 flex w-full justify-center text-center font-serif text-[min(11.9vw,128px)] leading-[0.7] font-medium tracking-tighter italic transition-colors duration-400 select-none md:absolute md:mt-0"
+          className="bottom-0 z-100 mx-auto mt-16 flex w-full justify-center text-center font-serif text-[min(11.9vw,128px)] leading-[0.7] font-medium tracking-tighter text-xghoststroke/40 italic transition-colors duration-400 select-none hover:text-xyellow md:absolute md:mt-0"
         >
           NOURMAN·COM
         </Link>

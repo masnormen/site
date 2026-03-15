@@ -27,14 +27,14 @@
       "value-internal",
       ["type-parent", "type-sibling", "type-index"],
       ["value-parent", "value-sibling", "value-index"],
-      "unknown",
-    ],
+      "unknown"
+    ]
   },
   "sortTailwindcss": {
     "stylesheet": "./src/styles/app.css",
     "attributes": ["class", "className"],
     "functions": ["clsx", "cn"],
-    "preserveWhitespace": true,
+    "preserveWhitespace": true
   },
-  "ignorePatterns": ["**/*.gen.ts", "node_modules", "cypress", "dist", ".next", ".output", "build"],
+  "ignorePatterns": ["**/*.gen.ts", "node_modules", "cypress", "dist", ".next", ".output", "build"]
 }

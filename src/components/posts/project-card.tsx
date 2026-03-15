@@ -10,7 +10,7 @@ import { cn } from '@/utils/cn';
 const ProjectButton = ({ href, children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
   <a
     href={href}
-    className="group bg-xghostwhite hover:bg-xarrow rounded-br-cxl rounded-bl-cxl sm:rounded-tr-cxl font-title flex h-full w-full items-center justify-center gap-2 px-9 py-4 text-sm font-semibold whitespace-nowrap transition-all duration-400 hover:-translate-x-0.5 hover:scale-98 active:scale-95 sm:flex-col sm:items-start sm:gap-1 sm:rounded-bl-none sm:py-0"
+    className="group flex h-full w-full items-center justify-center gap-2 rounded-br-cxl rounded-bl-cxl bg-xghostwhite px-9 py-4 font-title text-sm font-semibold whitespace-nowrap transition-all duration-400 hover:-translate-x-0.5 hover:scale-98 hover:bg-xarrow active:scale-95 sm:flex-col sm:items-start sm:gap-1 sm:rounded-tr-cxl sm:rounded-bl-none sm:py-0"
     {...rest}
   >
     {children}
@@ -29,10 +29,10 @@ const TechStack = ({ tag }: { tag: string }) => {
       return <Icon key={tag} icon="mdi:react" className="text-xl text-[#00a9cf]" />;
     }
     if (tag === 'lib') {
-      return <Icon key={tag} icon="material-icon-theme:npm" className="text-xred text-xl" />;
+      return <Icon key={tag} icon="material-icon-theme:npm" className="text-xl text-xred" />;
     }
     if (tag === 'app') {
-      return <Icon key={tag} icon="tdesign:app" className="text-xred text-lg" />;
+      return <Icon key={tag} icon="tdesign:app" className="text-lg text-xred" />;
     }
     if (tag === 'node') {
       return <Icon key={tag} icon="logos:nodejs-icon" className="text-xgreen text-lg" />;
@@ -104,20 +104,21 @@ export function ProjectCard({
           aria-label={title}
         >
           <header
-            className="group bg-xbg
-            sm:hover:bg-xarrow rounded-tl-cxl rounded-tr-cxl
-            sm:rounded-bl-cxl
-            relative flex items-center gap-2
-            transition-all duration-400 sm:min-h-[198px] sm:rounded-tr-none sm:hover:scale-99 sm:hover:shadow-2xs"
+            className="group relative
+            flex items-center gap-2
+            rounded-tl-cxl
+            rounded-tr-cxl bg-xbg transition-all duration-400
+            sm:min-h-[198px] sm:rounded-tr-none sm:rounded-bl-cxl sm:hover:scale-99 sm:hover:bg-xarrow sm:hover:shadow-2xs"
             {...rest}
           >
             <div className="flex h-full flex-col justify-center gap-2 p-6 sm:py-8 sm:pr-12 sm:pl-9">
               <div className="flex flex-row gap-1.5">
                 {tags.map((tag, idx) => (
+                  // oxlint-disable-next-line react/no-array-index-key
                   <TechStack key={idx} tag={tag} />
                 ))}
               </div>
-              <h1 className="font-title text-left text-base leading-[1.2] font-semibold text-pretty lg:line-clamp-4 lg:text-xl">
+              <h1 className="text-left font-title text-base leading-[1.2] font-semibold text-pretty lg:line-clamp-4 lg:text-xl">
                 {title}
               </h1>
               <div className="line-clamp-3 text-sm leading-[1.25] lg:text-base">{description}</div>
@@ -134,33 +135,34 @@ export function ProjectCard({
             })();
 
             return (
+              // oxlint-disable-next-line react/no-array-index-key
               <ProjectButton key={idx} href={link} target="_blank" rel="noopener noreferrer">
                 <div className="relative hidden sm:block">
                   {kind === 'GitHub' && (
                     <>
                       <Icon
                         icon="mdi:github"
-                        className="text-xstroke absolute top-0 left-0 translate-x-[25%] translate-y-[35%] text-[22px]"
+                        className="absolute top-0 left-0 translate-x-[25%] translate-y-[35%] text-[22px] text-xstroke"
                       />
-                      <CircleComplete className="text-xblue group-hover:text-xpink transition-all duration-400 group-hover:-translate-y-0.5 group-hover:rotate-180" />
+                      <CircleComplete className="text-xblue transition-all duration-400 group-hover:-translate-y-0.5 group-hover:rotate-180 group-hover:text-xpink" />
                     </>
                   )}
                   {kind === 'npm' && (
                     <>
                       <Icon
                         icon="material-icon-theme:npm"
-                        className="text-xred absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px]"
+                        className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px] text-xred"
                       />
-                      <CircleIncomplete className="text-xpink group-hover:text-xcyan -rotate-180 transition-all duration-400 group-hover:rotate-0" />
+                      <CircleIncomplete className="-rotate-180 text-xpink transition-all duration-400 group-hover:rotate-0 group-hover:text-xcyan" />
                     </>
                   )}
                   {kind === 'Visit' && (
                     <>
                       <Icon
                         icon="lucide:globe"
-                        className="text-xblue absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px]"
+                        className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px] text-xblue"
                       />
-                      <CircleIncomplete className="text-xyellow group-hover:text-xred transition-all duration-400 group-hover:rotate-180" />
+                      <CircleIncomplete className="text-xyellow transition-all duration-400 group-hover:rotate-180 group-hover:text-xred" />
                     </>
                   )}
                 </div>
@@ -207,12 +209,12 @@ export function ProjectCard({
           <div className="relative aspect-16/10 h-full w-auto">
             <img
               src={Thumbnail}
-              className="bg-xghostwhite border-xbg rounded-cxl relative z-10 block aspect-16/10 h-full w-auto border object-cover object-center transition-transform duration-400 sm:group-hover:shadow-lg sm:group-hover/card:scale-102"
+              className="relative z-10 block aspect-16/10 h-full w-auto rounded-cxl border border-xbg bg-xghostwhite object-cover object-center transition-transform duration-400 sm:group-hover:shadow-lg sm:group-hover/card:scale-102"
               loading="lazy"
               alt={title}
             />
-            <div className="bg-xbg rounded-cxl sm:group-hover/card:bg-xyellow absolute inset-0 aspect-16/10 h-full w-auto rotate-6 transition-all duration-400 sm:group-hover/card:-rotate-12" />
-            <div className="bg-xpink rounded-cxl absolute inset-0 aspect-16/10 h-full w-auto -rotate-6 transition-transform duration-400 sm:group-hover/card:rotate-6" />
+            <div className="absolute inset-0 aspect-16/10 h-full w-auto rotate-6 rounded-cxl bg-xbg transition-all duration-400 sm:group-hover/card:-rotate-12 sm:group-hover/card:bg-xyellow" />
+            <div className="absolute inset-0 aspect-16/10 h-full w-auto -rotate-6 rounded-cxl bg-xpink transition-transform duration-400 sm:group-hover/card:rotate-6" />
           </div>
         </Link>
       )}

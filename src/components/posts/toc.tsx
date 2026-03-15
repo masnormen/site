@@ -26,7 +26,7 @@ export function TableOfContents({
     <div className="top-16 sm:sticky lg:mb-16">
       <details
         className={cn(
-          'bg-xbg lg:rounded-r-cxl sm:hover:bg-xarrow mt-8 flex flex-col rounded-xl px-5 py-4 transition-all duration-200 sm:hover:scale-99 sm:hover:shadow-2xs lg:mt-16 lg:rounded-l-none lg:py-8',
+          'mt-8 flex flex-col rounded-xl bg-xbg px-5 py-4 transition-all duration-200 sm:hover:scale-99 sm:hover:bg-xarrow sm:hover:shadow-2xs lg:mt-16 lg:rounded-l-none lg:rounded-r-cxl lg:py-8',
           '[&[open]_summary]:mb-2',
           className,
         )}
@@ -43,7 +43,7 @@ export function TableOfContents({
                   } as CSSProperties
                 }
                 className={cn(
-                  'text-xpink -mb-1 inline-flex flex-row gap-2 not-last-of-type:mb-1.5',
+                  '-mb-1 inline-flex flex-row gap-2 text-xpink not-last-of-type:mb-1.5',
                   'pl-[var(--indent)]',
                   toc.level === 1 && 'font-semibold',
                 )}
@@ -79,7 +79,7 @@ export function TableOfContents({
         </div>
       </details>
 
-      <section className="text-xghoststroke hidden p-6 text-sm italic lg:block">{post.title}</section>
+      <section className="hidden p-6 text-sm text-xghoststroke italic lg:block">{post.title}</section>
     </div>
   );
 }

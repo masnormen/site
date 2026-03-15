@@ -57,8 +57,8 @@ export function FeaturedProjects() {
         })}
 
         <aside>
-          <SlimArrow className="text-xarrow flip absolute top-[-75px] right-[155px] hidden rotate-[60deg] select-none xl:block" />
-          <span className="text-xghoststroke/50 absolute top-[-95px] right-[90px] hidden rotate-12 text-center text-xs whitespace-nowrap italic select-none xl:block">
+          <SlimArrow className="flip absolute top-[-75px] right-[155px] hidden rotate-[60deg] text-xarrow select-none xl:block" />
+          <span className="absolute top-[-95px] right-[90px] hidden rotate-12 text-center text-xs whitespace-nowrap text-xghoststroke/50 italic select-none xl:block">
             hover on
             <br />
             tech stack icon

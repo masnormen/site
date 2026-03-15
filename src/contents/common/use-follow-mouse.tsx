@@ -34,7 +34,7 @@ export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [isHover]);
+  }, [isHover, onlyThumbnailHover]);
 
   return mergedRef;
 }

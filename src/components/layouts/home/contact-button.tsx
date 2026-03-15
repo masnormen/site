@@ -4,7 +4,7 @@ export function ContactButton({
 }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { children: React.ReactNode }) {
   return (
     <a
-      className="group bg-xbg hover:bg-xarrow rounded-cxl font-title z-10 flex w-full items-center justify-between px-6 py-6 text-sm font-semibold transition-all duration-400 hover:-translate-x-0.5 hover:scale-98 active:scale-95 sm:flex-col sm:items-start sm:whitespace-nowrap lg:aspect-square lg:h-auto xl:size-[150px]"
+      className="group z-10 flex w-full items-center justify-between rounded-cxl bg-xbg px-6 py-6 font-title text-sm font-semibold transition-all duration-400 hover:-translate-x-0.5 hover:scale-98 hover:bg-xarrow active:scale-95 sm:flex-col sm:items-start sm:whitespace-nowrap lg:aspect-square lg:h-auto xl:size-[150px]"
       target="_blank"
       rel="noopener noreferrer"
       {...props}

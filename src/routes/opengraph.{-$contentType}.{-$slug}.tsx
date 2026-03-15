@@ -81,7 +81,7 @@ export const Route = createFileRoute('/opengraph/{-$contentType}/{-$slug}')({
   server: {
     handlers: {
       GET: async ({ params }) => {
-        const content = await (async () => {
+        const ogContent = await (async () => {
           const { contentType, slug } = params;
           if (!contentType) {
             return 'home';
@@ -104,7 +104,7 @@ export const Route = createFileRoute('/opengraph/{-$contentType}/{-$slug}')({
           return content;
         })();
 
-        if (content == null) {
+        if (ogContent == null) {
           return new Response(
             JSON.stringify({
               message: 'Not found',

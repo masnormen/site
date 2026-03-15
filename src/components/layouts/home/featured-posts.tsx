@@ -33,8 +33,8 @@ export function FeaturedPosts() {
       description="On software engineering, web development, and random things I like."
       before={
         <>
-          <BigArrow className="text-xarrow absolute -top-2 left-1/2 w-[50px] -translate-x-1/2 rotate-90 select-none sm:w-[105px]" />
-          <span className="text-xghoststroke absolute -top-2.5 left-1/2 hidden -translate-x-1/2 text-center text-xs italic select-none sm:block xl:-top-3.5 xl:text-base">
+          <BigArrow className="absolute -top-2 left-1/2 w-[50px] -translate-x-1/2 rotate-90 text-xarrow select-none sm:w-[105px]" />
+          <span className="absolute -top-2.5 left-1/2 hidden -translate-x-1/2 text-center text-xs text-xghoststroke italic select-none sm:block xl:-top-3.5 xl:text-base">
             come into my digital corner! 🏡
           </span>
         </>
@@ -65,8 +65,8 @@ export function FeaturedPosts() {
         })}
 
         <aside>
-          <SlimArrow className="text-xarrow flip absolute top-[-75px] right-[155px] hidden rotate-[60deg] select-none xl:block" />
-          <span className="text-xghoststroke/50 absolute top-[-95px] right-[80px] hidden -rotate-6 text-center text-xs whitespace-nowrap italic select-none xl:block">
+          <SlimArrow className="flip absolute top-[-75px] right-[155px] hidden rotate-[60deg] text-xarrow select-none xl:block" />
+          <span className="absolute top-[-95px] right-[80px] hidden -rotate-6 text-center text-xs whitespace-nowrap text-xghoststroke/50 italic select-none xl:block">
             psshh. try hovering
             <br />
             on each thumbnail!

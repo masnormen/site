@@ -1,4 +1,16 @@
 {
+  "js/ts.preferences.includePackageJsonAutoImports": "on",
+
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["tw\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["classNames\\s*=\\s*\\{\\{[\\s\\S]*?\\}\\}", "(?<=['\"`])([^'\"`]*)(?=['\"`])"],
+    ["classNames\\s*=\\s*\\{\\{([\\s\\S]*?)\\}\\}", "\"([^\"]+)\"|'([^']+)'|`([^`]+)`"]
+  ],
+  "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
+
   "editor.codeActions.triggerOnFocusChange": true,
 
   "js/ts.preferences.importModuleSpecifier": "non-relative",

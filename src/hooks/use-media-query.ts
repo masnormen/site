@@ -11,11 +11,11 @@ export function useMediaQuery(
   query: string,
   { defaultValue = false, initializeWithValue = true }: UseMediaQueryOptions = {},
 ): boolean {
-  const getMatches = (query: string): boolean => {
+  const getMatches = (mediaQuery: string): boolean => {
     if (IS_SERVER) {
       return defaultValue;
     }
-    return window.matchMedia(query).matches;
+    return window.matchMedia(mediaQuery).matches;
   };
 
   const [matches, setMatches] = useState<boolean>(() => {
@@ -50,6 +50,7 @@ export function useMediaQuery(
         matchMedia.removeEventListener('change', handleChange);
       }
     };
+    // oxlint-disable-next-line eslint-plugin-react-hooks/exhaustive-deps
   }, [query]);
 
   return matches;

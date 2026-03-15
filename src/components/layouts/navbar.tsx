@@ -43,7 +43,7 @@ function NavSection({ className, children, ...props }: React.HTMLAttributes<HTML
     <div
       onClick={(e) => e.stopPropagation()}
       className={cn(
-        'rounded-mxl flex h-10.5 flex-row justify-center gap-2 px-3 transition-all duration-200',
+        'flex h-10.5 flex-row justify-center gap-2 rounded-mxl px-3 transition-all duration-200',
         className,
       )}
       {...props}

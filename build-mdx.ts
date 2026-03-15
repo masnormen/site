@@ -22,13 +22,14 @@ import { getHeadings } from '@/utils/posts';
 
 const DIST_PATH = path.resolve(process.cwd(), 'dist');
 
+function parseMetaProps(meta: string) {
+  if (!meta) return null;
+  const match = meta.match(/title="([^"]+)"/);
+  if (!match) return null;
+  return match[1];
+}
+
 const transformCodeblockTitle = (): ShikiTransformer => {
-  function parseMetaProps(meta: string) {
-    if (!meta) return null;
-    const match = meta.match(/title="([^"]+)"/);
-    if (!match) return null;
-    return match[1];
-  }
   return {
     name: '@custom/transformers:codeblock-title',
     root(hast) {
@@ -165,12 +166,12 @@ function getBuildOptions({ sourcePaths }: { sourcePaths: string[] }) {
                   throw new Error('[mdx] Failed to bundle MDX content');
                 }
 
-                const grayMatter = entryPoints.find((entry) => entry.slug === slug)?.grayMatter;
-                if (!grayMatter) {
+                const grayMatterFile = entryPoints.find((entry) => entry.slug === slug)?.grayMatter;
+                if (!grayMatterFile) {
                   throw new Error('[mdx] Failed to bundle MDX content');
                 }
 
-                const frontmatter = PostFrontMatter.safeParse(grayMatter?.data);
+                const frontmatter = PostFrontMatter.safeParse(grayMatterFile?.data);
                 if (!frontmatter.success) {
                   throw new Error('[mdx] Failed to bundle MDX content');
                 }
@@ -178,7 +179,7 @@ function getBuildOptions({ sourcePaths }: { sourcePaths: string[] }) {
                 const metadata = {
                   ...frontmatter.data,
                   slug,
-                  toc: getHeadings(grayMatter.content),
+                  toc: getHeadings(grayMatterFile.content),
                 };
                 const metadataPath = file.path.replace(/\.js$/, '.json');
 

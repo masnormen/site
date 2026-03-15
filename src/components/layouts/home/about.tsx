@@ -25,13 +25,13 @@ export function About() {
         <div className="group relative isolate mx-auto aspect-square size-[220px] h-full sm:float-right sm:mx-0 sm:-mt-16 sm:mb-6 sm:ml-6 md:ml-8 md:size-[250px]">
           <img
             src="/assets/images/portrait.webp"
-            className="border-xbg relative z-10 aspect-square h-full w-full rounded-full border-2 shadow-lg transition-all duration-400 group-hover:scale-98 group-hover:rotate-6 group-hover:shadow-2xl "
+            className="relative z-10 aspect-square h-full w-full rounded-full border-2 border-xbg shadow-lg transition-all duration-400 group-hover:scale-98 group-hover:rotate-6 group-hover:shadow-2xl "
             draggable="false"
             loading="lazy"
             alt="My portrait"
           />
-          <WingishShape className="text-xyellow group-hover:text-xbg absolute top-[1%] -left-[5%] z-0 inline-block h-full w-full scale-104 -rotate-24 transition-all duration-400 group-hover:-top-[1%] group-hover:-rotate-45" />
-          <WingishShape className="text-xyellow group-hover:text-xblue absolute top-[1%] -left-[5%] z-0 inline-block h-full w-full scale-104 -rotate-24 transition-all duration-400 group-hover:-top-[1%] group-hover:rotate-0" />
+          <WingishShape className="absolute top-[1%] -left-[5%] z-0 inline-block h-full w-full scale-104 -rotate-24 text-xyellow transition-all duration-400 group-hover:-top-[1%] group-hover:-rotate-45 group-hover:text-xbg" />
+          <WingishShape className="absolute top-[1%] -left-[5%] z-0 inline-block h-full w-full scale-104 -rotate-24 text-xyellow transition-all duration-400 group-hover:-top-[1%] group-hover:rotate-0 group-hover:text-xblue" />
         </div>
         <p>
           I grew up surrounded by computers. I wrote my first blog at 9yo, installed Arch Linux at 11 (yes, the manual

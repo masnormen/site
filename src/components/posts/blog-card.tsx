@@ -39,10 +39,10 @@ export function BlogCard({
       aria-label={title}
     >
       <article
-        className="group sm:bg-xbg
-        sm:hover:bg-xarrow rounded-cxl relative flex w-full flex-col-reverse
-        items-center justify-center gap-2 transition-all duration-400 sm:grid sm:min-h-[198px] sm:grid-cols-[auto_1fr] sm:gap-0
-        sm:hover:scale-99 sm:hover:shadow-2xs lg:grid-cols-[1fr_auto_1fr]"
+        className="group relative
+        flex w-full flex-col-reverse items-center justify-center gap-2
+        rounded-cxl transition-all duration-400 sm:grid sm:min-h-[198px] sm:grid-cols-[auto_1fr] sm:gap-0 sm:bg-xbg sm:hover:scale-99
+        sm:hover:bg-xarrow sm:hover:shadow-2xs lg:grid-cols-[1fr_auto_1fr]"
         ref={ref}
         {...rest}
       >
@@ -51,13 +51,13 @@ export function BlogCard({
             <Chip
               label={tag}
               key={tag}
-              className="group-hover:bg-xblue transition-colors duration-400 group-hover:text-white"
+              className="transition-colors duration-400 group-hover:bg-xblue group-hover:text-white"
             />
           ))}
         </div>
 
         <header className="flex w-full flex-col justify-center gap-2 py-8 sm:gap-3 sm:pr-12 sm:pl-9">
-          <h1 className="font-title text-left text-base leading-[1.2] font-semibold text-pretty lg:line-clamp-4 lg:text-xl">
+          <h1 className="text-left font-title text-base leading-[1.2] font-semibold text-pretty lg:line-clamp-4 lg:text-xl">
             {title}
           </h1>
           <div className="line-clamp-4 text-sm lg:hidden">{description}</div>
@@ -75,7 +75,7 @@ export function BlogCard({
               <Chip
                 label={tag}
                 key={tag}
-                className="group-hover:bg-xblue transition-colors duration-400 group-hover:text-white"
+                className="transition-colors duration-400 group-hover:bg-xblue group-hover:text-white"
               />
             ))}
           </div>
