@@ -1,9 +1,13 @@
+import { FastResponse } from 'srvx'
+
 import {
   createStartHandler,
   defaultStreamHandler,
-} from '@tanstack/react-start/server';
-import { createRouter } from './router';
+} from '@tanstack/react-start/server'
+import { createServerEntry } from '@tanstack/react-start/server-entry'
 
-export default createStartHandler({
-  createRouter,
-})(defaultStreamHandler);
+globalThis.Response = FastResponse
+
+export default createServerEntry({
+  fetch: createStartHandler(defaultStreamHandler),
+})

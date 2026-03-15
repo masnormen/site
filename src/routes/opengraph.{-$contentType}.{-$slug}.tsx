@@ -1,6 +1,5 @@
 // import { Renderer } from '@takumi-rs/core';
 // import { fromJsx } from '@takumi-rs/helpers/jsx';
-import { createServerFileRoute } from '@tanstack/react-start/server';
 import { twj } from 'tw-to-css';
 import { WavyGrass } from '@/components/assets/shapes/lines';
 import {
@@ -10,6 +9,7 @@ import {
 } from '@/constants/datauri';
 import { getContentServerFn } from '@/services/posts';
 import type { Post } from '@/types/post';
+import { createFileRoute } from '@tanstack/react-router';
 
 function _OgImage({ content }: { content?: Post | null }) {
   return (
@@ -95,88 +95,92 @@ function _OgImage({ content }: { content?: Post | null }) {
   );
 }
 
-export const ServerRoute = createServerFileRoute(
+export const Route = createFileRoute(
   '/opengraph/{-$contentType}/{-$slug}',
-).methods(() => ({
-  GET: async ({ request, params }) => {
-    const content = await (async () => {
-      const { contentType, slug } = params;
-      if (!contentType) {
-        return 'home';
-      }
-      if (contentType !== 'blog' && contentType !== 'projects') {
-        return null;
-      }
-      if (!slug) {
-        return null;
-      }
+)({
+  server: {
+      handlers: {
+        GET: async ({ request, params }) => {
+          const content = await (async () => {
+            const { contentType, slug } = params;
+            if (!contentType) {
+              return 'home';
+            }
+            if (contentType !== 'blog' && contentType !== 'projects') {
+              return null;
+            }
+            if (!slug) {
+              return null;
+            }
 
-      const content = await getContentServerFn({
-        data: {
-          contentType,
-          slug,
+            const content = await getContentServerFn({
+              data: {
+                contentType,
+                slug,
+              },
+            });
+            if (!content) return null;
+
+            return content;
+          })();
+
+          if (content == null) {
+            return new Response(
+              JSON.stringify({
+                message: 'Not found',
+              }),
+              {
+                status: 404,
+              },
+            );
+          }
+
+          return new Response('Not implemented', { status: 501 });
+
+          // const node = await fromJsx(
+          //   <OgImage content={content === 'home' ? null : content} />,
+          // );
+          // const renderer = new Renderer({
+          //   loadDefaultFonts: true,
+          //   fonts: [
+          //     {
+          //       name: 'Instrument Sans',
+          //       data: await fetch(
+          //         'https://fonts.gstatic.com/s/instrumentsans/v4/pxitypc9vsFDm051Uf6KVwgkfoSbSnNPooZAN0lInHGpCWNu15GRqXp6pQ.woff2',
+          //       )
+          //         .then((res) => res.arrayBuffer())
+          //         .then((buf) => Buffer.from(buf)),
+          //       style: 'italic',
+          //       weight: 400,
+          //     },
+          //     {
+          //       name: 'Instrument Sans',
+          //       data: await fetch(
+          //         'https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2',
+          //       )
+          //         .then((res) => res.arrayBuffer())
+          //         .then((buf) => Buffer.from(buf)),
+          //       style: 'normal',
+          //       weight: 400,
+          //     },
+          //   ],
+          // });
+
+          // const buffer = await renderer.renderAsync(node, {
+          //   width: 1200,
+          //   height: 630,
+          //   format: 'webp',
+          // });
+          // const res = new Uint8Array(buffer);
+
+          // return new Response(res, {
+          //   status: 200,
+          //   headers: {
+          //     'Content-Type': 'image/png',
+          //     'Cache-Control': 'public, max-age=31536000',
+          //   },
+          // });
         },
-      });
-      if (!content) return null;
-
-      return content;
-    })();
-
-    if (content == null) {
-      return new Response(
-        JSON.stringify({
-          message: 'Not found',
-        }),
-        {
-          status: 404,
-        },
-      );
     }
-
-    return new Response('Not implemented', { status: 501 });
-
-    // const node = await fromJsx(
-    //   <OgImage content={content === 'home' ? null : content} />,
-    // );
-    // const renderer = new Renderer({
-    //   loadDefaultFonts: true,
-    //   fonts: [
-    //     {
-    //       name: 'Instrument Sans',
-    //       data: await fetch(
-    //         'https://fonts.gstatic.com/s/instrumentsans/v4/pxitypc9vsFDm051Uf6KVwgkfoSbSnNPooZAN0lInHGpCWNu15GRqXp6pQ.woff2',
-    //       )
-    //         .then((res) => res.arrayBuffer())
-    //         .then((buf) => Buffer.from(buf)),
-    //       style: 'italic',
-    //       weight: 400,
-    //     },
-    //     {
-    //       name: 'Instrument Sans',
-    //       data: await fetch(
-    //         'https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2',
-    //       )
-    //         .then((res) => res.arrayBuffer())
-    //         .then((buf) => Buffer.from(buf)),
-    //       style: 'normal',
-    //       weight: 400,
-    //     },
-    //   ],
-    // });
-
-    // const buffer = await renderer.renderAsync(node, {
-    //   width: 1200,
-    //   height: 630,
-    //   format: 'webp',
-    // });
-    // const res = new Uint8Array(buffer);
-
-    // return new Response(res, {
-    //   status: 200,
-    //   headers: {
-    //     'Content-Type': 'image/png',
-    //     'Cache-Control': 'public, max-age=31536000',
-    //   },
-    // });
-  },
-}));
+  }
+});

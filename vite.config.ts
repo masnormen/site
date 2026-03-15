@@ -1,9 +1,10 @@
 import tailwindcss from '@tailwindcss/vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
-import viteReact from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import viteRestart from 'vite-plugin-restart';
-import viteTsConfigPaths from 'vite-tsconfig-paths';
+import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react'
+import babel from '@rolldown/plugin-babel'
+import { nitro } from 'nitro/vite'
 
 export default defineConfig({
   define: {
@@ -11,21 +12,17 @@ export default defineConfig({
     // biome-ignore lint/style/noProcessEnv: Need to access env var
     __BUILD_SHA__: JSON.stringify(process.env.VITE_BUILD_SHA || 'dev'),
   },
+  resolve: {
+    tsconfigPaths: true,
+  },
   plugins: [
-    viteTsConfigPaths({
-      projects: ['./tsconfig.json'],
-    }),
     viteRestart({
       restart: ['./dist/**/*'],
     }),
-    tanstackStart({
-      customViteReactPlugin: true,
-    }),
-    viteReact({
-      babel: {
-        plugins: [['babel-plugin-react-compiler', {}]],
-      },
-    }),
+    nitro(),
+    tanstackStart(),
+    viteReact(),
+    babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
   ],
 });

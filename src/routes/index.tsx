@@ -10,8 +10,8 @@ import { getContentListServerFn } from '@/services/posts';
 export const Route = createFileRoute('/')({
   loader: async () => {
     const [posts, projects] = await Promise.all([
-      getContentListServerFn({ data: 'blog' }),
-      getContentListServerFn({ data: 'projects' }),
+      getContentListServerFn({ data: { contentType: 'blog' } }),
+      getContentListServerFn({ data: { contentType: 'projects' } }),
     ]);
     return { posts, projects };
   },

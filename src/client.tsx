@@ -1,15 +1,15 @@
+import { getRouter } from '@/router';
 import * as Sentry from '@sentry/react';
-import { StartClient } from '@tanstack/react-start';
+import { StartClient } from '@tanstack/react-start/client'
 import { StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
-import { createRouter } from './router';
 
-const router = createRouter();
+const router = getRouter();
 
 hydrateRoot(
   document,
   <StrictMode>
-    <StartClient router={router} />
+    <StartClient  />
   </StrictMode>,
 );
 

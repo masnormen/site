@@ -437,6 +437,25 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@supports (color: color(display-p3 0.55 0.19 0.71)) {
+  @theme inline {
+    --color-xred: color(display-p3 0.992157 0.117647 0.121569 / 1.000000);
+    --color-xblue: color(display-p3 0.000000 0.082353 0.831373 / 1.000000);
+    --color-xyellow: color(display-p3 1.000000 0.796078 0.254902 / 1.000000);
+    --color-xcyan: color(display-p3 0.517647 0.870588 0.976471 / 1.000000);
+    --color-xpink: color(display-p3 1.000000 0.560784 0.792157 / 1.000000);
+
+    --color-xblank: color(display-p3 0.964706 0.960784 0.945098 / 1.000000);
+    --color-xline: color(display-p3 0.827451 0.827451 0.827451 / 1.000000);
+    --color-xbg: color(display-p3 0.925490 0.925490 0.925490 / 1.000000);
+    --color-xarrow: color(display-p3 0.894118 0.890196 0.866667 / 1.000000);
+    --color-xghostwhite: color(display-p3 0.972549 0.972549 1.000000 / 1.000000);
+
+    --color-xstroke: color(display-p3 0.043137 0.070588 0.082353 / 1.000000);
+    --color-xghoststroke: color(display-p3 0.517647 0.517647 0.517647 / 1.000000);
+  }
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

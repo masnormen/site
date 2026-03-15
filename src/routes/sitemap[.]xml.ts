@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { createServerFileRoute } from '@tanstack/react-start/server';
+import { createFileRoute } from '@tanstack/react-router';
 
 const SitemapURLTemplate = (
   loc: string,
@@ -20,54 +20,56 @@ const SitemapXMLTemplate = (urls: string[]) =>
 ${urls.join('\n')}
 </urlset>` as const;
 
-export const ServerRoute = createServerFileRoute('/sitemap.xml').methods(
-  () => ({
-    GET: async () => {
-      const postModules = import.meta.glob(`../contents/blog/**/index.mdx`, {
-        query: '?raw',
-        import: 'default',
-      });
-      const postSlugs = Object.keys(postModules).map(
-        (modulePath) => path.parse(path.dirname(modulePath)).base,
-      );
-
-      const projectsModules = import.meta.glob(
-        `../contents/projects/**/index.mdx`,
-        {
+export const Route = createFileRoute('/sitemap.xml')({
+  server: {
+    handlers: {
+      GET: async () => {
+        const postModules = import.meta.glob(`../contents/blog/**/index.mdx`, {
           query: '?raw',
           import: 'default',
-        },
-      );
-      const projectSlugs = Object.keys(projectsModules).map(
-        (modulePath) => path.parse(path.dirname(modulePath)).base,
-      );
+        });
+        const postSlugs = Object.keys(postModules).map(
+          (modulePath) => path.parse(path.dirname(modulePath)).base,
+        );
 
-      const date = __BUILD_TIME__;
-      const sitemap = SitemapXMLTemplate([
-        SitemapURLTemplate(`https://nourman.com`, date, '1.0', 'daily'),
-        ...postSlugs.map((url) =>
-          SitemapURLTemplate(
-            `https://nourman.com/blog/${url}`,
-            date,
-            '0.9',
-            'weekly',
-          ),
-        ),
-        ...projectSlugs.map((url) =>
-          SitemapURLTemplate(
-            `https://nourman.com/projects/${url}`,
-            date,
-            '0.8',
-            'monthly',
-          ),
-        ),
-      ]);
+        const projectsModules = import.meta.glob(
+          `../contents/projects/**/index.mdx`,
+          {
+            query: '?raw',
+            import: 'default',
+          },
+        );
+        const projectSlugs = Object.keys(projectsModules).map(
+          (modulePath) => path.parse(path.dirname(modulePath)).base,
+        );
 
-      return new Response(sitemap, {
-        headers: {
-          'Content-Type': 'application/xml',
-        },
-      });
-    },
-  }),
-);
+        const date = __BUILD_TIME__;
+        const sitemap = SitemapXMLTemplate([
+          SitemapURLTemplate(`https://nourman.com`, date, '1.0', 'daily'),
+          ...postSlugs.map((url) =>
+            SitemapURLTemplate(
+              `https://nourman.com/blog/${url}`,
+              date,
+              '0.9',
+              'weekly',
+            ),
+          ),
+          ...projectSlugs.map((url) =>
+            SitemapURLTemplate(
+              `https://nourman.com/projects/${url}`,
+              date,
+              '0.8',
+              'monthly',
+            ),
+          ),
+        ]);
+
+        return new Response(sitemap, {
+          headers: {
+            'Content-Type': 'application/xml',
+          },
+        });
+      }
+    }
+  }
+})
