@@ -1,5 +1,5 @@
 import Comments from '@giscus/react';
-import { createFileRoute, notFound } from '@tanstack/react-router';
+import { ClientOnly, createFileRoute, notFound } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
 
 import { Footer } from '@/components/layouts/footer';
@@ -12,7 +12,6 @@ import { getContentServerFn } from '@/services/posts';
 
 import gfmCss from '../styles/gfm.css?inline';
 import shikiCss from '../styles/shiki.css?inline';
-
 export const Route = createFileRoute('/$contentType/$slug')({
   component: Post,
   params: {
@@ -88,22 +87,24 @@ function Post() {
       <PostBody />
       {/* Comments */}
       <Section ref={commentRef} className="py-8 md:py-16">
-        {hasScrolled && (
-          <Comments
-            id="comments"
-            repo="masnormen/site"
-            repoId="R_kgDOGb4nwQ"
-            category="Comments"
-            categoryId="DIC_kwDOGb4nwc4CUigF"
-            mapping="pathname"
-            strict="0"
-            reactionsEnabled="1"
-            emitMetadata="0"
-            inputPosition="top"
-            theme="light_protanopia"
-            lang="en"
-          />
-        )}
+        <ClientOnly>
+          {hasScrolled && (
+            <Comments
+              id="comments"
+              repo="masnormen/site"
+              repoId="R_kgDOGb4nwQ"
+              category="Comments"
+              categoryId="DIC_kwDOGb4nwc4CUigF"
+              mapping="pathname"
+              strict="0"
+              reactionsEnabled="1"
+              emitMetadata="0"
+              inputPosition="top"
+              theme="light_protanopia"
+              lang="en"
+            />
+          )}
+        </ClientOnly>
       </Section>
       <Contact />
       <Footer />

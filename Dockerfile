@@ -1,6 +1,6 @@
 # Dockerfile for building from scratch
 
-FROM node:22-alpine AS base
+FROM node:24.14.0-alpine AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
@@ -40,7 +40,7 @@ RUN pnpm build
 
 # Copy built files
 
-FROM node:22-alpine AS runner
+FROM base AS runner
 
 # Env variables
 ARG VITE_APP_ENV
