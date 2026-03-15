@@ -1,59 +1,63 @@
 {
   "editor.codeActions.triggerOnFocusChange": true,
-  "javascript.preferences.importModuleSpecifier": "non-relative",
-  "javascript.preferences.importModuleSpecifierEnding": "index",
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.preferences.importModuleSpecifierEnding": "index",
+
+  "js/ts.preferences.importModuleSpecifier": "non-relative",
+  "js/ts.preferences.importModuleSpecifierEnding": "index",
 
   /* Editor linter */
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "biomejs.biome",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "always"
+  },
+
+  // Use Oxc extension for formatting and linting
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "oxc.typeAware": true,
+  "oxc.unusedDisableDirectives": "warn",
+
   "[json][jsonc][jsonl]": {
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.codeActionsOnSave": {
-      "quickfix.biome": "always",
-      "source.organizeImports.biome": "always"
+      "source.fixAll.oxc": "always"
     }
   },
   "[javascript]": {
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.codeActionsOnSave": {
-      "quickfix.biome": "always",
-      "source.organizeImports.biome": "always"
+      "source.fixAll.oxc": "always"
     }
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.codeActionsOnSave": {
-      "quickfix.biome": "always",
-      "source.organizeImports.biome": "always"
+      "source.fixAll.oxc": "always"
     }
   },
   "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.codeActionsOnSave": {
-      "quickfix.biome": "always",
-      "source.organizeImports.biome": "always"
+      "source.fixAll.oxc": "always"
     }
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.codeActionsOnSave": {
-      "quickfix.biome": "always",
-      "source.organizeImports.biome": "always"
+      "source.fixAll.oxc": "always"
     }
   },
   "[css][scss][postcss]": {
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.codeActionsOnSave": {
-      "quickfix.biome": "always",
-      "source.organizeImports.biome": "always"
+      "source.fixAll.oxc": "always"
     }
   },
 
-  /* Other */
+  // Other
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
-  "typescript.tsdk": "node_modules/typescript/lib"
+
+  "js/ts.tsdk": "node_modules/typescript/lib",
+  "js/ts.enablePromptUseWorkspaceTsdk": true
 }

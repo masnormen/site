@@ -1,21 +1,15 @@
+import dayjs from 'dayjs';
 import fs from 'node:fs';
 import path from 'node:path';
-import dayjs from 'dayjs';
 import pMemoize from 'p-memoize';
 import glob from 'tiny-glob';
+
 import type { Post } from '@/types/post';
 
-const _fetchPost = async (
-  contentType: 'blog' | 'projects',
-  slug: string,
-): Promise<Post | null> => {
+const _fetchPost = async (contentType: 'blog' | 'projects', slug: string): Promise<Post | null> => {
   try {
-    const { default: mdxCode } = await import(
-      `../../dist/${contentType}/${slug}/index.js?raw`
-    );
-    const { default: metadata } = await import(
-      `../../dist/${contentType}/${slug}/index.json`
-    );
+    const { default: mdxCode } = await import(`../../dist/${contentType}/${slug}/index.js?raw`);
+    const { default: metadata } = await import(`../../dist/${contentType}/${slug}/index.json`);
 
     return {
       ...(metadata as Omit<Post, 'code' | 'slug'>),
@@ -45,23 +39,19 @@ const _fetchPostList = async (contentType: 'blog' | 'projects') => {
     modulePaths.map(async (modulePath) => {
       const slug = path.parse(path.dirname(modulePath)).base;
       const mdxCode = fs.readFileSync(modulePath, 'utf-8');
-      const metadata = await import(
-        `../../dist/${contentType}/${slug}/index.json`
-      );
+      const metadata = await import(`../../dist/${contentType}/${slug}/index.json`);
 
       return {
         ...(metadata as Omit<Post, 'code' | 'slug'>),
         slug,
-        code: mdxCode as string,
+        code: mdxCode,
       };
     }),
   );
 
   return postList
     .filter((post): post is Post => !!post)
-    .sort((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix());
+    .toSorted((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix());
 };
 
-export const fetchPostList = import.meta.env.DEV
-  ? _fetchPostList
-  : pMemoize(_fetchPostList);
+export const fetchPostList = import.meta.env.DEV ? _fetchPostList : pMemoize(_fetchPostList);

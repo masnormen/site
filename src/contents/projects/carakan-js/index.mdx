@@ -1,7 +1,7 @@
 ---
 title: Carakan.js
 description: JS library for converting Latin text into Javanese script (Aksara Jawa), and vice versa.
-createdAt: "2020-11-12"
+createdAt: '2020-11-12'
 tags:
   - js
   - ts
@@ -11,6 +11,7 @@ links:
   - https://github.com/masnormen/carakanjs
   - https://carakan.js.org
 ---
+
 export * from './thumbnail'
 
 # Carakan.js
@@ -27,7 +28,7 @@ Yes, I know there are already many Javanese script transliterating library out t
 
 The complexity of Javanese script writing rules made things difficult. Therefore, I want to create a library to create a more accurate transliteration from Latin into Javanese script and vice versa with the linguistic complexity and ease of use in mind, so we can just input the regular Javanese text we usually read and write in Latin text in our everyday conversations.
 
-Carakan.js is also fast. The library is also ***extensively tested*** using various sentences and use cases. You can see the tests [here](https://github.com/masnormen/carakanjs/blob/master/tests/index.spec.ts).
+Carakan.js is also fast. The library is also **_extensively tested_** using various sentences and use cases. You can see the tests [here](https://github.com/masnormen/carakanjs/blob/master/tests/index.spec.ts).
 
 ## 🚀 Features
 
@@ -65,176 +66,189 @@ $ yarn add carakanjs
 
 ```ts
 // @filename: index.d.ts
-declare module "carakanjs" {
-  export function toJavanese(input: string, options?: {useAccents?: boolean, useSwara?: boolean, useMurda?: boolean}): string;
+declare module 'carakanjs' {
+  export function toJavanese(
+    input: string,
+    options?: { useAccents?: boolean; useSwara?: boolean; useMurda?: boolean },
+  ): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
 // ---cut---
-import { toJavanese } from "carakanjs";
+import { toJavanese } from 'carakanjs';
 
-let x = toJavanese("blumbang gxmblundhung kxmambang");
+let x = toJavanese('blumbang gxmblundhung kxmambang');
 
 // with default configs (optional)
-let y = toJavanese("blumbang gxmblundhung kxmambang", {useAccents: false, useSwara: true, useMurda: true})
+let y = toJavanese('blumbang gxmblundhung kxmambang', { useAccents: false, useSwara: true, useMurda: true });
 
-console.log(x)
+console.log(x);
 
 // => ꦧ꧀ꦭꦸꦩ꧀ꦧꦁꦒꦼꦩ꧀ꦧ꧀ꦭꦸꦤ꧀ꦝꦸꦁꦏꦼꦩꦩ꧀ꦧꦁ
-
 ```
 
 **Writing Pepet and Taling sounds (with default config)**
 
 ```ts
 // @filename: index.d.ts
-declare module "carakanjs" {
-  export function toJavanese(input: string, options?: {useAccents?: boolean, useSwara?: boolean, useMurda?: boolean}): string;
+declare module 'carakanjs' {
+  export function toJavanese(
+    input: string,
+    options?: { useAccents?: boolean; useSwara?: boolean; useMurda?: boolean },
+  ): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toJavanese } from "carakanjs";
+import { toJavanese } from 'carakanjs';
 // ---cut---
 // pepet is "x"
 // taling is "e"
 
-toJavanese("es dawxt");
+toJavanese('es dawxt');
 // => ꦲꦺꦱ꧀ꦢꦮꦼꦠ꧀
-
 ```
 
 **Writing Pepet and Taling sounds (with `useAccents = true`)**
 
 ```ts
 // @filename: index.d.ts
-declare module "carakanjs" {
-  export function toJavanese(input: string, options?: {useAccents?: boolean, useSwara?: boolean, useMurda?: boolean}): string;
+declare module 'carakanjs' {
+  export function toJavanese(
+    input: string,
+    options?: { useAccents?: boolean; useSwara?: boolean; useMurda?: boolean },
+  ): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toJavanese } from "carakanjs";
+import { toJavanese } from 'carakanjs';
 // ---cut---
 // pepet is "e"
 // taling is "é", "è", or "e`" (e + backtick)
 
-
-toJavanese("e`s dawet", {useAccents: true});
+toJavanese('e`s dawet', { useAccents: true });
 // or
-toJavanese("és dawet", {useAccents: true});
+toJavanese('és dawet', { useAccents: true });
 // => ꦲꦺꦱ꧀ꦢꦮꦼꦠ꧀
 
 // example text from Wikipedia basa Jawa
-toJavanese(
-  "référèndhum menika mutusaken Timor Wétan pisah",
-  {useAccents: true}
-);
+toJavanese('référèndhum menika mutusaken Timor Wétan pisah', { useAccents: true });
 // => ꦫꦺꦥ꦳ꦺꦫꦺꦤ꧀ꦝꦸꦩ꧀ꦩꦼꦤꦶꦏꦩꦸꦠꦸꦱꦏꦼꦤ꧀ꦡꦶꦩꦺꦴꦂꦮꦺꦠꦤ꧀ꦥꦶꦱꦃ
-
 ```
 
 **Writing Aksara Swara, Murda, and Rekan**
 
 ```ts
 // @filename: index.d.ts
-declare module "carakanjs" {
-  export function toJavanese(input: string, options?: {useAccents?: boolean, useSwara?: boolean, useMurda?: boolean}): string;
+declare module 'carakanjs' {
+  export function toJavanese(
+    input: string,
+    options?: { useAccents?: boolean; useSwara?: boolean; useMurda?: boolean },
+  ): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toJavanese } from "carakanjs";
+import { toJavanese } from 'carakanjs';
 // ---cut---
-toJavanese("GUSTI ALLAH YA KHALIK");
+toJavanese('GUSTI ALLAH YA KHALIK');
 
 // => ꦓꦸꦯ꧀ꦡꦶꦄꦭ꧀ꦭꦃꦪꦏ꦳ꦭꦶꦑ꧀
-
 ```
 
 **Writing Angka (Numbers)**
 
 ```ts
 // @filename: index.d.ts
-declare module "carakanjs" {
-  export function toJavanese(input: string, options?: {useAccents?: boolean, useSwara?: boolean, useMurda?: boolean}): string;
+declare module 'carakanjs' {
+  export function toJavanese(
+    input: string,
+    options?: { useAccents?: boolean; useSwara?: boolean; useMurda?: boolean },
+  ): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toJavanese } from "carakanjs";
+import { toJavanese } from 'carakanjs';
 // ---cut---
 // pada pangkat (꧇) will be automatically added around numbers
-toJavanese("tanggal 17 bulan 8 taun 1945");
+toJavanese('tanggal 17 bulan 8 taun 1945');
 
 // => ꦠꦁꦒꦭ꧀꧇꧑꧗꧇ꦧꦸꦭꦤ꧀꧇꧘꧇ꦠꦲꦸꦤ꧀꧇꧑꧙꧔꧕꧇
-
 ```
 
 **Writing Pada (Punctuations)**
 
 ```ts
 // @filename: index.d.ts
-declare module "carakanjs" {
-  export function toJavanese(input: string, options?: {useAccents?: boolean, useSwara?: boolean, useMurda?: boolean}): string;
+declare module 'carakanjs' {
+  export function toJavanese(
+    input: string,
+    options?: { useAccents?: boolean; useSwara?: boolean; useMurda?: boolean },
+  ): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toJavanese } from "carakanjs";
+import { toJavanese } from 'carakanjs';
 // ---cut---
-toJavanese("{<||,:.'\":()>}");
+toJavanese('{<||,:.\'":()>}');
 
 // => ꧁꧌꧋꧋꧈꧇꧉꧊꧊꧇꧊꧊꧍꧂
-
 ```
 
 **Writing Aksara Ganten & Panjingan**
 
 ```ts
 // @filename: index.d.ts
-declare module "carakanjs" {
-  export function toJavanese(input: string, options?: {useAccents?: boolean, useSwara?: boolean, useMurda?: boolean}): string;
+declare module 'carakanjs' {
+  export function toJavanese(
+    input: string,
+    options?: { useAccents?: boolean; useSwara?: boolean; useMurda?: boolean },
+  ): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toJavanese } from "carakanjs";
+import { toJavanese } from 'carakanjs';
 // ---cut---
-toJavanese("kreta krxtxg, lxmah rxgxd");
+toJavanese('kreta krxtxg, lxmah rxgxd');
 
 // => ꦏꦿꦺꦠꦏꦽꦠꦼꦒ꧀‌ꦊꦩꦃꦉꦒꦼꦢ꧀
-
 ```
 
 **🆕 Converting Aksara Jawa/Carakan into Latin**
 
 ```ts
 // @filename: index.d.ts
-declare module "carakanjs" {
-  export function toJavanese(input: string, options?: {useAccents?: boolean, useSwara?: boolean, useMurda?: boolean}): string;
+declare module 'carakanjs' {
+  export function toJavanese(
+    input: string,
+    options?: { useAccents?: boolean; useSwara?: boolean; useMurda?: boolean },
+  ): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
 // ---cut---
-import { toLatin } from "carakanjs";
+import { toLatin } from 'carakanjs';
 
-let x = toLatin("ꦗꦼꦂ ꦧꦱꦸꦏꦶ ꦩꦮ ꦧꦺꦪ");
+let x = toLatin('ꦗꦼꦂ ꦧꦱꦸꦏꦶ ꦩꦮ ꦧꦺꦪ');
 
-console.log(x)
+console.log(x);
 
 // => jer basuki mawa béya
 ```
 
 ## ✳️ Table of Punctuations
 
-|Name              |Input              |Output     |
-|------------------|-------------------|-----------|
-|Pada lingsa *     |,                  |꧈          |
-|Pada lungsi *     |.                  |꧉          |
-|Pada pangkat      |:                  |꧇          |
-|Pada adeg         |" or ' or ( or )  |꧊          |
-|Pada adeg-adeg    |&#124;                |꧋         |
-|Pada piseleh      |&lt;                  |꧌ ......    |
-|Pada piseleh walik|\>                  |...... ꧍     |
-|Rerenggan kiwa     |&lcub;                  |꧁ ...     |
-|Rerenggan tengen   |&rcub;                  |... ꧂      |
+| Name               | Input            | Output   |
+| ------------------ | ---------------- | -------- |
+| Pada lingsa \*     | ,                | ꧈        |
+| Pada lungsi \*     | .                | ꧉        |
+| Pada pangkat       | :                | ꧇        |
+| Pada adeg          | " or ' or ( or ) | ꧊        |
+| Pada adeg-adeg     | &#124;           | ꧋        |
+| Pada piseleh       | &lt;             | ꧌ ...... |
+| Pada piseleh walik | \>               | ...... ꧍ |
+| Rerenggan kiwa     | &lcub;           | ꧁ ...    |
+| Rerenggan tengen   | &rcub;           | ... ꧂    |
 
-*) Pada Lingsa (comma) will not be rendered if a Pangkon is next to it. Pada Lungsi (period) will be reduced into Pada Lingsa if a Pangkon is next to it. This behavior is adheres to the rules of Javanese writing.
+\*) Pada Lingsa (comma) will not be rendered if a Pangkon is next to it. Pada Lungsi (period) will be reduced into Pada Lingsa if a Pangkon is next to it. This behavior is adheres to the rules of Javanese writing.
 
 ## 🔥 API
 
@@ -243,11 +257,13 @@ console.log(x)
 Returns a string of Javanese script converted from `input`, using the set `config`s.
 
 #### `input`
+
 Type: `string`
 
 A string of Latin character which will be transliterated into Javanese script.
 
 #### `config.useAccents`
+
 Type: `boolean`, default: `false`
 
 A boolean indicating whether Carakan.js should convert the input string with accents. There are two modes of input:
@@ -260,11 +276,13 @@ A boolean indicating whether Carakan.js should convert the input string with acc
 Basically, the transliterator engine can only read string in non-accented mode. When `useAccents` is set to `true`, Carakan.js will convert the accented input into non-accented mode first, so then it can convert them into Javanese script.
 
 #### `config.useSwara`
+
 Type: `boolean`, default: `true`
 
 A boolean indicating whether Carakan.js should convert uppercase vowels (A, I, U, E, O) into Aksara Swara. If set to `false`, Carakan.js will render them as regular vowels sound written with the letter "ha".
 
 #### `config.useMurda`
+
 Type: `boolean`, default: `true`
 
 A boolean indicating whether Carakan.js should convert some uppercase consonants (N, K, T, S, P, NY, G, B) into Aksara Murda. If set to `false`, Carakan.js will render them with their regular Javanese script character.
@@ -280,12 +298,12 @@ A namespace which contains various helper for the engine to convert Latin letter
 ## 🧰 TODO
 
 - [x] support transliteration of Javanese script back to Latin
-- [ ] support more Sandhangan: Swara Dirga (for long vowels, typically used to  write Sanskrit)
+- [ ] support more Sandhangan: Swara Dirga (for long vowels, typically used to write Sanskrit)
 - [ ] support more punctuations: Pangrangkep, Pada Luhur, Pada Windu, Purwa Pada, Madya Pada, Wasana Pada
 
 ## 📖 References
 
-- [Panduan Singkat Tipografi Aksara Jawa (Kongres Bahasa Jawa/Bayu, 2019)](https://kongresaksarajawa.id/bayu%20(2019)%20tabel%20dan%20panduan%20singkat%20tipografi%20aksara%20jawa%20(1).pdf)
+- [Panduan Singkat Tipografi Aksara Jawa (Kongres Bahasa Jawa/Bayu, 2019)](<https://kongresaksarajawa.id/bayu%20(2019)%20tabel%20dan%20panduan%20singkat%20tipografi%20aksara%20jawa%20(1).pdf>)
 - [Pedoman Umum Ejaan Bahasa Jawa Huruf Latin (Kemdikbud, 2006)](http://repositori.kemdikbud.go.id/1672/1/Pedoman%20Umum%20Ejaan%20Bahasa%20Jawa%20Huruf%20Latin%202006.pdf)
 - [Fonotaktik bahasa Jawa (Wikipedia ID)](https://id.wikipedia.org/wiki/Bahasa_Jawa#Fonotaktik)
 - [Consonants in Javanese (Wikipedia EN)](https://en.wikipedia.org/wiki/Javanese_language#Consonants)

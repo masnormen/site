@@ -1,8 +1,8 @@
-import { cn } from '@/utils/cn';
 import type { RefObject } from 'react';
 
-interface SectionProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
+import { cn } from '@/utils/cn';
+
+interface SectionProps extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
   title?: React.ReactNode;
   description?: React.ReactNode;
   icon?: React.ReactNode;
@@ -26,29 +26,27 @@ export function Section({
   return (
     <section
       className={cn(
-        '@container relative flex flex-col overflow-visible transition-transform mx-auto border-x-1 border-b-1 border-dashed border-xline w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-oxl py-12 sm:py-24',
+        'border-xline max-w-oxl @container relative mx-auto flex w-[calc(100dvw-64px)] flex-col overflow-visible border-x-1 border-b-1 border-dashed py-12 transition-transform sm:w-[80dvw] sm:py-24',
         className,
       )}
       {...rest}
     >
       {before}
 
-      <div className="w-[calc(100%-64px)] md:w-[calc(100%-128px)] max-w-ixl mx-auto">
+      <div className="max-w-ixl mx-auto w-[calc(100%-64px)] md:w-[calc(100%-128px)]">
         {icon && (
-          <div className="absolute left-0 size-8 sm:size-16 -translate-x-1/2 sm:-translate-y-[10%] select-none">
+          <div className="absolute left-0 size-8 -translate-x-1/2 select-none sm:size-16 sm:-translate-y-[10%]">
             {icon}
           </div>
         )}
 
         {title && (
           <header className="mb-8">
-            <h1 className="font-serif tracking-tight text-3xl font-light sm:text-[36px] leading-[1.25] text-xghoststroke">
+            <h1 className="text-xghoststroke font-serif text-3xl leading-[1.25] font-light tracking-tight sm:text-[36px]">
               {title}
             </h1>
             {description && (
-              <div className="mt-2 sm:mt-4 mb-12 sm:mb-10 text-sm sm:text-base leading-[1.25]">
-                {description}
-              </div>
+              <div className="mt-2 mb-12 text-sm leading-[1.25] sm:mt-4 sm:mb-10 sm:text-base">{description}</div>
             )}
           </header>
         )}

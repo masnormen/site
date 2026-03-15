@@ -1,26 +1,24 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { parseArgs } from 'node:util';
+import type { ShikiTransformer } from 'shiki';
+
 import { NodeResolvePlugin } from '@esbuild-plugins/node-resolve';
 import { globalExternals } from '@fal-works/esbuild-plugin-global-externals';
 import mdxESBuild from '@mdx-js/esbuild';
 import { transformerColorizedBrackets } from '@shikijs/colorized-brackets';
 import rehypeShiki from '@shikijs/rehype';
-import {
-  transformerMetaHighlight,
-  transformerMetaWordHighlight,
-  transformerNotationDiff,
-} from '@shikijs/transformers';
+import { transformerMetaHighlight, transformerMetaWordHighlight, transformerNotationDiff } from '@shikijs/transformers';
 import { transformerTwoslash } from '@shikijs/twoslash';
 import esbuild, { type BuildOptions } from 'esbuild';
 import FastGlob from 'fast-glob';
 import grayMatter, { type GrayMatterFile } from 'gray-matter';
+import fs from 'node:fs';
+import path from 'node:path';
+import { parseArgs } from 'node:util';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
+
 import { PostFrontMatter } from '@/types/post';
 import { getHeadings } from '@/utils/posts';
-import type { ShikiTransformer } from 'shiki';
 
 const DIST_PATH = path.resolve(process.cwd(), 'dist');
 
@@ -48,9 +46,7 @@ const transformCodeblockTitle = (): ShikiTransformer => {
         children: [{ type: 'text', value: title }],
       };
 
-      this.root.children.unshift(
-        titleBlock as (typeof this.root.children)[number],
-      );
+      this.root.children.unshift(titleBlock as (typeof this.root.children)[number]);
 
       return hast;
     },
@@ -113,11 +109,7 @@ function getBuildOptions({ sourcePaths }: { sourcePaths: string[] }) {
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
       }),
       mdxESBuild({
-        remarkPlugins: [
-          remarkFrontmatter,
-          [remarkMdxFrontmatter, { name: 'frontmatter' }],
-          remarkGfm,
-        ],
+        remarkPlugins: [remarkFrontmatter, [remarkMdxFrontmatter, { name: 'frontmatter' }], remarkGfm],
         rehypePlugins: [
           [
             rehypeShiki,
@@ -173,9 +165,7 @@ function getBuildOptions({ sourcePaths }: { sourcePaths: string[] }) {
                   throw new Error('[mdx] Failed to bundle MDX content');
                 }
 
-                const grayMatter = entryPoints.find(
-                  (entry) => entry.slug === slug,
-                )?.grayMatter;
+                const grayMatter = entryPoints.find((entry) => entry.slug === slug)?.grayMatter;
                 if (!grayMatter) {
                   throw new Error('[mdx] Failed to bundle MDX content');
                 }
@@ -198,10 +188,7 @@ function getBuildOptions({ sourcePaths }: { sourcePaths: string[] }) {
 
                 await Promise.all([
                   fs.promises.writeFile(file.path, file.contents),
-                  fs.promises.writeFile(
-                    metadataPath,
-                    JSON.stringify(metadata, null, 2),
-                  ),
+                  fs.promises.writeFile(metadataPath, JSON.stringify(metadata, null, 2)),
                 ]);
               }) ?? [],
             );
@@ -231,9 +218,7 @@ const { values: cmdArgs } = parseArgs({
   },
 });
 
-const sourcePaths = FastGlob.globSync(
-  path.resolve(process.cwd(), './src/contents/**/index.mdx'),
-);
+const sourcePaths = FastGlob.globSync(path.resolve(process.cwd(), './src/contents/**/index.mdx'));
 
 if (cmdArgs.watch) {
   const ctx = await esbuild.context(getBuildOptions({ sourcePaths }));

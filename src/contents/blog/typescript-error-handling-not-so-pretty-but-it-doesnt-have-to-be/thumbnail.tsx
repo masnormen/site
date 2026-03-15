@@ -1,40 +1,40 @@
-import { cn } from '@/contents/common/cn';
-import { Gopher, TSCry } from './assets/image-datauris';
 import type { ThumbnailProps } from '@/types/post';
+
+import { cn } from '@/contents/common/cn';
+
+import { Gopher, TSCry } from './assets/image-datauris';
 
 export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   return (
     <div
       className={cn(
-        '@container w-full h-full flex flex-col items-center justify-center relative bg-[#c3cfe0] filter-noisy',
+        'filter-noisy @container relative flex h-full w-full flex-col items-center justify-center bg-[#c3cfe0]',
         className,
       )}
       {...rest}
     >
-      <div className="absolute h-full top-[5%] left-[3%] w-1/2 flex justify-center items-center">
+      <div className="absolute top-[5%] left-[3%] flex h-full w-1/2 items-center justify-center">
         <img
           width="70%"
           height="auto"
           src={Gopher}
-          className={
-            isHover ? 'ml-[32%] mb-[28%] -rotate-30' : 'ml-[24%] mb-[24%]'
-          }
+          className={isHover ? 'mb-[28%] ml-[32%] -rotate-30' : 'mb-[24%] ml-[24%]'}
           loading="lazy"
           alt=""
         />
       </div>
-      <div className="absolute h-full top-[5%] left-[3%] w-1/2 flex justify-center items-center">
+      <div className="absolute top-[5%] left-[3%] flex h-full w-1/2 items-center justify-center">
         <img
           width="70%"
           height="auto"
           src={TSCry}
-          className={cn(isHover && 'rotate-30 -ml-2 -mb-4')}
+          className={cn(isHover && '-mb-4 -ml-2 rotate-30')}
           loading="lazy"
           alt=""
         />
       </div>
 
-      <div className="absolute h-full w-1/2 right-[3%] flex justify-center items-center font-bold font-mono text-[6cqw]">
+      <div className="absolute right-[3%] flex h-full w-1/2 items-center justify-center font-mono text-[6cqw] font-bold">
         <pre>
           <code>
             {!isHover

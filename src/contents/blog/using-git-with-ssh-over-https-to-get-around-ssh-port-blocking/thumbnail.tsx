@@ -1,5 +1,6 @@
-import { cn } from '../../common/cn';
 import type { ThumbnailProps } from '@/types/post';
+
+import { cn } from '../../common/cn';
 
 const HTTPS = (props: React.JSX.IntrinsicElements['svg']) => {
   return (
@@ -18,41 +19,16 @@ const HTTPS = (props: React.JSX.IntrinsicElements['svg']) => {
         <mask id="_export_1_r1n_">
           <rect x={0} y={0} width={8} height={8} fill="white" />
           <g strokeLinecap="round" stroke="black">
-            <line
-              x1="0.6666666666666666"
-              y1={2}
-              x2={2}
-              y2="0.6666666666666666"
-            />
-            <line
-              x1="3.333333333333333"
-              y1="4.666666666666666"
-              x2="4.666666666666666"
-              y2="3.333333333333333"
-            />
+            <line x1="0.6666666666666666" y1={2} x2={2} y2="0.6666666666666666" />
+            <line x1="3.333333333333333" y1="4.666666666666666" x2="4.666666666666666" y2="3.333333333333333" />
             <line x1={6} y1="7.333333333333333" x2="7.333333333333333" y2={6} />
           </g>
         </mask>
-        <pattern
-          id="_export_1_r1m__hash_pattern_light_0"
-          width={8}
-          height={8}
-          patternUnits="userSpaceOnUse"
-        >
-          <rect
-            x={0}
-            y={0}
-            width={8}
-            height={8}
-            fill="#fcfffe"
-            mask="url(#_export_1_r1n_)"
-          />
+        <pattern id="_export_1_r1m__hash_pattern_light_0" width={8} height={8} patternUnits="userSpaceOnUse">
+          <rect x={0} y={0} width={8} height={8} fill="#fcfffe" mask="url(#_export_1_r1n_)" />
         </pattern>
       </defs>
-      <g
-        transform="matrix(1, 0, 0, 1, 761.9961, 1428.6673) scale(0.9282274057535749, 0.9282274057535749)"
-        opacity={1}
-      >
+      <g transform="matrix(1, 0, 0, 1, 761.9961, 1428.6673) scale(0.9282274057535749, 0.9282274057535749)" opacity={1}>
         <text
           fontSize={20}
           fontStyle="normal"
@@ -64,12 +40,7 @@ const HTTPS = (props: React.JSX.IntrinsicElements['svg']) => {
           strokeWidth={2}
           fill="rgb(249, 250, 251)"
         >
-          <tspan
-            alignmentBaseline="mathematical"
-            x="0.65625"
-            y="12.5"
-            unicodeBidi="plaintext"
-          >
+          <tspan alignmentBaseline="mathematical" x="0.65625" y="12.5" unicodeBidi="plaintext">
             HTTPS
           </tspan>
         </text>
@@ -82,12 +53,7 @@ const HTTPS = (props: React.JSX.IntrinsicElements['svg']) => {
           alignmentBaseline="mathematical"
           fill="#1d1d1d"
         >
-          <tspan
-            alignmentBaseline="mathematical"
-            x="0.65625"
-            y="12.5"
-            unicodeBidi="plaintext"
-          >
+          <tspan alignmentBaseline="mathematical" x="0.65625" y="12.5" unicodeBidi="plaintext">
             HTTPS
           </tspan>
         </text>
@@ -109,17 +75,10 @@ const HTTPS = (props: React.JSX.IntrinsicElements['svg']) => {
           >
             <g
               style={{
-                clipPath:
-                  'url("#_export_1_r1m__shape_a8D0Q86jDrs9FQ86raZoO_clip")',
+                clipPath: 'url("#_export_1_r1m__shape_a8D0Q86jDrs9FQ86raZoO_clip")',
               }}
             >
-              <rect
-                x="-88.4981"
-                y="-178.0125"
-                width="267.4088"
-                height="276.5706"
-                opacity={0}
-              />
+              <rect x="-88.4981" y="-178.0125" width="267.4088" height="276.5706" opacity={0} />
               <path
                 d="M11.501874918949511,-1.4419260102472435 A83.68470571880653 83.68470571880653 0 0 1 78.91071828504573,-78.01250856105457"
                 strokeDasharray="none"
@@ -147,17 +106,10 @@ const HTTPS = (props: React.JSX.IntrinsicElements['svg']) => {
           >
             <g
               style={{
-                clipPath:
-                  'url("#_export_1_r1m__shape_QMy6UNg4rcAKi_evuPqcZ_clip")',
+                clipPath: 'url("#_export_1_r1m__shape_QMy6UNg4rcAKi_evuPqcZ_clip")',
               }}
             >
-              <rect
-                x="-129.5116"
-                y="-185.2772"
-                width="264.1106"
-                height="273.6316"
-                opacity={0}
-              />
+              <rect x="-129.5116" y="-185.2772" width="264.1106" height="273.6316" opacity={0} />
               <path
                 d="M-29.51157869145686,-85.27722880869578 A107.99505478853783 107.99505478853783 0 0 1 34.599038568143555,-11.645588474788156"
                 strokeDasharray="none"
@@ -229,10 +181,7 @@ const HTTPS = (props: React.JSX.IntrinsicElements['svg']) => {
   );
 };
 
-const SSH = ({
-  text,
-  ...props
-}: React.JSX.IntrinsicElements['svg'] & { text?: string }) => {
+const SSH = ({ text, ...props }: React.JSX.IntrinsicElements['svg'] & { text?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -249,35 +198,13 @@ const SSH = ({
         <mask id="_export_2_r31_">
           <rect x={0} y={0} width={8} height={8} fill="white" />
           <g strokeLinecap="round" stroke="black">
-            <line
-              x1="0.6666666666666666"
-              y1={2}
-              x2={2}
-              y2="0.6666666666666666"
-            />
-            <line
-              x1="3.333333333333333"
-              y1="4.666666666666666"
-              x2="4.666666666666666"
-              y2="3.333333333333333"
-            />
+            <line x1="0.6666666666666666" y1={2} x2={2} y2="0.6666666666666666" />
+            <line x1="3.333333333333333" y1="4.666666666666666" x2="4.666666666666666" y2="3.333333333333333" />
             <line x1={6} y1="7.333333333333333" x2="7.333333333333333" y2={6} />
           </g>
         </mask>
-        <pattern
-          id="_export_2_r30__hash_pattern_light_0"
-          width={8}
-          height={8}
-          patternUnits="userSpaceOnUse"
-        >
-          <rect
-            x={0}
-            y={0}
-            width={8}
-            height={8}
-            fill="#fcfffe"
-            mask="url(#_export_2_r31_)"
-          />
+        <pattern id="_export_2_r30__hash_pattern_light_0" width={8} height={8} patternUnits="userSpaceOnUse">
+          <rect x={0} y={0} width={8} height={8} fill="#fcfffe" mask="url(#_export_2_r31_)" />
         </pattern>
       </defs>
       <g transform="matrix(1, 0, 0, 1, 774.4568, 1318.1597)" opacity={1}>
@@ -291,12 +218,7 @@ const SSH = ({
           strokeWidth={2}
           fill="rgb(249, 250, 251)"
         >
-          <tspan
-            alignmentBaseline="mathematical"
-            x="0.9140625"
-            y="12.5"
-            unicodeBidi="plaintext"
-          >
+          <tspan alignmentBaseline="mathematical" x="0.9140625" y="12.5" unicodeBidi="plaintext">
             {text}
           </tspan>
         </text>
@@ -308,12 +230,7 @@ const SSH = ({
           alignmentBaseline="mathematical"
           fill="#1d1d1d"
         >
-          <tspan
-            alignmentBaseline="mathematical"
-            x="0.9140625"
-            y="12.5"
-            unicodeBidi="plaintext"
-          >
+          <tspan alignmentBaseline="mathematical" x="0.9140625" y="12.5" unicodeBidi="plaintext">
             {text}
           </tspan>
         </text>
@@ -405,23 +322,20 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   return (
     <div
       className={cn(
-        'w-full h-full flex flex-col items-center justify-center relative bg-[#f9e1f7] filter-noisy',
+        'filter-noisy relative flex h-full w-full flex-col items-center justify-center bg-[#f9e1f7]',
         className,
       )}
       {...rest}
     >
-      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 h-[55%] w-min">
+      <div className="absolute top-[20%] left-1/2 h-[55%] w-min -translate-x-1/2">
         <SSH
-          className={cn(
-            'font-mono font-bold animate-bounce',
-            isHover && 'text-[8cqw]',
-          )}
+          className={cn('animate-bounce font-mono font-bold', isHover && 'text-[8cqw]')}
           text={isHover ? '🤓☝️' : 'SSH'}
         />
       </div>
       <div
         className={cn(
-          'absolute top-[35%] left-1/2 -translate-x-1/2 h-[50%] w-min',
+          'absolute top-[35%] left-1/2 h-[50%] w-min -translate-x-1/2',
           isHover && 'animate-wiggle-in-place',
         )}
       >

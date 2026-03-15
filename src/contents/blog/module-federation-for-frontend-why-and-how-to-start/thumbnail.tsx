@@ -1,6 +1,8 @@
-import { cn } from '../../common/cn';
 import type React from 'react';
+
 import type { ThumbnailProps } from '@/types/post';
+
+import { cn } from '../../common/cn';
 
 export const MFDiagram = ({
   explode = false,
@@ -21,35 +23,13 @@ export const MFDiagram = ({
         <mask id="_export_2_r7a_">
           <rect x={0} y={0} width={8} height={8} fill="white" />
           <g strokeLinecap="round" stroke="black">
-            <line
-              x1="0.6666666666666666"
-              y1={2}
-              x2={2}
-              y2="0.6666666666666666"
-            />
-            <line
-              x1="3.333333333333333"
-              y1="4.666666666666666"
-              x2="4.666666666666666"
-              y2="3.333333333333333"
-            />
+            <line x1="0.6666666666666666" y1={2} x2={2} y2="0.6666666666666666" />
+            <line x1="3.333333333333333" y1="4.666666666666666" x2="4.666666666666666" y2="3.333333333333333" />
             <line x1={6} y1="7.333333333333333" x2="7.333333333333333" y2={6} />
           </g>
         </mask>
-        <pattern
-          id="_export_2_r79__hash_pattern_light_0"
-          width={8}
-          height={8}
-          patternUnits="userSpaceOnUse"
-        >
-          <rect
-            x={0}
-            y={0}
-            width={8}
-            height={8}
-            fill="#fcfffe"
-            mask="url(#_export_2_r7a_)"
-          />
+        <pattern id="_export_2_r79__hash_pattern_light_0" width={8} height={8} patternUnits="userSpaceOnUse">
+          <rect x={0} y={0} width={8} height={8} fill="#fcfffe" mask="url(#_export_2_r7a_)" />
         </pattern>
       </defs>
       <g transform="matrix(1, 0, 0, 1, -855.7423, 1919.9867)" opacity={1}>
@@ -79,22 +59,11 @@ export const MFDiagram = ({
           >
             <g
               style={{
-                clipPath:
-                  'url("#_export_2_r79__shape_w-iVztIVhYki1RywT40Fk_clip")',
+                clipPath: 'url("#_export_2_r79__shape_w-iVztIVhYki1RywT40Fk_clip")',
               }}
             >
-              <rect
-                x="-100.1857"
-                y="-115.7762"
-                width={201}
-                height="215.7762"
-                opacity={0}
-              />
-              <path
-                d="M0,0L-0.18571465274611346,-15.776159487399928"
-                strokeDasharray="none"
-                strokeDashoffset="none"
-              />
+              <rect x="-100.1857" y="-115.7762" width={201} height="215.7762" opacity={0} />
+              <path d="M0,0L-0.18571465274611346,-15.776159487399928" strokeDasharray="none" strokeDashoffset="none" />
             </g>
             <path d="M -1.8999143455035181 -12.724681253272998 L -0.18571465274611346 -15.776159487399928 L 1.5998431707243852 -12.76587988924907" />
           </g>
@@ -118,22 +87,11 @@ export const MFDiagram = ({
           >
             <g
               style={{
-                clipPath:
-                  'url("#_export_2_r79__shape_inehV_E9CRDIYRPhe_Ogq_clip")',
+                clipPath: 'url("#_export_2_r79__shape_inehV_E9CRDIYRPhe_Ogq_clip")',
               }}
             >
-              <rect
-                x={-100}
-                y={-100}
-                width={201}
-                height="216.0784"
-                opacity={0}
-              />
-              <path
-                d="M0,0L0.49372919876389987,16.078448812677266"
-                strokeDasharray="none"
-                strokeDashoffset="none"
-              />
+              <rect x={-100} y={-100} width={201} height="216.0784" opacity={0} />
+              <path d="M0,0L0.49372919876389987,16.078448812677266" strokeDasharray="none" strokeDashoffset="none" />
             </g>
             <path d="M 2.1498713454247085 12.99507514248195 L 0.49372919876389987 16.078448812677266 L -1.3484796556549 13.102500806293254" />
           </g>
@@ -141,11 +99,7 @@ export const MFDiagram = ({
       </g>
       <g transform="matrix(1, 0, 0, 1, -856.5089, 1750.276)" opacity={1}>
         <path
-          className={cn(
-            explode
-              ? 'translate-y-[-5%] translate-x-[-5%]'
-              : 'animate-wiggle-in-place',
-          )}
+          className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
           d="M6.9995,-0.0868 L68.7321,-0.8527 Q75.7315,-0.9395 75.6204,6.0596 L75.0144,44.215 Q74.9032,51.2141 67.9037,51.295 L6.4445,52.0053 Q-0.555,52.0862 -0.4165,45.0875 L0.3187,7.9562 Q0.4573,0.9575 7.457,0.8955 L70.0684,0.3402 Q77.0681,0.2781 77.0259,7.278 L76.7938,45.7758 Q76.7516,52.7757 69.752,52.694 L6.9522,51.9614 Q-0.0473,51.8798 -0.1257,44.8802 L-0.5418,7.7083 Q-0.6202,0.7087 6.9995,-0.0868 "
           stroke="#4ba1f1"
           strokeWidth="3.5"
@@ -154,29 +108,17 @@ export const MFDiagram = ({
       </g>
       <g transform="matrix(1, 0, 0, 1, -819.7172, 1775.1405)" opacity={1}>
         <path
-          className={cn(
-            explode
-              ? 'translate-y-[-5%] translate-x-[-5%]'
-              : 'animate-wiggle-in-place',
-          )}
+          className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
           fill="#6fbbf8"
           d="M6.7638,0 L20.2913,0 Q27.0551,0 27.0551,4.7022 L27.0551,14.1067 Q27.0551,18.809 20.2913,18.809 L6.7638,18.809 Q0,18.809 0,14.1067 L0,4.7022 Q0,0 6.7638,0 "
         />
         <path
-          className={cn(
-            explode
-              ? 'translate-y-[-5%] translate-x-[-5%]'
-              : 'animate-wiggle-in-place',
-          )}
+          className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
           fill="url(#_export_2_r79__hash_pattern_light_0)"
           d="M6.7638,0 L20.2913,0 Q27.0551,0 27.0551,4.7022 L27.0551,14.1067 Q27.0551,18.809 20.2913,18.809 L6.7638,18.809 Q0,18.809 0,14.1067 L0,4.7022 Q0,0 6.7638,0 "
         />
         <path
-          className={cn(
-            explode
-              ? 'translate-y-[-5%] translate-x-[-5%]'
-              : 'animate-wiggle-in-place',
-          )}
+          className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
           d="M6.4947,-0.1024 L19.4841,-0.3073 Q25.9788,-0.4097 26.3462,4.3962 L27.081,14.0079 Q27.4484,18.8138 20.5383,19.0035 L6.7181,19.3829 Q-0.192,19.5726 -0.0097,14.6809 L0.3549,4.8975 Q0.5372,0.0058 6.9475,-0.0064 L19.7679,-0.0308 Q26.1781,-0.043 26.571,4.8691 L27.3569,14.6935 Q27.7498,19.6056 20.75,19.5513 L5.8847,19.436 Q-1.115,19.3818 -1.0058,14.4405 L-0.7873,4.5578 Q-0.678,-0.3835 6.4947,-0.1024 "
           stroke="#4ba1f1"
           strokeWidth="3.5"
@@ -185,29 +127,17 @@ export const MFDiagram = ({
       </g>
       <g transform="matrix(1, 0, 0, 1, -850.994, 1776.2173)" opacity={1}>
         <path
-          className={cn(
-            explode
-              ? 'translate-y-[-5%] translate-x-[-5%]'
-              : 'animate-wiggle-in-place',
-          )}
+          className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
           fill="#e9acf8"
           d="M4.0749,0 L12.2248,0 Q16.2997,0 16.2997,4.3926 L16.2997,13.1777 Q16.2997,17.5702 12.2248,17.5702 L4.0749,17.5702 Q0,17.5702 0,13.1777 L0,4.3926 Q0,0 4.0749,0 "
         />
         <path
-          className={cn(
-            explode
-              ? 'translate-y-[-5%] translate-x-[-5%]'
-              : 'animate-wiggle-in-place',
-          )}
+          className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
           fill="url(#_export_2_r79__hash_pattern_light_0)"
           d="M4.0749,0 L12.2248,0 Q16.2997,0 16.2997,4.3926 L16.2997,13.1777 Q16.2997,17.5702 12.2248,17.5702 L4.0749,17.5702 Q0,17.5702 0,13.1777 L0,4.3926 Q0,0 4.0749,0 "
         />
         <path
-          className={cn(
-            explode
-              ? 'translate-y-[-5%] translate-x-[-5%]'
-              : 'animate-wiggle-in-place',
-          )}
+          className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
           d="M4.2878,-0.0028 L12.8635,-0.0085 Q17.1513,-0.0114 17.2071,4.645 L17.3187,13.9579 Q17.3745,18.6143 13.2367,18.1465 L4.9611,17.2107 Q0.8233,16.7428 0.4594,12.3961 L-0.2684,3.7028 Q-0.6323,-0.6439 3.8759,-0.4191 L12.8922,0.0304 Q17.4004,0.2551 17.337,4.718 L17.2102,13.6437 Q17.1468,18.1065 13.0824,17.7327 L4.9537,16.9852 Q0.8893,16.6114 0.8167,12.3286 L0.6714,3.763 Q0.5987,-0.5198 4.2878,-0.0028 "
           stroke="#e085f4"
           strokeWidth="3.5"
@@ -216,20 +146,12 @@ export const MFDiagram = ({
       </g>
       <g transform="matrix(1, 0, 0, 1, -850.2372, 1763.7185)" opacity={1}>
         <path
-          className={cn(
-            explode
-              ? 'translate-y-[-5%] translate-x-[-5%]'
-              : 'animate-wiggle-in-place',
-          )}
+          className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
           fill="#ddedfa"
           d="M7,0 L52.0717,0 Q59.0717,0 59.0717,0.3815 L59.0717,1.1444 Q59.0717,1.5259 52.0717,1.5259 L7,1.5259 Q0,1.5259 0,1.1444 L0,0.3815 Q0,0 7,0 "
         />
         <path
-          className={cn(
-            explode
-              ? 'translate-y-[-5%] translate-x-[-5%]'
-              : 'animate-wiggle-in-place',
-          )}
+          className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
           d="M7,-0.0234 L51.9605,-0.1737 Q58.9604,-0.1971 59.1155,0.2465 L59.4258,1.1336 Q59.5809,1.5772 52.5812,1.6464 L6.1849,2.1053 Q-0.8148,2.1745 -0.7935,1.4133 L-0.7511,-0.1091 Q-0.7298,-0.8703 6.27,-0.8155 L51.7119,-0.4598 Q58.7117,-0.405 58.8533,-0.14 L59.1365,0.3902 Q59.2781,0.6553 52.2794,0.7902 L5.9424,1.6834 Q-1.0563,1.8183 -0.6964,1.5778 L0.0234,1.0968 Q0.3833,0.8563 7,-0.0234 "
           stroke="#4ba1f1"
           strokeWidth="3.5"
@@ -298,19 +220,9 @@ export const MFDiagram = ({
       </g>
       <g transform="matrix(1, 0, 0, 1, -844.6449, 1823.4923)" opacity={1}>
         <path fill="#6fbbf8" d="M0, 0L66.88, 0,66.88, 18.47,0, 18.47Z" />
-        <path
-          fill="url(#_export_2_r79__hash_pattern_light_0)"
-          d="M0, 0L66.88, 0,66.88, 18.47,0, 18.47Z"
-        />
+        <path fill="url(#_export_2_r79__hash_pattern_light_0)" d="M0, 0L66.88, 0,66.88, 18.47,0, 18.47Z" />
         <g strokeWidth="3.5" stroke="#4ba1f1" fill="none" pointerEvents="all">
-          <line
-            x1={0}
-            y1={0}
-            x2="66.88"
-            y2={0}
-            strokeDasharray="7.388 9.235"
-            strokeDashoffset="3.5"
-          />
+          <line x1={0} y1={0} x2="66.88" y2={0} strokeDasharray="7.388 9.235" strokeDashoffset="3.5" />
           <line
             x1="66.88"
             y1={0}
@@ -319,14 +231,7 @@ export const MFDiagram = ({
             strokeDasharray="7.695833333333333 7.695833333333333"
             strokeDashoffset="2.30875"
           />
-          <line
-            x1="66.88"
-            y1="18.47"
-            x2={0}
-            y2="18.47"
-            strokeDasharray="7.388 9.235"
-            strokeDashoffset="3.5"
-          />
+          <line x1="66.88" y1="18.47" x2={0} y2="18.47" strokeDasharray="7.388 9.235" strokeDashoffset="3.5" />
           <line
             x1={0}
             y1="18.47"
@@ -339,19 +244,9 @@ export const MFDiagram = ({
       </g>
       <g transform="matrix(1, 0, 0, 1, -766.6339, 1828.2059)" opacity={1}>
         <path fill="#fecb92" d="M0, 0L61.97, 0,61.97, 19.04,0, 19.04Z" />
-        <path
-          fill="url(#_export_2_r79__hash_pattern_light_0)"
-          d="M0, 0L61.97, 0,61.97, 19.04,0, 19.04Z"
-        />
+        <path fill="url(#_export_2_r79__hash_pattern_light_0)" d="M0, 0L61.97, 0,61.97, 19.04,0, 19.04Z" />
         <g strokeWidth="3.5" stroke="#f1ac4b" fill="none" pointerEvents="all">
-          <line
-            x1={0}
-            y1={0}
-            x2="61.97"
-            y2={0}
-            strokeDasharray="8.62125 11.495"
-            strokeDashoffset="3.5"
-          />
+          <line x1={0} y1={0} x2="61.97" y2={0} strokeDasharray="8.62125 11.495" strokeDashoffset="3.5" />
           <line
             x1="61.97"
             y1={0}
@@ -360,14 +255,7 @@ export const MFDiagram = ({
             strokeDasharray="7.933333333333332 7.933333333333332"
             strokeDashoffset="2.38"
           />
-          <line
-            x1="61.97"
-            y1="19.04"
-            x2={0}
-            y2="19.04"
-            strokeDasharray="8.62125 11.495"
-            strokeDashoffset="3.5"
-          />
+          <line x1="61.97" y1="19.04" x2={0} y2="19.04" strokeDasharray="8.62125 11.495" strokeDashoffset="3.5" />
           <line
             x1={0}
             y1="19.04"
@@ -419,17 +307,10 @@ export const MFDiagram = ({
           >
             <g
               style={{
-                clipPath:
-                  'url("#_export_2_r79__shape_pTdLc3lhFvTSzxN7jiY8S_clip")',
+                clipPath: 'url("#_export_2_r79__shape_pTdLc3lhFvTSzxN7jiY8S_clip")',
               }}
             >
-              <rect
-                x="-94.2523"
-                y="-202.2976"
-                width="204.8032"
-                height="231.5979"
-                opacity={0}
-              />
+              <rect x="-94.2523" y="-202.2976" width="204.8032" height="231.5979" opacity={0} />
               <path
                 d="M5.747654919818956,-70.6996801650298L10.550859374595147,-102.29755434999696"
                 strokeDasharray="none"
@@ -457,17 +338,10 @@ export const MFDiagram = ({
           >
             <g
               style={{
-                clipPath:
-                  'url("#_export_2_r79__shape_RglrYWyouyYcaz4n7rcHj_clip")',
+                clipPath: 'url("#_export_2_r79__shape_RglrYWyouyYcaz4n7rcHj_clip")',
               }}
             >
-              <rect
-                x="-71.7089"
-                y="-125.5806"
-                width="225.4491"
-                height={201}
-                opacity={0}
-              />
+              <rect x="-71.7089" y="-125.5806" width="225.4491" height={201} opacity={0} />
               <path
                 d="M28.291102375108153,-25.58059728225544L53.74016459653159,-25.138487467745815"
                 strokeDasharray="none"
@@ -495,17 +369,10 @@ export const MFDiagram = ({
           >
             <g
               style={{
-                clipPath:
-                  'url("#_export_2_r79__shape_o7RIqC3KaMnCPkAPJ3iV3_clip")',
+                clipPath: 'url("#_export_2_r79__shape_o7RIqC3KaMnCPkAPJ3iV3_clip")',
               }}
             >
-              <rect
-                x="-74.3456"
-                y="-113.5682"
-                width="212.5021"
-                height="207.0263"
-                opacity={0}
-              />
+              <rect x="-74.3456" y="-113.5682" width="212.5021" height="207.0263" opacity={0} />
               <path
                 d="M25.65435709585563,-6.541943490895392L38.156414712720334,-13.568231821267135"
                 strokeDasharray="none"
@@ -569,17 +436,10 @@ export const MFDiagram = ({
           >
             <g
               style={{
-                clipPath:
-                  'url("#_export_2_r79__shape_WJGTqoKMBGslOPpb-NKxq_clip")',
+                clipPath: 'url("#_export_2_r79__shape_WJGTqoKMBGslOPpb-NKxq_clip")',
               }}
             >
-              <rect
-                x="-64.6777"
-                y="-63.0825"
-                width="202.6826"
-                height="220.5126"
-                opacity={0}
-              />
+              <rect x="-64.6777" y="-63.0825" width="202.6826" height="220.5126" opacity={0} />
               <path
                 d="M38.00484881260013,36.91754201447907L35.32227699373476,57.430117262981014"
                 strokeDasharray="none"
@@ -598,11 +458,7 @@ export const MFDiagram = ({
             </clipPath>
           </defs>
           <g
-            className={cn(
-              explode
-                ? 'translate-y-[-5%] translate-x-[-5%]'
-                : 'animate-wiggle-in-place',
-            )}
+            className={cn(explode ? 'translate-x-[-5%] translate-y-[-5%]' : 'animate-wiggle-in-place')}
             fill="none"
             stroke="#4ba1f1"
             strokeWidth="3.5"
@@ -612,17 +468,10 @@ export const MFDiagram = ({
           >
             <g
               style={{
-                clipPath:
-                  'url("#_export_2_r79__shape_ujLasinMbwZtW8GO0K3O3_clip")',
+                clipPath: 'url("#_export_2_r79__shape_ujLasinMbwZtW8GO0K3O3_clip")',
               }}
             >
-              <rect
-                x="-137.4953"
-                y="-195.2226"
-                width={201}
-                height="216.0616"
-                opacity={0}
-              />
+              <rect x="-137.4953" y="-195.2226" width={201} height="216.0616" opacity={0} />
               <path
                 d="M-36.64692366396878,-95.2225910701768L-37.495330837605685,-79.16100268395674"
                 strokeDasharray="none"
@@ -647,7 +496,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
       }}
       {...rest}
     >
-      <div className={cn('duration-500 transition-transform h-[80%] w-auto')}>
+      <div className={cn('h-[80%] w-auto transition-transform duration-500')}>
         <MFDiagram
           explode={isHover}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

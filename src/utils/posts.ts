@@ -1,6 +1,7 @@
 import React from 'react';
-import _jsx_runtime from 'react/jsx-runtime';
 import ReactDOM from 'react-dom';
+import _jsx_runtime from 'react/jsx-runtime';
+
 import type { Heading } from '@/types/post';
 
 export const HEADING_REGEX = /^#+\s+/;
@@ -15,6 +16,7 @@ export function getMDXExport(code: string) {
     ReactDOM,
     _jsx_runtime,
   };
+  // oxlint-disable-next-line typescript/no-implied-eval
   const fn = new Function(...Object.keys(scope), code);
   return fn(...Object.values(scope));
 }
@@ -22,10 +24,7 @@ export function getMDXExport(code: string) {
 export const normalizeTitle = (title: string): string => {
   return title
     .replaceAll(' ', '-')
-    .replaceAll(
-      /[^\dA-Za-z\u3000-\u303F\u3041-\u3096\u30A1-\u30FC\u4E00-\u9FFF\uAC00-\uD7AF-]/g,
-      '',
-    )
+    .replaceAll(/[^\dA-Za-z\u3000-\u303F\u3041-\u3096\u30A1-\u30FC\u4E00-\u9FFF\uAC00-\uD7AF-]/g, '')
     .replaceAll('--', '-')
     .replace(/-$/, '')
     .replace(/^-/, '')
@@ -33,7 +32,7 @@ export const normalizeTitle = (title: string): string => {
     .toLowerCase();
 };
 
-export const getHeading = (line: string, idx: number): Heading => ({
+export const getHeading = (line: string): Heading => ({
   id: normalizeTitle(line),
   text: line.replace(HEADING_REGEX, ''),
   level: line.split(/\s/).shift()?.length ?? 1,

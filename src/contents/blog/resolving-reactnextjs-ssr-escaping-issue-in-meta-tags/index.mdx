@@ -1,10 +1,11 @@
 ---
 title: Resolving React/Next.js SSR Escaping Issue in Meta Tags
 description: Weird quirks regarding React's string escaping inside HTML attributes
-createdAt: "2023-06-11"
+createdAt: '2023-06-11'
 tags:
   - react
 ---
+
 export * from './thumbnail';
 
 A while ago, while rewriting my personal website, I wanted to enhance the SEO and social media sharing experience by adding dynamic Open Graph Image generation using the `@vercel/og` library. This library generates Open Graph Images on-the-fly, providing better search engine optimization and improved social media sharing experience for websites.
@@ -16,21 +17,15 @@ A while ago, while rewriting my personal website, I wanted to enhance the SEO an
 Since I use Next.js, [implementing this](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation) required me to create an API endpoint that would run my Edge Function. I created the endpoint at `/pages/api/content.png.tsx`. We need to pass the necessary data, such as the post title, post type, and tags. I decided to use the good ol' search query parameters. As a result, the meta tags on each blog post page would appear like this:
 
 ```html
-<meta
-  property="og:image"
-  content="https://nourman.com/api/content.png?title=Hello&tags=Life&type=post"
->
+<meta property="og:image" content="https://nourman.com/api/content.png?title=Hello&tags=Life&type=post" />
 ```
 
 ## Things went `&amp;&amp;` unexpectedly
 
 On local development environment, they work as expected. However, I soon discovered that once my code is deployed and SSR is activated, the meta tags turns out like this:
 
-```html /\&amp;/
-<meta
-  property="og:image"
-  content="https://nourman.com/api/content.png?title=Hello&amp;tags=Life&amp;type=post"
->
+```html /&/
+<meta property="og:image" content="https://nourman.com/api/content.png?title=Hello&amp;tags=Life&amp;type=post" />
 ```
 
 The symbol meant to be an ampersand literal (`&`) turned into the escaped version `&amp;`! Why would Next.js escape the text content inside my meta tags?
@@ -68,7 +63,7 @@ With this method, the rendered meta tag will look like this:
 <meta
   property="og:image"
   content="https://nourman.com/api/content.png?data=eyJ0aXRsZSI6IlJ1c3Q6IEZpcnN0IEltcHJlc3Npb25zIHRocm91Z2ggdGhlIEV5ZXMgb2YgYSBKUy9QeXRob24gY29kZXIiLCJ0YWdzIjpbIlJ1c3QiLCJEZXYiXSwidHlwZSI6ImJsb2cifQ=="
->
+/>
 ```
 
 In the API endpoint, we decrypt the `data` query parameter, then parse JSON as usual. Well, when it works, it works, I guess. I hope this very hacky solution helps others who may be experiencing a similar issue with passing query parameters in React meta tags.

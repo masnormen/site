@@ -1,6 +1,7 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useSetAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
+
 import { readingTimeMsAtom } from '@/atoms/index';
 import { Section } from '@/components/layouts/section';
 import { MDXSubstitution } from '@/components/posts/mdx-substitution';
@@ -37,18 +38,15 @@ export function PostBody() {
 
   return (
     <Section className="py-0! md:py-0!">
-      <div className="relative flex flex-col-reverse lg:grid lg:grid-cols-[1fr_216px] w-full gap-8">
-        <article className="relative w-full h-full flex flex-col mx-auto max-w-4xl gap-8 pb-8 sm:py-8 lg:py-16">
+      <div className="relative flex w-full flex-col-reverse gap-8 lg:grid lg:grid-cols-[1fr_216px]">
+        <article className="relative mx-auto flex h-full w-full max-w-4xl flex-col gap-8 pb-8 sm:py-8 lg:py-16">
           {/* Post body */}
-          <div
-            ref={postContentRef}
-            className="markdown-body relative mx-auto flex flex-col items-start w-full"
-          >
+          <div ref={postContentRef} className="markdown-body relative mx-auto flex w-full flex-col items-start">
             <PostContent components={MDXSubstitution} />
           </div>
         </article>
 
-        <aside className="relative h-full lg:border-l border-dashed border-xline">
+        <aside className="border-xline relative h-full border-dashed lg:border-l">
           <TableOfContents post={content} />
         </aside>
       </div>

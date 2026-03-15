@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -13,130 +13,137 @@
 
 @layer utilities {
   @font-face {
-    font-family: "Geist Mono";
+    font-family: 'Geist Mono';
     font-style: normal;
     font-weight: 200 700;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/geistmono/v1/or3nQ6H-1_WfwkMZI_qYFrkdmhHkjkotbA.woff2)
-      format("woff2");
+    src: url(https://fonts.gstatic.com/s/geistmono/v1/or3nQ6H-1_WfwkMZI_qYFrkdmhHkjkotbA.woff2) format('woff2');
     unicode-range:
-      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+      U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
 
   @font-face {
-    font-family: "Geist Mono";
+    font-family: 'Geist Mono';
     font-style: normal;
     font-weight: 200 700;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/geistmono/v1/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2)
-      format("woff2");
+    src: url(https://fonts.gstatic.com/s/geistmono/v1/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2) format('woff2');
     unicode-range:
-      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+      U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
   @font-face {
-    font-family: "Instrument Sans";
+    font-family: 'Instrument Sans';
     font-style: italic;
     font-weight: 400 700;
     font-stretch: 100%;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/instrumentsans/v3/pxitypc9vsFDm051Uf6KVwgkfoSbSnNPooZAN0lInHGpCWNu2ZGRqXp6pRwM.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range:
-      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+      U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
 
   @font-face {
-    font-family: "Instrument Sans";
+    font-family: 'Instrument Sans';
     font-style: italic;
     font-weight: 400 700;
     font-stretch: 100%;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/instrumentsans/v3/pxitypc9vsFDm051Uf6KVwgkfoSbSnNPooZAN0lInHGpCWNu15GRqXp6pQ.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range:
-      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+      U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
   @font-face {
-    font-family: "Instrument Sans";
+    font-family: 'Instrument Sans';
     font-style: normal;
     font-weight: 400 700;
     font-stretch: 100%;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/instrumentsans/v3/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0She1ZuWi3hKpA.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range:
-      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+      U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
 
   @font-face {
-    font-family: "Instrument Sans";
+    font-family: 'Instrument Sans';
     font-style: normal;
     font-weight: 400 700;
     font-stretch: 100%;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/instrumentsans/v3/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range:
-      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+      U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
   /* latin-ext */
   @font-face {
-    font-family: "Fraunces";
+    font-family: 'Fraunces';
     font-style: italic;
     font-weight: 100 900;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/fraunces/v38/6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjdPeQ7ZXk8kD6.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range:
-      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+      U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
 
   /* latin */
   @font-face {
-    font-family: "Fraunces";
+    font-family: 'Fraunces';
     font-style: italic;
     font-weight: 100 900;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/fraunces/v38/6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjeveQ7ZXk8g.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range:
-      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+      U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
   /* latin-ext */
   @font-face {
-    font-family: "Fraunces";
+    font-family: 'Fraunces';
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxCFTeP2Xz5fU8w.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range:
-      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+      U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
 
   /* latin */
   @font-face {
-    font-family: "Fraunces";
+    font-family: 'Fraunces';
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
     src: url(https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeP2Xz5c.woff2)
-      format("woff2");
+      format('woff2');
     unicode-range:
-      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+      U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
   @font-face {
     font-family: emoji;
     src:
-      local("Apple Color Emoji"), local("Android Emoji"),
-      local("Segoe UI Emoji"), local("NotoColorEmoji"),
-      local("Noto Color Emoji"), local("Segoe UI Symbol"),
-      local("Android Emoji"), local("EmojiSymbols"), local("Symbola");
+      local('Apple Color Emoji'), local('Android Emoji'), local('Segoe UI Emoji'), local('NotoColorEmoji'),
+      local('Noto Color Emoji'), local('Segoe UI Symbol'), local('Android Emoji'), local('EmojiSymbols'),
+      local('Symbola');
     unicode-range: U+1F300-1F5FF, U+1F600-1F64F, U+1F680-1F6FF, U+2600-26FF;
   }
 
@@ -249,8 +256,7 @@
 
   .theme-transitioning * {
     transition-duration: 500ms;
-    transition-property:
-      color, background-color, border-color, box-shadow, filter, fill, stroke;
+    transition-property: color, background-color, border-color, box-shadow, filter, fill, stroke;
   }
 
   @keyframes spin-clockwise {
@@ -287,28 +293,20 @@
   @keyframes bounce-stopmotion {
     0%,
     100% {
-      transform: translateY(-8%)
-        translate(var(--tw-translate-x), var(--tw-translate-y))
-        rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+      transform: translateY(-8%) translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+        skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     }
     25% {
-      transform: translateY(0%)
-        translate(var(--tw-translate-x), var(--tw-translate-y))
-        rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+      transform: translateY(0%) translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+        skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     }
     50% {
-      transform: translateY(8%)
-        translate(var(--tw-translate-x), var(--tw-translate-y))
-        rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+      transform: translateY(8%) translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+        skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     }
     75% {
-      transform: translateY(0%)
-        translate(var(--tw-translate-x), var(--tw-translate-y))
-        rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+      transform: translateY(0%) translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+        skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     }
   }
   .animate-bounce-stopmotion {
@@ -346,22 +344,25 @@
 
 @theme inline {
   --font-headline:
-    "Headline", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji;
+    'Headline', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', emoji;
 
   --font-main:
-    "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji;
+    'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', emoji;
 
   --font-title:
-    "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji;
+    'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', emoji;
   --font-serif:
-    "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji",
-    emoji;
+    'Fraunces', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji', emoji;
   --font-mono:
-    "Geist Mono", ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo,
-    "Liberation Mono", "Courier New", monospace, emoji;
+    'Geist Mono', ui-monospace, SFMono-Regular, Monaco, Consolas, Menlo, 'Liberation Mono', 'Courier New', monospace,
+    emoji;
   --font-sans:
-    "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", emoji;
+    'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', emoji;
 
   --color-background: var(--theme-background);
   --color-secondary: var(--theme-secondary);
@@ -439,20 +440,20 @@
 
 @supports (color: color(display-p3 0.55 0.19 0.71)) {
   @theme inline {
-    --color-xred: color(display-p3 0.992157 0.117647 0.121569 / 1.000000);
-    --color-xblue: color(display-p3 0.000000 0.082353 0.831373 / 1.000000);
-    --color-xyellow: color(display-p3 1.000000 0.796078 0.254902 / 1.000000);
-    --color-xcyan: color(display-p3 0.517647 0.870588 0.976471 / 1.000000);
-    --color-xpink: color(display-p3 1.000000 0.560784 0.792157 / 1.000000);
+    --color-xred: color(display-p3 0.992157 0.117647 0.121569 / 1);
+    --color-xblue: color(display-p3 0 0.082353 0.831373 / 1);
+    --color-xyellow: color(display-p3 1 0.796078 0.254902 / 1);
+    --color-xcyan: color(display-p3 0.517647 0.870588 0.976471 / 1);
+    --color-xpink: color(display-p3 1 0.560784 0.792157 / 1);
 
-    --color-xblank: color(display-p3 0.964706 0.960784 0.945098 / 1.000000);
-    --color-xline: color(display-p3 0.827451 0.827451 0.827451 / 1.000000);
-    --color-xbg: color(display-p3 0.925490 0.925490 0.925490 / 1.000000);
-    --color-xarrow: color(display-p3 0.894118 0.890196 0.866667 / 1.000000);
-    --color-xghostwhite: color(display-p3 0.972549 0.972549 1.000000 / 1.000000);
+    --color-xblank: color(display-p3 0.964706 0.960784 0.945098 / 1);
+    --color-xline: color(display-p3 0.827451 0.827451 0.827451 / 1);
+    --color-xbg: color(display-p3 0.92549 0.92549 0.92549 / 1);
+    --color-xarrow: color(display-p3 0.894118 0.890196 0.866667 / 1);
+    --color-xghostwhite: color(display-p3 0.972549 0.972549 1 / 1);
 
-    --color-xstroke: color(display-p3 0.043137 0.070588 0.082353 / 1.000000);
-    --color-xghoststroke: color(display-p3 0.517647 0.517647 0.517647 / 1.000000);
+    --color-xstroke: color(display-p3 0.043137 0.070588 0.082353 / 1);
+    --color-xghoststroke: color(display-p3 0.517647 0.517647 0.517647 / 1);
   }
 }
 

@@ -1,12 +1,7 @@
-import path from 'node:path';
 import { createFileRoute } from '@tanstack/react-router';
+import path from 'node:path';
 
-const SitemapURLTemplate = (
-  loc: string,
-  lastmod: string,
-  priority: string,
-  changefreq: string,
-) =>
+const SitemapURLTemplate = (loc: string, lastmod: string, priority: string, changefreq: string) =>
   `<url>
   <loc>${loc}</loc>
   <lastmod>${lastmod}</lastmod>
@@ -28,17 +23,12 @@ export const Route = createFileRoute('/sitemap.xml')({
           query: '?raw',
           import: 'default',
         });
-        const postSlugs = Object.keys(postModules).map(
-          (modulePath) => path.parse(path.dirname(modulePath)).base,
-        );
+        const postSlugs = Object.keys(postModules).map((modulePath) => path.parse(path.dirname(modulePath)).base);
 
-        const projectsModules = import.meta.glob(
-          `../contents/projects/**/index.mdx`,
-          {
-            query: '?raw',
-            import: 'default',
-          },
-        );
+        const projectsModules = import.meta.glob(`../contents/projects/**/index.mdx`, {
+          query: '?raw',
+          import: 'default',
+        });
         const projectSlugs = Object.keys(projectsModules).map(
           (modulePath) => path.parse(path.dirname(modulePath)).base,
         );
@@ -46,21 +36,9 @@ export const Route = createFileRoute('/sitemap.xml')({
         const date = __BUILD_TIME__;
         const sitemap = SitemapXMLTemplate([
           SitemapURLTemplate(`https://nourman.com`, date, '1.0', 'daily'),
-          ...postSlugs.map((url) =>
-            SitemapURLTemplate(
-              `https://nourman.com/blog/${url}`,
-              date,
-              '0.9',
-              'weekly',
-            ),
-          ),
+          ...postSlugs.map((url) => SitemapURLTemplate(`https://nourman.com/blog/${url}`, date, '0.9', 'weekly')),
           ...projectSlugs.map((url) =>
-            SitemapURLTemplate(
-              `https://nourman.com/projects/${url}`,
-              date,
-              '0.8',
-              'monthly',
-            ),
+            SitemapURLTemplate(`https://nourman.com/projects/${url}`, date, '0.8', 'monthly'),
           ),
         ]);
 
@@ -69,7 +47,7 @@ export const Route = createFileRoute('/sitemap.xml')({
             'Content-Type': 'application/xml',
           },
         });
-      }
-    }
-  }
-})
+      },
+    },
+  },
+});

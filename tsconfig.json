@@ -20,12 +20,9 @@
     "moduleResolution": "Bundler",
     "noEmit": true,
     "jsx": "react-jsx",
-    "lib": ["es2022", "dom", "dom.iterable"],
-
-    /* Project-specific */
-    "baseUrl": ".",
+    "lib": ["ESNext", "dom", "dom.iterable"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "exclude": ["node_modules", "dist", ".tanstack", ".output", ".nitro"],

@@ -1,10 +1,11 @@
 ---
-title: "Module Federation for Frontend: Why and How to Start?"
+title: 'Module Federation for Frontend: Why and How to Start?'
 description: What is Module Federation and why you'd want to implement one
-createdAt: "2024-06-24"
+createdAt: '2024-06-24'
 tags:
   - frontend
 ---
+
 export * from './thumbnail';
 
 You might have heard of microfrontend architecture. Module federation is an architectural pattern for the decentralization of JavaScript applications (similar to microservices on the server-side) and is usually a complement for microfrontend architecture
@@ -13,7 +14,10 @@ By sharing code and resources among multiple JS (usually frontend) project, it a
 
 # Why? A Case of “Islands”
 
-<img style={{width: "576px"}} src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F20924efa-3776-4837-8776-d57d5bee2a73%2FScreenshot_2024-06-24_at_22.16.29.png?table=block&id=b5a0bd4a-15dd-42de-b641-a0a6c9f740f7&cache=v2"/>
+<img
+  style={{ width: '576px' }}
+  src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2F20924efa-3776-4837-8776-d57d5bee2a73%2FScreenshot_2024-06-24_at_22.16.29.png?table=block&id=b5a0bd4a-15dd-42de-b641-a0a6c9f740f7&cache=v2"
+/>
 *An e-commerce homepage*
 
 Let’s imagine a scenario. You are a technical architect or principal engineer of an e-commerce website. You have 3 main squads with their own frontend teams. Your homepage looks like the picture above. The user might see one solid web page, but they are actually **“islands”** of components with 3 teams maintaining different sections of the website. How would you plan the architecture of the frontend?
@@ -54,27 +58,27 @@ Take a look at an example for our homepage in the `mf-platform` project:
 ```tsx title="modules/mf-platform/pages/index.tsx"
 // @noErrorValidation
 // @filename: ambient.d.ts
-declare module "react"
+declare module 'react';
 declare module '~/components/Navbar' {
-    export default any
+  export default any;
 }
 declare module '@mf-promo/Ticker' {
-    export default any
+  export default any;
 }
 // @filename: index.tsx
-import React from "react"
+import React from 'react';
 // ---cut---
-import Navbar from "~/components/Navbar"
-import Ticker from "@mf-promo/Ticker";
+import Navbar from '~/components/Navbar';
+import Ticker from '@mf-promo/Ticker';
 
 function Homepage() {
   return (
     <>
       <Navbar />
       <Ticker />
-  //   ^^^^^^
+      // ^^^^^^
     </>
-  )
+  );
 }
 ```
 
@@ -98,18 +102,18 @@ Take a look at this code for our homepage in the `mf-platform` project with modu
 ```tsx title="modules/mf-platform/pages/index.tsx"
 // @noErrorValidation
 // @filename: ambient.d.ts
-declare module "react"
+declare module 'react';
 declare module '~/components/Navbar' {
-    export default any
+  export default any;
 }
 declare module '@mf-promo/Ticker' {
-    export default any
+  export default any;
 }
 // @filename: index.tsx
-import React from "react"
+import React from 'react';
 // ---cut---
-import Navbar from "~/components/Navbar"
-import Ticker from "@mf-promo/Ticker";
+import Navbar from '~/components/Navbar';
+import Ticker from '@mf-promo/Ticker';
 //                  ^^^^^^^^^
 
 function Homepage() {
@@ -118,7 +122,7 @@ function Homepage() {
       <Navbar />
       <Ticker />
     </>
-  )
+  );
 }
 ```
 
@@ -128,26 +132,23 @@ Here the Ticker is not actually imported directly from the `mf-promo` package, b
 
 Using federation, the code will roughly translates to this code: (not real code)
 
-
 ```tsx title="modules/mf-platform/pages/index.tsx"
 // @noErrorValidation
 // @filename: ambient.d.ts
-declare module "react"
-declare module "https://*"
+declare module 'react';
+declare module 'https://*';
 declare module '~/components/Navbar' {
-    export default any
+  export default any;
 }
 declare module '@mf-promo/Ticker' {
-    export default any
+  export default any;
 }
 // @filename: index.tsx
-import React from "react"
+import React from 'react';
 // ---cut---
-import Navbar from "~/components/Navbar"
+import Navbar from '~/components/Navbar';
 
-const Ticker = React.lazy(
-  () => import("https://promo-team.acme.com/ticker-component.js")
-)
+const Ticker = React.lazy(() => import('https://promo-team.acme.com/ticker-component.js'));
 
 function Homepage() {
   return (
@@ -155,21 +156,24 @@ function Homepage() {
       <Navbar />
       <Ticker />
     </>
-  )
+  );
 }
 ```
 
 Here are some advantages of it:
 
 - Using module federation, we can dynamically load the component from other remote host. This means, Promo team’s can deploy the change build, test, and deploy individually, and the changes would be reflected instantly on the Platform/Core team project.
-- The Promo team can “expose” the components which they want the Platform team to show. You might say this is kind of similar with an *Island Architecture*.
+- The Promo team can “expose” the components which they want the Platform team to show. You might say this is kind of similar with an _Island Architecture_.
 - You can also expose a full, single web page, not just components. You can even expose a regular JS function. Everything bundleable, really.
 - They can also make their own separate site for their own use (`https://promo-team.acme.com`).
 - Promo team can build, test, and deploy their changes independently from the Platform team. Changes in the `Ticker` component can be shipped instantly without needing to rebuild the entire `mf-platform`.
 
 With this, you can build a reliable, loosely-coupled ecosystem with multi-teams/multi modules deployment.
 
-<img style={{width: "576px"}} src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2Fc00e9df8-9ad5-412f-ace6-52c054ca65da%2FScreenshot_2024-06-24_at_23.37.18.png?table=block&id=509335d5-60f6-4273-8366-b55e32c1ca9f&cache=v2"/>
+<img
+  style={{ width: '576px' }}
+  src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F60678cfd-c33f-44e7-a8ed-09d08e538e17%2Fc00e9df8-9ad5-412f-ace6-52c054ca65da%2FScreenshot_2024-06-24_at_23.37.18.png?table=block&id=509335d5-60f6-4273-8366-b55e32c1ca9f&cache=v2"
+/>
 *An e-commerce homepage*
 
 # How to Start Using Module Federation

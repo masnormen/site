@@ -1,5 +1,6 @@
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
+
 import { BigArrow, SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { BlogCard } from '@/components/posts/blog-card';
@@ -10,9 +11,7 @@ const indexRoute = getRouteApi('/');
 export function FeaturedPosts() {
   const { posts } = indexRoute.useLoaderData();
 
-  const postMdxThumbnails = posts.map(
-    (post) => getMDXExport(post.code).Thumbnail ?? null,
-  );
+  const postMdxThumbnails = posts.map((post) => getMDXExport(post.code).Thumbnail ?? null);
 
   return (
     <Section
@@ -25,7 +24,7 @@ export function FeaturedPosts() {
       icon={
         <img
           src="/assets/images/floral-yellow-blue.png"
-          className="w-full h-full rotate-[45deg] hover:rotate-[-20deg] hover:scale-120 transition-transform"
+          className="h-full w-full rotate-[45deg] transition-transform hover:scale-120 hover:rotate-[-20deg]"
           draggable="false"
           loading="lazy"
           alt=""
@@ -34,8 +33,8 @@ export function FeaturedPosts() {
       description="On software engineering, web development, and random things I like."
       before={
         <>
-          <BigArrow className="absolute -top-2 left-1/2 -translate-x-1/2 text-xarrow w-[50px] sm:w-[105px] rotate-90 select-none" />
-          <span className="hidden sm:block absolute -top-2.5 xl:-top-3.5 left-1/2 -translate-x-1/2 text-xghoststroke italic text-xs xl:text-base select-none text-center">
+          <BigArrow className="text-xarrow absolute -top-2 left-1/2 w-[50px] -translate-x-1/2 rotate-90 select-none sm:w-[105px]" />
+          <span className="text-xghoststroke absolute -top-2.5 left-1/2 hidden -translate-x-1/2 text-center text-xs italic select-none sm:block xl:-top-3.5 xl:text-base">
             come into my digital corner! 🏡
           </span>
         </>
@@ -49,29 +48,25 @@ export function FeaturedPosts() {
       //   </Button>
       // }
     >
-      <div
-        data-testid="bloglist"
-        className="relative grid mx-auto w-full max-w-4xl grid-cols-1 gap-2 sm:gap-8"
-      >
+      <div data-testid="bloglist" className="relative mx-auto grid w-full max-w-4xl grid-cols-1 gap-2 sm:gap-8">
         {posts.map((post, idx) => {
           const Thumbnail = postMdxThumbnails[idx];
           return (
             <BlogCard
-              key={idx}
+              key={post.slug}
               slug={post.slug}
               title={post.title}
               description={post.description}
               date={dayjs(post.createdAt).format('MMM DD, YYYY')}
               tags={post.tags}
               Thumbnail={Thumbnail}
-              nth={idx}
             />
           );
         })}
 
         <aside>
-          <SlimArrow className="hidden xl:block absolute top-[-75px] right-[155px] text-xarrow flip rotate-[60deg] select-none" />
-          <span className="hidden xl:block absolute whitespace-nowrap -rotate-6 top-[-95px] right-[80px] text-xghoststroke/50 italic text-xs select-none text-center">
+          <SlimArrow className="text-xarrow flip absolute top-[-75px] right-[155px] hidden rotate-[60deg] select-none xl:block" />
+          <span className="text-xghoststroke/50 absolute top-[-95px] right-[80px] hidden -rotate-6 text-center text-xs whitespace-nowrap italic select-none xl:block">
             psshh. try hovering
             <br />
             on each thumbnail!

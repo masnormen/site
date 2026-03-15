@@ -26,7 +26,7 @@ const FOOTER_CONTENT = {
   Array<
     {
       label: string;
-    } & Parameters<LinkComponent<'a', string>>[0]
+    } & Parameters<LinkComponent<'a'>>[0]
   >
 >;
 
@@ -35,19 +35,14 @@ const FooterLink = ({
 }: {
   item: {
     label: string;
-  } & Parameters<LinkComponent<'a', string>>[0];
+  } & Parameters<LinkComponent<'a'>>[0];
 }) =>
   rest.to ? (
     <Link className="link font-semibold" {...rest}>
       {label}
     </Link>
   ) : (
-    <a
-      className="link font-semibold"
-      {...rest}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a className="link font-semibold" {...rest} target="_blank" rel="noopener noreferrer">
       {label}
     </a>
   );
@@ -62,19 +57,17 @@ const FooterSection = ({
   className?: string;
 }) => (
   <div className={className}>
-    <div className="relative font-title font-bold text-2xl leading-[1.15]">
+    <div className="font-title relative text-2xl leading-[1.15] font-bold">
       <img
         src="/assets/images/x-pink-blue.png"
-        className="inline-block mr-3 size-6 rotate-[25deg] hover:rotate-[-40deg] hover:scale-120 transition-transform"
+        className="mr-3 inline-block size-6 rotate-[25deg] transition-transform hover:scale-120 hover:rotate-[-40deg]"
         draggable="false"
         loading="lazy"
         alt=""
       />
       {title}
     </div>
-    <div className="flex flex-col mt-4 md:mt-8 gap-2 md:gap-4 *:w-fit">
-      {children}
-    </div>
+    <div className="mt-4 flex flex-col gap-2 *:w-fit md:mt-8 md:gap-4">{children}</div>
   </div>
 );
 
@@ -83,9 +76,9 @@ export function Footer() {
   const todayString = dayjs().format('dddd');
 
   return (
-    <footer className="flex flex-col items-center overflow-hidden justify-center bg-xbg border-t-1 border-dashed border-xline">
-      <div className="@container relative flex flex-col items-center w-[calc(100dvw-64px)] sm:w-[80dvw] max-w-ixl md:h-[532px] mx-auto pt-12 md:pt-24">
-        <nav className="flex flex-col md:grid md:grid-cols-[1fr_1fr_0.55fr] w-full gap-12 md:gap-6">
+    <footer className="bg-xbg border-xline flex flex-col items-center justify-center overflow-hidden border-t-1 border-dashed">
+      <div className="max-w-ixl @container relative mx-auto flex w-[calc(100dvw-64px)] flex-col items-center pt-12 sm:w-[80dvw] md:h-[532px] md:pt-24">
+        <nav className="flex w-full flex-col gap-12 md:grid md:grid-cols-[1fr_1fr_0.55fr] md:gap-6">
           <FooterSection title="Navigate">
             {FOOTER_CONTENT.navigate.map((item) => (
               <FooterLink item={item} key={item.label} />
@@ -100,11 +93,7 @@ export function Footer() {
             <p>
               Last deployed at <i>{deployString}</i> with commit{' '}
               <a
-                href={
-                  __BUILD_SHA__ === 'dev'
-                    ? '/'
-                    : `https://github.com/masnormen/site/commit/${__BUILD_SHA__}`
-                }
+                href={__BUILD_SHA__ === 'dev' ? '/' : `https://github.com/masnormen/site/commit/${__BUILD_SHA__}`}
                 className="link font-semibold"
               >
                 {__BUILD_SHA__.slice(0, 8)}
@@ -117,13 +106,13 @@ export function Footer() {
           </FooterSection>
         </nav>
 
-        <div className="mt-16 w-full text-center font-title text-sm text-xghoststroke">
+        <div className="font-title text-xghoststroke mt-16 w-full text-center text-sm">
           All rights reserved © 2020-{new Date().getFullYear()}
         </div>
 
         <Link
           to="/"
-          className="mt-16 md:mt-0 mx-auto md:absolute z-100 bottom-0 flex justify-center w-full font-serif tracking-tighter text-[min(11.9vw,128px)] font-medium italic text-xghoststroke/40 text-center leading-[0.7] transition-colors duration-400 select-none hover:text-xyellow"
+          className="text-xghoststroke/40 hover:text-xyellow bottom-0 z-100 mx-auto mt-16 flex w-full justify-center text-center font-serif text-[min(11.9vw,128px)] leading-[0.7] font-medium tracking-tighter italic transition-colors duration-400 select-none md:absolute md:mt-0"
         >
           NOURMAN·COM
         </Link>

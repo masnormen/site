@@ -1,20 +1,17 @@
+import type { ReactNode } from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import {
-  CatchBoundary,
-  createRootRoute,
-  HeadContent,
-  Outlet,
-  Scripts,
-} from '@tanstack/react-router';
+import { CatchBoundary, createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { Toaster } from 'sonner';
+
 import { SVGFilters } from '@/components/assets/svg-filters';
 import { CustomErrorComponent } from '@/components/layouts/error';
 import { Navbar } from '@/components/layouts/navbar';
 import { NotFoundComponent } from '@/components/layouts/not-found';
+
 import appCss from '../styles/app.css?inline';
-import type { ReactNode } from 'react';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -39,8 +36,7 @@ export const Route = createRootRoute({
       },
       {
         name: 'description',
-        content:
-          'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+        content: 'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
       },
       {
         name: 'twitter:card',
@@ -52,8 +48,7 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:description',
-        content:
-          'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+        content: 'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
       },
       {
         property: 'og:url',
@@ -182,13 +177,11 @@ function RootComponent() {
           <Outlet />
 
           {/* Top/Bottom fade */}
-          <div className="pointer-events-none z-50 fixed top-0 w-screen h-20 bg-gradient-to-t from-xblank/0 to-xblank" />
-          <div className="pointer-events-none z-50 fixed bottom-0 w-screen h-20 bg-gradient-to-b from-xblank/0 to-xblank" />
+          <div className="from-xblank/0 to-xblank pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t" />
+          <div className="from-xblank/0 to-xblank pointer-events-none fixed bottom-0 z-50 h-20 w-screen bg-gradient-to-b" />
 
           {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
-          {import.meta.env.DEV && (
-            <TanStackRouterDevtools initialIsOpen={false} />
-          )}
+          {import.meta.env.DEV && <TanStackRouterDevtools initialIsOpen={false} />}
           <Toaster position="top-center" />
           <SVGFilters />
         </QueryClientProvider>
@@ -204,7 +197,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <HeadContent />
       </head>
       <body>
-        <div id="_top_" className="w-0 h-0 invisible" />
+        <div id="_top_" className="invisible h-0 w-0" />
         {children}
         <Scripts />
       </body>

@@ -1,6 +1,7 @@
 import Comments from '@giscus/react';
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
+
 import { Footer } from '@/components/layouts/footer';
 import { Contact } from '@/components/layouts/home/contact';
 import { PostBody } from '@/components/layouts/post/body';
@@ -8,6 +9,7 @@ import { PostHeader } from '@/components/layouts/post/header';
 import { Section } from '@/components/layouts/section';
 import { useInViewport } from '@/hooks/use-in-viewport';
 import { getContentServerFn } from '@/services/posts';
+
 import gfmCss from '../styles/gfm.css?inline';
 import shikiCss from '../styles/shiki.css?inline';
 
@@ -16,16 +18,13 @@ export const Route = createFileRoute('/$contentType/$slug')({
   params: {
     parse: (params) => {
       if (params.contentType === 'blog' || params.contentType === 'projects') {
-        return {
-          ...params,
-          contentType: params.contentType as 'blog' | 'projects',
-        };
+        return params as { contentType: 'blog' | 'projects'; slug: string };
       }
       throw notFound();
     },
   },
   loader: async ({ params }) => {
-    const content = await getContentServerFn({ data: params });
+    const content = await getContentServerFn({ data: { contentType: params.contentType, slug: params.slug } });
     if (!content) throw notFound();
     return content;
   },
@@ -74,6 +73,7 @@ const useLazyLoadComment = () => {
 
   useEffect(() => {
     if (!hasScrolled) setHasScrolled(isInViewport);
+    // oxlint-disable-next-line eslint-plugin-react-hooks/exhaustive-deps
   }, [isInViewport]);
 
   return { commentRef, hasScrolled };

@@ -1,17 +1,12 @@
-import innerText from 'react-innertext';
-import { normalizeTitle } from '@/utils/posts';
 import type React from 'react';
 
-const Heading = ({
-  level,
-  ...props
-}: React.PropsWithChildren<{ level: number }>) => {
-  const Tag = `h${level}` as unknown as React.FC<
-    React.JSX.IntrinsicElements['h1']
-  >;
-  return (
-    <Tag id={normalizeTitle(innerText(props.children ?? ''))} {...props} />
-  );
+import innerText from 'react-innertext';
+
+import { normalizeTitle } from '@/utils/posts';
+
+const Heading = ({ level, ...props }: React.PropsWithChildren<{ level: number }>) => {
+  const Tag = `h${level}` as unknown as React.FC<React.JSX.IntrinsicElements['h1']>;
+  return <Tag id={normalizeTitle(innerText(props.children ?? ''))} {...props} />;
 };
 
 export const MDXSubstitution: Record<string, React.FC> = {

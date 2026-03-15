@@ -1,7 +1,7 @@
 ---
 title: Sunda.js
 description: JS library for converting Latin text into Sundanese script (Aksara Sunda Baku), and vice versa.
-createdAt: "2021-11-18"
+createdAt: '2021-11-18'
 tags:
   - js
   - ts
@@ -10,6 +10,7 @@ links:
   - https://www.npmjs.com/package/sunda.js
   - https://github.com/masnormen/noshon
 ---
+
 export * from './thumbnail'
 
 # Sunda.js
@@ -57,16 +58,16 @@ $ yarn add sunda.js
 
 ```ts
 // @filename: index.d.ts
-declare module "sunda.js" {
+declare module 'sunda.js' {
   export function toSundanese(input: string): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
 // ---cut---
-import { toSundanese } from "sunda.js";
+import { toSundanese } from 'sunda.js';
 
-let x = toSundanese("Wih, geulis euy!");
-console.log(x)
+let x = toSundanese('Wih, geulis euy!');
+console.log(x);
 
 // => ᮝᮤᮂ, ᮌᮩᮜᮤᮞ᮪ ᮉᮚ᮪!
 ```
@@ -75,15 +76,15 @@ console.log(x)
 
 ```ts
 // @filename: index.d.ts
-declare module "sunda.js" {
+declare module 'sunda.js' {
   export function toSundanese(input: string): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toSundanese } from "sunda.js";
+import { toSundanese } from 'sunda.js';
 // ---cut---
-let x = toSundanese("pa pi pu pe pé peu po p");
-console.log(x)
+let x = toSundanese('pa pi pu pe pé peu po p');
+console.log(x);
 
 // => ᮕ ᮕᮤ ᮕᮥ ᮕᮨ ᮕᮦ ᮕᮩ ᮕᮧ ᮕ᮪
 ```
@@ -92,15 +93,15 @@ console.log(x)
 
 ```ts
 // @filename: index.d.ts
-declare module "sunda.js" {
+declare module 'sunda.js' {
   export function toSundanese(input: string): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toSundanese } from "sunda.js";
+import { toSundanese } from 'sunda.js';
 // ---cut---
-let x = toSundanese("Di Klatén, ada santri kyai tebang pohon buah pir");
-console.log(x)
+let x = toSundanese('Di Klatén, ada santri kyai tebang pohon buah pir');
+console.log(x);
 
 // => ᮓᮤ ᮊᮣᮒᮦᮔ᮪, ᮃᮓ ᮞᮔ᮪ᮒᮢᮤ ᮊᮡᮄ ᮒᮨᮘᮀ ᮕᮧᮠᮧᮔ᮪ ᮘᮥᮃᮂ ᮕᮤᮁ
 ```
@@ -109,17 +110,17 @@ console.log(x)
 
 ```ts
 // @filename: index.d.ts
-declare module "sunda.js" {
+declare module 'sunda.js' {
   export function toSundanese(input: string): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toSundanese } from "sunda.js";
+import { toSundanese } from 'sunda.js';
 // ---cut---
 // pipe (|) will be automatically added around numbers
 
-let x = toSundanese("tanggal 17 bulan 8 taun 1945");
-console.log(x)
+let x = toSundanese('tanggal 17 bulan 8 taun 1945');
+console.log(x);
 
 // => ᮒᮀᮌᮜ᮪ |᮱᮷| ᮘᮥᮜᮔ᮪ |᮸| ᮒᮅᮔ᮪ |᮱᮹᮴᮵|
 ```
@@ -130,16 +131,16 @@ console.log(x)
 
 ```ts
 // @filename: index.d.ts
-declare module "sunda.js" {
+declare module 'sunda.js' {
   export function toSundanese(input: string): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
 // ---cut---
-import { toLatin } from "sunda.js";
+import { toLatin } from 'sunda.js';
 
-let x = toLatin("ᮝᮤᮂ, ᮌᮩᮜᮤᮞ᮪ ᮉᮚ᮪!");
-console.log(x)
+let x = toLatin('ᮝᮤᮂ, ᮌᮩᮜᮤᮞ᮪ ᮉᮚ᮪!');
+console.log(x);
 
 // => wih, geulis euy!
 ```
@@ -148,15 +149,15 @@ console.log(x)
 
 ```ts
 // @filename: index.d.ts
-declare module "sunda.js" {
+declare module 'sunda.js' {
   export function toSundanese(input: string): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toLatin } from "sunda.js";
+import { toLatin } from 'sunda.js';
 // ---cut---
-let x = toLatin("ᮓᮤ ᮊᮣᮒᮦᮔ᮪, ᮃᮓ ᮞᮔ᮪ᮒᮢᮤ ᮊᮡᮄ ᮒᮨᮘᮀ ᮕᮧᮠᮧᮔ᮪ ᮘᮥᮃᮂ ᮕᮤᮁ");
-console.log(x)
+let x = toLatin('ᮓᮤ ᮊᮣᮒᮦᮔ᮪, ᮃᮓ ᮞᮔ᮪ᮒᮢᮤ ᮊᮡᮄ ᮒᮨᮘᮀ ᮕᮧᮠᮧᮔ᮪ ᮘᮥᮃᮂ ᮕᮤᮁ');
+console.log(x);
 
 // => di klatén, ada santri kyai tebang pohon buah pir
 ```
@@ -165,17 +166,17 @@ console.log(x)
 
 ```ts
 // @filename: index.d.ts
-declare module "sunda.js" {
+declare module 'sunda.js' {
   export function toSundanese(input: string): string;
   export function toLatin(input: string): string;
 }
 // @filename: main.ts
-import { toLatin } from "sunda.js";
+import { toLatin } from 'sunda.js';
 // ---cut---
 // pipe (|) will be automatically removed from around numbers
 
-let x = toLatin("ᮒᮀᮌᮜ᮪ |᮱᮷| ᮘᮥᮜᮔ᮪ |᮸| ᮒᮅᮔ᮪ |᮱᮹᮴᮵|");
-console.log(x)
+let x = toLatin('ᮒᮀᮌᮜ᮪ |᮱᮷| ᮘᮥᮜᮔ᮪ |᮸| ᮒᮅᮔ᮪ |᮱᮹᮴᮵|');
+console.log(x);
 
 // => tanggal 17 bulan 8 taun 1945
 ```
@@ -195,6 +196,7 @@ Sunda.js package exports four things: functions `toSundanese()` & `toLatin()`, a
 Returns a string of transliterated Sundanese script, given Latin input.
 
 #### input
+
 Type: `string`
 
 A string of Latin character which will be transliterated into Sundanese script. For examples, see the above section.
@@ -204,6 +206,7 @@ A string of Latin character which will be transliterated into Sundanese script. 
 Returns a string of transliterated Latin script, given Sundanese script input.
 
 #### input
+
 Type: `string`
 
 A string of Sundanese character which will be transliterated into Latin script. For examples, see the above section.
@@ -211,7 +214,6 @@ A string of Sundanese character which will be transliterated into Latin script. 
 ### SundaHelper
 
 A namespace which contains various helper for the engine to convert Latin letters into Sundanese Script.
-
 
 ### LatinHelper
 

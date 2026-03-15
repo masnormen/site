@@ -1,10 +1,10 @@
+import babel from '@rolldown/plugin-babel';
 import tailwindcss from '@tailwindcss/vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
+import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react';
+import { nitro } from 'nitro/vite';
 import { defineConfig } from 'vite';
 import viteRestart from 'vite-plugin-restart';
-import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react'
-import babel from '@rolldown/plugin-babel'
-import { nitro } from 'nitro/vite'
 
 export default defineConfig({
   define: {

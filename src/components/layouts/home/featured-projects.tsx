@@ -1,4 +1,5 @@
 import { getRouteApi } from '@tanstack/react-router';
+
 import { SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { ProjectCard } from '@/components/posts/project-card';
@@ -9,9 +10,7 @@ const indexRoute = getRouteApi('/');
 export function FeaturedProjects() {
   const { projects } = indexRoute.useLoaderData();
 
-  const projectMdxThumbnails = projects.map(
-    (project) => getMDXExport(project.code).Thumbnail ?? null,
-  );
+  const projectMdxThumbnails = projects.map((project) => getMDXExport(project.code).Thumbnail ?? null);
 
   return (
     <Section
@@ -24,7 +23,7 @@ export function FeaturedProjects() {
       icon={
         <img
           src="/assets/images/x-pink-blue.png"
-          className="w-[70%] h-[70%] rotate-[25deg] hover:rotate-[-40deg] translate-x-[10%] translate-y-[20%] hover:scale-120 transition-transform"
+          className="h-[70%] w-[70%] translate-x-[10%] translate-y-[20%] rotate-[25deg] transition-transform hover:scale-120 hover:rotate-[-40deg]"
           draggable="false"
           loading="lazy"
           alt=""
@@ -40,15 +39,12 @@ export function FeaturedProjects() {
       //   </Button>
       // }
     >
-      <div
-        data-testid="projectlist"
-        className="relative grid mx-auto w-full max-w-4xl grid-cols-1 gap-12 sm:gap-8"
-      >
+      <div data-testid="projectlist" className="relative mx-auto grid w-full max-w-4xl grid-cols-1 gap-12 sm:gap-8">
         {projects.map((project, idx) => {
           const Thumbnail = projectMdxThumbnails[idx];
           return (
             <ProjectCard
-              key={idx}
+              key={project.slug}
               slug={project.slug}
               title={project.title}
               description={project.description}
@@ -61,8 +57,8 @@ export function FeaturedProjects() {
         })}
 
         <aside>
-          <SlimArrow className="hidden xl:block absolute top-[-75px] right-[155px] text-xarrow flip rotate-[60deg] select-none" />
-          <span className="hidden xl:block absolute whitespace-nowrap rotate-12 top-[-95px] right-[90px] text-xghoststroke/50 italic text-xs select-none text-center">
+          <SlimArrow className="text-xarrow flip absolute top-[-75px] right-[155px] hidden rotate-[60deg] select-none xl:block" />
+          <span className="text-xghoststroke/50 absolute top-[-95px] right-[90px] hidden rotate-12 text-center text-xs whitespace-nowrap italic select-none xl:block">
             hover on
             <br />
             tech stack icon

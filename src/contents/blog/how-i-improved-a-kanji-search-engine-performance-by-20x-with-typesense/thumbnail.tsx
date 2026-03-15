@@ -1,6 +1,8 @@
-import { cn } from '@/contents/common/cn';
-import { useFollowMouse } from '../../common/use-follow-mouse';
 import type { ThumbnailProps } from '@/types/post';
+
+import { cn } from '@/contents/common/cn';
+
+import { useFollowMouse } from '../../common/use-follow-mouse';
 
 export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   const ref = useFollowMouse();
@@ -8,10 +10,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   return (
     <div
       ref={ref}
-      className={cn(
-        '@container w-full h-full flex flex-col items-center justify-center bg-white',
-        className,
-      )}
+      className={cn('@container flex h-full w-full flex-col items-center justify-center bg-white', className)}
       style={{
         backgroundPosition: `calc(2 * var(--mouse-x,0)) calc(2 * var(--mouse-y,0))`,
         backgroundSize: '50%',
@@ -19,14 +18,14 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
       }}
       {...rest}
     >
-      <div className="font-bold text-[#4a3003] drop-shadow-lg text-[9cqw]">
+      <div className="text-[9cqw] font-bold text-[#4a3003] drop-shadow-lg">
         <div className="[text-shadow:5px_5px_60px_#DD8F09]">
           ジヨ<span className="ml-3 text-[6cqw]">ziyo</span>
         </div>
       </div>
 
-      <div className="mt-[5%] flex w-8/10 flex-col rounded-md bg-white text-black relative h-fit overflow-visible shadow-md outline outline-[#fce2b5]">
-        <div className="border-[#fce2b5] flex items-center rounded-b-md px-3">
+      <div className="relative mt-[5%] flex h-fit w-8/10 flex-col overflow-visible rounded-md bg-white text-black shadow-md outline outline-[#fce2b5]">
+        <div className="flex items-center rounded-b-md border-[#fce2b5] px-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={24}
@@ -44,7 +43,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
           </svg>
           <div className="flex h-11 w-full rounded-md bg-transparent py-3 outline-none">
             <img
-              className={cn('h-[2cqh] my-auto', isHover && 'hue-rotate-90')}
+              className={cn('my-auto h-[2cqh]', isHover && 'hue-rotate-90')}
               src="https://typesense.org/docs/images/typesense_logo.svg"
               loading="lazy"
               alt=""
@@ -52,48 +51,46 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
           </div>
         </div>
 
-        <div className="max-h-[400px] overflow-y-auto overflow-x-hidden top-[45px] z-10 w-full rounded-b-md bg-white shadow-lg outline outline-[#fce2b5] transition-all">
+        <div className="top-[45px] z-10 max-h-[400px] w-full overflow-x-hidden overflow-y-auto rounded-b-md bg-white shadow-lg outline outline-[#fce2b5] transition-all">
           <div>
             <div
               className={cn(
                 isHover ? 'bg-[#fdede8]' : 'bg-[#fff8ea]',
-                'relative flex select-none items-center rounded-sm px-[1cqw] outline-none border-b border-[#fce2b5] py-0',
+                'relative flex items-center rounded-sm border-b border-[#fce2b5] px-[1cqw] py-0 outline-none select-none',
               )}
             >
-              <div className="flex h-full w-full flex-row items-start px-[3cqw] py-[4.5cqw] gap-[3cqw]">
+              <div className="flex h-full w-full flex-row items-start gap-[3cqw] px-[3cqw] py-[4.5cqw]">
                 <div className="text-[6cqw] text-[#513400]" lang="ja">
                   速
                 </div>
                 <div className="flex flex-col gap-[1.5cqw] pt-0.5">
                   <div className="flex flex-row flex-nowrap gap-2">
                     <span
-                      className="inline-block whitespace-nowrap rounded-full px-[1.5cqw] py-[1.5cqw] text-[3cqw] shadow-sm transition bg-rose-100 font-bold text-gray-900"
+                      className="inline-block rounded-full bg-rose-100 px-[1.5cqw] py-[1.5cqw] text-[3cqw] font-bold whitespace-nowrap text-gray-900 shadow-sm transition"
                       lang="ja"
                     >
                       ソク
                     </span>
                     <span
-                      className="inline-block whitespace-nowrap rounded-full px-[1.5cqw] py-[1.5cqw] text-[3cqw] shadow-sm transition bg-[#fce2b5] font-bold text-gray-900"
+                      className="inline-block rounded-full bg-[#fce2b5] px-[1.5cqw] py-[1.5cqw] text-[3cqw] font-bold whitespace-nowrap text-gray-900 shadow-sm transition"
                       lang="ja"
                     >
                       はや.い
                     </span>
                     <span
-                      className="inline-block whitespace-nowrap rounded-full px-[1.5cqw] py-[1.5cqw] text-[3cqw] font-medium shadow-sm transition bg-purple-100 text-gray-900"
+                      className="inline-block rounded-full bg-purple-100 px-[1.5cqw] py-[1.5cqw] text-[3cqw] font-medium whitespace-nowrap text-gray-900 shadow-sm transition"
                       lang="zh"
                     >
                       sù
                     </span>
                     <span
-                      className="inline-block whitespace-nowrap rounded-full px-[1.5cqw] py-[1.5cqw] text-[3cqw] font-medium shadow-sm transition bg-blue-100 text-gray-900"
+                      className="inline-block rounded-full bg-blue-100 px-[1.5cqw] py-[1.5cqw] text-[3cqw] font-medium whitespace-nowrap text-gray-900 shadow-sm transition"
                       lang="ko"
                     >
                       속
                     </span>
                   </div>
-                  <div className="flex flex-row flex-wrap gap-2 text-[3cqw] font-bold text-amber-900">
-                    quick, fast
-                  </div>
+                  <div className="flex flex-row flex-wrap gap-2 text-[3cqw] font-bold text-amber-900">quick, fast</div>
                 </div>
               </div>
             </div>

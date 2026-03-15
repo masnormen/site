@@ -1,5 +1,6 @@
 import { useHover } from '@uidotdev/usehooks';
 import { useEffect, useRef } from 'react';
+
 import { mergeRefs } from './merge-refs';
 
 export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
@@ -13,11 +14,7 @@ export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
   const mergedRef = mergeRefs(refObj, refCb);
 
   useEffect(() => {
-    if (
-      typeof document === 'undefined' ||
-      typeof window === 'undefined' ||
-      (onlyThumbnailHover && !isHover)
-    ) {
+    if (typeof document === 'undefined' || typeof window === 'undefined' || (onlyThumbnailHover && !isHover)) {
       return;
     }
 
@@ -25,17 +22,11 @@ export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
       if (refObj.current) {
         const x = event.pageX;
         const xFromCenter = x - window.innerWidth / 2;
-        refObj.current.style.setProperty(
-          '--mouse-x',
-          `${(xFromCenter ?? 0) * 0.02}px`,
-        );
+        refObj.current.style.setProperty('--mouse-x', `${(xFromCenter ?? 0) * 0.02}px`);
 
         const y = event.pageY;
         const yFromCenter = y - window.innerWidth / 2;
-        refObj.current.style.setProperty(
-          '--mouse-y',
-          `${(yFromCenter ?? 0) * 0.02}px`,
-        );
+        refObj.current.style.setProperty('--mouse-y', `${(yFromCenter ?? 0) * 0.02}px`);
       }
     };
     document.addEventListener('mousemove', handleMouseMove);

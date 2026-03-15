@@ -1,10 +1,6 @@
 import { WingishShape } from '@/components/assets/shapes/misc';
 import { Section } from '@/components/layouts/section';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 export function About() {
   return (
@@ -18,42 +14,38 @@ export function About() {
       icon={
         <img
           src="/assets/images/x-yellow-blue.png"
-          className="w-[70%] h-[70%] rotate-[25deg] hover:rotate-[-40deg] translate-x-[10%] translate-y-[20%] hover:scale-120 transition-transform"
+          className="h-[70%] w-[70%] translate-x-[10%] translate-y-[20%] rotate-[25deg] transition-transform hover:scale-120 hover:rotate-[-40deg]"
           draggable="false"
           loading="lazy"
           alt=""
         />
       }
     >
-      <div className="block h-full space-y-5 text-sm lg:text-base leading-[1.6]">
-        <div className="group h-full relative size-[220px] md:size-[250px] aspect-square isolate mx-auto sm:mx-0 sm:-mt-16 sm:float-right sm:ml-6 sm:mb-6 md:ml-8">
+      <div className="block h-full space-y-5 text-sm leading-[1.6] lg:text-base">
+        <div className="group relative isolate mx-auto aspect-square size-[220px] h-full sm:float-right sm:mx-0 sm:-mt-16 sm:mb-6 sm:ml-6 md:ml-8 md:size-[250px]">
           <img
             src="/assets/images/portrait.webp"
-            className="h-full w-full aspect-square relative z-10 rounded-full border-2 border-xbg shadow-lg group-hover:scale-98 group-hover:rotate-6 group-hover:shadow-2xl transition-all duration-400 "
+            className="border-xbg relative z-10 aspect-square h-full w-full rounded-full border-2 shadow-lg transition-all duration-400 group-hover:scale-98 group-hover:rotate-6 group-hover:shadow-2xl "
             draggable="false"
             loading="lazy"
             alt="My portrait"
           />
-          <WingishShape className="absolute w-full h-full inline-block top-[1%] -left-[5%] scale-104 z-0 text-xyellow -rotate-24 group-hover:-rotate-45 group-hover:-top-[1%] group-hover:text-xbg transition-all duration-400" />
-          <WingishShape className="absolute w-full h-full inline-block top-[1%] -left-[5%] scale-104 z-0 text-xyellow -rotate-24 group-hover:rotate-0 group-hover:-top-[1%] group-hover:text-xblue transition-all duration-400" />
+          <WingishShape className="text-xyellow group-hover:text-xbg absolute top-[1%] -left-[5%] z-0 inline-block h-full w-full scale-104 -rotate-24 transition-all duration-400 group-hover:-top-[1%] group-hover:-rotate-45" />
+          <WingishShape className="text-xyellow group-hover:text-xblue absolute top-[1%] -left-[5%] z-0 inline-block h-full w-full scale-104 -rotate-24 transition-all duration-400 group-hover:-top-[1%] group-hover:rotate-0" />
         </div>
         <p>
-          I grew up surrounded by computers. I wrote my first blog at 9yo,
-          installed Arch Linux at 11 (yes, the manual way), and shipped my first
-          code at 13. Now based in Jakarta, I speak Indonesian, English, and
-          Javanese with some conversational Japanese under my belt (still
-          practicing!).
+          I grew up surrounded by computers. I wrote my first blog at 9yo, installed Arch Linux at 11 (yes, the manual
+          way), and shipped my first code at 13. Now based in Jakarta, I speak Indonesian, English, and Javanese with
+          some conversational Japanese under my belt (still practicing!).
         </p>
         <p>
-          My go-to tools are TypeScript and React, but I'm a pragmatic engineer
-          at heart 🧐. I'm comfortable moving between frameworks and languages,
-          like Svelte, Go, Python, Rust, PHP, or whatever tool is best suited to
-          solve the problem at hand. New tools are a welcome fun challenge! 🛠️
+          My go-to tools are TypeScript and React, but I'm a pragmatic engineer at heart 🧐. I'm comfortable moving
+          between frameworks and languages, like Svelte, Go, Python, Rust, PHP, or whatever tool is best suited to solve
+          the problem at hand. New tools are a welcome fun challenge! 🛠️
         </p>
         <p>
-          Outside of working as a Software Engineer, I'm currently pursuing a
-          Master's in Cybersecurity at Monash University. (<b>fun fact:</b> all
-          this was made possible by a scholarship from a literal 😼 cat{' '}
+          Outside of working as a Software Engineer, I'm currently pursuing a Master's in Cybersecurity at Monash
+          University. (<b>fun fact:</b> all this was made possible by a scholarship from a literal 😼 cat{' '}
           <Tooltip>
             <TooltipTrigger className="cursor-pointer">
               <a

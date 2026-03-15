@@ -1,10 +1,11 @@
 ---
 title: "TypeScript Error Handling: Not So Pretty, but It Doesn't Have to Be"
 description: Borrowing Go's style of error handling in TypeScript
-createdAt: "2023-10-14"
+createdAt: '2023-10-14'
 tags:
   - typescript
 ---
+
 export * from './thumbnail';
 
 `try` / `catch` syntax is quite the norm for handling errors in most of C-style programming languages. However, it can become difficult to maintain readability in a codebase already filled with `for`, `if`, `const`, and `function` blocks. `try` / `catch` syntax also forces you to make an extra indentation. It can lead to a deeply nested code that is difficult to read and maintain.
@@ -15,12 +16,12 @@ Imagine you're building an application, and has to use a library which provides 
 
 ```ts title="node_modules/some-library/src/getTLD.ts"
 export function getTLD(urlStr: string): string {
-  const url = new URL(urlStr)
-  const tld = url.hostname.split(".").at(-1)
+  const url = new URL(urlStr);
+  const tld = url.hostname.split('.').at(-1);
 
   // Will throw error when URL is an IP address and doesn't contain real TLD
-  if (!tld || /^\d+$/.test(tld)) throw Error("Not a domain")
-  return tld
+  if (!tld || /^\d+$/.test(tld)) throw Error('Not a domain');
+  return tld;
 }
 ```
 
@@ -34,30 +35,34 @@ Oh, sure, I could just wrap the callsite in a `try` / `catch` and do something w
 Another example: here we have three operations which we need to wrap with `try` / `catch` so we can produce different error message for each operations.
 
 ```ts title="index.ts"
-function fetch(): Data { return {name: ""} }
-function generateData(str: string): DataJson { return {name: "", json: ()=> "value"} }
-type Data = {name:string};
-type DataJson = {name:string; json(): "value"};
+function fetch(): Data {
+  return { name: '' };
+}
+function generateData(str: string): DataJson {
+  return { name: '', json: () => 'value' };
+}
+type Data = { name: string };
+type DataJson = { name: string; json(): 'value' };
 // ---cut---
 async function doSomething() {
   let data: Data;
   try {
-    data = await fetch()
-  } catch(e) {
-    throw Error("Error when fetching data")
+    data = await fetch();
+  } catch (e) {
+    throw Error('Error when fetching data');
   }
 
   let someMoreData: DataJson;
   try {
-    someMoreData = await generateData(data.name)
-  } catch(e) {
-    throw Error("Error when generating data")
+    someMoreData = await generateData(data.name);
+  } catch (e) {
+    throw Error('Error when generating data');
   }
 
   try {
-    return await someMoreData.json()
-  } catch(e) {
-    throw Error("Error when parsing someMoreData")
+    return await someMoreData.json();
+  } catch (e) {
+    throw Error('Error when parsing someMoreData');
   }
 }
 ```
@@ -66,6 +71,7 @@ async function doSomething() {
 - Same as the 1st example, when `catch`\-ing something, the type of `e` is also always `any` or `unknown`.
 
 So there are three problems:
+
 - Ambiguity in whether or not a function can throw an Error
 - Ambiguity in what type of error a function can throw
 - Slightly less readability
@@ -77,13 +83,9 @@ So there are three problems:
 We will borrow the Go's style of error handling in TS. We begin with creating a `Result` type, which is a discriminated union of two tuples, one containing only the successful result, and one with only the error. And then we create a `safe()` function. The argument for the function needs to be a function, because else we can't catch the error.
 
 ```ts title="utils/safe.ts"
-export type Result<T, E extends Error> =
-  | [T, null]
-  | [null, E];
+export type Result<T, E extends Error> = [T, null] | [null, E];
 
-export async function safe<T, E extends Error = Error>(
-  fn: (...args: any[]) => T | Promise<T>
-): Promise<Result<T, E>> {
+export async function safe<T, E extends Error = Error>(fn: (...args: any[]) => T | Promise<T>): Promise<Result<T, E>> {
   try {
     const data = await fn();
     return [data, null];
@@ -147,13 +149,9 @@ Looks a lot like Go 🦫
 
 ```ts title="fetch-data.ts"
 // @noErrorValidation
-export type Result<T, E extends Error> =
-  | [T, null]
-  | [null, E];
+export type Result<T, E extends Error> = [T, null] | [null, E];
 
-export async function safe<T, E extends Error = Error>(
-  fn: (...args: any[]) => T | Promise<T>
-): Promise<Result<T, E>> {
+export async function safe<T, E extends Error = Error>(fn: (...args: any[]) => T | Promise<T>): Promise<Result<T, E>> {
   try {
     const data = await fn();
     return [data, null];
@@ -161,25 +159,27 @@ export async function safe<T, E extends Error = Error>(
     return [null, e as E];
   }
 }
-type User = { id: string; name: string; }
-type AxiosResponse<T> = { data: T }
+type User = { id: string; name: string };
+type AxiosResponse<T> = { data: T };
 type AxiosError = Error;
-function axios(s) { return s as any; }
+function axios(s) {
+  return s as any;
+}
 // ---cut---
 // Another use case for Axios, response typing + error handling at once.
 
 // ⚠️ Don't actually do this.
 // ⚠️ Please use library like Zod/Typebox instead to validate data.
 
-const [res, err] = await safe<AxiosResponse<User>, AxiosError>(() => axios("..."))
+const [res, err] = await safe<AxiosResponse<User>, AxiosError>(() => axios('...'));
 
 if (err) {
-  console.log(err.message)
-//            ^?
+  console.log(err.message);
+  //            ^?
 } else {
   // ...
-  console.log(res.data)
-//            ^?
+  console.log(res.data);
+  //            ^?
 }
 ```
 
@@ -199,7 +199,7 @@ const [name_it_whatever, you_like] = await safe(...)
 
 But even then, please note that this is by no means a "best practice". Even I would use the traditional `try` / `catch` when working with simpler stuff. This is just an attempt for exploring another style of error handling. It sure helps to make a complex logic to be more readable, especially when working with poorly documented third-party libraries.
 
-# Update as of 2024: ECMAScript *Safe Assignment Operator*
+# Update as of 2024: ECMAScript _Safe Assignment Operator_
 
 The new ECMAScript Safe Assignment Operator Proposal (`?=`) is coming, and the usage is pretty much similar to the example we've tried so far. This new native syntax makes our code cleaner and more efficient.
 

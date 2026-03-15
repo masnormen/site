@@ -1,10 +1,11 @@
 ---
 title: 3 Ways to Set Up Multiple Git Accounts in a Single Computer
 description: Managing multiple Git credentials with ease
-createdAt: "2021-11-24"
+createdAt: '2021-11-24'
 tags:
   - git
 ---
+
 export * from './thumbnail';
 
 Developers around the world is probably already familiar with Git and the most popular Git platform, GitHub. As a developer, I have my own personal GitHub account. But oftentimes, my workplace requires me to have a work-dedicated account.
@@ -126,9 +127,11 @@ remote: Counting objects: 100% (187/187), done.
 Similarly, if you want to clone a private repo from your personal GitHub account, it will only work if you're on a directory outside of `~/Works`. Easy right?
 
 **Pros**
+
 - Probably this is the best option for you if you separate your work and personal project files
 
 **Cons**
+
 - Your account only works on your specified directory. Less "flexibility"
 - Doesn't work well if your work and personal files are messy and scattered everywhere. But c'mon, just tidy it up!
 
@@ -153,6 +156,7 @@ Host github.com-work
 ```
 
 Here, we can see the two identity files we created before, under two different hosts. Which means:
+
 - When accessing `github.com-personal`, use the key `~/.ssh/id_rsa_personal`
 - Otherwise, when accessing `github.com-work`, use the key `~/.ssh/id_ed25519`
 - Add the key to the SSH agent if it's not added yet
@@ -197,15 +201,17 @@ origin	ssh://git@github.com-personal/personal-account/personal-private-repo (pus
 ```
 
 **Pros**
+
 - Can be configured per-repository folder
 
 **Cons**
+
 - You'll have to change all of your repo's remote URLs to use one of the configured host
 - Might accidentally use the wrong account if you forgot to change the host
 
 ## Option 3: Manually switch account using command line alias
 
-Note that this option *will only work if* you have done the steps explained in **Option 2** above. If you're not a fan of the options above and just want a really, really simple way to switch account whenever you want it, you can make an alias in your shell to do this.
+Note that this option _will only work if_ you have done the steps explained in **Option 2** above. If you're not a fan of the options above and just want a really, really simple way to switch account whenever you want it, you can make an alias in your shell to do this.
 
 In your `.bashrc` or `.zshrc` or whatever your shell's config file is, you can add these line:
 

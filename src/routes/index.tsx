@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+
 import { Footer } from '@/components/layouts/footer';
 import { About } from '@/components/layouts/home/about';
 import { Contact } from '@/components/layouts/home/contact';

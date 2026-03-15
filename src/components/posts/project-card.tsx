@@ -1,25 +1,16 @@
 import { Icon } from '@iconify/react';
 import { Link } from '@tanstack/react-router';
-import {
-  CircleComplete,
-  CircleIncomplete,
-} from '@/components/assets/shapes/circles';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { cn } from '@/utils/cn';
+
 import type { ThumbnailProps } from '@/types/post';
 
-const ProjectButton = ({
-  href,
-  children,
-  ...rest
-}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+import { CircleComplete, CircleIncomplete } from '@/components/assets/shapes/circles';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { cn } from '@/utils/cn';
+
+const ProjectButton = ({ href, children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
   <a
     href={href}
-    className="group flex sm:flex-col items-center sm:items-start justify-center gap-2 sm:gap-1 h-full w-full px-9 py-4 sm:py-0 bg-xghostwhite hover:bg-xarrow hover:scale-98 hover:-translate-x-0.5 rounded-br-cxl rounded-bl-cxl sm:rounded-bl-none sm:rounded-tr-cxl text-sm font-semibold font-title transition-all duration-400 active:scale-95 whitespace-nowrap"
+    className="group bg-xghostwhite hover:bg-xarrow rounded-br-cxl rounded-bl-cxl sm:rounded-tr-cxl font-title flex h-full w-full items-center justify-center gap-2 px-9 py-4 text-sm font-semibold whitespace-nowrap transition-all duration-400 hover:-translate-x-0.5 hover:scale-98 active:scale-95 sm:flex-col sm:items-start sm:gap-1 sm:rounded-bl-none sm:py-0"
     {...rest}
   >
     {children}
@@ -29,50 +20,22 @@ const ProjectButton = ({
 const TechStack = ({ tag }: { tag: string }) => {
   const TechStackIcon = () => {
     if (tag === 'js') {
-      return (
-        <Icon
-          key={tag}
-          icon="proicons:javascript"
-          className="text-[#d3be1f] text-xl"
-        />
-      );
+      return <Icon key={tag} icon="proicons:javascript" className="text-xl text-[#d3be1f]" />;
     }
     if (tag === 'ts') {
-      return (
-        <Icon
-          key={tag}
-          icon="proicons:typescript"
-          className="text-[#3178c6] text-xl"
-        />
-      );
+      return <Icon key={tag} icon="proicons:typescript" className="text-xl text-[#3178c6]" />;
     }
     if (tag === 'react') {
-      return (
-        <Icon key={tag} icon="mdi:react" className="text-[#00a9cf] text-xl" />
-      );
+      return <Icon key={tag} icon="mdi:react" className="text-xl text-[#00a9cf]" />;
     }
     if (tag === 'lib') {
-      return (
-        <Icon
-          key={tag}
-          icon="material-icon-theme:npm"
-          className="text-xred text-xl"
-        />
-      );
+      return <Icon key={tag} icon="material-icon-theme:npm" className="text-xred text-xl" />;
     }
     if (tag === 'app') {
-      return (
-        <Icon key={tag} icon="tdesign:app" className="text-xred text-lg" />
-      );
+      return <Icon key={tag} icon="tdesign:app" className="text-xred text-lg" />;
     }
     if (tag === 'node') {
-      return (
-        <Icon
-          key={tag}
-          icon="logos:nodejs-icon"
-          className="text-xgreen text-lg"
-        />
-      );
+      return <Icon key={tag} icon="logos:nodejs-icon" className="text-xgreen text-lg" />;
     }
     return null;
   };
@@ -123,14 +86,13 @@ export function ProjectCard({
   return (
     <article
       className={cn(
-        '@container group/card relative flex flex-col-reverse gap-6 sm:gap-4 lg:gap-6',
+        'group/card @container relative flex flex-col-reverse gap-6 sm:gap-4 lg:gap-6',
         nth % 2 === 0 ? 'lg:flex-row-reverse' : 'lg:flex-row',
+        className,
       )}
     >
       <div
-        className={cn(
-          'grid grid-rows-[1fr_auto] sm:grid-rows-1 sm:grid-cols-[2fr_1fr] items-center justify-center',
-        )}
+        className={cn('grid grid-rows-[1fr_auto] items-center justify-center sm:grid-cols-[2fr_1fr] sm:grid-rows-1')}
       >
         <Link
           to="/$contentType/$slug"
@@ -138,34 +100,32 @@ export function ProjectCard({
             contentType: 'projects',
             slug,
           }}
-          className="active:scale-98 transition-transform duration-300"
+          className="transition-transform duration-300 active:scale-98"
           aria-label={title}
         >
           <header
-            className="group relative
-            flex items-center gap-2
-            bg-xbg
-            sm:min-h-[198px] sm:hover:bg-xarrow sm:hover:scale-99 sm:hover:shadow-2xs
-            transition-all duration-400 rounded-tl-cxl rounded-tr-cxl sm:rounded-tr-none sm:rounded-bl-cxl"
+            className="group bg-xbg
+            sm:hover:bg-xarrow rounded-tl-cxl rounded-tr-cxl
+            sm:rounded-bl-cxl
+            relative flex items-center gap-2
+            transition-all duration-400 sm:min-h-[198px] sm:rounded-tr-none sm:hover:scale-99 sm:hover:shadow-2xs"
             {...rest}
           >
-            <div className="flex flex-col h-full p-6 sm:py-8 sm:pl-9 sm:pr-12 justify-center gap-2">
+            <div className="flex h-full flex-col justify-center gap-2 p-6 sm:py-8 sm:pr-12 sm:pl-9">
               <div className="flex flex-row gap-1.5">
                 {tags.map((tag, idx) => (
                   <TechStack key={idx} tag={tag} />
                 ))}
               </div>
-              <h1 className="font-title font-semibold text-pretty text-left text-base lg:text-xl leading-[1.2] lg:line-clamp-4">
+              <h1 className="font-title text-left text-base leading-[1.2] font-semibold text-pretty lg:line-clamp-4 lg:text-xl">
                 {title}
               </h1>
-              <div className="text-sm lg:text-base line-clamp-3 leading-[1.25]">
-                {description}
-              </div>
+              <div className="line-clamp-3 text-sm leading-[1.25] lg:text-base">{description}</div>
             </div>
           </header>
         </Link>
 
-        <div className="grid grid-cols-2 sm:grid-cols-1 sm:grid-rows-2 h-full gap-2">
+        <div className="grid h-full grid-cols-2 gap-2 sm:grid-cols-1 sm:grid-rows-2">
           {links.slice(0, 2).map((link, idx) => {
             const kind = (() => {
               if (link?.includes('https://github.com/')) return 'GitHub';
@@ -174,38 +134,33 @@ export function ProjectCard({
             })();
 
             return (
-              <ProjectButton
-                key={idx}
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="hidden sm:block relative">
+              <ProjectButton key={idx} href={link} target="_blank" rel="noopener noreferrer">
+                <div className="relative hidden sm:block">
                   {kind === 'GitHub' && (
                     <>
                       <Icon
                         icon="mdi:github"
-                        className="absolute top-0 left-0 translate-x-[25%] translate-y-[35%] text-xstroke text-[22px]"
+                        className="text-xstroke absolute top-0 left-0 translate-x-[25%] translate-y-[35%] text-[22px]"
                       />
-                      <CircleComplete className="text-xblue group-hover:rotate-180 group-hover:-translate-y-0.5 group-hover:text-xpink transition-all duration-400" />
+                      <CircleComplete className="text-xblue group-hover:text-xpink transition-all duration-400 group-hover:-translate-y-0.5 group-hover:rotate-180" />
                     </>
                   )}
                   {kind === 'npm' && (
                     <>
                       <Icon
                         icon="material-icon-theme:npm"
-                        className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-xred text-[22px]"
+                        className="text-xred absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px]"
                       />
-                      <CircleIncomplete className="text-xpink -rotate-180 group-hover:rotate-0 group-hover:text-xcyan transition-all duration-400" />
+                      <CircleIncomplete className="text-xpink group-hover:text-xcyan -rotate-180 transition-all duration-400 group-hover:rotate-0" />
                     </>
                   )}
                   {kind === 'Visit' && (
                     <>
                       <Icon
                         icon="lucide:globe"
-                        className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-xblue text-[22px]"
+                        className="text-xblue absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px]"
                       />
-                      <CircleIncomplete className="text-xyellow group-hover:rotate-180 group-hover:text-xred transition-all duration-400" />
+                      <CircleIncomplete className="text-xyellow group-hover:text-xred transition-all duration-400 group-hover:rotate-180" />
                     </>
                   )}
                 </div>
@@ -224,16 +179,16 @@ export function ProjectCard({
             slug,
           }}
           className={cn(
-            'group flex justify-between lg:justify-start mx-auto lg:mx-0 left-0 relative z-10 w-full sm:h-[180px] lg:w-auto lg:h-[200px] aspect-16/10',
+            'group relative left-0 z-10 mx-auto flex aspect-16/10 w-full justify-between sm:h-[180px] lg:mx-0 lg:h-[200px] lg:w-auto lg:justify-start',
             nth % 2 === 0 ? 'flex-row' : 'flex-row-reverse',
           )}
           aria-label={title}
         >
-          <div className="hidden sm:flex items-center justify-center h-full w-full">
+          <div className="hidden h-full w-full items-center justify-center sm:flex">
             {nth % 2 === 0 ? (
               <img
                 src="/assets/images/floral-pink-blue.png"
-                className="block lg:hidden size-[20cqw] rotate-[18deg] group-hover:rotate-[-25deg] transition-transform"
+                className="block size-[20cqw] rotate-[18deg] transition-transform group-hover:rotate-[-25deg] lg:hidden"
                 draggable="false"
                 loading="lazy"
                 alt=""
@@ -241,7 +196,7 @@ export function ProjectCard({
             ) : (
               <img
                 src="/assets/images/floral-yellow-blue.png"
-                className="block lg:hidden size-[20cqw] rotate-[-18deg] group-hover:rotate-[25deg] transition-transform"
+                className="block size-[20cqw] rotate-[-18deg] transition-transform group-hover:rotate-[25deg] lg:hidden"
                 draggable="false"
                 loading="lazy"
                 alt=""
@@ -252,12 +207,12 @@ export function ProjectCard({
           <div className="relative aspect-16/10 h-full w-auto">
             <img
               src={Thumbnail}
-              className="z-10 block relative aspect-16/10 h-full w-auto object-center object-cover bg-xghostwhite border border-xbg rounded-cxl sm:group-hover:shadow-lg sm:group-hover/card:scale-102 transition-transform duration-400"
+              className="bg-xghostwhite border-xbg rounded-cxl relative z-10 block aspect-16/10 h-full w-auto border object-cover object-center transition-transform duration-400 sm:group-hover:shadow-lg sm:group-hover/card:scale-102"
               loading="lazy"
               alt={title}
             />
-            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xbg rounded-cxl rotate-6 sm:group-hover/card:-rotate-12 sm:group-hover/card:bg-xyellow transition-all duration-400" />
-            <div className="absolute inset-0 aspect-16/10 w-auto h-full bg-xpink rounded-cxl -rotate-6 sm:group-hover/card:rotate-6 transition-transform duration-400" />
+            <div className="bg-xbg rounded-cxl sm:group-hover/card:bg-xyellow absolute inset-0 aspect-16/10 h-full w-auto rotate-6 transition-all duration-400 sm:group-hover/card:-rotate-12" />
+            <div className="bg-xpink rounded-cxl absolute inset-0 aspect-16/10 h-full w-auto -rotate-6 transition-transform duration-400 sm:group-hover/card:rotate-6" />
           </div>
         </Link>
       )}

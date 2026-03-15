@@ -239,7 +239,7 @@ pre.shiki > code {
   top: -1.6em;
   height: 1.4em;
   left: -1px;
-  content: " ";
+  content: ' ';
 }
 
 .twoslash-completion-list li {

@@ -1,6 +1,8 @@
-import { cn } from '@/contents/common/cn';
-import { useFollowMouse } from '../../common/use-follow-mouse';
 import type { ThumbnailProps } from '@/types/post';
+
+import { cn } from '@/contents/common/cn';
+
+import { useFollowMouse } from '../../common/use-follow-mouse';
 
 export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   const ref = useFollowMouse();
@@ -8,10 +10,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   return (
     <div
       ref={ref}
-      className={cn(
-        '@container w-full h-full flex flex-col items-center justify-center bg-white',
-        className,
-      )}
+      className={cn('@container flex h-full w-full flex-col items-center justify-center bg-white', className)}
       style={{
         backgroundPosition: `calc(2 * var(--mouse-x,0)) calc(2 * var(--mouse-y,0))`,
         backgroundSize: '35%',
@@ -19,9 +18,9 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
       }}
       {...rest}
     >
-      <div className="ml-[5%] mt-[2%] font-bold font-mono text-[#4a3003] drop-shadow-lg text-[6cqw]">
+      <div className="mt-[2%] ml-[5%] font-mono text-[6cqw] font-bold text-[#4a3003] drop-shadow-lg">
         <pre>
-          <code className="[&_.line]:inline-block flex flex-col">
+          <code className="flex flex-col [&_.line]:inline-block">
             <span className="line">
               <span style={{ color: '#666666' }}>&lt;</span>
               <span style={{ color: '#4D9375' }}>meta</span>
@@ -37,13 +36,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
               <span style={{ color: '#BD976A' }}> content</span>
               <span style={{ color: '#666666' }}>=</span>
               <span style={{ color: '#C98A7D77' }}>"</span>
-              <span
-                className={
-                  isHover
-                    ? 'bg-amber-950 rounded-lg transition-all'
-                    : 'rounded-lg transition-all'
-                }
-              >
+              <span className={isHover ? 'rounded-lg bg-amber-950 transition-all' : 'rounded-lg transition-all'}>
                 <span style={{ color: '#666666' }}>&amp;</span>
                 <span style={{ color: '#C99076' }}>F&amp;amp;$%!@!</span>
                 <span style={{ color: '#666666' }}>;</span>
