@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "plan": "alchemy plan --stage prod --detailed",
-    "deploy": "alchemy deploy --stage prod"
+    "deploy": "alchemy deploy --stage prod",
+    "secrets:push": "gh secret set --env Production --env-file .env.production"
   },
   "dependencies": {
     "@effect/platform-node": "4.0.0",

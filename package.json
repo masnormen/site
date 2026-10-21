@@ -15,7 +15,8 @@
     "quality:fix": "pnpm run --stream '/^(lint:fix|format:fix)$/'",
     "typecheck": "dotenvx run --convention=nextjs -- tsc",
     "infra:plan": "pnpm -F infra run plan",
-    "infra:deploy": "pnpm -F infra run deploy"
+    "infra:deploy": "pnpm -F infra run deploy",
+    "infra:secrets:push": "pnpm -F infra run secrets:push"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^2.38.0",
