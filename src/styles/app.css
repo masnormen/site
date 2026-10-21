@@ -385,7 +385,7 @@
   --color-xghostwhite: #f8f8ff;
 
   --color-xstroke: #0b1215;
-  --color-xghoststroke: #848484;
+  --color-xghoststroke: #696969;
 
   /* Outer container width */
   --container-oxl: 968px;
@@ -453,7 +453,7 @@
     --color-xghostwhite: color(display-p3 0.972549 0.972549 1 / 1);
 
     --color-xstroke: color(display-p3 0.043137 0.070588 0.082353 / 1);
-    --color-xghoststroke: color(display-p3 0.517647 0.517647 0.517647 / 1);
+    --color-xghoststroke: color(display-p3 0.411765 0.411765 0.411765 / 1);
   }
 }
 
