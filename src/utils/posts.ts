@@ -1,25 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import _jsx_runtime from 'react/jsx-runtime';
-
 import type { Heading } from '@/types/post';
 
 export const HEADING_REGEX = /^#+\s+/;
-
-/**
- * Based on mdx-bundler's `getMDXExport` function by Kent C. Dodds
- * @see https://github.com/kentcdodds/mdx-bundler
- */
-export function getMDXExport(code: string) {
-  const scope = {
-    React,
-    ReactDOM,
-    _jsx_runtime,
-  };
-  // oxlint-disable-next-line typescript/no-implied-eval
-  const fn = new Function(...Object.keys(scope), code);
-  return fn(...Object.values(scope));
-}
 
 export const normalizeTitle = (title: string): string => {
   return title

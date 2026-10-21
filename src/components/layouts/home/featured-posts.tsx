@@ -1,17 +1,17 @@
 import { getRouteApi } from '@tanstack/react-router';
 import dayjs from 'dayjs';
+import { use } from 'react';
 
 import { BigArrow, SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { BlogCard } from '@/components/posts/blog-card';
-import { getMDXExport } from '@/utils/posts';
+import { loadThumbnails } from '@/utils/post-modules';
 
 const indexRoute = getRouteApi('/');
 
 export function FeaturedPosts() {
   const { posts } = indexRoute.useLoaderData();
-
-  const postMdxThumbnails = posts.map((post) => getMDXExport(post.code).Thumbnail ?? null);
+  const thumbnails = use(loadThumbnails('blog'));
 
   return (
     <Section
@@ -49,20 +49,17 @@ export function FeaturedPosts() {
       // }
     >
       <div data-testid="bloglist" className="relative mx-auto grid w-full max-w-4xl grid-cols-1 gap-2 sm:gap-8">
-        {posts.map((post, idx) => {
-          const Thumbnail = postMdxThumbnails[idx];
-          return (
-            <BlogCard
-              key={post.slug}
-              slug={post.slug}
-              title={post.title}
-              description={post.description}
-              date={dayjs(post.createdAt).format('MMM DD, YYYY')}
-              tags={post.tags}
-              Thumbnail={Thumbnail}
-            />
-          );
-        })}
+        {posts.map((post) => (
+          <BlogCard
+            key={post.slug}
+            slug={post.slug}
+            title={post.title}
+            description={post.description}
+            date={dayjs(post.createdAt).format('MMM DD, YYYY')}
+            tags={post.tags}
+            Thumbnail={thumbnails[post.slug] ?? null}
+          />
+        ))}
 
         <aside>
           <SlimArrow className="flip absolute top-[-75px] right-[155px] hidden rotate-[60deg] text-xarrow select-none xl:block" />

@@ -3,13 +3,14 @@ import { useHover } from '@uidotdev/usehooks';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import { useAtom } from 'jotai';
+import { use } from 'react';
 
 import { readingTimeMsAtom } from '@/atoms/index';
 import { SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { Chip } from '@/components/posts/chip';
 import { ThumbnailDisplay } from '@/components/posts/thumbnail-display';
-import { getMDXExport } from '@/utils/posts';
+import { loadPost } from '@/utils/post-modules';
 
 dayjs.extend(duration);
 
@@ -19,7 +20,8 @@ export function PostHeader() {
   const [ref, isHover] = useHover<HTMLDivElement>();
 
   const content = postRoute.useLoaderData();
-  const Thumbnail = getMDXExport(content.code).Thumbnail ?? null;
+  const { contentType, slug } = postRoute.useParams();
+  const Thumbnail = use(loadPost(contentType, slug))?.Thumbnail ?? null;
 
   const [readingTimeMs] = useAtom(readingTimeMsAtom);
 

@@ -9,6 +9,7 @@ import { PostHeader } from '@/components/layouts/post/header';
 import { Section } from '@/components/layouts/section';
 import { useInViewport } from '@/hooks/use-in-viewport';
 import { getContentServerFn } from '@/services/posts';
+import { loadPost } from '@/utils/post-modules';
 
 import gfmCss from '../styles/gfm.css?inline';
 import shikiCss from '../styles/shiki.css?inline';
@@ -23,7 +24,10 @@ export const Route = createFileRoute('/$contentType/$slug')({
     },
   },
   loader: async ({ params }) => {
-    const content = await getContentServerFn({ data: { contentType: params.contentType, slug: params.slug } });
+    const [content] = await Promise.all([
+      getContentServerFn({ data: { contentType: params.contentType, slug: params.slug } }),
+      loadPost(params.contentType, params.slug),
+    ]);
     if (!content) throw notFound();
     return content;
   },

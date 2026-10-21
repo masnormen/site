@@ -1,12 +1,12 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { useSetAtom } from 'jotai';
-import { useEffect, useRef } from 'react';
+import { use, useEffect, useRef } from 'react';
 
 import { readingTimeMsAtom } from '@/atoms/index';
 import { Section } from '@/components/layouts/section';
 import { MDXSubstitution } from '@/components/posts/mdx-substitution';
 import { TableOfContents } from '@/components/posts/toc';
-import { getMDXExport } from '@/utils/posts';
+import { loadPost } from '@/utils/post-modules';
 
 const postRoute = getRouteApi('/$contentType/$slug');
 
@@ -32,8 +32,9 @@ const useCalculateReadingTime = () => {
 
 export function PostBody() {
   const content = postRoute.useLoaderData();
+  const { contentType, slug } = postRoute.useParams();
 
-  const PostContent = getMDXExport(content.code).default;
+  const PostContent = use(loadPost(contentType, slug))?.default;
 
   const postContentRef = useCalculateReadingTime();
 
@@ -43,7 +44,7 @@ export function PostBody() {
         <article className="relative mx-auto flex h-full w-full max-w-4xl flex-col gap-8 pb-8 sm:py-8 lg:py-16">
           {/* Post body */}
           <div ref={postContentRef} className="markdown-body relative mx-auto flex w-full flex-col items-start">
-            <PostContent components={MDXSubstitution} />
+            {PostContent && <PostContent components={MDXSubstitution} />}
           </div>
         </article>
 

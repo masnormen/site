@@ -7,12 +7,15 @@ import { FeaturedPosts } from '@/components/layouts/home/featured-posts';
 import { FeaturedProjects } from '@/components/layouts/home/featured-projects';
 import { Hero } from '@/components/layouts/home/hero';
 import { getContentListServerFn } from '@/services/posts';
+import { loadThumbnails } from '@/utils/post-modules';
 
 export const Route = createFileRoute('/')({
   loader: async () => {
     const [posts, projects] = await Promise.all([
       getContentListServerFn({ data: { contentType: 'blog' } }),
       getContentListServerFn({ data: { contentType: 'projects' } }),
+      loadThumbnails('blog'),
+      loadThumbnails('projects'),
     ]);
     return { posts, projects };
   },

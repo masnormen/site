@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
+export type ContentType = 'blog' | 'projects';
+
 export type Post = PostFrontMatter & {
   slug: string;
   toc: Heading[];
-  code: string;
 };
 
 export type Heading = {

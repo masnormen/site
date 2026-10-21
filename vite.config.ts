@@ -4,7 +4,8 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { nitro } from 'nitro/vite';
 import { defineConfig } from 'vite';
-import viteRestart from 'vite-plugin-restart';
+
+import { mdx } from './plugins/vite-plugin-mdx.ts';
 
 export default defineConfig({
   define: {
@@ -15,14 +16,5 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
-  plugins: [
-    viteRestart({
-      restart: ['./dist/**/*'],
-    }),
-    nitro(),
-    tanstackStart(),
-    viteReact(),
-    babel({ presets: [reactCompilerPreset()] }),
-    tailwindcss(),
-  ],
+  plugins: [mdx(), nitro(), tanstackStart(), viteReact(), babel({ presets: [reactCompilerPreset()] }), tailwindcss()],
 });

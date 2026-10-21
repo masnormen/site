@@ -56,7 +56,6 @@ ENV VITE_BUILD_SHA=${VITE_BUILD_SHA}
 
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/.output ./.output
 
 # Expose port and run the server

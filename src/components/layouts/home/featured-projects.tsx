@@ -1,16 +1,16 @@
 import { getRouteApi } from '@tanstack/react-router';
+import { use } from 'react';
 
 import { SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { ProjectCard } from '@/components/posts/project-card';
-import { getMDXExport } from '@/utils/posts';
+import { loadThumbnails } from '@/utils/post-modules';
 
 const indexRoute = getRouteApi('/');
 
 export function FeaturedProjects() {
   const { projects } = indexRoute.useLoaderData();
-
-  const projectMdxThumbnails = projects.map((project) => getMDXExport(project.code).Thumbnail ?? null);
+  const thumbnails = use(loadThumbnails('projects'));
 
   return (
     <Section
@@ -40,21 +40,18 @@ export function FeaturedProjects() {
       // }
     >
       <div data-testid="projectlist" className="relative mx-auto grid w-full max-w-4xl grid-cols-1 gap-12 sm:gap-8">
-        {projects.map((project, idx) => {
-          const Thumbnail = projectMdxThumbnails[idx];
-          return (
-            <ProjectCard
-              key={project.slug}
-              slug={project.slug}
-              title={project.title}
-              description={project.description}
-              tags={project.tags}
-              Thumbnail={Thumbnail}
-              links={project.links}
-              nth={idx}
-            />
-          );
-        })}
+        {projects.map((project, idx) => (
+          <ProjectCard
+            key={project.slug}
+            slug={project.slug}
+            title={project.title}
+            description={project.description}
+            tags={project.tags}
+            Thumbnail={thumbnails[project.slug] ?? null}
+            links={project.links}
+            nth={idx}
+          />
+        ))}
 
         <aside>
           <SlimArrow className="flip absolute top-[-75px] right-[155px] hidden rotate-[60deg] text-xarrow select-none xl:block" />

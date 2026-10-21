@@ -1,57 +1,26 @@
 import dayjs from 'dayjs';
-import fs from 'node:fs';
-import path from 'node:path';
-import pMemoize from 'p-memoize';
-import glob from 'tiny-glob';
+import grayMatter from 'gray-matter';
 
-import type { Post } from '@/types/post';
+import { type ContentType, type Post, PostFrontMatter } from '@/types/post';
+import { getHeadings } from '@/utils/posts';
 
-const _fetchPost = async (contentType: 'blog' | 'projects', slug: string): Promise<Post | null> => {
-  try {
-    const { default: mdxCode } = await import(`../../dist/${contentType}/${slug}/index.js?raw`);
-    const { default: metadata } = await import(`../../dist/${contentType}/${slug}/index.json`);
+const rawPosts = import.meta.glob<string>('/src/contents/*/*/index.mdx', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
 
-    return {
-      ...(metadata as Omit<Post, 'code' | 'slug'>),
-      slug,
-      code: mdxCode as string,
-    };
-  } catch (error) {
-    console.error(`Error fetching post: ${error}`);
-    return null;
-  }
-};
+const posts = Object.entries(rawPosts)
+  .map(([modulePath, raw]) => {
+    const [contentType, slug] = modulePath.split('/').slice(-3, -1) as [ContentType, string];
+    const { data, content } = grayMatter(raw);
+    const post: Post = { ...PostFrontMatter.parse(data), slug, toc: getHeadings(content) };
+    return { contentType, post };
+  })
+  .toSorted((a, b) => dayjs(b.post.createdAt).unix() - dayjs(a.post.createdAt).unix());
 
-export const fetchPost = import.meta.env.DEV
-  ? _fetchPost
-  : pMemoize(_fetchPost, {
-      cacheKey: ([contentType, slug]) => `${contentType}/${slug}`,
-    });
+export const fetchPost = (contentType: ContentType, slug: string) =>
+  posts.find((entry) => entry.contentType === contentType && entry.post.slug === slug)?.post ?? null;
 
-const _fetchPostList = async (contentType: 'blog' | 'projects') => {
-  const modulePaths =
-    // Glob import can't use dynamic segments, so we need to use two separate import
-    contentType === 'blog'
-      ? await glob(path.resolve(process.cwd(), `dist/blog/**/index.js`))
-      : await glob(path.resolve(process.cwd(), `dist/projects/**/index.js`));
-
-  const postList = await Promise.all(
-    modulePaths.map(async (modulePath) => {
-      const slug = path.parse(path.dirname(modulePath)).base;
-      const mdxCode = fs.readFileSync(modulePath, 'utf-8');
-      const metadata = await import(`../../dist/${contentType}/${slug}/index.json`);
-
-      return {
-        ...(metadata as Omit<Post, 'code' | 'slug'>),
-        slug,
-        code: mdxCode,
-      };
-    }),
-  );
-
-  return postList
-    .filter((post): post is Post => !!post)
-    .toSorted((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix());
-};
-
-export const fetchPostList = import.meta.env.DEV ? _fetchPostList : pMemoize(_fetchPostList);
+export const fetchPostList = (contentType: ContentType) =>
+  posts.filter((entry) => entry.contentType === contentType).map((entry) => entry.post);
