@@ -155,7 +155,9 @@ function RootComponent() {
       <CatchBoundary getResetKey={() => 'reset'}>
         <Navbar />
 
-        <Outlet />
+        <main>
+          <Outlet />
+        </main>
 
         {/* Top/Bottom fade */}
         <div className="pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t from-xblank/0 to-xblank" />

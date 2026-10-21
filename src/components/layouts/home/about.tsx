@@ -47,7 +47,7 @@ export function About() {
           Outside of working as a Software Engineer, I'm currently pursuing a Master's in Cybersecurity at Monash
           University. (<b>fun fact:</b> all this was made possible by a scholarship from a literal 😼 cat{' '}
           <Tooltip>
-            <TooltipTrigger className="cursor-pointer">
+            <TooltipTrigger asChild>
               <a
                 className="link font-semibold"
                 href="https://www.instagram.com/ecommurz/"

@@ -58,8 +58,11 @@ const TechStack = ({ tag }: { tag: string }) => {
 
   return (
     <Tooltip>
-      <TooltipTrigger className="cursor-pointer" aria-label={tag}>
-        <TechStackIcon tag={tag} />
+      <TooltipTrigger asChild>
+        <span>
+          <TechStackIcon tag={tag} />
+          <span className="sr-only">{tooltipMap[tag as keyof typeof tooltipMap] ?? tag}</span>
+        </span>
       </TooltipTrigger>
       <TooltipContent>
         <p>{tooltipMap[tag as keyof typeof tooltipMap] || '🔥'}</p>
