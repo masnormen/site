@@ -1,9 +1,18 @@
 name: Deploy
 
+# Push to main ships app-only changes automatically. Plans with infra changes are
+# never applied automatically: run this workflow by hand with "apply infra"
+# checked, or run `pnpm infra:deploy` locally. App vs infra: infra/ci/classify.sh.
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      apply_infra:
+        description: Also apply infra changes (review the plan in the last run first)
+        type: boolean
+        default: false
 
 env:
   COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
@@ -36,6 +45,45 @@ jobs:
         run: corepack enable
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
+      - name: Test plan classifier
+        working-directory: infra
+        run: ci/classify.test.sh
+      - name: Alchemy Plan
+        id: plan
+        working-directory: infra
+        # The detailed plan prints account and zone ids; keep it out of the job log.
+        run: |
+          pnpm exec alchemy plan --stage prod --detailed --no-input > plan.log 2>&1 || { tail -5 plan.log; exit 1; }
+          sed -E 's/^\[[0-9:.]+\] [A-Z]+ \(#[0-9]+\): //' plan.log | grep -E '^(Plan:|\[[^ ]+\] [a-z]+$)'
+          kind=$(ci/classify.sh plan.log)
+          echo "kind=$kind" >> "$GITHUB_OUTPUT"
+          echo "Plan is: $kind"
+          {
+            echo "### Production plan: $kind"
+            echo
+            echo "<details><summary>Detailed plan</summary>"
+            echo
+            echo '```diff'
+            sed -E 's/^\[[0-9:.]+\] [A-Z]+ \(#[0-9]+\): //' plan.log \
+              | sed -E 's/^([[:space:]+-]*(accountId|zoneId):).*/\1 <hidden>/' \
+              | sed -E \
+                -e 's/^(\[[^ ]+\] update)$/@@ \1 @@/' \
+                -e 's/^(\[[^ ]+\] create)$/+\1/' \
+                -e 's/^(\[[^ ]+\] (delete|replace))$/-\1/' \
+                -e 's/^  ([+-])/\1  /' \
+                -e '/^(@@|[+-])/!s/^/ /'
+            echo '```'
+            echo "</details>"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Stop on unapplied infra changes
+        if: steps.plan.outputs.kind == 'infra' && !inputs.apply_infra
+        run: |
+          msg="Plan has infra changes, so nothing was deployed (app changes included). Review the detailed plan in this run's summary, then deploy manually: Actions > Deploy > Run workflow with 'apply infra' checked, or pnpm infra:deploy."
+          echo "### Production not deployed" >> "$GITHUB_STEP_SUMMARY"
+          echo "$msg" >> "$GITHUB_STEP_SUMMARY"
+          echo "::error::$msg"
+          exit 1
       - name: Deploy with Alchemy
+        if: steps.plan.outputs.kind == 'app' || (steps.plan.outputs.kind == 'infra' && inputs.apply_infra)
         working-directory: infra
         run: pnpm exec alchemy deploy --stage prod --yes --no-input
