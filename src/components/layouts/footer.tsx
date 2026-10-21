@@ -107,7 +107,7 @@ export function Footer() {
         </nav>
 
         <div className="mt-16 w-full text-center font-title text-sm text-xghoststroke">
-          All rights reserved © 2020-{new Date().getFullYear()}
+          All rights reserved © 2020-{dayjs(__BUILD_TIME__).year()}
         </div>
 
         <Link

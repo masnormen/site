@@ -1,8 +1,6 @@
 import { useHover } from '@uidotdev/usehooks';
 import { useEffect, useRef } from 'react';
 
-import { mergeRefs } from './merge-refs';
-
 export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
   onlyThumbnailHover = false,
 }: {
@@ -11,7 +9,10 @@ export function useFollowMouse<TRef extends HTMLElement = HTMLDivElement>({
   const refObj = useRef<TRef>(null);
   const [refCb, isHover] = useHover<TRef>();
 
-  const mergedRef = mergeRefs(refObj, refCb);
+  const mergedRef = (node: TRef | null) => {
+    refObj.current = node;
+    refCb(node);
+  };
 
   useEffect(() => {
     if (typeof document === 'undefined' || typeof window === 'undefined' || (onlyThumbnailHover && !isHover)) {

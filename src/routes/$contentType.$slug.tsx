@@ -1,6 +1,6 @@
 import Comments from '@giscus/react';
 import { ClientOnly, createFileRoute, notFound } from '@tanstack/react-router';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import { Footer } from '@/components/layouts/footer';
 import { Contact } from '@/components/layouts/home/contact';
@@ -67,13 +67,7 @@ export const Route = createFileRoute('/$contentType/$slug')({
 
 const useLazyLoadComment = () => {
   const commentRef = useRef<HTMLDivElement>(null);
-  const isInViewport = useInViewport(commentRef, '1000px');
-  const [hasScrolled, setHasScrolled] = useState(false);
-
-  useEffect(() => {
-    if (!hasScrolled) setHasScrolled(isInViewport);
-    // oxlint-disable-next-line eslint-plugin-react-hooks/exhaustive-deps
-  }, [isInViewport]);
+  const hasScrolled = useInViewport(commentRef, '1000px');
 
   return { commentRef, hasScrolled };
 };

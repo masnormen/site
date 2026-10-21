@@ -1,57 +1,13 @@
-import { useLayoutEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
-const IS_SERVER = typeof window === 'undefined';
-
-type UseMediaQueryOptions = {
-  defaultValue?: boolean;
-  initializeWithValue?: boolean;
-};
-
-export function useMediaQuery(
-  query: string,
-  { defaultValue = false, initializeWithValue = true }: UseMediaQueryOptions = {},
-): boolean {
-  const getMatches = (mediaQuery: string): boolean => {
-    if (IS_SERVER) {
-      return defaultValue;
-    }
-    return window.matchMedia(mediaQuery).matches;
-  };
-
-  const [matches, setMatches] = useState<boolean>(() => {
-    if (initializeWithValue) {
-      return getMatches(query);
-    }
-    return defaultValue;
-  });
-
-  // Handles the change event of the media query.
-  function handleChange() {
-    setMatches(getMatches(query));
-  }
-
-  useLayoutEffect(() => {
-    const matchMedia = window.matchMedia(query);
-
-    // Triggered at the first client-side load and if query changes
-    handleChange();
-
-    // Use deprecated `addListener` and `removeListener` to support Safari < 14 (#135)
-    if (matchMedia.addListener) {
-      matchMedia.addListener(handleChange);
-    } else {
-      matchMedia.addEventListener('change', handleChange);
-    }
-
-    return () => {
-      if (matchMedia.removeListener) {
-        matchMedia.removeListener(handleChange);
-      } else {
-        matchMedia.removeEventListener('change', handleChange);
-      }
-    };
-    // oxlint-disable-next-line eslint-plugin-react-hooks/exhaustive-deps
-  }, [query]);
-
-  return matches;
+export function useMediaQuery(query: string, { defaultValue = false }: { defaultValue?: boolean } = {}): boolean {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mediaQueryList = window.matchMedia(query);
+      mediaQueryList.addEventListener('change', onChange);
+      return () => mediaQueryList.removeEventListener('change', onChange);
+    },
+    () => window.matchMedia(query).matches,
+    () => defaultValue,
+  );
 }

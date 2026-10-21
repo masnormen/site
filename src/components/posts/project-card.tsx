@@ -17,29 +17,29 @@ const ProjectButton = ({ href, children, ...rest }: React.AnchorHTMLAttributes<H
   </a>
 );
 
-const TechStack = ({ tag }: { tag: string }) => {
-  const TechStackIcon = () => {
-    if (tag === 'js') {
-      return <Icon key={tag} icon="proicons:javascript" className="text-xl text-[#d3be1f]" />;
-    }
-    if (tag === 'ts') {
-      return <Icon key={tag} icon="proicons:typescript" className="text-xl text-[#3178c6]" />;
-    }
-    if (tag === 'react') {
-      return <Icon key={tag} icon="mdi:react" className="text-xl text-[#00a9cf]" />;
-    }
-    if (tag === 'lib') {
-      return <Icon key={tag} icon="material-icon-theme:npm" className="text-xl text-xred" />;
-    }
-    if (tag === 'app') {
-      return <Icon key={tag} icon="tdesign:app" className="text-lg text-xred" />;
-    }
-    if (tag === 'node') {
-      return <Icon key={tag} icon="logos:nodejs-icon" className="text-xgreen text-lg" />;
-    }
-    return null;
-  };
+const TechStackIcon = ({ tag }: { tag: string }) => {
+  if (tag === 'js') {
+    return <Icon key={tag} icon="proicons:javascript" className="text-xl text-[#d3be1f]" />;
+  }
+  if (tag === 'ts') {
+    return <Icon key={tag} icon="proicons:typescript" className="text-xl text-[#3178c6]" />;
+  }
+  if (tag === 'react') {
+    return <Icon key={tag} icon="mdi:react" className="text-xl text-[#00a9cf]" />;
+  }
+  if (tag === 'lib') {
+    return <Icon key={tag} icon="material-icon-theme:npm" className="text-xl text-xred" />;
+  }
+  if (tag === 'app') {
+    return <Icon key={tag} icon="tdesign:app" className="text-lg text-xred" />;
+  }
+  if (tag === 'node') {
+    return <Icon key={tag} icon="logos:nodejs-icon" className="text-xgreen text-lg" />;
+  }
+  return null;
+};
 
+const TechStack = ({ tag }: { tag: string }) => {
   const tooltipMap = {
     js: 'JavaScript',
     ts: 'TypeScript',
@@ -52,7 +52,7 @@ const TechStack = ({ tag }: { tag: string }) => {
   return (
     <Tooltip>
       <TooltipTrigger className="cursor-pointer" aria-label={tag}>
-        <TechStackIcon />
+        <TechStackIcon tag={tag} />
       </TooltipTrigger>
       <TooltipContent>
         <p>{tooltipMap[tag as keyof typeof tooltipMap] || '🔥'}</p>

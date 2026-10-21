@@ -1,6 +1,8 @@
-ignoredBuiltDependencies:
-  - '@parcel/watcher'
+minimumReleaseAge: 4320
 
-onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
-  - esbuild
+allowBuilds:
+  esbuild: false
+
+peerDependencyRules:
+  allowedVersions:
+    vite-plugin-restart>vite: '8'

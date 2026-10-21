@@ -20,7 +20,6 @@
     "pedantic": "off"
   },
   "rules": {
-    "eslint/no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
     "eslint/no-param-reassign": "error",
     "eslint/no-shadow": "error",
     "eslint/sort-keys": "off",
