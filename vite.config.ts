@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { nitro } from 'nitro/vite';
+import icons from 'unplugin-icons/vite';
 import { defineConfig } from 'vite';
 
 import { mdx } from './plugins/vite-plugin-mdx.ts';
@@ -16,5 +17,13 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
-  plugins: [mdx(), nitro(), tanstackStart(), viteReact(), babel({ presets: [reactCompilerPreset()] }), tailwindcss()],
+  plugins: [
+    mdx(),
+    nitro(),
+    tanstackStart(),
+    viteReact(),
+    babel({ presets: [reactCompilerPreset()] }),
+    tailwindcss(),
+    icons({ compiler: 'jsx', jsx: 'react', scale: 1 }),
+  ],
 });

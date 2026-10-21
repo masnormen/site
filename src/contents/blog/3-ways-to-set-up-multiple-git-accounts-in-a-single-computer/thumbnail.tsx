@@ -3,7 +3,8 @@ import type { ThumbnailProps } from '@/types/post';
 import { cn } from '@/contents/common/cn';
 
 import { useFollowMouse } from '../../common/use-follow-mouse';
-import { GitLogo, Popcat } from './assets/image-datauris';
+import GitLogo from './assets/git-logo.png';
+import Popcat from './assets/popcat.gif';
 
 export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   const ref = useFollowMouse();

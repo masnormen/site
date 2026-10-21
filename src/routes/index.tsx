@@ -19,6 +19,9 @@ export const Route = createFileRoute('/')({
     ]);
     return { posts, projects };
   },
+  head: () => ({
+    links: [{ rel: 'canonical', href: 'https://nourman.com/' }],
+  }),
   component: Home,
 });
 

@@ -1,4 +1,8 @@
-import { Icon } from '@iconify/react';
+import MdiGithub from '~icons/mdi/github';
+import MdiLinkedin from '~icons/mdi/linkedin';
+import MdiVideo from '~icons/mdi/video';
+import MingcuteCalendar2Fill from '~icons/mingcute/calendar-2-fill';
+import NotoEyes from '~icons/noto/eyes';
 
 import { CircleComplete, CircleIncomplete } from '@/components/assets/shapes/circles';
 import { SpringyArrow, WavyGrass } from '@/components/assets/shapes/lines';
@@ -17,7 +21,7 @@ export function Contact() {
       }
       icon={
         <img
-          src="/assets/images/floral-pink-blue.png"
+          src="/assets/images/floral-pink-blue.webp"
           className="h-full w-full rotate-[45deg] transition-transform hover:scale-120 hover:rotate-[-20deg]"
           draggable="false"
           loading="lazy"
@@ -56,14 +60,8 @@ export function Contact() {
 
         <ContactButton href="https://cal.com/nourman">
           <div className="relative hidden size-16 sm:block">
-            <Icon
-              icon="mingcute:calendar-2-fill"
-              className="absolute top-0 left-0 translate-x-[35%] translate-y-[35%] text-4xl text-xpink transition-colors duration-400 group-hover:text-xred"
-            />
-            <Icon
-              icon="mdi:video"
-              className="absolute top-0 left-0 translate-x-[170%] translate-y-[170%] text-xl text-xblue transition-colors duration-400 group-hover:text-xyellow"
-            />
+            <MingcuteCalendar2Fill className="absolute top-0 left-0 translate-x-[35%] translate-y-[35%] text-4xl text-xpink transition-colors duration-400 group-hover:text-xred" />
+            <MdiVideo className="absolute top-0 left-0 translate-x-[170%] translate-y-[170%] text-xl text-xblue transition-colors duration-400 group-hover:text-xyellow" />
             <CircleIncomplete className="h-full w-full text-xstroke transition-all duration-400 group-hover:rotate-180 group-hover:text-xblue" />
           </div>
           Book a Call ↗
@@ -71,10 +69,7 @@ export function Contact() {
 
         <ContactButton href="https://www.linkedin.com/in/nourmanhajar">
           <div className="relative hidden size-18 sm:block">
-            <Icon
-              icon="mdi:linkedin"
-              className="absolute top-0 left-0 translate-x-[40%] translate-y-[35%] text-[39px] text-xblue transition-colors duration-400 group-hover:text-xstroke"
-            />
+            <MdiLinkedin className="absolute top-0 left-0 translate-x-[40%] translate-y-[35%] text-[39px] text-xblue transition-colors duration-400 group-hover:text-xstroke" />
             <CircleComplete className="h-full w-full -translate-y-1 rotate-180 text-xyellow transition-all duration-400 group-hover:rotate-0 group-hover:text-xpink" />
           </div>
           LinkedIn ↗
@@ -82,10 +77,7 @@ export function Contact() {
 
         <ContactButton href="https://github.com/masnormen">
           <div className="relative hidden size-18 sm:block">
-            <Icon
-              icon="mdi:github"
-              className="absolute top-0 left-0 translate-x-[40%] translate-y-[35%] text-[39px] text-xstroke transition-colors duration-400 group-hover:text-xblue"
-            />
+            <MdiGithub className="absolute top-0 left-0 translate-x-[40%] translate-y-[35%] text-[39px] text-xstroke transition-colors duration-400 group-hover:text-xblue" />
             <CircleComplete className="h-full w-full text-xblue transition-all duration-400 group-hover:-translate-y-1 group-hover:rotate-180 group-hover:text-xyellow" />
           </div>
           GitHub ↗
@@ -93,7 +85,7 @@ export function Contact() {
 
         <ContactButton href="/">
           <div className="relative hidden size-18 sm:block">
-            <Icon icon="noto:eyes" className="absolute top-0 left-0 translate-x-[47%] translate-y-[45%] text-4xl" />
+            <NotoEyes className="absolute top-0 left-0 translate-x-[47%] translate-y-[45%] text-4xl" />
             <CircleComplete className="h-full w-full text-xcyan transition-all duration-400 group-hover:-translate-y-1 group-hover:rotate-180 group-hover:text-xred" />
           </div>
           What's more?

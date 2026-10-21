@@ -22,7 +22,7 @@ export function FeaturedProjects() {
       }
       icon={
         <img
-          src="/assets/images/x-pink-blue.png"
+          src="/assets/images/x-pink-blue.webp"
           className="h-[70%] w-[70%] translate-x-[10%] translate-y-[20%] rotate-[25deg] transition-transform hover:scale-120 hover:rotate-[-40deg]"
           draggable="false"
           loading="lazy"

@@ -23,7 +23,7 @@ export function FeaturedPosts() {
       }
       icon={
         <img
-          src="/assets/images/floral-yellow-blue.png"
+          src="/assets/images/floral-yellow-blue.webp"
           className="h-full w-full rotate-[45deg] transition-transform hover:scale-120 hover:rotate-[-20deg]"
           draggable="false"
           loading="lazy"

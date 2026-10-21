@@ -2,7 +2,8 @@ import type { ThumbnailProps } from '@/types/post';
 
 import { cn } from '@/contents/common/cn';
 
-import { Gopher, TSCry } from './assets/image-datauris';
+import Gopher from './assets/gopher.png';
+import TSCry from './assets/ts-cry.png';
 
 export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   return (

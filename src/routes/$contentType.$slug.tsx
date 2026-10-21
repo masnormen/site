@@ -13,6 +13,7 @@ import { loadPost } from '@/utils/post-modules';
 
 import gfmCss from '../styles/gfm.css?inline';
 import shikiCss from '../styles/shiki.css?inline';
+
 export const Route = createFileRoute('/$contentType/$slug')({
   component: Post,
   params: {
@@ -60,11 +61,8 @@ export const Route = createFileRoute('/$contentType/$slug')({
       //   property: 'og:image',
       //   content: `https://nourman.com/opengraph/${params.contentType}/${params.slug}`,
       // },
-      {
-        rel: 'canonical',
-        href: `https://nourman.com/${params.contentType}/${params.slug}`,
-      },
     ],
+    links: [{ rel: 'canonical', href: `https://nourman.com/${params.contentType}/${params.slug}` }],
     styles: [{ children: gfmCss }, { children: shikiCss }],
   }),
 });

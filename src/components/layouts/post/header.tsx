@@ -38,10 +38,7 @@ export function PostHeader() {
       >
         <Link
           to="/$contentType/$slug"
-          params={{
-            contentType: 'blog',
-            slug: content.slug,
-          }}
+          params={{ contentType, slug }}
           className="w-full transition-transform duration-300 active:scale-98"
         >
           <article
@@ -72,7 +69,7 @@ export function PostHeader() {
 
         <div className="absolute top-0 left-0 size-12 -translate-x-1/2 -translate-y-1/2 select-none sm:size-16 md:size-22">
           <img
-            src="/assets/images/floral-yellow-blue.png"
+            src="/assets/images/floral-yellow-blue.webp"
             className="h-full w-full rotate-[12deg] transition-transform hover:scale-120 hover:rotate-[-20deg]"
             draggable="false"
             loading="lazy"
@@ -82,7 +79,7 @@ export function PostHeader() {
 
         <div className="absolute right-0 bottom-0 hidden size-12 translate-x-1/3 translate-y-1/3 select-none sm:block sm:size-16 md:size-18">
           <img
-            src="/assets/images/x-pink-blue.png"
+            src="/assets/images/x-pink-blue.webp"
             className="h-full w-full -rotate-[12deg] transition-transform hover:scale-120 hover:rotate-[20deg]"
             draggable="false"
             loading="lazy"
@@ -99,7 +96,7 @@ export function PostHeader() {
       >
         <p className="text-sm leading-[1] font-medium sm:text-base">
           <img
-            src="/assets/images/x-yellow-blue.png"
+            src="/assets/images/x-yellow-blue.webp"
             className="mr-4 hidden size-6 rotate-[20deg] transition-transform hover:scale-120 hover:rotate-[-20deg] md:inline-flex!"
             draggable="false"
             loading="lazy"

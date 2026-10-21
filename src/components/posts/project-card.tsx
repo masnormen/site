@@ -1,5 +1,12 @@
-import { Icon } from '@iconify/react';
 import { Link } from '@tanstack/react-router';
+import LogosNodejsIcon from '~icons/logos/nodejs-icon';
+import LucideGlobe from '~icons/lucide/globe';
+import MaterialIconThemeNpm from '~icons/material-icon-theme/npm';
+import MdiGithub from '~icons/mdi/github';
+import MdiReact from '~icons/mdi/react';
+import ProiconsJavascript from '~icons/proicons/javascript';
+import ProiconsTypescript from '~icons/proicons/typescript';
+import TdesignApp from '~icons/tdesign/app';
 
 import type { ThumbnailProps } from '@/types/post';
 
@@ -19,22 +26,22 @@ const ProjectButton = ({ href, children, ...rest }: React.AnchorHTMLAttributes<H
 
 const TechStackIcon = ({ tag }: { tag: string }) => {
   if (tag === 'js') {
-    return <Icon key={tag} icon="proicons:javascript" className="text-xl text-[#d3be1f]" />;
+    return <ProiconsJavascript key={tag} className="text-xl text-[#d3be1f]" />;
   }
   if (tag === 'ts') {
-    return <Icon key={tag} icon="proicons:typescript" className="text-xl text-[#3178c6]" />;
+    return <ProiconsTypescript key={tag} className="text-xl text-[#3178c6]" />;
   }
   if (tag === 'react') {
-    return <Icon key={tag} icon="mdi:react" className="text-xl text-[#00a9cf]" />;
+    return <MdiReact key={tag} className="text-xl text-[#00a9cf]" />;
   }
   if (tag === 'lib') {
-    return <Icon key={tag} icon="material-icon-theme:npm" className="text-xl text-xred" />;
+    return <MaterialIconThemeNpm key={tag} className="text-xl text-xred" />;
   }
   if (tag === 'app') {
-    return <Icon key={tag} icon="tdesign:app" className="text-lg text-xred" />;
+    return <TdesignApp key={tag} className="text-lg text-xred" />;
   }
   if (tag === 'node') {
-    return <Icon key={tag} icon="logos:nodejs-icon" className="text-xgreen text-lg" />;
+    return <LogosNodejsIcon key={tag} className="text-xgreen text-lg" />;
   }
   return null;
 };
@@ -140,28 +147,19 @@ export function ProjectCard({
                 <div className="relative hidden sm:block">
                   {kind === 'GitHub' && (
                     <>
-                      <Icon
-                        icon="mdi:github"
-                        className="absolute top-0 left-0 translate-x-[25%] translate-y-[35%] text-[22px] text-xstroke"
-                      />
+                      <MdiGithub className="absolute top-0 left-0 translate-x-[25%] translate-y-[35%] text-[22px] text-xstroke" />
                       <CircleComplete className="text-xblue transition-all duration-400 group-hover:-translate-y-0.5 group-hover:rotate-180 group-hover:text-xpink" />
                     </>
                   )}
                   {kind === 'npm' && (
                     <>
-                      <Icon
-                        icon="material-icon-theme:npm"
-                        className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px] text-xred"
-                      />
+                      <MaterialIconThemeNpm className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px] text-xred" />
                       <CircleIncomplete className="-rotate-180 text-xpink transition-all duration-400 group-hover:rotate-0 group-hover:text-xcyan" />
                     </>
                   )}
                   {kind === 'Visit' && (
                     <>
-                      <Icon
-                        icon="lucide:globe"
-                        className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px] text-xblue"
-                      />
+                      <LucideGlobe className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px] text-xblue" />
                       <CircleIncomplete className="text-xyellow transition-all duration-400 group-hover:rotate-180 group-hover:text-xred" />
                     </>
                   )}
@@ -189,7 +187,7 @@ export function ProjectCard({
           <div className="hidden h-full w-full items-center justify-center sm:flex">
             {nth % 2 === 0 ? (
               <img
-                src="/assets/images/floral-pink-blue.png"
+                src="/assets/images/floral-pink-blue.webp"
                 className="block size-[20cqw] rotate-[18deg] transition-transform group-hover:rotate-[-25deg] lg:hidden"
                 draggable="false"
                 loading="lazy"
@@ -197,7 +195,7 @@ export function ProjectCard({
               />
             ) : (
               <img
-                src="/assets/images/floral-yellow-blue.png"
+                src="/assets/images/floral-yellow-blue.webp"
                 className="block size-[20cqw] rotate-[-18deg] transition-transform group-hover:rotate-[25deg] lg:hidden"
                 draggable="false"
                 loading="lazy"

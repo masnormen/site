@@ -1,10 +1,7 @@
 import type { ReactNode } from 'react';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { CatchBoundary, createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
-import { Toaster } from 'sonner';
 
 import { SVGFilters } from '@/components/assets/svg-filters';
 import { CustomErrorComponent } from '@/components/layouts/error';
@@ -26,10 +23,6 @@ export const Route = createRootRoute({
       {
         name: 'robots',
         content: 'index,follow',
-      },
-      {
-        rel: 'canonical',
-        href: 'https://nourman.com/',
       },
       {
         title: 'Nourman Hajar • Software Engineer',
@@ -74,20 +67,11 @@ export const Route = createRootRoute({
         property: 'og:site_name',
         content: 'Nourman Hajar • Software Engineer',
       },
-      {
-        rel: 'canonical',
-        href: 'https://nourman.com/',
-      },
     ],
     links: [
       {
         rel: 'preconnect',
         href: 'https://fonts.gstatic.com',
-        crossOrigin: 'anonymous',
-      },
-      {
-        rel: 'preconnect',
-        href: 'https://api.iconify.design',
         crossOrigin: 'anonymous',
       },
       {
@@ -165,26 +149,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   notFoundComponent: NotFoundComponent,
 });
 
-const queryClient = new QueryClient();
-
 function RootComponent() {
   return (
     <RootDocument>
       <CatchBoundary getResetKey={() => 'reset'}>
-        <QueryClientProvider client={queryClient}>
-          <Navbar />
+        <Navbar />
 
-          <Outlet />
+        <Outlet />
 
-          {/* Top/Bottom fade */}
-          <div className="pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t from-xblank/0 to-xblank" />
-          <div className="pointer-events-none fixed bottom-0 z-50 h-20 w-screen bg-gradient-to-b from-xblank/0 to-xblank" />
+        {/* Top/Bottom fade */}
+        <div className="pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t from-xblank/0 to-xblank" />
+        <div className="pointer-events-none fixed bottom-0 z-50 h-20 w-screen bg-gradient-to-b from-xblank/0 to-xblank" />
 
-          {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
-          {import.meta.env.DEV && <TanStackRouterDevtools initialIsOpen={false} />}
-          <Toaster position="top-center" />
-          <SVGFilters />
-        </QueryClientProvider>
+        {import.meta.env.DEV && <TanStackRouterDevtools initialIsOpen={false} />}
+        <SVGFilters />
       </CatchBoundary>
     </RootDocument>
   );

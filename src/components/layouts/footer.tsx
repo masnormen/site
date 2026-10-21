@@ -1,4 +1,4 @@
-import { Link, type LinkComponent } from '@tanstack/react-router';
+import { ClientOnly, Link, type LinkComponent } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 
 const FOOTER_CONTENT = {
@@ -59,7 +59,7 @@ const FooterSection = ({
   <div className={className}>
     <div className="relative font-title text-2xl leading-[1.15] font-bold">
       <img
-        src="/assets/images/x-pink-blue.png"
+        src="/assets/images/x-pink-blue.webp"
         className="mr-3 inline-block size-6 rotate-[25deg] transition-transform hover:scale-120 hover:rotate-[-40deg]"
         draggable="false"
         loading="lazy"
@@ -101,7 +101,11 @@ export function Footer() {
               .
             </p>
             <p>
-              Have a nice <b>{todayString}</b>!
+              Have a nice{' '}
+              <b>
+                <ClientOnly fallback="day">{todayString}</ClientOnly>
+              </b>
+              !
             </p>
           </FooterSection>
         </nav>

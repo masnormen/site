@@ -1,5 +1,5 @@
-import { Icon } from '@iconify/react';
 import { Link, type LinkComponentProps } from '@tanstack/react-router';
+import MingcuteHome6Fill from '~icons/mingcute/home-6-fill';
 
 import { GitHubIcon } from '@/components/assets/github';
 import { LinkedInIcon } from '@/components/assets/linkedin';
@@ -58,7 +58,7 @@ export function Navbar() {
     <nav className="fixed bottom-15 left-1/2 z-9999 flex h-[42px] w-min -translate-x-1/2 flex-row items-stretch justify-center bg-transparent py-4 transition-all duration-500 sm:top-0 sm:bottom-[initial]">
       <NavSection className="bg-xstroke">
         <NavItem type="link" to="/" aria-label="Home">
-          <Icon icon="mingcute:home-6-fill" className="mt-[1px] text-base" />
+          <MingcuteHome6Fill className="mt-[1px] text-base" />
         </NavItem>
         <NavItem type="link" to="/" hash="blog">
           Blog

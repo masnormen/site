@@ -27,13 +27,13 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
       )}
 
       <img
-        src="/assets/images/floral-yellow-blue.png"
+        src="/assets/images/floral-yellow-blue.webp"
         className="absolute size-[80px] -translate-y-[220px] rotate-[14deg] transition-transform select-none hover:scale-80 hover:rotate-[0deg] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]"
         draggable="false"
         alt=""
       />
       <img
-        src="/assets/images/x-pink-blue.png"
+        src="/assets/images/x-pink-blue.webp"
         className="absolute size-[50px] translate-y-[220px] rotate-[-18deg] transition-transform select-none hover:scale-80 hover:rotate-[0deg] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]"
         draggable="false"
         alt=""
