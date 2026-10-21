@@ -72,7 +72,8 @@ const FooterSection = ({
 );
 
 export function Footer() {
-  const deployString = dayjs(__BUILD_TIME__).format('DD MMM YYYY HH:mm:ss Z');
+  const deployTime = dayjs(__BUILD_TIME__).tz();
+  const deployString = deployTime.format('DD MMM YYYY HH:mm:ss Z');
   const todayString = dayjs().format('dddd');
 
   return (
@@ -111,7 +112,7 @@ export function Footer() {
         </nav>
 
         <div className="mt-16 w-full text-center font-title text-sm text-xghoststroke">
-          All rights reserved © 2020-{dayjs(__BUILD_TIME__).year()}
+          All rights reserved © 2020-{deployTime.year()}
         </div>
 
         <Link

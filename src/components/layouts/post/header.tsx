@@ -1,7 +1,6 @@
 import { getRouteApi, Link } from '@tanstack/react-router';
 import { useHover } from '@uidotdev/usehooks';
 import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
 import { useAtom } from 'jotai';
 import { use } from 'react';
 
@@ -11,8 +10,6 @@ import { Section } from '@/components/layouts/section';
 import { Chip } from '@/components/posts/chip';
 import { ThumbnailDisplay } from '@/components/posts/thumbnail-display';
 import { loadPost } from '@/utils/post-modules';
-
-dayjs.extend(duration);
 
 const postRoute = getRouteApi('/$contentType/$slug');
 

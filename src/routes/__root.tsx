@@ -9,6 +9,7 @@ import { Navbar } from '@/components/layouts/navbar';
 import { NotFoundComponent } from '@/components/layouts/not-found';
 
 import appCss from '../styles/app.css?inline';
+import './-setup';
 
 export const Route = createRootRoute({
   head: () => ({
