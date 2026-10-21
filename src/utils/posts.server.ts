@@ -1,8 +1,16 @@
 import dayjs from 'dayjs';
-import grayMatter from 'gray-matter';
+import { parse as parseYaml } from 'yaml';
 
 import { type ContentType, type Post, PostFrontMatter } from '@/types/post';
 import { getHeadings } from '@/utils/posts';
+
+const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/;
+
+function parseFrontmatter(raw: string) {
+  const match = FRONTMATTER.exec(raw);
+  if (!match) return { data: {}, content: raw };
+  return { data: parseYaml(match[1] ?? '') ?? {}, content: raw.slice(match[0].length) };
+}
 
 const rawPosts = import.meta.glob<string>('/src/contents/*/*/index.mdx', {
   query: '?raw',
@@ -13,7 +21,7 @@ const rawPosts = import.meta.glob<string>('/src/contents/*/*/index.mdx', {
 const posts = Object.entries(rawPosts)
   .map(([modulePath, raw]) => {
     const [contentType, slug] = modulePath.split('/').slice(-3, -1) as [ContentType, string];
-    const { data, content } = grayMatter(raw);
+    const { data, content } = parseFrontmatter(raw);
     const post: Post = { ...PostFrontMatter.parse(data), slug, toc: getHeadings(content) };
     return { contentType, post };
   })
