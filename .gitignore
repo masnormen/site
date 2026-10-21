@@ -22,3 +22,5 @@ yarn.lock
 
 .env.local
 .env.*.local
+.alchemy
+.wrangler

@@ -1,0 +1,15 @@
+{
+  "name": "infra",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "plan": "alchemy plan --stage prod --detailed",
+    "deploy": "alchemy deploy --stage prod"
+  },
+  "dependencies": {
+    "@effect/platform-node": "4.0.0",
+    "alchemy": "2.0.0-beta.80",
+    "effect": "4.0.0"
+  }
+}
