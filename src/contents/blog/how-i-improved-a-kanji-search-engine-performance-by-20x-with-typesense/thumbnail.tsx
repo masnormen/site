@@ -3,6 +3,7 @@ import type { ThumbnailProps } from '@/types/post';
 import { cn } from '@/contents/common/cn';
 
 import { useFollowMouse } from '../../common/use-follow-mouse';
+import TypesenseLogo from './assets/typesense-logo.svg';
 
 export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   const ref = useFollowMouse();
@@ -44,7 +45,7 @@ export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
           <div className="flex h-11 w-full rounded-md bg-transparent py-3 outline-none">
             <img
               className={cn('my-auto h-[2cqh]', isHover && 'hue-rotate-90')}
-              src="https://typesense.org/docs/images/typesense_logo.svg"
+              src={TypesenseLogo}
               loading="lazy"
               alt=""
             />

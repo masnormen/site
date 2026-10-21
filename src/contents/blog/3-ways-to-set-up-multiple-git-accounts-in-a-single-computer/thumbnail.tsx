@@ -4,7 +4,7 @@ import { cn } from '@/contents/common/cn';
 
 import { useFollowMouse } from '../../common/use-follow-mouse';
 import GitLogo from './assets/git-logo.png';
-import Popcat from './assets/popcat.gif';
+import Popcat from './assets/popcat.webp';
 
 export function Thumbnail({ isHover, className, ...rest }: ThumbnailProps) {
   const ref = useFollowMouse();
