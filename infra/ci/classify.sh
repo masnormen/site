@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Prints "none", "app" or "infra" for an `alchemy plan --detailed` log.
-# app: only the site Worker's code or assets hash and the build changed. Anything else is infra.
+# app: the build changed (its env includes the commit SHA), or only the site Worker's code or assets hash. Anything else is infra.
 set -euo pipefail
 
 sed -E 's/^\[[0-9:.]+\] [A-Z]+ \(#[0-9]+\): //' "$1" | awk '
@@ -14,6 +14,6 @@ sed -E 's/^\[[0-9:.]+\] [A-Z]+ \(#[0-9]+\): //' "$1" | awk '
     else infra = 1
     next
   }
-  current != "" && /^  [-+] / && !/^  [-+] +hash: / { infra = 1 }
+  current != "" && current != "build" && /^  [-+] / && !/^  [-+] +hash: / { infra = 1 }
   END { print infra ? "infra" : app ? "app" : "none" }
 '

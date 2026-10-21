@@ -35,6 +35,25 @@ Plan: 2 to update
   +     hash: (known after apply)
 LOG
 
+check new-commit app <<'LOG'
+Plan: 2 to update
+[build] update
+  properties:
+    command: pnpm build
+    env:
+  -     VITE_BUILD_SHA: 946b5b4548e88be61f9a25865fe4ec8c939c1b27
+  +     VITE_BUILD_SHA: 8535dbc4224351400dfe9c0fe0ee9df9ce5e59cd
+    outdir: dist
+[site] update
+  properties:
+    assets:
+      directory: ../dist/client
+  -     hash: 766b9a194ecb4663bf7912f4a31a07cae063c57963670159a103b0cb04104703
+  +     hash: (known after apply)
+    bundle: false
+    domain: nourman.com
+LOG
+
 check compat-flags infra <<'LOG'
 Plan: 1 to update
 [site] update
