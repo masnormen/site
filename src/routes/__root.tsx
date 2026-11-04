@@ -78,14 +78,14 @@ export const Route = createRootRoute({
       },
       {
         rel: 'preload',
-        href: 'https://fonts.gstatic.com/s/instrumentsans/v3/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2',
+        href: 'https://fonts.gstatic.com/s/figtree/v9/_Xms-HUzqDCFdgfMm4S9DaRvzig.woff2',
         as: 'font',
         type: 'font/woff2',
         crossOrigin: 'anonymous',
       },
       {
         rel: 'preload',
-        href: 'https://fonts.gstatic.com/s/instrumentsans/v3/pxitypc9vsFDm051Uf6KVwgkfoSbSnNPooZAN0lInHGpCWNu15GRqXp6pQ.woff2',
+        href: 'https://fonts.gstatic.com/s/figtree/v9/_Xmu-HUzqDCFdgfMm4GND65o7Cqcsw.woff2',
         as: 'font',
         type: 'font/woff2',
         crossOrigin: 'anonymous',
