@@ -53,7 +53,7 @@ function NavSection({ className, children, ...props }: React.HTMLAttributes<HTML
 export function Navbar() {
   return (
     <nav className="fixed bottom-15 left-1/2 z-9999 flex h-[42px] w-min -translate-x-1/2 flex-row items-stretch justify-center bg-transparent py-4 [view-transition-name:navbar] sm:top-0 sm:bottom-[initial]">
-      <NavSection className="bg-xstroke">
+      <NavSection className="bg-xstroke/75 shadow-[inset_0_1px_0_rgb(255_255_255/0.14),0_10px_30px_-10px_rgb(11_18_21/0.45)] backdrop-blur-xl backdrop-saturate-180 contrast-more:bg-xstroke contrast-more:ring-2 contrast-more:ring-xyellow reduced-transparency:bg-xstroke reduced-transparency:backdrop-blur-none">
         <NavItem type="link" to="/" aria-label="Home">
           <MingcuteHome6Fill className="mt-[1px] text-base" />
         </NavItem>
