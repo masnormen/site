@@ -113,7 +113,7 @@ export function ProjectCard({
             contentType: 'projects',
             slug,
           }}
-          className="transition-transform duration-300 active:scale-98"
+          className="transition-[scale] duration-160 ease-out active:scale-98"
           onClick={markThumb}
           aria-label={title}
         >
@@ -155,19 +155,19 @@ export function ProjectCard({
                   {kind === 'GitHub' && (
                     <>
                       <MdiGithub className="absolute top-0 left-0 translate-x-[25%] translate-y-[35%] text-[22px] text-xstroke" />
-                      <CircleComplete className="text-xblue transition-all duration-400 group-hover:-translate-y-0.5 group-hover:rotate-180 group-hover:text-xpink" />
+                      <CircleComplete className="text-xblue transition-[translate,rotate,color] duration-400 group-hover:-translate-y-0.5 group-hover:rotate-180 group-hover:text-xpink" />
                     </>
                   )}
                   {kind === 'npm' && (
                     <>
                       <MaterialIconThemeNpm className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px] text-xred" />
-                      <CircleIncomplete className="-rotate-180 text-xpink transition-all duration-400 group-hover:rotate-0 group-hover:text-xcyan" />
+                      <CircleIncomplete className="-rotate-180 text-xpink transition-[rotate,color] duration-400 group-hover:rotate-0 group-hover:text-xcyan" />
                     </>
                   )}
                   {kind === 'Visit' && (
                     <>
                       <LucideGlobe className="absolute top-0 left-0 translate-x-[35%] translate-y-[40%] text-[22px] text-xblue" />
-                      <CircleIncomplete className="text-xyellow transition-all duration-400 group-hover:rotate-180 group-hover:text-xred" />
+                      <CircleIncomplete className="text-xyellow transition-[rotate,color] duration-400 group-hover:rotate-180 group-hover:text-xred" />
                     </>
                   )}
                 </div>
@@ -220,7 +220,7 @@ export function ProjectCard({
               loading="lazy"
               alt={title}
             />
-            <div className="absolute inset-0 aspect-16/10 h-full w-auto rotate-6 rounded-cxl bg-xbg transition-all duration-400 sm:group-hover/card:-rotate-12 sm:group-hover/card:bg-xyellow" />
+            <div className="absolute inset-0 aspect-16/10 h-full w-auto rotate-6 rounded-cxl bg-xbg transition-[rotate,background-color] duration-400 sm:group-hover/card:-rotate-12 sm:group-hover/card:bg-xyellow" />
             <div className="absolute inset-0 aspect-16/10 h-full w-auto -rotate-6 rounded-cxl bg-xpink transition-transform duration-400 sm:group-hover/card:rotate-6" />
           </div>
         </Link>

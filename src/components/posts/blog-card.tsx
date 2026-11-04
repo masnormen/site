@@ -37,7 +37,7 @@ export function BlogCard({
         contentType: 'blog',
         slug,
       }}
-      className="transition-transform duration-300 active:scale-98"
+      className="transition-[scale] duration-160 ease-out active:scale-98"
       onClick={markThumb}
       aria-label={title}
     >
@@ -54,7 +54,7 @@ export function BlogCard({
             <Chip
               label={tag}
               key={tag}
-              className="transition-colors duration-400 group-hover:bg-xblue group-hover:text-white"
+              className="transition-colors duration-200 group-hover:bg-xblue group-hover:text-white"
             />
           ))}
         </div>
@@ -80,7 +80,7 @@ export function BlogCard({
               <Chip
                 label={tag}
                 key={tag}
-                className="transition-colors duration-400 group-hover:bg-xblue group-hover:text-white"
+                className="transition-colors duration-200 group-hover:bg-xblue group-hover:text-white"
               />
             ))}
           </div>

@@ -42,10 +42,7 @@ function NavSection({ className, children, ...props }: React.HTMLAttributes<HTML
     // oxlint-disable-next-line jsx_a11y/click-events-have-key-events jsx_a11y/no-static-element-interactions
     <div
       onClick={(e) => e.stopPropagation()}
-      className={cn(
-        'flex h-10.5 flex-row justify-center gap-2 rounded-mxl px-3 transition-all duration-200',
-        className,
-      )}
+      className={cn('flex h-10.5 flex-row justify-center gap-2 rounded-mxl px-3', className)}
       {...props}
     >
       {children}
@@ -55,7 +52,7 @@ function NavSection({ className, children, ...props }: React.HTMLAttributes<HTML
 
 export function Navbar() {
   return (
-    <nav className="fixed bottom-15 left-1/2 z-9999 flex h-[42px] w-min -translate-x-1/2 flex-row items-stretch justify-center bg-transparent py-4 transition-all duration-500 [view-transition-name:navbar] sm:top-0 sm:bottom-[initial]">
+    <nav className="fixed bottom-15 left-1/2 z-9999 flex h-[42px] w-min -translate-x-1/2 flex-row items-stretch justify-center bg-transparent py-4 [view-transition-name:navbar] sm:top-0 sm:bottom-[initial]">
       <NavSection className="bg-xstroke">
         <NavItem type="link" to="/" aria-label="Home">
           <MingcuteHome6Fill className="mt-[1px] text-base" />

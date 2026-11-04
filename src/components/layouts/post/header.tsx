@@ -40,7 +40,7 @@ export function PostHeader() {
         <Link
           to="/$contentType/$slug"
           params={{ contentType, slug }}
-          className="w-full transition-transform duration-300 active:scale-98"
+          className="w-full transition-[scale] duration-160 ease-out active:scale-98"
         >
           <article
             className="group relative
@@ -48,7 +48,7 @@ export function PostHeader() {
             sm:bg-xbg sm:p-6 sm:py-6
             sm:hover:scale-99 sm:hover:bg-xarrow sm:hover:shadow-2xs"
           >
-            <h1 className="text-center font-title text-xl leading-[1.2] font-semibold text-balance transition-colors duration-400 group-hover:text-xred md:line-clamp-6 lg:text-2xl">
+            <h1 className="text-center font-title text-xl leading-[1.2] font-semibold text-balance transition-colors duration-200 group-hover:text-xred md:line-clamp-6 lg:text-2xl">
               {content.title}
             </h1>
           </article>
@@ -122,7 +122,7 @@ export function PostHeader() {
             <Chip
               label={tag}
               key={tag}
-              className="transition-colors duration-400 group-hover:bg-xblue group-hover:text-white"
+              className="transition-colors duration-200 group-hover:bg-xblue group-hover:text-white"
             />
           ))}
         </div>

@@ -6,7 +6,7 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
   return (
     <header
       className={cn(
-        '@container relative mx-auto flex h-[584px] w-[calc(100dvw-64px)] max-w-oxl flex-col items-center justify-center border-x-1 border-b-1 border-dashed border-xline px-5 transition-transform sm:w-[80dvw]',
+        '@container relative mx-auto flex h-[584px] w-[calc(100dvw-64px)] max-w-oxl flex-col items-center justify-center border-x-1 border-b-1 border-dashed border-xline px-5 sm:w-[80dvw]',
         className,
       )}
     >

@@ -18,11 +18,9 @@ export function NotFoundComponent() {
         </div>
       </Link>
 
-      <div className="static text-center drop-shadow-md duration-300">
+      <div className="static text-center drop-shadow-md">
         <h1 className="relative isolate flex flex-col items-center text-center text-[min(24cqw,7.5rem)] font-bold tracking-wide text-stroke">
-          <span className="z-20 inline w-fit rounded-xl px-4 pt-2 pb-1 font-mono leading-[1.25] transition-all">
-            404
-          </span>
+          <span className="z-20 inline w-fit rounded-xl px-4 pt-2 pb-1 font-mono leading-[1.25]">404</span>
           <span className="z-20 inline font-serif text-[1rem]">not found :(</span>
         </h1>
       </div>

@@ -19,13 +19,13 @@ export function ThumbnailDisplay({
   return (
     <div
       className={cn(
-        'relative isolate m-auto mx-auto flex aspect-square! size-[180px] transition-all duration-400 [view-transition-class:morph] group-hover:scale-105 sm:size-[198px]',
+        'relative isolate m-auto mx-auto flex aspect-square! size-[180px] transition-[scale] duration-200 ease-out [view-transition-class:morph] group-hover:scale-105 sm:size-[198px]',
         className,
       )}
       {...rest}
     >
       {withOrnaments && (
-        <HourGlassishShape className="pointer-events-none absolute z-0 h-auto w-full translate-y-[3%] rotate-[65deg] text-xblue transition-all duration-400 group-hover:rotate-[-25deg] group-hover:text-xyellow" />
+        <HourGlassishShape className="pointer-events-none absolute z-0 h-auto w-full translate-y-[3%] rotate-[65deg] text-xblue transition-[rotate,color] duration-400 group-hover:rotate-[-25deg] group-hover:text-xyellow" />
       )}
 
       {typeof Thumbnail === 'function' ? (

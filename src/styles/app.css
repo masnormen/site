@@ -261,11 +261,6 @@
     filter: url(#noisier);
   }
 
-  .theme-transitioning * {
-    transition-duration: 500ms;
-    transition-property: color, background-color, border-color, box-shadow, filter, fill, stroke;
-  }
-
   @keyframes spin-clockwise {
     to {
       transform: rotate(360deg);
@@ -353,7 +348,7 @@
     }
   }
   .animate-sticker-in {
-    animation: sticker-in 400ms cubic-bezier(0.23, 1, 0.32, 1) calc(var(--i, 0) * 60ms) backwards;
+    animation: sticker-in 400ms var(--ease-out) calc(var(--i, 0) * 60ms) backwards;
   }
 
   .details-animated::details-content {
@@ -364,8 +359,8 @@
     opacity: 1;
     translate: 0;
     transition:
-      opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
-      translate 200ms cubic-bezier(0.23, 1, 0.32, 1);
+      opacity 200ms var(--ease-out),
+      translate 200ms var(--ease-out);
   }
 
   ::view-transition-group(navbar) {
@@ -374,7 +369,7 @@
 
   ::view-transition-group(.morph) {
     animation-duration: 300ms;
-    animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+    animation-timing-function: var(--ease-in-out);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -458,6 +453,7 @@
   --breakpoint-xs: 425px;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   /* Shadcn UI variables */
   --color-sidebar-ring: var(--sidebar-ring);
