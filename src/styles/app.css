@@ -178,7 +178,13 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html,
+    body {
+      scroll-behavior: smooth;
+    }
   }
 
   *::selection {
@@ -231,8 +237,9 @@
     box-shadow:
       inset 0 0em transparent,
       inset 0 0em var(--color-xpink);
-    -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
+    transition:
+      color 200ms ease,
+      box-shadow 200ms ease;
   }
 
   .link:hover {
@@ -333,6 +340,54 @@
       transform: translateY(1%) rotate(2deg) translateX(0);
     }
   }
+
+  @keyframes sticker-in {
+    from {
+      opacity: 0;
+      scale: 0.9;
+    }
+  }
+  @keyframes sticker-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  .animate-sticker-in {
+    animation: sticker-in 400ms cubic-bezier(0.23, 1, 0.32, 1) calc(var(--i, 0) * 60ms) backwards;
+  }
+
+  .details-animated::details-content {
+    opacity: 0;
+    translate: 0 -0.25rem;
+  }
+  .details-animated[open]::details-content {
+    opacity: 1;
+    translate: 0;
+    transition:
+      opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
+      translate 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  ::view-transition-group(navbar) {
+    z-index: 1;
+  }
+
+  ::view-transition-group(.morph) {
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*) {
+      animation: none;
+    }
+    .animate-sticker-in {
+      animation-name: sticker-fade-in;
+    }
+    .details-animated::details-content {
+      translate: none;
+    }
+  }
 }
 
 @utility animate-wiggle {
@@ -401,6 +456,8 @@
 
   --breakpoint-1xxl: 85.375rem;
   --breakpoint-xs: 425px;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
   /* Shadcn UI variables */
   --color-sidebar-ring: var(--sidebar-ring);
@@ -529,5 +586,17 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-wiggle,
+  .animate-wiggle-in-place,
+  .animate-bounce,
+  .animate-bounce-stopmotion,
+  .animate-spin-clockwise,
+  .animate-spin-counterclockwise,
+  .animate-spin-orbit {
+    animation: none;
   }
 }

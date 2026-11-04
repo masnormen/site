@@ -1,15 +1,16 @@
 import { getRouteApi, Link } from '@tanstack/react-router';
 import { useHover } from '@uidotdev/usehooks';
 import dayjs from 'dayjs';
-import { useAtom } from 'jotai';
-import { use } from 'react';
+import { useAtom, useSetAtom } from 'jotai';
+import { use, useEffect } from 'react';
 
-import { readingTimeMsAtom } from '@/atoms/index';
+import { readingTimeMsAtom, thumbTransitionSlugAtom } from '@/atoms/index';
 import { SlimArrow } from '@/components/assets/shapes/lines';
 import { Section } from '@/components/layouts/section';
 import { Chip } from '@/components/posts/chip';
 import { ThumbnailDisplay } from '@/components/posts/thumbnail-display';
 import { loadPost } from '@/utils/post-modules';
+import { postTransitionName } from '@/utils/posts';
 
 const postRoute = getRouteApi('/$contentType/$slug');
 
@@ -21,6 +22,9 @@ export function PostHeader() {
   const Thumbnail = use(loadPost(contentType, slug))?.Thumbnail ?? null;
 
   const [readingTimeMs] = useAtom(readingTimeMsAtom);
+
+  const setThumbTransitionSlug = useSetAtom(thumbTransitionSlugAtom);
+  useEffect(() => setThumbTransitionSlug(slug), [slug, setThumbTransitionSlug]);
 
   return (
     <Section
@@ -40,8 +44,8 @@ export function PostHeader() {
         >
           <article
             className="group relative
-            flex h-full w-full items-center justify-center gap-2 rounded-cxl py-3 transition-all
-            duration-400 sm:bg-xbg sm:p-6 sm:py-6
+            flex h-full w-full items-center justify-center gap-2 rounded-cxl py-3 transition-[scale,background-color,box-shadow] duration-200 ease-out
+            sm:bg-xbg sm:p-6 sm:py-6
             sm:hover:scale-99 sm:hover:bg-xarrow sm:hover:shadow-2xs"
           >
             <h1 className="text-center font-title text-xl leading-[1.2] font-semibold text-balance transition-colors duration-400 group-hover:text-xred md:line-clamp-6 lg:text-2xl">
@@ -52,19 +56,20 @@ export function PostHeader() {
 
         {!!Thumbnail && (
           <div className="relative">
-            <SlimArrow className="flip absolute top-0 left-1/2 hidden -translate-x-[100%] -translate-y-[85%] -scale-x-100 rotate-[-60deg] text-xarrow select-none md:block" />
-            <span className="absolute top-0 left-1/2 hidden -translate-x-[100%] -translate-y-[350%] text-center text-xs whitespace-nowrap text-xghoststroke/50 italic select-none md:block">
+            <SlimArrow className="animate-sticker-in flip absolute top-0 left-1/2 hidden -translate-x-[100%] -translate-y-[85%] -scale-x-100 rotate-[-60deg] text-xarrow select-none [--i:2] [animation-name:sticker-fade-in] md:block" />
+            <span className="animate-sticker-in absolute top-0 left-1/2 hidden -translate-x-[100%] -translate-y-[350%] text-center text-xs whitespace-nowrap text-xghoststroke/50 italic select-none [--i:3] [animation-name:sticker-fade-in] md:block">
               psshh. try hovering the thumbnail!
             </span>
             <ThumbnailDisplay
               Thumbnail={Thumbnail}
               isHover={isHover}
               className="size-full sm:size-full lg:size-[198px]"
+              style={{ viewTransitionName: postTransitionName(slug, 'thumb') }}
             />
           </div>
         )}
 
-        <div className="absolute top-0 left-0 size-12 -translate-x-1/2 -translate-y-1/2 select-none sm:size-16 md:size-22">
+        <div className="animate-sticker-in absolute top-0 left-0 size-12 -translate-x-1/2 -translate-y-1/2 select-none [--i:0] sm:size-16 md:size-22">
           <img
             src="/assets/images/floral-yellow-blue.webp"
             className="h-full w-full rotate-[12deg] transition-transform hover:scale-120 hover:rotate-[-20deg]"
@@ -74,7 +79,7 @@ export function PostHeader() {
           />
         </div>
 
-        <div className="absolute right-0 bottom-0 hidden size-12 translate-x-1/3 translate-y-1/3 select-none sm:block sm:size-16 md:size-18">
+        <div className="animate-sticker-in absolute right-0 bottom-0 hidden size-12 translate-x-1/3 translate-y-1/3 select-none [--i:1] sm:block sm:size-16 md:size-18">
           <img
             src="/assets/images/x-pink-blue.webp"
             className="h-full w-full -rotate-[12deg] transition-transform hover:scale-120 hover:rotate-[20deg]"
@@ -87,14 +92,14 @@ export function PostHeader() {
 
       <article
         className="group relative z-10 flex
-          h-full w-full flex-col items-center justify-between gap-2 rounded-cxl transition-all duration-400 sm:mt-4 sm:pt-4.5 sm:pb-4
+          h-full w-full flex-col items-center justify-between gap-2 rounded-cxl transition-[scale,background-color,box-shadow] duration-200 ease-out sm:mt-4 sm:pt-4.5 sm:pb-4
           md:mt-8 md:flex-row md:bg-xbg md:px-6
           md:hover:scale-99 md:hover:bg-xarrow md:hover:shadow-2xs"
       >
         <p className="text-sm leading-[1] font-medium sm:text-base">
           <img
             src="/assets/images/x-yellow-blue.webp"
-            className="mr-4 hidden size-6 rotate-[20deg] transition-transform hover:scale-120 hover:rotate-[-20deg] md:inline-flex!"
+            className="animate-sticker-in mr-4 hidden size-6 rotate-[20deg] transition-transform [--i:4] hover:scale-120 hover:rotate-[-20deg] md:inline-flex!"
             draggable="false"
             loading="lazy"
             alt=""

@@ -7,6 +7,7 @@ import { SVGFilters } from '@/components/assets/svg-filters';
 import { CustomErrorComponent } from '@/components/layouts/error';
 import { Navbar } from '@/components/layouts/navbar';
 import { NotFoundComponent } from '@/components/layouts/not-found';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 import appCss from '../styles/app.css?inline';
 import './-setup';
@@ -154,18 +155,20 @@ function RootComponent() {
   return (
     <RootDocument>
       <CatchBoundary getResetKey={() => 'reset'}>
-        <Navbar />
+        <TooltipProvider>
+          <Navbar />
 
-        <main>
-          <Outlet />
-        </main>
+          <main>
+            <Outlet />
+          </main>
 
-        {/* Top/Bottom fade */}
-        <div className="pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t from-xblank/0 to-xblank" />
-        <div className="pointer-events-none fixed bottom-0 z-50 h-20 w-screen bg-gradient-to-b from-xblank/0 to-xblank" />
+          {/* Top/Bottom fade */}
+          <div className="pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t from-xblank/0 to-xblank" />
+          <div className="pointer-events-none fixed bottom-0 z-50 h-20 w-screen bg-gradient-to-b from-xblank/0 to-xblank" />
 
-        {import.meta.env.DEV && <TanStackRouterDevtools initialIsOpen={false} />}
-        <SVGFilters />
+          {import.meta.env.DEV && <TanStackRouterDevtools initialIsOpen={false} />}
+          <SVGFilters />
+        </TooltipProvider>
       </CatchBoundary>
     </RootDocument>
   );

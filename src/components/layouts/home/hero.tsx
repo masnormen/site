@@ -28,17 +28,17 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
 
       <img
         src="/assets/images/floral-yellow-blue.webp"
-        className="absolute size-[80px] -translate-y-[220px] rotate-[14deg] transition-transform select-none hover:scale-80 hover:rotate-[0deg] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]"
+        className="animate-sticker-in absolute size-[80px] -translate-y-[220px] rotate-[14deg] transition-transform select-none [--i:0] hover:scale-80 hover:rotate-[0deg] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]"
         draggable="false"
         alt=""
       />
       <img
         src="/assets/images/x-pink-blue.webp"
-        className="absolute size-[50px] translate-y-[220px] rotate-[-18deg] transition-transform select-none hover:scale-80 hover:rotate-[0deg] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]"
+        className="animate-sticker-in absolute size-[50px] translate-y-[220px] rotate-[-18deg] transition-transform select-none [--i:3] hover:scale-80 hover:rotate-[0deg] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]"
         draggable="false"
         alt=""
       />
-      <div className="absolute left-0 hidden -translate-x-1/2 translate-y-[120px] rotate-[-7deg] sm:block">
+      <div className="animate-sticker-in absolute left-0 hidden -translate-x-1/2 translate-y-[120px] rotate-[-7deg] [--i:1] sm:block">
         <div className="filter-gooey mt-2 rotate-[-2deg] text-center drop-shadow-[4px_4px_0px_var(--color-xyellow)] duration-300 hover:rotate-[15deg] hover:drop-shadow-[4px_4px_0px_var(--color-xblue)]">
           <h2 className="inline rounded-2xl bg-xyellow box-decoration-clone px-3 pt-2 pb-3 font-mono text-[2cqw] leading-[1.5] text-xblue drop-shadow-none select-none xl:text-[1.25rem]">
             software_
@@ -47,7 +47,7 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
           </h2>
         </div>
       </div>
-      <div className="absolute right-0 hidden translate-x-1/2 -translate-y-[120px] rotate-[-7deg] sm:block">
+      <div className="animate-sticker-in absolute right-0 hidden translate-x-1/2 -translate-y-[120px] rotate-[-7deg] [--i:2] sm:block">
         <div className="filter-gooey mt-2 text-center drop-shadow-[4px_4px_0px_var(--color-xyellow)] duration-300 hover:rotate-12 hover:drop-shadow-[4px_4px_0px_var(--color-xyellow)]">
           <h2 className="inline rounded-2xl bg-xstroke px-4 py-2 text-center font-title text-[2cqw] font-light whitespace-nowrap text-xyellow drop-shadow-none select-none xl:text-[1.25rem]">
             based in{' '}

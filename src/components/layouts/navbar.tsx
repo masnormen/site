@@ -20,7 +20,7 @@ type NavItemProps =
 
 function NavItem({ className: customClassName, ...props }: NavItemProps) {
   const className =
-    'flex rounded-md px-2 items-center text-nowrap whitespace-nowrap text-sm font-semibold font-title text-blank duration-500 cursor-pointer hover:text-xyellow';
+    'flex rounded-md px-2 items-center text-nowrap whitespace-nowrap text-sm font-semibold font-title text-blank transition-[color,scale] duration-160 ease-out cursor-pointer hover:text-xyellow active:scale-97';
 
   if (props.type === 'button') {
     return <button className={cn(className, customClassName)} {...props} type="button" />;
@@ -55,7 +55,7 @@ function NavSection({ className, children, ...props }: React.HTMLAttributes<HTML
 
 export function Navbar() {
   return (
-    <nav className="fixed bottom-15 left-1/2 z-9999 flex h-[42px] w-min -translate-x-1/2 flex-row items-stretch justify-center bg-transparent py-4 transition-all duration-500 sm:top-0 sm:bottom-[initial]">
+    <nav className="fixed bottom-15 left-1/2 z-9999 flex h-[42px] w-min -translate-x-1/2 flex-row items-stretch justify-center bg-transparent py-4 transition-all duration-500 [view-transition-name:navbar] sm:top-0 sm:bottom-[initial]">
       <NavSection className="bg-xstroke">
         <NavItem type="link" to="/" aria-label="Home">
           <MingcuteHome6Fill className="mt-[1px] text-base" />

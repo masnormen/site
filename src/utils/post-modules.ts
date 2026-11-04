@@ -13,9 +13,19 @@ const thumbnailModules = import.meta.glob<Thumbnail>('/src/contents/*/*/thumbnai
 
 const cache = new Map<string, Promise<unknown>>();
 
-/** Promises are cached per key so they stay stable across renders for React's `use()`. */
+/**
+ * Promises are cached per key so they stay stable across renders for React's `use()`, and tagged with
+ * `status`/`value` on settle so `use()` reads an already-resolved promise synchronously instead of suspending.
+ */
 function memoize<T>(key: string, load: () => Promise<T>) {
-  if (!cache.has(key)) cache.set(key, load());
+  if (!cache.has(key)) {
+    const promise = load();
+    promise.then(
+      (value) => Object.assign(promise, { status: 'fulfilled', value }),
+      (reason: unknown) => Object.assign(promise, { status: 'rejected', reason }),
+    );
+    cache.set(key, promise);
+  }
   return cache.get(key) as Promise<T>;
 }
 

@@ -35,13 +35,13 @@ export function Contact() {
           <div className="relative z-10 flex h-full w-full flex-col justify-between rounded-cxl bg-xbg p-8 text-center">
             <div className="text-left font-title text-lg text-pretty lg:text-2xl">
               Wanna{' '}
-              <span className="text-xblue transition-all duration-400 group-hover/card:font-semibold">
+              <span className="text-xblue transition-colors duration-200 group-hover/card:text-xred">
                 work together
               </span>{' '}
               or have{' '}
-              <span className="text-xblue transition-all duration-400 group-hover/card:font-semibold">an idea</span>{' '}
+              <span className="text-xblue transition-colors duration-200 group-hover/card:text-xred">an idea</span>{' '}
               you'd like to{' '}
-              <span className="text-xblue transition-all duration-400 group-hover/card:font-semibold">discuss</span>
+              <span className="text-xblue transition-colors duration-200 group-hover/card:text-xred">discuss</span>
               ?
               <SpringyArrow className="mt-3 ml-3 inline-flex h-auto w-[28px] align-top text-xred md:w-[53px]" />
             </div>

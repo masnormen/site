@@ -5,6 +5,7 @@ import type { ThumbnailProps } from '@/types/post';
 
 import { Chip } from '@/components/posts/chip';
 import { ThumbnailDisplay } from '@/components/posts/thumbnail-display';
+import { useThumbTransition } from '@/hooks/use-thumb-transition';
 
 export interface BlogCardProps {
   Thumbnail: React.FC<ThumbnailProps> | string | null;
@@ -27,6 +28,7 @@ export function BlogCard({
   ...rest
 }: Omit<BlogCardProps, 'nth' | 'className'>) {
   const [ref, isHover] = useHover<HTMLDivElement>();
+  const { thumbStyle, markThumb } = useThumbTransition(slug);
 
   return (
     <Link
@@ -36,12 +38,13 @@ export function BlogCard({
         slug,
       }}
       className="transition-transform duration-300 active:scale-98"
+      onClick={markThumb}
       aria-label={title}
     >
       <article
         className="group relative
         flex w-full flex-col-reverse items-center justify-center gap-2
-        rounded-cxl transition-all duration-400 sm:grid sm:min-h-[198px] sm:grid-cols-[auto_1fr] sm:gap-0 sm:bg-xbg sm:hover:scale-99
+        rounded-cxl transition-[scale,background-color,box-shadow] duration-200 ease-out sm:grid sm:min-h-[198px] sm:grid-cols-[auto_1fr] sm:gap-0 sm:bg-xbg sm:hover:scale-99
         sm:hover:bg-xarrow sm:hover:shadow-2xs lg:grid-cols-[1fr_auto_1fr]"
         ref={ref}
         {...rest}
@@ -66,7 +69,9 @@ export function BlogCard({
           </time>
         </header>
 
-        {!!Thumbnail && <ThumbnailDisplay Thumbnail={Thumbnail} isHover={isHover} withOrnaments loading="lazy" />}
+        {!!Thumbnail && (
+          <ThumbnailDisplay Thumbnail={Thumbnail} isHover={isHover} withOrnaments loading="lazy" style={thumbStyle} />
+        )}
 
         <div className="hidden flex-col justify-center gap-3 p-9 pl-14 lg:flex">
           <div className="line-clamp-4 text-base">{description}</div>

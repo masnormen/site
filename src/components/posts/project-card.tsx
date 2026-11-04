@@ -12,12 +12,13 @@ import type { ThumbnailProps } from '@/types/post';
 
 import { CircleComplete, CircleIncomplete } from '@/components/assets/shapes/circles';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useThumbTransition } from '@/hooks/use-thumb-transition';
 import { cn } from '@/utils/cn';
 
 const ProjectButton = ({ href, children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
   <a
     href={href}
-    className="group flex h-full w-full items-center justify-center gap-2 rounded-br-cxl rounded-bl-cxl bg-xghostwhite px-9 py-4 font-title text-sm font-semibold whitespace-nowrap transition-all duration-400 hover:-translate-x-0.5 hover:scale-98 hover:bg-xarrow active:scale-95 sm:flex-col sm:items-start sm:gap-1 sm:rounded-tr-cxl sm:rounded-bl-none sm:py-0"
+    className="group flex h-full w-full items-center justify-center gap-2 rounded-br-cxl rounded-bl-cxl bg-xghostwhite px-9 py-4 font-title text-sm font-semibold whitespace-nowrap transition-[translate,scale,background-color] duration-200 ease-out hover:-translate-x-0.5 hover:scale-98 hover:bg-xarrow active:scale-95 sm:flex-col sm:items-start sm:gap-1 sm:rounded-tr-cxl sm:rounded-bl-none sm:py-0"
     {...rest}
   >
     {children}
@@ -93,6 +94,8 @@ export function ProjectCard({
   links = [],
   ...rest
 }: ProjectCardProps) {
+  const { thumbStyle, markThumb } = useThumbTransition(slug);
+
   return (
     <article
       className={cn(
@@ -111,13 +114,14 @@ export function ProjectCard({
             slug,
           }}
           className="transition-transform duration-300 active:scale-98"
+          onClick={markThumb}
           aria-label={title}
         >
           <header
             className="group relative
             flex items-center gap-2
             rounded-tl-cxl
-            rounded-tr-cxl bg-xbg transition-all duration-400
+            rounded-tr-cxl bg-xbg transition-[scale,background-color,box-shadow] duration-200 ease-out
             sm:min-h-[198px] sm:rounded-tr-none sm:rounded-bl-cxl sm:hover:scale-99 sm:hover:bg-xarrow sm:hover:shadow-2xs"
             {...rest}
           >
@@ -186,6 +190,7 @@ export function ProjectCard({
             nth % 2 === 0 ? 'flex-row' : 'flex-row-reverse',
           )}
           aria-label={title}
+          onClick={markThumb}
         >
           <div className="hidden h-full w-full items-center justify-center sm:flex">
             {nth % 2 === 0 ? (
@@ -210,7 +215,8 @@ export function ProjectCard({
           <div className="relative aspect-16/10 h-full w-auto">
             <img
               src={Thumbnail}
-              className="relative z-10 block aspect-16/10 h-full w-auto rounded-cxl border border-xbg bg-xghostwhite object-cover object-center transition-transform duration-400 sm:group-hover:shadow-lg sm:group-hover/card:scale-102"
+              style={thumbStyle}
+              className="relative z-10 block aspect-16/10 h-full w-auto rounded-cxl border border-xbg bg-xghostwhite object-cover object-center transition-transform duration-400 [view-transition-class:morph] sm:group-hover:shadow-lg sm:group-hover/card:scale-102"
               loading="lazy"
               alt={title}
             />

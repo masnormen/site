@@ -10,7 +10,7 @@ export function NotFoundComponent() {
 
       <Link to="/">
         <div className="absolute top-[70%] right-1/2 z-20 flex translate-x-1/2 -translate-y-2/3 flex-col items-center justify-center text-center xs:top-3/4 @3xl:translate-x-72 @3xl:-translate-y-8">
-          <div className="mt-2 rotate-6 drop-shadow-[4px_4px_0px_var(--color-xblue)] duration-300 hover:drop-shadow-[4px_4px_0px_var(--color-xyellow)] @3xl:rotate-6">
+          <div className="mt-2 rotate-6 animate-wiggle-in-place drop-shadow-[4px_4px_0px_var(--color-xblue)] duration-300 hover:drop-shadow-[4px_4px_0px_var(--color-xyellow)] @3xl:rotate-6">
             <h2 className="inline rounded-2xl bg-xred px-4 py-2 text-center text-[min(5cqw,1.25rem)] font-light whitespace-nowrap text-xghostwhite">
               ← go 🏠home?
             </h2>

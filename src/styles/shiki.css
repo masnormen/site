@@ -71,7 +71,7 @@ pre.shiki > code {
   background: var(--twoslash-popup-bg);
   color: var(--twoslash-popup-color);
   border: 1px solid var(--twoslash-border-color);
-  transition: opacity 0.3s;
+  transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1);
   border-radius: 4px;
   pointer-events: none;
   z-index: 10;
@@ -97,6 +97,7 @@ pre.shiki > code {
 .twoslash .twoslash-query-line .twoslash-popup-container {
   opacity: 1;
   pointer-events: auto;
+  transition-delay: 200ms;
 }
 
 .twoslash .twoslash-popup-container:hover {

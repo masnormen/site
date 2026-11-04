@@ -19,7 +19,7 @@ export function ThumbnailDisplay({
   return (
     <div
       className={cn(
-        'relative isolate m-auto mx-auto flex aspect-square! size-[180px] transition-all duration-400 group-hover:scale-105 sm:size-[198px]',
+        'relative isolate m-auto mx-auto flex aspect-square! size-[180px] transition-all duration-400 [view-transition-class:morph] group-hover:scale-105 sm:size-[198px]',
         className,
       )}
       {...rest}

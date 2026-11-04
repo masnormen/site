@@ -13,6 +13,9 @@ export function getRouter() {
     scrollRestorationBehavior: 'instant',
     notFoundMode: 'root',
     defaultNotFoundComponent: NotFoundComponent,
-    defaultViewTransition: true,
+    defaultViewTransition:
+      typeof ViewTransition !== 'undefined' && 'types' in ViewTransition.prototype
+        ? { types: ({ pathChanged }) => (pathChanged ? [] : false) }
+        : true,
   });
 }

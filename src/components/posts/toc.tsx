@@ -26,7 +26,7 @@ export function TableOfContents({
     <div className="top-16 sm:sticky lg:mb-16">
       <details
         className={cn(
-          'mt-8 flex flex-col rounded-xl bg-xbg px-5 py-4 transition-all duration-200 sm:hover:scale-99 sm:hover:bg-xarrow sm:hover:shadow-2xs lg:mt-16 lg:rounded-l-none lg:rounded-r-cxl lg:py-8',
+          'details-animated mt-8 flex flex-col rounded-xl bg-xbg px-5 py-4 transition-[background-color,box-shadow] duration-200 sm:hover:bg-xarrow sm:hover:shadow-2xs lg:mt-16 lg:rounded-l-none lg:rounded-r-cxl lg:py-8',
           '[&[open]_summary]:mb-2',
           className,
         )}

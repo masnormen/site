@@ -13,6 +13,8 @@ export const normalizeTitle = (title: string): string => {
     .toLowerCase();
 };
 
+export const postTransitionName = (slug: string, part: string) => normalizeTitle(`post-${slug}-${part}`);
+
 export const getHeading = (line: string): Heading => ({
   id: normalizeTitle(line),
   text: line.replace(HEADING_REGEX, ''),
