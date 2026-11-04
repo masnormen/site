@@ -39,13 +39,14 @@ export function About() {
           some conversational Japanese under my belt (still practicing!).
         </p>
         <p>
-          My go-to tools are TypeScript and React, but I'm a pragmatic engineer at heart 🧐. I'm comfortable moving
-          between frameworks and languages, like Svelte, Go, Python, Rust, PHP, or whatever tool is best suited to solve
-          the problem at hand. New tools are a welcome fun challenge! 🛠️
+          My go-to tools are TypeScript and React, but I'm a pragmatic engineer at heart. I've shipped for SaaS
+          startups, large e-commerce, e-government, and software houses, so I'm comfortable moving between patterns,
+          frameworks, and languages like Go, Python, Rust, or PHP. I build AI-native, and I care as much about sound
+          architecture and developer experience as how things look and feel.
         </p>
         <p>
           Outside of working as a Software Engineer, I'm currently pursuing a Master's in Cybersecurity at Monash
-          University. (<b>fun fact:</b> all this was made possible by a scholarship from a literal 😼 cat{' '}
+          University. (<b>fun fact:</b> all this was made possible by a scholarship from a literal cat{' '}
           <Tooltip>
             <TooltipTrigger asChild>
               <a

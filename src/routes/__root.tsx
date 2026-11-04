@@ -31,7 +31,7 @@ export const Route = createRootRoute({
       },
       {
         name: 'description',
-        content: 'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+        content: 'A blog on software engineering, AI, design, and miscellaneous tech stuff, by Nourman Hajar.',
       },
       {
         name: 'twitter:card',
@@ -43,7 +43,7 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:description',
-        content: 'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+        content: 'A blog on software engineering, AI, design, and miscellaneous tech stuff, by Nourman Hajar.',
       },
       {
         property: 'og:url',

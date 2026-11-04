@@ -19,9 +19,10 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
           >
             <h1 className="text-center">Nourman Hajar</h1>
           </Link>
-          <span className="mt-6 max-w-[500px] text-center text-sm sm:text-lg xl:text-xl">
+          <span className="mt-6 max-w-[520px] text-center text-sm sm:text-lg xl:text-xl">
             Dedicated <span className="font-semibold text-xblue/90">Software Engineer</span> you can count on. I help
-            companies, clients, and founders craft a scalable web solution for their brands and products.
+            startups, enterprises, and institutions craft scalable, well-designed products that are a joy to use and
+            just as good under the hood.
           </span>
         </>
       )}

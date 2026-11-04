@@ -107,7 +107,7 @@ function OgImage({ content }: { content?: OgContent }) {
               </div>
             ) : (
               <div style={{ ...twj`text-[36px]`, fontWeight: 300 }}>
-                A blog on software engineering, web development, life, and miscellaneous tech stuff
+                A blog on software engineering, AI, design, life, and miscellaneous tech stuff
               </div>
             )}
           </div>

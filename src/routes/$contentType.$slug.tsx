@@ -41,7 +41,7 @@ export const Route = createFileRoute('/$contentType/$slug')({
         name: 'description',
         content:
           loaderData?.description ||
-          'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+          'A blog on software engineering, AI, design, and miscellaneous tech stuff, by Nourman Hajar.',
       },
       {
         property: 'og:title',
@@ -51,7 +51,7 @@ export const Route = createFileRoute('/$contentType/$slug')({
         property: 'og:description',
         content:
           loaderData?.description ||
-          'A blog on software engineering, web development, and miscellaneous tech stuff, by Nourman Hajar.',
+          'A blog on software engineering, AI, design, and miscellaneous tech stuff, by Nourman Hajar.',
       },
       {
         property: 'og:url',

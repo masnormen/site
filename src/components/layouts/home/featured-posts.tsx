@@ -30,7 +30,7 @@ export function FeaturedPosts() {
           alt=""
         />
       }
-      description="On software engineering, web development, and random things I like."
+      description="On software engineering, building with AI, and random things I like."
       before={
         <>
           <BigArrow className="absolute -top-2 left-1/2 w-[50px] -translate-x-1/2 rotate-90 text-xarrow select-none sm:w-[105px]" />
