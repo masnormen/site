@@ -1,6 +1,8 @@
 // oxlint-disable jsx_a11y/alt-text
 import { Renderer } from '@takumi-rs/core';
 import { fromJsx } from '@takumi-rs/helpers/jsx';
+import { existsSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 import { twj } from 'tw-to-css';
 
 import type { ContentType, Post } from '@/types/post';
@@ -41,7 +43,9 @@ const titleSize = (title: string) => {
   return 48;
 };
 
-function OgImage({ content }: { content?: { post: Post; contentType: ContentType } }) {
+type OgContent = { post: Post; contentType: ContentType; thumbnail?: string };
+
+function OgImage({ content }: { content?: OgContent }) {
   return (
     <div
       style={{
@@ -57,7 +61,7 @@ function OgImage({ content }: { content?: { post: Post; contentType: ContentType
         }}
       >
         <img src={KAWUNG_PATTERN} style={{ position: 'absolute', inset: 0, width: 1200, height: 630 }} />
-        <div style={twj`flex flex-col items-start h-full`}>
+        <div style={{ ...twj`flex flex-col items-start h-full`, position: 'relative' }}>
           <div style={twj`flex flex-row items-start justify-center ${content ? 'gap-5' : 'gap-8'}`}>
             <WavyGrass style={twj`text-[#FD1E1F] ${content ? 'w-[73px] h-[57px]' : 'w-[180px] h-[139px]'}`} />
             <div
@@ -82,7 +86,14 @@ function OgImage({ content }: { content?: { post: Post; contentType: ContentType
             )}
           </div>
 
-          <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center', width: 658 }}>
+          <div
+            style={{
+              display: 'flex',
+              flexGrow: 1,
+              alignItems: 'center',
+              width: content?.contentType === 'projects' ? 540 : 620,
+            }}
+          >
             {content ? (
               <div
                 style={{
@@ -102,8 +113,21 @@ function OgImage({ content }: { content?: { post: Post; contentType: ContentType
           </div>
         </div>
 
-        <div style={twj`flex flex-col h-full items-center justify-center`}>
-          <img src={FLORAL_YELLOW_BLUE} style={twj`w-[294px] h-[294px] rotate-[28deg] -mt-4`} />
+        <div style={{ ...twj`flex flex-col h-full items-center justify-center`, position: 'relative' }}>
+          {content?.thumbnail ? (
+            <img
+              src={content.thumbnail}
+              style={{
+                width: 400,
+                height: 250,
+                borderRadius: 32,
+                objectFit: 'cover',
+                boxShadow: '0 18px 40px -18px rgba(11, 18, 21, 0.35)',
+              }}
+            />
+          ) : (
+            <img src={FLORAL_YELLOW_BLUE} style={twj`w-[294px] h-[294px] rotate-[28deg] -mt-4`} />
+          )}
         </div>
       </div>
 
@@ -122,8 +146,13 @@ function OgImage({ content }: { content?: { post: Post; contentType: ContentType
   );
 }
 
-/** Fetches Instrument Sans from Google Fonts, so the build needs network access. */
-export async function renderOgImages(): Promise<{ fileName: string; source: Uint8Array }[]> {
+function projectThumbnail(root: string, slug: string) {
+  const file = path.join(root, 'src/contents/projects', slug, 'thumbnail.webp');
+  return existsSync(file) ? `data:image/webp;base64,${readFileSync(file).toString('base64')}` : undefined;
+}
+
+/** Fetches Instrument Sans from Google Fonts, so the build needs network access. Reads project thumbnails from `root`. */
+export async function renderOgImages(root: string): Promise<{ fileName: string; source: Uint8Array }[]> {
   const renderer = new Renderer();
   const download = async (url: string) => {
     const res = await fetch(url);
@@ -144,7 +173,7 @@ export async function renderOgImages(): Promise<{ fileName: string; source: Uint
     ),
   );
 
-  const render = async (fileName: string, content?: { post: Post; contentType: ContentType }) => {
+  const render = async (fileName: string, content?: OgContent) => {
     const { node, css } = await fromJsx(<OgImage content={content} />);
     const source = await renderer.render(node, { width: 1200, height: 630, format: 'png', css });
     return { fileName, source: new Uint8Array(source) };
@@ -154,7 +183,10 @@ export async function renderOgImages(): Promise<{ fileName: string; source: Uint
   return Promise.all([
     render('og/home.png'),
     ...contentTypes.flatMap((contentType) =>
-      fetchPostList(contentType).map((post) => render(`og/${contentType}/${post.slug}.png`, { post, contentType })),
+      fetchPostList(contentType).map((post) => {
+        const thumbnail = contentType === 'projects' ? projectThumbnail(root, post.slug) : undefined;
+        return render(`og/${contentType}/${post.slug}.png`, { post, contentType, thumbnail });
+      }),
     ),
   ]);
 }

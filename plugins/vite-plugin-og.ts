@@ -11,7 +11,7 @@ async function renderOgImages(root: string) {
     resolve: { tsconfigPaths: true },
     oxc: { jsx: { runtime: 'automatic' } },
   });
-  return module.renderOgImages();
+  return module.renderOgImages(root);
 }
 
 export function og(): Plugin[] {
