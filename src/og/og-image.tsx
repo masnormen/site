@@ -13,6 +13,34 @@ const FONT_CSS = 'https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@
 
 const SECTION_LABEL: Record<ContentType, string> = { blog: 'Blog', projects: 'Projects' };
 
+const KAWUNG_OVAL = "fill='#0015d4' fill-opacity='0.012' stroke='#0015d4' stroke-opacity='0.045' stroke-width='1.4'";
+
+const KAWUNG_PATTERN = `data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'>
+    <defs>
+      <pattern id='kawung' width='60' height='60' patternUnits='userSpaceOnUse' patternTransform='rotate(15) scale(1.2)'>
+        <ellipse cx='15' cy='15' rx='8' ry='18.5' transform='rotate(-45 15 15)' ${KAWUNG_OVAL}/>
+        <ellipse cx='45' cy='45' rx='8' ry='18.5' transform='rotate(-45 45 45)' ${KAWUNG_OVAL}/>
+        <ellipse cx='45' cy='15' rx='8' ry='18.5' transform='rotate(45 45 15)' ${KAWUNG_OVAL}/>
+        <ellipse cx='15' cy='45' rx='8' ry='18.5' transform='rotate(45 15 45)' ${KAWUNG_OVAL}/>
+        <g fill='#0015d4' fill-opacity='0.07'>
+          <circle cx='15' cy='15' r='1.6'/><circle cx='45' cy='45' r='1.6'/>
+          <circle cx='45' cy='15' r='1.6'/><circle cx='15' cy='45' r='1.6'/>
+          <circle cx='30' cy='30' r='2.6'/><circle cx='0' cy='0' r='2.6'/><circle cx='60' cy='0' r='2.6'/>
+          <circle cx='0' cy='60' r='2.6'/><circle cx='60' cy='60' r='2.6'/>
+        </g>
+      </pattern>
+    </defs>
+    <rect width='1200' height='630' fill='url(#kawung)'/>
+  </svg>`,
+)}`;
+
+const titleSize = (title: string) => {
+  if (title.length <= 20) return 72;
+  if (title.length <= 45) return 56;
+  return 48;
+};
+
 function OgImage({ content }: { content?: { post: Post; contentType: ContentType } }) {
   return (
     <div
@@ -21,8 +49,15 @@ function OgImage({ content }: { content?: { post: Post; contentType: ContentType
         fontFamily: 'Instrument Sans',
       }}
     >
-      <div style={twj`flex flex-row justify-between h-full pt-[84px] pb-[64px] px-[96px]`}>
-        <div style={twj`flex flex-col items-start justify-between pb-6 h-full`}>
+      <div
+        style={{
+          ...twj`flex flex-row justify-between h-full pt-[84px] pb-[64px] px-[96px]`,
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <img src={KAWUNG_PATTERN} style={{ position: 'absolute', inset: 0, width: 1200, height: 630 }} />
+        <div style={twj`flex flex-col items-start h-full`}>
           <div style={twj`flex flex-row items-start justify-center ${content ? 'gap-5' : 'gap-8'}`}>
             <WavyGrass style={twj`text-[#FD1E1F] ${content ? 'w-[73px] h-[57px]' : 'w-[180px] h-[139px]'}`} />
             <div
@@ -47,13 +82,24 @@ function OgImage({ content }: { content?: { post: Post; contentType: ContentType
             )}
           </div>
 
-          {content ? (
-            <div style={{ ...twj`text-[48px] w-[658px]`, fontWeight: 600 }}>{content.post.title}</div>
-          ) : (
-            <div style={{ ...twj`text-[36px] w-[658px]`, fontWeight: 300 }}>
-              A blog on software engineering, web development, life, and miscellaneous tech stuff
-            </div>
-          )}
+          <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center', width: 658 }}>
+            {content ? (
+              <div
+                style={{
+                  fontSize: titleSize(content.post.title),
+                  fontWeight: 600,
+                  lineHeight: 1.12,
+                  letterSpacing: '-0.015em',
+                }}
+              >
+                {content.post.title}
+              </div>
+            ) : (
+              <div style={{ ...twj`text-[36px]`, fontWeight: 300 }}>
+                A blog on software engineering, web development, life, and miscellaneous tech stuff
+              </div>
+            )}
+          </div>
         </div>
 
         <div style={twj`flex flex-col h-full items-center justify-center`}>
