@@ -7,6 +7,7 @@ import icons from 'unplugin-icons/vite';
 import { defineConfig } from 'vite';
 
 import { mdx } from './plugins/vite-plugin-mdx.ts';
+import { og } from './plugins/vite-plugin-og.ts';
 
 export default defineConfig({
   define: {
@@ -25,5 +26,6 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
     icons({ compiler: 'jsx', jsx: 'react', scale: 1 }),
+    og(),
   ],
 });
