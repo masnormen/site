@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 export function RectanglishShape(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -119,9 +119,15 @@ function useHexScramble(text: string, everyMs: number, durationMs: number) {
 export function KawungShape(props: React.SVGProps<SVGSVGElement>) {
   const ringId = `kawung-ring-${useId().replace(/[^\w-]/g, '')}`;
   const ringText = useHexScramble(KAWUNG_RING_TEXT, 3000, 900);
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    // Pin the spin to the document timeline so every kawung shares one angle and keeps it across client navigations.
+    for (const animation of svgRef.current?.getAnimations() ?? []) animation.startTime = 0;
+  }, []);
 
   return (
-    <svg viewBox="-100 -100 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg ref={svgRef} viewBox="-100 -100 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <defs>
         <path id={ringId} d="M0 -90a90 90 0 1 1 0 180a90 90 0 1 1 0 -180" />
       </defs>

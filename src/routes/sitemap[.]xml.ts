@@ -33,13 +33,19 @@ export const Route = createFileRoute('/sitemap.xml')({
           (modulePath) => path.parse(path.dirname(modulePath)).base,
         );
 
+        const { fetchTags } = await import('@/utils/posts.server');
+        const tags = fetchTags();
+
         const date = __BUILD_TIME__;
         const sitemap = SitemapXMLTemplate([
           SitemapURLTemplate(`https://nourman.com`, date, '1.0', 'daily'),
+          SitemapURLTemplate(`https://nourman.com/blog`, date, '0.9', 'weekly'),
+          SitemapURLTemplate(`https://nourman.com/projects`, date, '0.8', 'monthly'),
           ...postSlugs.map((url) => SitemapURLTemplate(`https://nourman.com/blog/${url}`, date, '0.9', 'weekly')),
           ...projectSlugs.map((url) =>
             SitemapURLTemplate(`https://nourman.com/projects/${url}`, date, '0.8', 'monthly'),
           ),
+          ...tags.map((tag) => SitemapURLTemplate(`https://nourman.com/tags/${tag}`, date, '0.5', 'weekly')),
         ]);
 
         return new Response(sitemap, {

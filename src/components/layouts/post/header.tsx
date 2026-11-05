@@ -5,7 +5,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { use, useEffect } from 'react';
 
 import portrait from '@/assets/img/portrait.webp';
-import { readingTimeMsAtom, thumbTransitionSlugAtom } from '@/atoms/index';
+import { ornamentTransitionTypeAtom, readingTimeMsAtom, thumbTransitionSlugAtom } from '@/atoms/index';
 import { SlimArrow } from '@/components/assets/shapes/lines';
 import { CrossShape, FloralShape } from '@/components/assets/shapes/ornaments';
 import { Section } from '@/components/layouts/section';
@@ -27,6 +27,8 @@ export function PostHeader() {
 
   const setThumbTransitionSlug = useSetAtom(thumbTransitionSlugAtom);
   useEffect(() => setThumbTransitionSlug(slug), [slug, setThumbTransitionSlug]);
+  const setOrnamentType = useSetAtom(ornamentTransitionTypeAtom);
+  useEffect(() => setOrnamentType(contentType), [contentType, setOrnamentType]);
 
   return (
     <Section
@@ -71,14 +73,20 @@ export function PostHeader() {
           </div>
         )}
 
-        <div className="animate-sticker-in absolute top-0 left-0 size-12 -translate-x-1/2 -translate-y-1/2 select-none [--i:0] sm:size-16 md:size-22">
+        <div
+          className="animate-sticker-in absolute top-0 left-0 size-12 -translate-x-1/2 -translate-y-1/2 select-none [--i:0] sm:size-16 md:size-22"
+          style={contentType === 'blog' ? { viewTransitionName: 'ornament-blog' } : undefined}
+        >
           <FloralShape
             className="h-full w-full rotate-[12deg] text-xyellow transition-transform hover:scale-120 hover:rotate-[-20deg]"
             aria-hidden="true"
           />
         </div>
 
-        <div className="animate-sticker-in absolute right-0 bottom-0 hidden size-12 translate-x-1/3 translate-y-1/3 select-none [--i:1] sm:block sm:size-16 md:size-18">
+        <div
+          className="animate-sticker-in absolute right-0 bottom-0 hidden size-12 translate-x-1/3 translate-y-1/3 select-none [--i:1] sm:block sm:size-16 md:size-18"
+          style={contentType === 'projects' ? { viewTransitionName: 'ornament-projects' } : undefined}
+        >
           <CrossShape
             className="h-full w-full -rotate-[12deg] text-xpink transition-transform hover:scale-120 hover:rotate-[20deg]"
             aria-hidden="true"
@@ -112,11 +120,14 @@ export function PostHeader() {
 
         <div className="flex flex-row flex-wrap gap-x-2 gap-y-1">
           {content.tags?.map((tag) => (
-            <Chip
-              label={tag}
+            <Link
               key={tag}
-              className="transition-colors duration-200 group-hover:bg-xblue group-hover:text-white"
-            />
+              to="/tags/$tag"
+              params={{ tag: tag.toLowerCase() }}
+              className="rounded-[10px] transition-[scale] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-97"
+            >
+              <Chip label={tag} className="transition-colors duration-300 hover:bg-xblue hover:text-white" />
+            </Link>
           ))}
         </div>
       </article>

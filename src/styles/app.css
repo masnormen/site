@@ -366,7 +366,39 @@
   }
 
   ::view-transition-group(navbar) {
+    z-index: 2;
+  }
+
+  /* Snapshots would freeze the blurred old page; redraw the fade live on the group so it blurs the animating pages. */
+  ::view-transition-group(fade-top),
+  ::view-transition-group(fade-bottom) {
     z-index: 1;
+    animation: none;
+    backdrop-filter: blur(6px);
+  }
+
+  ::view-transition-group(fade-top) {
+    background: linear-gradient(to top, transparent, color-mix(in srgb, var(--color-xblank) 90%, transparent));
+    mask-image: linear-gradient(to bottom, black 40%, transparent);
+  }
+
+  ::view-transition-group(fade-bottom) {
+    background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--color-xblank) 90%, transparent));
+    mask-image: linear-gradient(to top, black 40%, transparent);
+  }
+
+  ::view-transition-old(fade-top),
+  ::view-transition-old(fade-bottom),
+  ::view-transition-new(fade-top),
+  ::view-transition-new(fade-bottom) {
+    display: none;
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    ::view-transition-group(fade-top),
+    ::view-transition-group(fade-bottom) {
+      backdrop-filter: none;
+    }
   }
 
   ::view-transition-group(.morph) {

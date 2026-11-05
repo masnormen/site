@@ -29,11 +29,26 @@ function memoize<T>(key: string, load: () => Promise<T>) {
   return cache.get(key) as Promise<T>;
 }
 
-export const loadPost = (contentType: ContentType, slug: string) =>
-  memoize(
-    `post:${contentType}/${slug}`,
-    () => postModules[`/src/contents/${contentType}/${slug}/index.mdx`]?.() ?? Promise.resolve(undefined),
+/** Waits until image thumbnails are decoded, so a view transition snapshots them painted instead of blank. */
+async function decodeImages(thumbnails: Array<Thumbnail | undefined>) {
+  if (typeof window === 'undefined') return;
+  await Promise.all(
+    thumbnails
+      .filter((thumbnail): thumbnail is string => typeof thumbnail === 'string')
+      .map((src) => {
+        const image = new Image();
+        image.src = src;
+        return image.decode().catch(() => undefined);
+      }),
   );
+}
+
+export const loadPost = (contentType: ContentType, slug: string) =>
+  memoize(`post:${contentType}/${slug}`, async () => {
+    const post = await postModules[`/src/contents/${contentType}/${slug}/index.mdx`]?.();
+    await decodeImages([post?.Thumbnail]);
+    return post;
+  });
 
 export const loadThumbnails = (contentType: ContentType) =>
   memoize(`thumbnails:${contentType}`, async () => {
@@ -43,5 +58,7 @@ export const loadThumbnails = (contentType: ContentType) =>
         .filter(([modulePath]) => modulePath.startsWith(prefix))
         .map(async ([modulePath, load]) => [modulePath.slice(prefix.length).split('/')[0], await load()] as const),
     );
-    return Object.fromEntries(entries) as Record<string, Thumbnail>;
+    const thumbnails = Object.fromEntries(entries) as Record<string, Thumbnail>;
+    await decodeImages(Object.values(thumbnails));
+    return thumbnails;
   });

@@ -1,22 +1,21 @@
 import { getRouteApi } from '@tanstack/react-router';
-import dayjs from 'dayjs';
-import { use } from 'react';
 
 import { BigArrow, SlimArrow } from '@/components/assets/shapes/lines';
 import { FloralShape } from '@/components/assets/shapes/ornaments';
 import { Section } from '@/components/layouts/section';
-import { BlogCard } from '@/components/posts/blog-card';
-import { loadThumbnails } from '@/utils/post-modules';
+import { PostList } from '@/components/posts/post-list';
+import { useOrnamentTransition } from '@/hooks/use-thumb-transition';
 
 const indexRoute = getRouteApi('/');
 
 export function FeaturedPosts() {
   const { posts } = indexRoute.useLoaderData();
-  const thumbnails = use(loadThumbnails('blog'));
+  const iconStyle = useOrnamentTransition('blog');
 
   return (
     <Section
       id="blog"
+      iconStyle={iconStyle}
       title={
         <>
           Featured <span className="text-xblue">Posts</span>
@@ -46,19 +45,7 @@ export function FeaturedPosts() {
       //   </Button>
       // }
     >
-      <div data-testid="bloglist" className="relative mx-auto grid w-full max-w-4xl grid-cols-1 gap-4 sm:gap-8">
-        {posts.map((post) => (
-          <BlogCard
-            key={post.slug}
-            slug={post.slug}
-            title={post.title}
-            description={post.description}
-            date={dayjs(post.createdAt).format('MMM DD, YYYY')}
-            tags={post.tags}
-            Thumbnail={thumbnails[post.slug] ?? null}
-          />
-        ))}
-
+      <PostList posts={posts}>
         <aside>
           <SlimArrow className="flip absolute top-[-75px] right-[155px] hidden rotate-[60deg] text-xarrow select-none xl:block" />
           <span className="absolute top-[-95px] right-[80px] hidden -rotate-6 text-center text-xs whitespace-nowrap text-xghoststroke/50 italic select-none xl:block">
@@ -67,7 +54,7 @@ export function FeaturedPosts() {
             on each thumbnail!
           </span>
         </aside>
-      </div>
+      </PostList>
     </Section>
   );
 }

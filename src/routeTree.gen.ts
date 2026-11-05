@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ContentTypeIndexRouteImport } from './routes/$contentType.index'
 import { Route as ContentTypeSlugRouteImport } from './routes/$contentType.$slug'
+import { Route as TagsTagRouteImport } from './routes/tags.$tag'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,9 +25,19 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContentTypeIndexRoute = ContentTypeIndexRouteImport.update({
+  id: '/$contentType/',
+  path: '/$contentType/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContentTypeSlugRoute = ContentTypeSlugRouteImport.update({
   id: '/$contentType/$slug',
   path: '/$contentType/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TagsTagRoute = TagsTagRouteImport.update({
+  id: '/tags/$tag',
+  path: '/tags/$tag',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -33,30 +45,54 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$contentType/$slug': typeof ContentTypeSlugRoute
+  '/tags/$tag': typeof TagsTagRoute
+  '/$contentType/': typeof ContentTypeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$contentType/$slug': typeof ContentTypeSlugRoute
+  '/tags/$tag': typeof TagsTagRoute
+  '/$contentType': typeof ContentTypeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$contentType/$slug': typeof ContentTypeSlugRoute
+  '/tags/$tag': typeof TagsTagRoute
+  '/$contentType/': typeof ContentTypeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/$contentType/$slug'
+  fullPaths:
+    | '/'
+    | '/sitemap.xml'
+    | '/$contentType/$slug'
+    | '/tags/$tag'
+    | '/$contentType/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/$contentType/$slug'
-  id: '__root__' | '/' | '/sitemap.xml' | '/$contentType/$slug'
+  to:
+    | '/'
+    | '/sitemap.xml'
+    | '/$contentType/$slug'
+    | '/tags/$tag'
+    | '/$contentType'
+  id:
+    | '__root__'
+    | '/'
+    | '/sitemap.xml'
+    | '/$contentType/$slug'
+    | '/tags/$tag'
+    | '/$contentType/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ContentTypeSlugRoute: typeof ContentTypeSlugRoute
+  TagsTagRoute: typeof TagsTagRoute
+  ContentTypeIndexRoute: typeof ContentTypeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +111,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$contentType/': {
+      id: '/$contentType/'
+      path: '/$contentType'
+      fullPath: '/$contentType/'
+      preLoaderRoute: typeof ContentTypeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$contentType/$slug': {
       id: '/$contentType/$slug'
       path: '/$contentType/$slug'
       fullPath: '/$contentType/$slug'
       preLoaderRoute: typeof ContentTypeSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tags/$tag': {
+      id: '/tags/$tag'
+      path: '/tags/$tag'
+      fullPath: '/tags/$tag'
+      preLoaderRoute: typeof TagsTagRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -89,6 +139,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ContentTypeSlugRoute: ContentTypeSlugRoute,
+  TagsTagRoute: TagsTagRoute,
+  ContentTypeIndexRoute: ContentTypeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

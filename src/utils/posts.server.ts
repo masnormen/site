@@ -32,3 +32,22 @@ export const fetchPost = (contentType: ContentType, slug: string) =>
 
 export const fetchPostList = (contentType: ContentType) =>
   posts.filter((entry) => entry.contentType === contentType).map((entry) => entry.post);
+
+const normalizeTag = (tag: string) => tag.toLowerCase();
+
+export const fetchTags = (contentType?: ContentType) =>
+  [
+    ...new Set(
+      posts
+        .filter((entry) => !contentType || entry.contentType === contentType)
+        .flatMap((entry) => (entry.post.tags ?? []).map(normalizeTag)),
+    ),
+  ].toSorted();
+
+export const fetchPostsByTag = (tag: string) => {
+  const matches = posts.filter((entry) => entry.post.tags?.some((t) => normalizeTag(t) === normalizeTag(tag)));
+  return {
+    blog: matches.filter((entry) => entry.contentType === 'blog').map((entry) => entry.post),
+    projects: matches.filter((entry) => entry.contentType === 'projects').map((entry) => entry.post),
+  };
+};

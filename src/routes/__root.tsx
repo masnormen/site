@@ -163,8 +163,8 @@ function RootComponent() {
           </main>
 
           {/* Top/Bottom fade */}
-          <div className="pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t from-xblank/0 to-xblank/90 [mask-image:linear-gradient(to_bottom,black_40%,transparent)] backdrop-blur-[6px] reduced-transparency:to-xblank reduced-transparency:backdrop-blur-none" />
-          <div className="pointer-events-none fixed bottom-0 z-50 h-20 w-screen bg-gradient-to-b from-xblank/0 to-xblank/90 [mask-image:linear-gradient(to_top,black_40%,transparent)] backdrop-blur-[6px] reduced-transparency:to-xblank reduced-transparency:backdrop-blur-none" />
+          <div className="pointer-events-none fixed top-0 z-50 h-20 w-screen bg-gradient-to-t from-xblank/0 to-xblank/90 [mask-image:linear-gradient(to_bottom,black_40%,transparent)] backdrop-blur-[6px] [view-transition-name:fade-top] reduced-transparency:to-xblank reduced-transparency:backdrop-blur-none" />
+          <div className="pointer-events-none fixed bottom-0 z-50 h-20 w-screen bg-gradient-to-b from-xblank/0 to-xblank/90 [mask-image:linear-gradient(to_top,black_40%,transparent)] backdrop-blur-[6px] [view-transition-name:fade-bottom] reduced-transparency:to-xblank reduced-transparency:backdrop-blur-none" />
 
           {import.meta.env.DEV && <TanStackRouterDevtools initialIsOpen={false} />}
           <SVGFilters />

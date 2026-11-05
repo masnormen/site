@@ -57,10 +57,10 @@ export function Navbar() {
         <NavItem type="link" to="/" aria-label="Home">
           <MingcuteHome6Fill className="mt-[1px] text-base" />
         </NavItem>
-        <NavItem type="link" to="/" hash="blog">
+        <NavItem type="link" to="/$contentType" params={{ contentType: 'blog' }}>
           Blog
         </NavItem>
-        <NavItem type="link" to="/" hash="projects">
+        <NavItem type="link" to="/$contentType" params={{ contentType: 'projects' }}>
           Projects
         </NavItem>
         <NavItem type="link" href="https://linkedin.com/in/nourmanhajar" aria-label="LinkedIn">

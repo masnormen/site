@@ -6,6 +6,7 @@ interface SectionProps extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> 
   title?: React.ReactNode;
   description?: React.ReactNode;
   icon?: React.ReactNode;
+  iconStyle?: React.CSSProperties;
   children?: React.ReactNode;
   before?: React.ReactNode;
   after?: React.ReactNode;
@@ -18,6 +19,7 @@ export function Section({
   children,
   description = '',
   icon,
+  iconStyle,
   before,
   after,
   className = '',
@@ -35,7 +37,10 @@ export function Section({
 
       <div className="mx-auto w-[calc(100%-32px)] max-w-ixl sm:w-[calc(100%-64px)] md:w-[calc(100%-128px)]">
         {icon && (
-          <div className="absolute left-0 hidden size-16 -translate-x-1/2 -translate-y-[10%] select-none sm:block">
+          <div
+            className="absolute left-0 hidden size-16 -translate-x-1/2 -translate-y-[10%] select-none sm:block"
+            style={iconStyle}
+          >
             {icon}
           </div>
         )}
@@ -43,7 +48,11 @@ export function Section({
         {title && (
           <header className="mb-8">
             <div className="flex items-center gap-3">
-              {icon && <div className="size-10 shrink-0 select-none sm:hidden">{icon}</div>}
+              {icon && (
+                <div className="size-10 shrink-0 select-none sm:hidden" style={iconStyle}>
+                  {icon}
+                </div>
+              )}
               <h1 className="font-serif text-3xl leading-[1.25] font-light tracking-tight text-xghoststroke sm:text-[36px]">
                 {title}
               </h1>

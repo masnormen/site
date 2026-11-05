@@ -7,8 +7,8 @@ import { CrossShape } from '@/components/assets/shapes/ornaments';
 const FOOTER_CONTENT = {
   navigate: [
     { label: 'Home', to: '/' },
-    { label: 'Blog', to: '/', hash: 'blog' },
-    { label: 'Projects', to: '/', hash: 'projects' },
+    { label: 'Blog', to: '/blog' },
+    { label: 'Projects', to: '/projects' },
   ],
   connect: [
     {

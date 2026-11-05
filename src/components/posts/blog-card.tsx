@@ -28,7 +28,7 @@ export function BlogCard({
   ...rest
 }: Omit<BlogCardProps, 'nth' | 'className'>) {
   const [ref, isHover] = useHover<HTMLDivElement>();
-  const { thumbStyle, markThumb } = useThumbTransition(slug);
+  const { thumbStyle, markThumb } = useThumbTransition(slug, 'blog');
 
   return (
     <Link

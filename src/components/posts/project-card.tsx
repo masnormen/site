@@ -27,22 +27,22 @@ const ProjectButton = ({ href, children, ...rest }: React.AnchorHTMLAttributes<H
 );
 
 const TechStackIcon = ({ tag }: { tag: string }) => {
-  if (tag === 'js') {
+  if (tag === 'javascript') {
     return <ProiconsJavascript key={tag} className="text-xl text-[#d3be1f]" />;
   }
-  if (tag === 'ts') {
+  if (tag === 'typescript') {
     return <ProiconsTypescript key={tag} className="text-xl text-[#3178c6]" />;
   }
   if (tag === 'react') {
     return <MdiReact key={tag} className="text-xl text-[#00a9cf]" />;
   }
-  if (tag === 'lib') {
+  if (tag === 'library') {
     return <MaterialIconThemeNpm key={tag} className="text-xl text-xred" />;
   }
-  if (tag === 'app') {
+  if (tag === 'web-app') {
     return <TdesignApp key={tag} className="text-lg text-xred" />;
   }
-  if (tag === 'node') {
+  if (tag === 'nodejs') {
     return <LogosNodejsIcon key={tag} className="text-xgreen text-lg" />;
   }
   return null;
@@ -50,12 +50,12 @@ const TechStackIcon = ({ tag }: { tag: string }) => {
 
 const TechStack = ({ tag }: { tag: string }) => {
   const tooltipMap = {
-    js: 'JavaScript',
-    ts: 'TypeScript',
+    javascript: 'JavaScript',
+    typescript: 'TypeScript',
     react: 'React',
-    lib: 'Available on NPM',
-    app: 'Application/Website',
-    node: 'Node.js',
+    library: 'Available on NPM',
+    'web-app': 'Application/Website',
+    nodejs: 'Node.js',
   } as const;
 
   return (
@@ -95,7 +95,7 @@ export function ProjectCard({
   links = [],
   ...rest
 }: ProjectCardProps) {
-  const { thumbStyle, markThumb } = useThumbTransition(slug);
+  const { thumbStyle, markThumb } = useThumbTransition(slug, 'projects');
 
   return (
     <article
