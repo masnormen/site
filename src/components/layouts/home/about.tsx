@@ -1,4 +1,6 @@
+import portrait from '@/assets/img/portrait.webp';
 import { WingishShape } from '@/components/assets/shapes/misc';
+import { CrossShape } from '@/components/assets/shapes/ornaments';
 import { Section } from '@/components/layouts/section';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
@@ -12,19 +14,16 @@ export function About() {
         </>
       }
       icon={
-        <img
-          src="/assets/images/x-yellow-blue.webp"
-          className="h-[70%] w-[70%] translate-x-[10%] translate-y-[20%] rotate-[25deg] transition-transform hover:scale-120 hover:rotate-[-40deg]"
-          draggable="false"
-          loading="lazy"
-          alt=""
+        <CrossShape
+          className="h-[70%] w-[70%] translate-x-[10%] translate-y-[20%] rotate-[25deg] text-xyellow transition-transform hover:scale-120 hover:rotate-[-40deg]"
+          aria-hidden="true"
         />
       }
     >
       <div className="block h-full space-y-5 text-sm leading-[1.6] lg:text-base">
         <div className="group relative isolate mx-auto aspect-square size-[220px] h-full sm:float-right sm:mx-0 sm:-mt-16 sm:mb-6 sm:ml-6 md:ml-8 md:size-[250px]">
           <img
-            src="/assets/images/portrait.webp"
+            src={portrait}
             className="relative z-10 aspect-square h-full w-full rounded-full border-2 border-xbg shadow-lg transition-[scale,rotate,box-shadow] duration-400 group-hover:scale-98 group-hover:rotate-6 group-hover:shadow-2xl "
             draggable="false"
             loading="lazy"

@@ -11,6 +11,7 @@ import TdesignApp from '~icons/tdesign/app';
 import type { ThumbnailProps } from '@/types/post';
 
 import { CircleComplete, CircleIncomplete } from '@/components/assets/shapes/circles';
+import { FloralShape } from '@/components/assets/shapes/ornaments';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useThumbTransition } from '@/hooks/use-thumb-transition';
 import { cn } from '@/utils/cn';
@@ -194,20 +195,14 @@ export function ProjectCard({
         >
           <div className="hidden h-full w-full items-center justify-center sm:flex">
             {nth % 2 === 0 ? (
-              <img
-                src="/assets/images/floral-pink-blue.webp"
-                className="block size-[20cqw] rotate-[18deg] transition-transform group-hover:rotate-[-25deg] lg:hidden"
-                draggable="false"
-                loading="lazy"
-                alt=""
+              <FloralShape
+                className="block size-[20cqw] rotate-[18deg] text-xpink transition-transform group-hover:rotate-[-25deg] lg:hidden"
+                aria-hidden="true"
               />
             ) : (
-              <img
-                src="/assets/images/floral-yellow-blue.webp"
-                className="block size-[20cqw] rotate-[-18deg] transition-transform group-hover:rotate-[25deg] lg:hidden"
-                draggable="false"
-                loading="lazy"
-                alt=""
+              <FloralShape
+                className="block size-[20cqw] rotate-[-18deg] text-xyellow transition-transform group-hover:rotate-[25deg] lg:hidden"
+                aria-hidden="true"
               />
             )}
           </div>

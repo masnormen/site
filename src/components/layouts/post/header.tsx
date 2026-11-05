@@ -4,8 +4,10 @@ import dayjs from 'dayjs';
 import { useAtom, useSetAtom } from 'jotai';
 import { use, useEffect } from 'react';
 
+import portrait from '@/assets/img/portrait.webp';
 import { readingTimeMsAtom, thumbTransitionSlugAtom } from '@/atoms/index';
 import { SlimArrow } from '@/components/assets/shapes/lines';
+import { CrossShape, FloralShape } from '@/components/assets/shapes/ornaments';
 import { Section } from '@/components/layouts/section';
 import { Chip } from '@/components/posts/chip';
 import { ThumbnailDisplay } from '@/components/posts/thumbnail-display';
@@ -70,22 +72,16 @@ export function PostHeader() {
         )}
 
         <div className="animate-sticker-in absolute top-0 left-0 size-12 -translate-x-1/2 -translate-y-1/2 select-none [--i:0] sm:size-16 md:size-22">
-          <img
-            src="/assets/images/floral-yellow-blue.webp"
-            className="h-full w-full rotate-[12deg] transition-transform hover:scale-120 hover:rotate-[-20deg]"
-            draggable="false"
-            loading="lazy"
-            alt=""
+          <FloralShape
+            className="h-full w-full rotate-[12deg] text-xyellow transition-transform hover:scale-120 hover:rotate-[-20deg]"
+            aria-hidden="true"
           />
         </div>
 
         <div className="animate-sticker-in absolute right-0 bottom-0 hidden size-12 translate-x-1/3 translate-y-1/3 select-none [--i:1] sm:block sm:size-16 md:size-18">
-          <img
-            src="/assets/images/x-pink-blue.webp"
-            className="h-full w-full -rotate-[12deg] transition-transform hover:scale-120 hover:rotate-[20deg]"
-            draggable="false"
-            loading="lazy"
-            alt=""
+          <CrossShape
+            className="h-full w-full -rotate-[12deg] text-xpink transition-transform hover:scale-120 hover:rotate-[20deg]"
+            aria-hidden="true"
           />
         </div>
       </div>
@@ -97,18 +93,15 @@ export function PostHeader() {
           md:hover:scale-99 md:hover:bg-xarrow md:hover:shadow-2xs"
       >
         <p className="text-sm leading-[1] font-medium sm:text-base">
-          <img
-            src="/assets/images/x-yellow-blue.webp"
-            className="animate-sticker-in mr-4 hidden size-6 rotate-[20deg] transition-transform [--i:4] hover:scale-120 hover:rotate-[-20deg] md:inline-flex!"
-            draggable="false"
-            loading="lazy"
-            alt=""
+          <CrossShape
+            className="animate-sticker-in mr-4 hidden size-6 rotate-[20deg] text-xyellow transition-transform [--i:4] hover:scale-120 hover:rotate-[-20deg] md:inline-flex!"
+            aria-hidden="true"
           />
           <span className="font-semibold">{dayjs(content.createdAt).format('DD MMM YYYY')}</span> ・{' '}
           {dayjs.duration(readingTimeMs || 0, 'ms').format('m [mins]')} read ・{' '}
           <span className="hidden lg:inline!">by</span>{' '}
           <img
-            src="/assets/images/portrait.webp"
+            src={portrait}
             className="relative mx-1 inline-flex aspect-square size-8 rounded-full shadow-lg"
             draggable="false"
             loading="lazy"

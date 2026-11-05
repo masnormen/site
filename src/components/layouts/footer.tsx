@@ -1,6 +1,8 @@
 import { ClientOnly, Link, type LinkComponent } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 
+import { CrossShape } from '@/components/assets/shapes/ornaments';
+
 const FOOTER_CONTENT = {
   navigate: [
     { label: 'Home', to: '/' },
@@ -58,12 +60,9 @@ const FooterSection = ({
 }) => (
   <div className={className}>
     <div className="relative font-title text-2xl leading-[1.15] font-bold">
-      <img
-        src="/assets/images/x-pink-blue.webp"
-        className="mr-3 inline-block size-6 rotate-[25deg] transition-transform hover:scale-120 hover:rotate-[-40deg]"
-        draggable="false"
-        loading="lazy"
-        alt=""
+      <CrossShape
+        className="mr-3 inline-block size-6 rotate-[25deg] text-xpink transition-transform hover:scale-120 hover:rotate-[-40deg]"
+        aria-hidden="true"
       />
       {title}
     </div>

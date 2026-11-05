@@ -1,17 +1,24 @@
 import { Link } from '@tanstack/react-router';
 
+import { KawungShape } from '@/components/assets/shapes/misc';
+import { CrossShape, FloralShape } from '@/components/assets/shapes/ornaments';
 import { cn } from '@/utils/cn';
 
 export function Hero({ children, className }: { children?: React.ReactNode; className?: string }) {
   return (
     <header
       className={cn(
-        '@container relative mx-auto flex h-[584px] w-[calc(100dvw-64px)] max-w-oxl flex-col items-center justify-center border-x-1 border-b-1 border-dashed border-xline px-5 sm:w-[80dvw]',
+        '@container relative isolate mx-auto flex h-[584px] w-[calc(100dvw-64px)] max-w-oxl flex-col items-center justify-center border-x-1 border-b-1 border-dashed border-xline px-5 sm:w-[80dvw]',
         className,
       )}
     >
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none" aria-hidden="true">
+        <KawungShape className="absolute top-full left-1/2 size-[min(520px,92cqw)] -translate-x-1/2 -translate-y-2/5 text-xyellow opacity-75 [--kawung-stroke:var(--color-xblue)] motion-safe:animate-[spin-clockwise_30s_linear_infinite]" />
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-xblank/0 to-xblank/90 [mask-image:linear-gradient(to_top,black_40%,transparent)] backdrop-blur-[6px] reduced-transparency:to-xblank reduced-transparency:backdrop-blur-none" />
+      </div>
+
       {children ?? (
-        <>
+        <div className="flex -translate-y-16 flex-col items-center">
           <span className="text-center text-lg text-xghoststroke xl:text-xl">Hello, I'm</span>
           <Link
             to="/"
@@ -24,20 +31,16 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
             startups, enterprises, and institutions craft scalable, well-designed products that are a joy to use and
             just as good under the hood.
           </span>
-        </>
+        </div>
       )}
 
-      <img
-        src="/assets/images/floral-yellow-blue.webp"
-        className="animate-sticker-in absolute size-[80px] -translate-y-[220px] rotate-[14deg] transition-transform select-none [--i:0] hover:scale-80 hover:rotate-[0deg] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]"
-        draggable="false"
-        alt=""
+      <FloralShape
+        className="animate-sticker-in absolute size-[80px] -translate-y-[220px] rotate-[14deg] text-xyellow transition-transform select-none [--i:0] hover:scale-80 hover:rotate-[0deg] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]"
+        aria-hidden="true"
       />
-      <img
-        src="/assets/images/x-pink-blue.webp"
-        className="animate-sticker-in absolute size-[50px] translate-y-[220px] rotate-[-18deg] transition-transform select-none [--i:3] hover:scale-80 hover:rotate-[0deg] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]"
-        draggable="false"
-        alt=""
+      <CrossShape
+        className="animate-sticker-in absolute size-[50px] translate-y-[220px] rotate-[-18deg] text-xpink transition-transform select-none [--i:3] hover:scale-80 hover:rotate-[0deg] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]"
+        aria-hidden="true"
       />
       <div className="animate-sticker-in absolute left-0 hidden -translate-x-1/2 translate-y-[120px] rotate-[-7deg] [--i:1] sm:block">
         <div className="filter-gooey mt-2 rotate-[-2deg] text-center drop-shadow-[4px_4px_0px_var(--color-xyellow)] duration-300 hover:rotate-[15deg] hover:drop-shadow-[4px_4px_0px_var(--color-xblue)]">

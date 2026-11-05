@@ -2,6 +2,7 @@ import { getRouteApi } from '@tanstack/react-router';
 import { use } from 'react';
 
 import { SlimArrow } from '@/components/assets/shapes/lines';
+import { CrossShape } from '@/components/assets/shapes/ornaments';
 import { Section } from '@/components/layouts/section';
 import { ProjectCard } from '@/components/posts/project-card';
 import { loadThumbnails } from '@/utils/post-modules';
@@ -21,12 +22,9 @@ export function FeaturedProjects() {
         </>
       }
       icon={
-        <img
-          src="/assets/images/x-pink-blue.webp"
-          className="h-[70%] w-[70%] translate-x-[10%] translate-y-[20%] rotate-[25deg] transition-transform hover:scale-120 hover:rotate-[-40deg]"
-          draggable="false"
-          loading="lazy"
-          alt=""
+        <CrossShape
+          className="h-[70%] w-[70%] translate-x-[10%] translate-y-[20%] rotate-[25deg] text-xpink transition-transform hover:scale-120 hover:rotate-[-40deg]"
+          aria-hidden="true"
         />
       }
       description="Tiny fraction of things and fun projects I‘ve worked on, mostly open-source."

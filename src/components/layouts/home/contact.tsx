@@ -6,7 +6,8 @@ import NotoEyes from '~icons/noto/eyes';
 
 import { CircleComplete, CircleIncomplete } from '@/components/assets/shapes/circles';
 import { SpringyArrow, WavyGrass } from '@/components/assets/shapes/lines';
-import { KiteishShape } from '@/components/assets/shapes/misc';
+import { KawungShape, KiteishShape } from '@/components/assets/shapes/misc';
+import { FloralShape } from '@/components/assets/shapes/ornaments';
 import { ContactButton } from '@/components/layouts/home/contact-button';
 import { Section } from '@/components/layouts/section';
 
@@ -20,19 +21,20 @@ export function Contact() {
         </>
       }
       icon={
-        <img
-          src="/assets/images/floral-pink-blue.webp"
-          className="h-full w-full rotate-[45deg] transition-transform hover:scale-120 hover:rotate-[-20deg]"
-          draggable="false"
-          loading="lazy"
-          alt=""
+        <FloralShape
+          className="h-full w-full rotate-[45deg] text-xpink transition-transform hover:scale-120 hover:rotate-[-20deg]"
+          aria-hidden="true"
         />
       }
       className="border-b-0"
     >
       <div className="grid grid-flow-row grid-cols-2 grid-rows-[auto_1fr_1fr] gap-2 sm:gap-4 lg:grid-cols-4 lg:grid-rows-[auto_1fr] xl:grid-flow-col xl:grid-cols-[auto_1fr_1fr] xl:grid-rows-2">
         <div className="group/card relative z-0 col-span-2 lg:col-span-4 xl:col-span-1 xl:row-span-2">
-          <div className="relative z-10 flex h-full w-full flex-col justify-between rounded-cxl bg-xbg p-8 text-center">
+          <div className="relative z-10 flex h-full w-full flex-col justify-between overflow-hidden rounded-cxl bg-xbg p-8 text-center">
+            <KawungShape
+              className="pointer-events-none absolute -right-16 -bottom-16 -z-10 size-[260px] text-xblue opacity-15 transition-[rotate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] select-none group-hover/card:rotate-45 motion-reduce:transition-none"
+              aria-hidden="true"
+            />
             <div className="text-left font-title text-lg text-pretty lg:text-2xl">
               Wanna{' '}
               <span className="text-xblue transition-colors duration-200 group-hover/card:text-xred">

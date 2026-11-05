@@ -48,3 +48,25 @@ export function KiteishShape(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+const KAWUNG_PETAL_ANGLES = [0, 72, 144, 216, 288];
+
+/** Petals take `currentColor`; outlines take `--kawung-stroke`, falling back to `currentColor`. */
+export function KawungShape(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="-100 -100 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <g style={{ stroke: 'var(--kawung-stroke, currentColor)' }}>
+        <circle r={96} strokeOpacity={0.6} strokeWidth={1.2} strokeDasharray="1.5 5" />
+        <circle r={84} strokeOpacity={0.3} />
+      </g>
+      {KAWUNG_PETAL_ANGLES.map((angle) => (
+        <g key={angle} transform={`rotate(${angle})`}>
+          <ellipse cy={-46} rx={16} ry={36} fill="currentColor" fillOpacity={0.55} />
+          <ellipse cy={-46} rx={7} ry={21} strokeWidth={1.2} style={{ stroke: 'var(--kawung-stroke, currentColor)' }} />
+          <circle cy={-46} r={2.5} style={{ fill: 'var(--kawung-stroke, currentColor)' }} />
+        </g>
+      ))}
+      <circle r={6} style={{ fill: 'var(--kawung-stroke, currentColor)' }} />
+    </svg>
+  );
+}

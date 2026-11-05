@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { use } from 'react';
 
 import { BigArrow, SlimArrow } from '@/components/assets/shapes/lines';
+import { FloralShape } from '@/components/assets/shapes/ornaments';
 import { Section } from '@/components/layouts/section';
 import { BlogCard } from '@/components/posts/blog-card';
 import { loadThumbnails } from '@/utils/post-modules';
@@ -22,12 +23,9 @@ export function FeaturedPosts() {
         </>
       }
       icon={
-        <img
-          src="/assets/images/floral-yellow-blue.webp"
-          className="h-full w-full rotate-[45deg] transition-transform hover:scale-120 hover:rotate-[-20deg]"
-          draggable="false"
-          loading="lazy"
-          alt=""
+        <FloralShape
+          className="h-full w-full rotate-[45deg] text-xyellow transition-transform hover:scale-120 hover:rotate-[-20deg]"
+          aria-hidden="true"
         />
       }
       description="On software engineering, building with AI, and random things I like."
