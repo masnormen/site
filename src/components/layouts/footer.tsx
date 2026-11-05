@@ -1,6 +1,7 @@
 import { ClientOnly, Link, type LinkComponent } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 
+import { KawungShape } from '@/components/assets/shapes/misc';
 import { CrossShape } from '@/components/assets/shapes/ornaments';
 
 const FOOTER_CONTENT = {
@@ -76,7 +77,12 @@ export function Footer() {
   const todayString = dayjs().format('dddd');
 
   return (
-    <footer className="flex flex-col items-center justify-center overflow-hidden border-t-1 border-dashed border-xline bg-xbg">
+    <footer className="relative flex flex-col items-center justify-center overflow-hidden border-t-1 border-dashed border-xline bg-xbg">
+      <KawungShape
+        className="pointer-events-none absolute top-full left-1/2 size-[min(640px,120vw)] -translate-x-1/2 -translate-y-[30%] text-[#b9b9b2] opacity-60 select-none [--kawung-ring:var(--color-xghoststroke)] [--kawung-stroke:var(--color-xghoststroke)] motion-safe:animate-[spin-clockwise_30s_linear_infinite]"
+        aria-hidden="true"
+      />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-xbg/0 to-xbg/90 [mask-image:linear-gradient(to_top,black_40%,transparent)] backdrop-blur-[6px] reduced-transparency:to-xbg reduced-transparency:backdrop-blur-none" />
       <div className="@container relative mx-auto flex w-[calc(100dvw-64px)] max-w-ixl flex-col items-center pt-12 pb-32 sm:w-[80dvw] md:h-[532px] md:pt-24 md:pb-0">
         <nav className="flex w-full flex-col gap-12 md:grid md:grid-cols-[1fr_1fr_0.55fr] md:gap-6">
           <FooterSection title="Navigate">

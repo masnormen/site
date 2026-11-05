@@ -52,6 +52,35 @@ export function KiteishShape(props: React.SVGProps<SVGSVGElement>) {
 }
 
 const KAWUNG_PETAL_ANGLES = [0, 72, 144, 216, 288];
+const KAWUNG_PIXEL = 5;
+const KAWUNG_LINE = { fill: 'var(--kawung-stroke, currentColor)' };
+
+function seededRandom(seed: number) {
+  let state = seed;
+  return () => {
+    state = (state * 16807) % 2147483647;
+    return state / 2147483647;
+  };
+}
+
+/** Pixel cells of one petal; the blue core is ragged but deterministic per `seed`, so SSR and client agree. */
+function pixelPetal(seed: number) {
+  const random = seededRandom(seed);
+  const cells: { x: number; y: number; core: boolean }[] = [];
+  for (let y = -85; y < -5; y += KAWUNG_PIXEL) {
+    for (let x = -20; x < 20; x += KAWUNG_PIXEL) {
+      const cx = x + KAWUNG_PIXEL / 2;
+      const cy = y + KAWUNG_PIXEL / 2 + 46;
+      if ((cx / 16) ** 2 + (cy / 36) ** 2 > 1) continue;
+      const depth = (cx / 7) ** 2 + (cy / 21) ** 2;
+      const chance = depth < 0.35 ? 1 : depth < 1 ? 0.75 : depth < 1.8 ? 0.3 : 0;
+      cells.push({ x, y, core: random() < chance });
+    }
+  }
+  return cells;
+}
+
+const KAWUNG_PETALS = KAWUNG_PETAL_ANGLES.map((angle, i) => ({ angle, cells: pixelPetal(i * 7919 + 1) }));
 const KAWUNG_RING_TEXT = '4E 6F 75 72 6D 61 6E 20 48 61 6A 61 72 · '.repeat(5);
 const HEX_DIGITS = '0123456789ABCDEF';
 
@@ -86,7 +115,7 @@ function useHexScramble(text: string, everyMs: number, durationMs: number) {
   return shown;
 }
 
-/** Petals take `currentColor`; outlines take `--kawung-stroke`, falling back to `currentColor`. */
+/** Petal pixels take `currentColor`; cores and lines take `--kawung-stroke`, falling back to `currentColor`; ring text takes `--kawung-ring` (default red). */
 export function KawungShape(props: React.SVGProps<SVGSVGElement>) {
   const ringId = `kawung-ring-${useId().replace(/[^\w-]/g, '')}`;
   const ringText = useHexScramble(KAWUNG_RING_TEXT, 3000, 900);
@@ -99,21 +128,35 @@ export function KawungShape(props: React.SVGProps<SVGSVGElement>) {
       <text
         fontSize={4.5}
         fontWeight={700}
-        style={{ fill: 'var(--color-xred)', opacity: 0.75, fontFamily: 'var(--font-mono)' }}
+        style={{ fill: 'var(--kawung-ring, var(--color-xred))', opacity: 0.75, fontFamily: 'var(--font-mono)' }}
       >
         <textPath href={`#${ringId}`} textLength={565} lengthAdjust="spacing">
           {ringText}
         </textPath>
       </text>
-      <circle r={84} strokeOpacity={0.3} style={{ stroke: 'var(--kawung-stroke, currentColor)' }} />
-      {KAWUNG_PETAL_ANGLES.map((angle) => (
+      <circle
+        r={84}
+        strokeOpacity={0.45}
+        strokeDasharray="2 2"
+        style={{ stroke: 'var(--kawung-stroke, currentColor)' }}
+      />
+      {KAWUNG_PETALS.map(({ angle, cells }) => (
         <g key={angle} transform={`rotate(${angle})`}>
-          <ellipse cy={-46} rx={16} ry={36} fill="currentColor" fillOpacity={0.55} />
-          <ellipse cy={-46} rx={7} ry={21} strokeWidth={1.2} style={{ stroke: 'var(--kawung-stroke, currentColor)' }} />
-          <circle cy={-46} r={2.5} style={{ fill: 'var(--kawung-stroke, currentColor)' }} />
+          {cells.map(({ x, y, core }) => (
+            <rect
+              key={`${x},${y}`}
+              x={x}
+              y={y}
+              width={KAWUNG_PIXEL - 1}
+              height={KAWUNG_PIXEL - 1}
+              fill="currentColor"
+              fillOpacity={core ? 0.6 : 0.55}
+              style={core ? KAWUNG_LINE : undefined}
+            />
+          ))}
         </g>
       ))}
-      <circle r={6} style={{ fill: 'var(--kawung-stroke, currentColor)' }} />
+      <rect x={-5} y={-5} width={10} height={10} style={KAWUNG_LINE} />
     </svg>
   );
 }
