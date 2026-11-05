@@ -96,7 +96,11 @@ export function KawungShape(props: React.SVGProps<SVGSVGElement>) {
       <defs>
         <path id={ringId} d="M0 -90a90 90 0 1 1 0 180a90 90 0 1 1 0 -180" />
       </defs>
-      <text fontSize={4.5} fontWeight={700} style={{ fill: 'var(--color-xred)', opacity: 0.75, fontFamily: 'var(--font-mono)' }}>
+      <text
+        fontSize={4.5}
+        fontWeight={700}
+        style={{ fill: 'var(--color-xred)', opacity: 0.75, fontFamily: 'var(--font-mono)' }}
+      >
         <textPath href={`#${ringId}`} textLength={565} lengthAdjust="spacing">
           {ringText}
         </textPath>

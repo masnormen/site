@@ -8,7 +8,7 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
   return (
     <header
       className={cn(
-        '@container relative isolate mx-auto flex h-[584px] w-[calc(100dvw-64px)] max-w-oxl flex-col items-center justify-center border-x-1 border-b-1 border-dashed border-xline px-5 sm:w-[80dvw]',
+        '@container relative isolate mx-auto flex h-[584px] w-[calc(100dvw-32px)] max-w-oxl flex-col items-center justify-center border-x-1 border-b-1 border-dashed border-xline px-5 sm:w-[80dvw]',
         className,
       )}
     >
@@ -18,7 +18,7 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
       </div>
 
       {children ?? (
-        <div className="flex -translate-y-16 flex-col items-center">
+        <div className="flex flex-col items-center sm:-translate-y-16">
           <span className="text-center text-lg text-xghoststroke xl:text-xl">Hello, I'm</span>
           <Link
             to="/"
@@ -35,25 +35,25 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
       )}
 
       <FloralShape
-        className="animate-sticker-in absolute size-[80px] -translate-y-[220px] rotate-[14deg] text-xyellow transition-transform select-none [--i:0] hover:scale-80 hover:rotate-[0deg] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]"
+        className="animate-sticker-in absolute size-[72px] -translate-x-[120px] -translate-y-[215px] rotate-[14deg] text-xyellow transition-transform select-none [--i:0] hover:scale-80 hover:rotate-[0deg] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]"
         aria-hidden="true"
       />
       <CrossShape
-        className="animate-sticker-in absolute size-[50px] translate-y-[220px] rotate-[-18deg] text-xpink transition-transform select-none [--i:3] hover:scale-80 hover:rotate-[0deg] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]"
+        className="animate-sticker-in absolute size-[52px] translate-x-[125px] -translate-y-[200px] rotate-[-18deg] text-xpink transition-transform select-none [--i:3] hover:scale-80 hover:rotate-[0deg] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]"
         aria-hidden="true"
       />
-      <div className="animate-sticker-in absolute left-0 hidden -translate-x-1/2 translate-y-[120px] rotate-[-7deg] [--i:1] sm:block">
+      <div className="animate-sticker-in absolute left-4 translate-y-[192px] rotate-[-7deg] [--i:1] sm:left-0 sm:-translate-x-1/2 sm:translate-y-[120px]">
         <div className="filter-gooey mt-2 rotate-[-2deg] text-center drop-shadow-[4px_4px_0px_var(--color-xyellow)] duration-300 hover:rotate-[15deg] hover:drop-shadow-[4px_4px_0px_var(--color-xblue)]">
-          <h2 className="inline rounded-2xl bg-xyellow box-decoration-clone px-3 pt-2 pb-3 font-mono text-[2cqw] leading-[1.5] text-xblue drop-shadow-none select-none xl:text-[1.25rem]">
+          <h2 className="inline rounded-2xl bg-xyellow box-decoration-clone px-3 pt-2 pb-3 font-mono text-sm leading-[1.5] text-xblue drop-shadow-none select-none sm:text-[2cqw] xl:text-[1.25rem]">
             software_
             <br />
             engineer();
           </h2>
         </div>
       </div>
-      <div className="animate-sticker-in absolute right-0 hidden translate-x-1/2 -translate-y-[120px] rotate-[-7deg] [--i:2] sm:block">
+      <div className="animate-sticker-in absolute right-4 translate-y-[222px] rotate-[-7deg] [--i:2] sm:right-0 sm:translate-x-1/2 sm:-translate-y-[120px]">
         <div className="filter-gooey mt-2 text-center drop-shadow-[4px_4px_0px_var(--color-xyellow)] duration-300 hover:rotate-12 hover:drop-shadow-[4px_4px_0px_var(--color-xyellow)]">
-          <h2 className="inline rounded-2xl bg-xstroke px-4 py-2 text-center font-title text-[2cqw] font-light whitespace-nowrap text-xyellow drop-shadow-none select-none xl:text-[1.25rem]">
+          <h2 className="inline rounded-2xl bg-xstroke px-4 py-2 text-center font-title text-sm font-light whitespace-nowrap text-xyellow drop-shadow-none select-none sm:text-[2cqw] xl:text-[1.25rem]">
             based in{' '}
             <span className="rounded-md bg-gray-200 px-1 font-mono text-[0.9em] font-bold tracking-tighter text-xblue uppercase">
               IDN

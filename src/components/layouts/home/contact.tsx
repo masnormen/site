@@ -28,8 +28,8 @@ export function Contact() {
       }
       className="border-b-0"
     >
-      <div className="grid grid-flow-row grid-cols-2 grid-rows-[auto_1fr_1fr] gap-2 sm:gap-4 lg:grid-cols-4 lg:grid-rows-[auto_1fr] xl:grid-flow-col xl:grid-cols-[auto_1fr_1fr] xl:grid-rows-2">
-        <div className="group/card relative z-0 col-span-2 lg:col-span-4 xl:col-span-1 xl:row-span-2">
+      <div className="grid grid-flow-row grid-cols-1 gap-3 sm:grid-cols-2 sm:grid-rows-[auto_1fr_1fr] sm:gap-4 lg:grid-cols-4 lg:grid-rows-[auto_1fr] xl:grid-flow-col xl:grid-cols-[auto_1fr_1fr] xl:grid-rows-2">
+        <div className="group/card relative z-0 sm:col-span-2 lg:col-span-4 xl:col-span-1 xl:row-span-2">
           <div className="relative z-10 flex h-full w-full flex-col justify-between overflow-hidden rounded-cxl bg-xbg p-8 text-center">
             <KawungShape
               className="pointer-events-none absolute -right-16 -bottom-16 -z-10 size-[260px] text-xblue opacity-15 transition-[rotate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] select-none group-hover/card:rotate-45 motion-reduce:transition-none"
@@ -61,7 +61,7 @@ export function Contact() {
         </div>
 
         <ContactButton href="https://cal.com/nourman">
-          <div className="relative hidden size-16 sm:block">
+          <div className="relative mx-1 size-16 shrink-0">
             <MingcuteCalendar2Fill className="absolute top-0 left-0 translate-x-[35%] translate-y-[35%] text-4xl text-xpink transition-colors duration-400 group-hover:text-xred" />
             <MdiVideo className="absolute top-0 left-0 translate-x-[170%] translate-y-[170%] text-xl text-xblue transition-colors duration-400 group-hover:text-xyellow" />
             <CircleIncomplete className="h-full w-full text-xstroke transition-[rotate,color] duration-400 group-hover:rotate-180 group-hover:text-xblue" />
@@ -70,7 +70,7 @@ export function Contact() {
         </ContactButton>
 
         <ContactButton href="https://www.linkedin.com/in/nourmanhajar">
-          <div className="relative hidden size-18 sm:block">
+          <div className="relative size-18 shrink-0">
             <MdiLinkedin className="absolute top-0 left-0 translate-x-[40%] translate-y-[35%] text-[39px] text-xblue transition-colors duration-400 group-hover:text-xstroke" />
             <CircleComplete className="h-full w-full -translate-y-1 rotate-180 text-xyellow transition-[rotate,color] duration-400 group-hover:rotate-0 group-hover:text-xpink" />
           </div>
@@ -78,7 +78,7 @@ export function Contact() {
         </ContactButton>
 
         <ContactButton href="https://github.com/masnormen">
-          <div className="relative hidden size-18 sm:block">
+          <div className="relative size-18 shrink-0">
             <MdiGithub className="absolute top-0 left-0 translate-x-[40%] translate-y-[35%] text-[39px] text-xstroke transition-colors duration-400 group-hover:text-xblue" />
             <CircleComplete className="h-full w-full text-xblue transition-[translate,rotate,color] duration-400 group-hover:-translate-y-1 group-hover:rotate-180 group-hover:text-xyellow" />
           </div>
@@ -86,7 +86,7 @@ export function Contact() {
         </ContactButton>
 
         <ContactButton href="/">
-          <div className="relative hidden size-18 sm:block">
+          <div className="relative size-18 shrink-0">
             <NotoEyes className="absolute top-0 left-0 translate-x-[47%] translate-y-[45%] text-4xl" />
             <CircleComplete className="h-full w-full text-xcyan transition-[translate,rotate,color] duration-400 group-hover:-translate-y-1 group-hover:rotate-180 group-hover:text-xred" />
           </div>

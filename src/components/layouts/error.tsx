@@ -5,7 +5,7 @@ import { Navbar } from '@/components/layouts/navbar';
 
 export function CustomErrorComponent() {
   return (
-    <Hero className="!min-h-screen border-b-0">
+    <Hero className="!min-h-dvh border-b-0">
       <Navbar />
 
       <Link to="/">

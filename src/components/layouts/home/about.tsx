@@ -20,7 +20,7 @@ export function About() {
         />
       }
     >
-      <div className="block h-full space-y-5 text-sm leading-[1.6] lg:text-base">
+      <div className="block h-full space-y-5 text-base leading-[1.65] sm:text-sm sm:leading-[1.6] lg:text-base">
         <div className="group relative isolate mx-auto aspect-square size-[220px] h-full sm:float-right sm:mx-0 sm:-mt-16 sm:mb-6 sm:ml-6 md:ml-8 md:size-[250px]">
           <img
             src={portrait}

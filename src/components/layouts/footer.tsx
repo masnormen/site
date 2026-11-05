@@ -77,7 +77,7 @@ export function Footer() {
 
   return (
     <footer className="flex flex-col items-center justify-center overflow-hidden border-t-1 border-dashed border-xline bg-xbg">
-      <div className="@container relative mx-auto flex w-[calc(100dvw-64px)] max-w-ixl flex-col items-center pt-12 sm:w-[80dvw] md:h-[532px] md:pt-24">
+      <div className="@container relative mx-auto flex w-[calc(100dvw-64px)] max-w-ixl flex-col items-center pt-12 pb-32 sm:w-[80dvw] md:h-[532px] md:pt-24 md:pb-0">
         <nav className="flex w-full flex-col gap-12 md:grid md:grid-cols-[1fr_1fr_0.55fr] md:gap-6">
           <FooterSection title="Navigate">
             {FOOTER_CONTENT.navigate.map((item) => (

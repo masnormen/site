@@ -46,7 +46,7 @@ export function FeaturedPosts() {
       //   </Button>
       // }
     >
-      <div data-testid="bloglist" className="relative mx-auto grid w-full max-w-4xl grid-cols-1 gap-2 sm:gap-8">
+      <div data-testid="bloglist" className="relative mx-auto grid w-full max-w-4xl grid-cols-1 gap-4 sm:gap-8">
         {posts.map((post) => (
           <BlogCard
             key={post.slug}
