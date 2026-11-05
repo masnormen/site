@@ -37,15 +37,15 @@ export function BlogCard({
         contentType: 'blog',
         slug,
       }}
-      className="transition-[scale] duration-160 ease-out active:scale-98"
+      className="group/hit transition-[scale] duration-160 ease-out active:scale-98"
       onClick={markThumb}
       aria-label={title}
     >
       <article
         className="group relative
         grid w-full grid-cols-1 gap-y-2
-        rounded-cxl bg-xbg p-5 transition-[scale,background-color,box-shadow] duration-200 ease-out sm:grid sm:min-h-[198px] sm:grid-cols-[auto_1fr] sm:gap-0 sm:p-0 sm:hover:scale-99
-        sm:hover:bg-xarrow sm:hover:shadow-2xs lg:grid-cols-[1fr_auto_1fr]"
+        rounded-cxl bg-xbg p-5 transition-[scale,background-color,box-shadow] duration-200 ease-out sm:grid sm:min-h-[198px] sm:grid-cols-[auto_1fr] sm:gap-0 sm:p-0 sm:group-hover/hit:scale-99
+        sm:group-hover/hit:bg-xarrow sm:group-hover/hit:shadow-2xs lg:grid-cols-[1fr_auto_1fr]"
         ref={ref}
         {...rest}
       >

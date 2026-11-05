@@ -44,13 +44,13 @@ export function PostHeader() {
         <Link
           to="/$contentType/$slug"
           params={{ contentType, slug }}
-          className="w-full transition-[scale] duration-160 ease-out active:scale-98"
+          className="group/hit w-full transition-[scale] duration-160 ease-out active:scale-98"
         >
           <article
             className="group relative
             flex h-full w-full items-center justify-center gap-2 rounded-cxl py-3 transition-[scale,background-color,box-shadow] duration-200 ease-out
             sm:bg-xbg sm:p-6 sm:py-6
-            sm:hover:scale-99 sm:hover:bg-xarrow sm:hover:shadow-2xs"
+            sm:group-hover/hit:scale-99 sm:group-hover/hit:bg-xarrow sm:group-hover/hit:shadow-2xs"
           >
             <h1 className="text-center font-title text-xl leading-[1.2] font-semibold text-balance transition-colors duration-200 group-hover:text-xred md:line-clamp-6 lg:text-2xl">
               {content.title}
@@ -94,43 +94,45 @@ export function PostHeader() {
         </div>
       </div>
 
-      <article
-        className="group relative z-10 flex
+      <div className="group/hit relative z-10">
+        <article
+          className="group relative z-10 flex
           h-full w-full flex-col items-center justify-between gap-2 rounded-cxl transition-[scale,background-color,box-shadow] duration-200 ease-out sm:mt-4 sm:pt-4.5 sm:pb-4
           md:mt-8 md:flex-row md:bg-xbg md:px-6
-          md:hover:scale-99 md:hover:bg-xarrow md:hover:shadow-2xs"
-      >
-        <p className="text-sm leading-[1] font-medium sm:text-base">
-          <CrossShape
-            className="animate-sticker-in mr-4 hidden size-6 rotate-[20deg] text-xyellow transition-transform [--i:4] hover:scale-120 hover:rotate-[-20deg] md:inline-flex!"
-            aria-hidden="true"
-          />
-          <span className="font-semibold">{dayjs(content.createdAt).format('DD MMM YYYY')}</span> ・{' '}
-          {dayjs.duration(readingTimeMs || 0, 'ms').format('m [mins]')} read ・{' '}
-          <span className="hidden lg:inline!">by</span>{' '}
-          <img
-            src={portrait}
-            className="relative mx-1 inline-flex aspect-square size-8 rounded-full shadow-lg"
-            draggable="false"
-            loading="lazy"
-            alt="My portrait"
-          />{' '}
-          <span className="hidden font-semibold lg:inline!">Nourman Hajar</span>
-        </p>
+          md:group-hover/hit:scale-99 md:group-hover/hit:bg-xarrow md:group-hover/hit:shadow-2xs"
+        >
+          <p className="text-sm leading-[1] font-medium sm:text-base">
+            <CrossShape
+              className="animate-sticker-in mr-4 hidden size-6 rotate-[20deg] text-xyellow transition-transform [--i:4] hover:scale-120 hover:rotate-[-20deg] md:inline-flex!"
+              aria-hidden="true"
+            />
+            <span className="font-semibold">{dayjs(content.createdAt).format('DD MMM YYYY')}</span> ・{' '}
+            {dayjs.duration(readingTimeMs || 0, 'ms').format('m [mins]')} read ・{' '}
+            <span className="hidden lg:inline!">by</span>{' '}
+            <img
+              src={portrait}
+              className="relative mx-1 inline-flex aspect-square size-8 rounded-full shadow-lg"
+              draggable="false"
+              loading="lazy"
+              alt="My portrait"
+            />{' '}
+            <span className="hidden font-semibold lg:inline!">Nourman Hajar</span>
+          </p>
 
-        <div className="flex flex-row flex-wrap gap-x-2 gap-y-1">
-          {content.tags?.map((tag) => (
-            <Link
-              key={tag}
-              to="/tags/$tag"
-              params={{ tag: tag.toLowerCase() }}
-              className="rounded-[10px] transition-[scale] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-97"
-            >
-              <Chip label={tag} className="transition-colors duration-300 hover:bg-xblue hover:text-white" />
-            </Link>
-          ))}
-        </div>
-      </article>
+          <div className="flex flex-row flex-wrap gap-x-2 gap-y-1">
+            {content.tags?.map((tag) => (
+              <Link
+                key={tag}
+                to="/tags/$tag"
+                params={{ tag: tag.toLowerCase() }}
+                className="rounded-[10px] transition-[scale] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-97"
+              >
+                <Chip label={tag} className="transition-colors duration-300 hover:bg-xblue hover:text-white" />
+              </Link>
+            ))}
+          </div>
+        </article>
+      </div>
     </Section>
   );
 }

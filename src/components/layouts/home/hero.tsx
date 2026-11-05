@@ -34,14 +34,18 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
         </div>
       )}
 
-      <FloralShape
-        className="animate-sticker-in absolute size-[72px] -translate-x-[120px] -translate-y-[215px] rotate-[14deg] text-xyellow transition-transform select-none [--i:0] hover:scale-80 hover:rotate-[0deg] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]"
-        aria-hidden="true"
-      />
-      <CrossShape
-        className="animate-sticker-in absolute size-[52px] translate-x-[125px] -translate-y-[200px] rotate-[-18deg] text-xpink transition-transform select-none [--i:3] hover:scale-80 hover:rotate-[0deg] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]"
-        aria-hidden="true"
-      />
+      <div className="group animate-sticker-in absolute size-[72px] -translate-x-[120px] -translate-y-[215px] rotate-[14deg] select-none [--i:0] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]">
+        <FloralShape
+          className="size-full text-xyellow transition-transform group-hover:scale-80 group-hover:-rotate-[14deg]"
+          aria-hidden="true"
+        />
+      </div>
+      <div className="group animate-sticker-in absolute size-[52px] translate-x-[125px] -translate-y-[200px] rotate-[-18deg] select-none [--i:3] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]">
+        <CrossShape
+          className="size-full text-xpink transition-transform group-hover:scale-80 group-hover:rotate-[18deg]"
+          aria-hidden="true"
+        />
+      </div>
       <div className="animate-sticker-in absolute left-4 translate-y-[192px] rotate-[-7deg] [--i:1] sm:left-0 sm:-translate-x-1/2 sm:translate-y-[120px]">
         <div className="filter-gooey mt-2 rotate-[-2deg] text-center drop-shadow-[4px_4px_0px_var(--color-xyellow)] duration-300 hover:rotate-[15deg] hover:drop-shadow-[4px_4px_0px_var(--color-xblue)]">
           <h2 className="inline rounded-2xl bg-xyellow box-decoration-clone px-3 pt-2 pb-3 font-mono text-sm leading-[1.5] text-xblue drop-shadow-none select-none sm:text-[2cqw] xl:text-[1.25rem]">

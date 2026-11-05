@@ -17,12 +17,10 @@ import { useThumbTransition } from '@/hooks/use-thumb-transition';
 import { cn } from '@/utils/cn';
 
 const ProjectButton = ({ href, children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-  <a
-    href={href}
-    className="group flex h-full w-full items-center justify-center gap-2 rounded-br-cxl rounded-bl-cxl bg-xghostwhite px-9 py-4 font-title text-sm font-semibold whitespace-nowrap transition-[translate,scale,background-color] duration-200 ease-out hover:-translate-x-0.5 hover:scale-98 hover:bg-xarrow active:scale-95 sm:flex-col sm:items-start sm:gap-1 sm:rounded-tr-cxl sm:rounded-bl-none sm:py-0"
-    {...rest}
-  >
-    {children}
+  <a href={href} className="group flex h-full w-full" {...rest}>
+    <span className="flex h-full w-full items-center justify-center gap-2 rounded-br-cxl rounded-bl-cxl bg-xghostwhite px-9 py-4 font-title text-sm font-semibold whitespace-nowrap transition-[translate,scale,background-color] duration-200 ease-out group-hover:-translate-x-0.5 group-hover:scale-98 group-hover:bg-xarrow group-active:scale-95 sm:flex-col sm:items-start sm:gap-1 sm:rounded-tr-cxl sm:rounded-bl-none sm:py-0">
+      {children}
+    </span>
   </a>
 );
 
@@ -114,7 +112,7 @@ export function ProjectCard({
             contentType: 'projects',
             slug,
           }}
-          className="transition-[scale] duration-160 ease-out active:scale-98"
+          className="group/hit transition-[scale] duration-160 ease-out active:scale-98"
           onClick={markThumb}
           aria-label={title}
         >
@@ -123,7 +121,7 @@ export function ProjectCard({
             flex items-center gap-2
             rounded-tl-cxl
             rounded-tr-cxl bg-xbg transition-[scale,background-color,box-shadow] duration-200 ease-out
-            sm:min-h-[198px] sm:rounded-tr-none sm:rounded-bl-cxl sm:hover:scale-99 sm:hover:bg-xarrow sm:hover:shadow-2xs"
+            sm:min-h-[198px] sm:rounded-tr-none sm:rounded-bl-cxl sm:group-hover/hit:scale-99 sm:group-hover/hit:bg-xarrow sm:group-hover/hit:shadow-2xs"
             {...rest}
           >
             <div className="flex h-full flex-col justify-center gap-2 p-6 sm:py-8 sm:pr-12 sm:pl-9">
