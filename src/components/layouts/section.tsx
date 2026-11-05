@@ -38,6 +38,7 @@ export function Section({
       <div className="mx-auto w-[calc(100%-32px)] max-w-ixl sm:w-[calc(100%-64px)] md:w-[calc(100%-128px)]">
         {icon && (
           <div
+            data-magnet
             className="absolute left-0 hidden size-16 -translate-x-1/2 -translate-y-[10%] select-none sm:block"
             style={iconStyle}
           >
@@ -49,7 +50,7 @@ export function Section({
           <header className="mb-8">
             <div className="flex items-center gap-3">
               {icon && (
-                <div className="size-10 shrink-0 select-none sm:hidden" style={iconStyle}>
+                <div data-magnet className="size-10 shrink-0 select-none sm:hidden" style={iconStyle}>
                   {icon}
                 </div>
               )}

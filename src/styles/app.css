@@ -365,6 +365,10 @@
       translate 200ms var(--ease-out);
   }
 
+  [data-magnet] > svg {
+    transform: translate(var(--magnet-x, 0px), var(--magnet-y, 0px)) rotate(var(--magnet-r, 0deg));
+  }
+
   ::view-transition-group(navbar) {
     z-index: 2;
   }

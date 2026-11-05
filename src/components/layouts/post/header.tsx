@@ -74,6 +74,7 @@ export function PostHeader() {
         )}
 
         <div
+          data-magnet
           className="animate-sticker-in absolute top-0 left-0 size-12 -translate-x-1/2 -translate-y-1/2 select-none [--i:0] sm:size-16 md:size-22"
           style={contentType === 'blog' ? { viewTransitionName: 'ornament-blog' } : undefined}
         >
@@ -84,6 +85,7 @@ export function PostHeader() {
         </div>
 
         <div
+          data-magnet
           className="animate-sticker-in absolute right-0 bottom-0 hidden size-12 translate-x-1/3 translate-y-1/3 select-none [--i:1] sm:block sm:size-16 md:size-18"
           style={contentType === 'projects' ? { viewTransitionName: 'ornament-projects' } : undefined}
         >

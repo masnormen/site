@@ -4,6 +4,7 @@ import { StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 
 import { getRouter } from '@/router';
+import { installMagnet } from '@/utils/magnet';
 
 const router = getRouter();
 
@@ -13,6 +14,8 @@ hydrateRoot(
     <StartClient />
   </StrictMode>,
 );
+
+installMagnet();
 
 if (import.meta.env.PROD && !!import.meta.env.VITE_SENTRY_DSN) {
   Sentry.init({

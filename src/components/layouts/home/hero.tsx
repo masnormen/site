@@ -34,13 +34,19 @@ export function Hero({ children, className }: { children?: React.ReactNode; clas
         </div>
       )}
 
-      <div className="group animate-sticker-in absolute size-[72px] -translate-x-[120px] -translate-y-[215px] rotate-[14deg] select-none [--i:0] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]">
+      <div
+        data-magnet
+        className="group animate-sticker-in absolute size-[72px] -translate-x-[120px] -translate-y-[215px] rotate-[14deg] select-none [--i:0] sm:left-0 sm:size-[18cqw] sm:-translate-x-1/2 sm:-translate-y-[100px] xl:size-[220px]"
+      >
         <FloralShape
           className="size-full text-xyellow transition-transform group-hover:scale-80 group-hover:-rotate-[14deg]"
           aria-hidden="true"
         />
       </div>
-      <div className="group animate-sticker-in absolute size-[52px] translate-x-[125px] -translate-y-[200px] rotate-[-18deg] select-none [--i:3] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]">
+      <div
+        data-magnet
+        className="group animate-sticker-in absolute size-[52px] translate-x-[125px] -translate-y-[200px] rotate-[-18deg] select-none [--i:3] sm:right-0 sm:size-[15cqw] sm:translate-x-1/2 sm:translate-y-[100px] xl:size-[170px]"
+      >
         <CrossShape
           className="size-full text-xpink transition-transform group-hover:scale-80 group-hover:rotate-[18deg]"
           aria-hidden="true"
