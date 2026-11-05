@@ -1,3 +1,5 @@
+import { useEffect, useId, useState } from 'react';
+
 export function RectanglishShape(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={202} height={197} viewBox="0 0 202 197" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -50,15 +52,56 @@ export function KiteishShape(props: React.SVGProps<SVGSVGElement>) {
 }
 
 const KAWUNG_PETAL_ANGLES = [0, 72, 144, 216, 288];
+const KAWUNG_RING_TEXT = '4E 6F 75 72 6D 61 6E 20 48 61 6A 61 72 · '.repeat(5);
+const HEX_DIGITS = '0123456789ABCDEF';
+
+/** Periodically scrambles the hex digits of `text`, settling them back left to right. Static under reduced motion. */
+function useHexScramble(text: string, everyMs: number, durationMs: number) {
+  const [shown, setShown] = useState(text);
+
+  useEffect(() => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let frame = 0;
+    const scramble = () => {
+      const start = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - start) / durationMs);
+        const settled = Math.floor(progress * text.length);
+        setShown(
+          Array.from(text, (char, i) =>
+            i < settled || !HEX_DIGITS.includes(char) ? char : HEX_DIGITS[Math.floor(Math.random() * 16)],
+          ).join(''),
+        );
+        if (progress < 1) frame = requestAnimationFrame(tick);
+      };
+      frame = requestAnimationFrame(tick);
+    };
+    const interval = setInterval(scramble, everyMs);
+    return () => {
+      clearInterval(interval);
+      cancelAnimationFrame(frame);
+    };
+  }, [text, everyMs, durationMs]);
+
+  return shown;
+}
 
 /** Petals take `currentColor`; outlines take `--kawung-stroke`, falling back to `currentColor`. */
 export function KawungShape(props: React.SVGProps<SVGSVGElement>) {
+  const ringId = `kawung-ring-${useId().replace(/[^\w-]/g, '')}`;
+  const ringText = useHexScramble(KAWUNG_RING_TEXT, 3000, 900);
+
   return (
     <svg viewBox="-100 -100 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <g style={{ stroke: 'var(--kawung-stroke, currentColor)' }}>
-        <circle r={96} strokeOpacity={0.6} strokeWidth={1.2} strokeDasharray="1.5 5" />
-        <circle r={84} strokeOpacity={0.3} />
-      </g>
+      <defs>
+        <path id={ringId} d="M0 -90a90 90 0 1 1 0 180a90 90 0 1 1 0 -180" />
+      </defs>
+      <text fontSize={4.5} fontWeight={700} style={{ fill: 'var(--color-xred)', opacity: 0.75, fontFamily: 'var(--font-mono)' }}>
+        <textPath href={`#${ringId}`} textLength={565} lengthAdjust="spacing">
+          {ringText}
+        </textPath>
+      </text>
+      <circle r={84} strokeOpacity={0.3} style={{ stroke: 'var(--kawung-stroke, currentColor)' }} />
       {KAWUNG_PETAL_ANGLES.map((angle) => (
         <g key={angle} transform={`rotate(${angle})`}>
           <ellipse cy={-46} rx={16} ry={36} fill="currentColor" fillOpacity={0.55} />
