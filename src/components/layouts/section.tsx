@@ -53,7 +53,7 @@ export function Section({
                   {icon}
                 </div>
               )}
-              <h1 className="font-serif text-3xl leading-[1.25] font-light tracking-tight text-xghoststroke sm:text-[36px]">
+              <h1 className="font-serif text-3xl leading-[1.25] font-light tracking-tight text-xghoststroke sm:text-[36px] [&_span]:font-medium [&_span]:italic">
                 {title}
               </h1>
             </div>
